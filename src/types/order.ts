@@ -35,6 +35,31 @@ export type OrderItem = {
   image?: string;
 };
 
+export type ShippingAddress = {
+  name?: string;
+  phone?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  pincode?: string;
+  country?: string;
+};
+
+export type ShippingInfo = {
+  courierName?: string;
+  trackingNumber?: string;
+  trackingUrl?: string;
+};
+
+export type OrderStatusHistoryItem = {
+  status: string;
+  changedAt?: string;
+  changedBy?: string;
+  note?: string;
+};
+
 export type AdminOrder = {
   _id?: string;
   orderNumber: string;
@@ -61,25 +86,13 @@ export type AdminOrder = {
 
   deliveryMethod?: string;
 
-  shippingAddress?: {
-    name?: string;
-    phone?: string;
-    addressLine1?: string;
-    addressLine2?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    pincode?: string;
-    country?: string;
-  };
+  shippingAddress?: ShippingAddress;
 
-  shippingInfo?: {
-    courierName?: string;
-    trackingNumber?: string;
-    trackingUrl?: string;
-  };
+  shippingInfo?: ShippingInfo;
 
   items: OrderItem[];
+
+  statusHistory?: OrderStatusHistoryItem[];
 
   adminNotes?: string;
 
@@ -117,4 +130,8 @@ export type OrderPagination = {
 export type AdminOrderListResponse = {
   orders: AdminOrder[];
   pagination: OrderPagination;
+};
+
+export type AdminOrderResponse = {
+  order: AdminOrder;
 };
