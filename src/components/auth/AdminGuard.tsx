@@ -63,7 +63,7 @@ export function AdminGuard({
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#fcfbf9]">
         <Loader2
-          size={22}
+          size={24}
           className="animate-spin text-[#292c2c]"
         />
       </div>

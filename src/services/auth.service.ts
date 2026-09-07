@@ -20,13 +20,11 @@ export async function loginAdmin(
     await apiPost<{
       success: boolean;
       data: AuthResponse;
-    }>(
-      "/auth/login",
-      {
-        email: email.trim(),
-        password,
-      },
-    );
+    }>("/auth/login", {
+      email: email.trim(),
+      password,
+      rememberMe: true,
+    });
 
   return response.data;
 }
@@ -40,9 +38,7 @@ export async function refreshAdminSession(): Promise<AuthResponse> {
     await apiPost<{
       success: boolean;
       data: AuthResponse;
-    }>(
-      "/auth/refresh",
-    );
+    }>("/auth/refresh");
 
   return response.data;
 }
@@ -60,10 +56,7 @@ export async function getCurrentAdmin(
       data: {
         user: AuthUser;
       };
-    }>(
-      "/auth/me",
-      accessToken,
-    );
+    }>("/auth/me", accessToken);
 
   return response.data.user;
 }

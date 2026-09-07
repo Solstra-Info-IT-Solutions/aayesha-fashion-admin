@@ -23,9 +23,9 @@ export type UserStatus =
 export type AuthUser = {
   id: string;
   email: string;
+  name?: string;
   firstName?: string;
   lastName?: string;
-  name?: string;
   role: UserRole;
   adminRole?: AdminRole | null;
   status?: UserStatus;

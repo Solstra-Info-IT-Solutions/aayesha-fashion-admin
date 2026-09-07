@@ -102,7 +102,7 @@ export const useAuthStore =
       },
 
       /* =====================================================
-         SESSION INITIALIZATION
+         RESTORE SESSION
       ===================================================== */
 
       initializeAuth:
@@ -124,21 +124,12 @@ export const useAuthStore =
 
             if (
               result.user.role !==
-              "admin"
-            ) {
-              set({
-                user: null,
-                accessToken: null,
-                isAuthenticated: false,
-              });
-
-              return;
-            }
-
-            if (
-              result.user.status &&
-              result.user.status !==
-                "active"
+                "admin" ||
+              (
+                result.user.status &&
+                result.user.status !==
+                  "active"
+              )
             ) {
               set({
                 user: null,
@@ -210,7 +201,7 @@ export const useAuthStore =
         },
 
       /* =====================================================
-         ROLE
+         ADMIN ROLE
       ===================================================== */
 
       hasAdminRole:

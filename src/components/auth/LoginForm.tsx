@@ -13,19 +13,18 @@ import {
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
-
 import toast from "react-hot-toast";
 
 import {
   ApiError,
 } from "@/lib/api";
 
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-
 import {
   useAdminAuth,
 } from "@/hooks/useAdminAuth";
+
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
 
 export function LoginForm() {
   const router =
@@ -33,7 +32,9 @@ export function LoginForm() {
 
   const {
     login,
-  } = useAdminAuth();
+    isLoading,
+  } =
+    useAdminAuth();
 
   const [
     email,
@@ -50,21 +51,13 @@ export function LoginForm() {
     setShowPassword,
   ] = useState(false);
 
-  const [
-    isSubmitting,
-    setIsSubmitting,
-  ] = useState(false);
-
   async function handleSubmit(
     event: FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault();
 
-    const normalizedEmail =
-      email.trim();
-
     if (
-      !normalizedEmail ||
+      !email.trim() ||
       !password
     ) {
       toast.error(
@@ -74,16 +67,14 @@ export function LoginForm() {
       return;
     }
 
-    setIsSubmitting(true);
-
     try {
       await login(
-        normalizedEmail,
+        email.trim(),
         password,
       );
 
       toast.success(
-        "Welcome to Aayesha Fashion Admin.",
+        "Signed in successfully.",
       );
 
       router.replace(
@@ -98,8 +89,6 @@ export function LoginForm() {
             : "Unable to sign in.";
 
       toast.error(message);
-    } finally {
-      setIsSubmitting(false);
     }
   }
 
@@ -111,14 +100,13 @@ export function LoginForm() {
       <div className="relative">
         <Mail
           size={18}
-          strokeWidth={1.7}
-          className="absolute left-4 top-[42px] text-[#969696]"
+          className="absolute left-4 top-[42px] z-10 text-[#969696]"
         />
 
         <Input
           id="email"
-          type="email"
           label="Email address"
+          type="email"
           autoComplete="email"
           placeholder="admin@example.com"
           value={email}
@@ -127,9 +115,7 @@ export function LoginForm() {
               event.target.value,
             )
           }
-          disabled={
-            isSubmitting
-          }
+          disabled={isLoading}
           className="pl-11"
         />
       </div>
@@ -137,18 +123,17 @@ export function LoginForm() {
       <div className="relative">
         <LockKeyhole
           size={18}
-          strokeWidth={1.7}
-          className="absolute left-4 top-[42px] text-[#969696]"
+          className="absolute left-4 top-[42px] z-10 text-[#969696]"
         />
 
         <Input
           id="password"
+          label="Password"
           type={
             showPassword
               ? "text"
               : "password"
           }
-          label="Password"
           autoComplete="current-password"
           placeholder="Enter your password"
           value={password}
@@ -157,9 +142,7 @@ export function LoginForm() {
               event.target.value,
             )
           }
-          disabled={
-            isSubmitting
-          }
+          disabled={isLoading}
           className="pl-11 pr-12"
         />
 
@@ -167,39 +150,29 @@ export function LoginForm() {
           type="button"
           onClick={() =>
             setShowPassword(
-              (current) =>
-                !current,
+              (value) =>
+                !value,
             )
           }
-          disabled={
-            isSubmitting
-          }
+          disabled={isLoading}
+          className="absolute right-3 top-[42px] p-2 text-[#969696] hover:text-[#171717]"
           aria-label={
             showPassword
               ? "Hide password"
               : "Show password"
           }
-          className="absolute right-3 top-[42px] p-2 text-[#969696] hover:text-[#171717]"
         >
           {showPassword ? (
-            <EyeOff
-              size={18}
-              strokeWidth={1.7}
-            />
+            <EyeOff size={18} />
           ) : (
-            <Eye
-              size={18}
-              strokeWidth={1.7}
-            />
+            <Eye size={18} />
           )}
         </button>
       </div>
 
       <Button
         type="submit"
-        loading={
-          isSubmitting
-        }
+        loading={isLoading}
       >
         Sign in
       </Button>
