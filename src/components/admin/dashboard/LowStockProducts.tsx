@@ -9,13 +9,13 @@ export function LowStockProducts({
   loading,
 }: {
   products: LowStockProduct[];
-  loading?: boolean;
+  loading: boolean;
 }) {
   return (
     <section className="border border-[#e7e2dd] bg-white p-6">
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex items-end justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-[#969696]">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
             Inventory
           </p>
 
@@ -26,7 +26,7 @@ export function LowStockProducts({
 
         <Link
           href="/admin/inventory"
-          className="text-xs text-[#6f706f]"
+          className="text-xs text-[#6f706f] hover:text-[#171717]"
         >
           View
         </Link>
@@ -37,10 +37,9 @@ export function LowStockProducts({
           <p className="text-sm text-[#969696]">
             Loading inventory...
           </p>
-        ) : products.length ===
-          0 ? (
+        ) : products.length === 0 ? (
           <p className="text-sm text-[#969696]">
-            No low-stock products.
+            No low-stock items.
           </p>
         ) : (
           products.map(
@@ -63,7 +62,7 @@ export function LowStockProducts({
                   {product.stock}
                 </span>
               </div>
-            )
+            ),
           )
         )}
       </div>

@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  Bell,
-} from "lucide-react";
+import { Bell } from "lucide-react";
 
 export function NotificationBell() {
   return (
@@ -16,7 +14,7 @@ export function NotificationBell() {
         strokeWidth={1.7}
       />
 
-      <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-[#d98791]" />
+      <span className="absolute right-[9px] top-[8px] h-1.5 w-1.5 rounded-full bg-[#d98791]" />
     </button>
   );
 }

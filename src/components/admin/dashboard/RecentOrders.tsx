@@ -9,13 +9,13 @@ export function RecentOrders({
   loading,
 }: {
   orders: DashboardOrder[];
-  loading?: boolean;
+  loading: boolean;
 }) {
   return (
     <section className="border border-[#e7e2dd] bg-white">
       <div className="flex items-center justify-between border-b border-[#eee9e4] px-6 py-5">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-[#969696]">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
             Orders
           </p>
 
@@ -33,21 +33,22 @@ export function RecentOrders({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[650px]">
+        <table className="w-full min-w-[640px]">
           <thead>
-            <tr className="border-b border-[#eee9e4] text-left">
-              <th className="px-6 py-3 text-[10px] uppercase tracking-[0.14em] text-[#969696]">
-                Order
-              </th>
-              <th className="px-6 py-3 text-[10px] uppercase tracking-[0.14em] text-[#969696]">
-                Customer
-              </th>
-              <th className="px-6 py-3 text-[10px] uppercase tracking-[0.14em] text-[#969696]">
-                Total
-              </th>
-              <th className="px-6 py-3 text-[10px] uppercase tracking-[0.14em] text-[#969696]">
-                Status
-              </th>
+            <tr className="border-b border-[#eee9e4]">
+              {[
+                "Order",
+                "Customer",
+                "Total",
+                "Status",
+              ].map((heading) => (
+                <th
+                  key={heading}
+                  className="px-6 py-3 text-left text-[10px] uppercase tracking-[0.13em] text-[#969696]"
+                >
+                  {heading}
+                </th>
+              ))}
             </tr>
           </thead>
 
@@ -56,17 +57,16 @@ export function RecentOrders({
               <tr>
                 <td
                   colSpan={4}
-                  className="px-6 py-8 text-center text-sm text-[#969696]"
+                  className="px-6 py-10 text-center text-sm text-[#969696]"
                 >
                   Loading orders...
                 </td>
               </tr>
-            ) : orders.length ===
-              0 ? (
+            ) : orders.length === 0 ? (
               <tr>
                 <td
                   colSpan={4}
-                  className="px-6 py-8 text-center text-sm text-[#969696]"
+                  className="px-6 py-10 text-center text-sm text-[#969696]"
                 >
                   No recent orders.
                 </td>
@@ -95,13 +95,11 @@ export function RecentOrders({
                       )}
                     </td>
 
-                    <td className="px-6 py-4">
-                      <span className="text-xs capitalize text-[#6f706f]">
-                        {order.status.replace(
-                          /_/g,
-                          " ",
-                        )}
-                      </span>
+                    <td className="px-6 py-4 text-xs capitalize text-[#6f706f]">
+                      {order.status.replace(
+                        /_/g,
+                        " ",
+                      )}
                     </td>
                   </tr>
                 ),

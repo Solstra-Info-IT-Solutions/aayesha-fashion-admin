@@ -10,7 +10,7 @@ import {
   Headphones,
   LayoutDashboard,
   Megaphone,
-  Package,
+  PackageCheck,
   Percent,
   Settings,
   ShoppingBag,
@@ -20,72 +20,81 @@ import {
 
 import { SidebarNavItem } from "./SidebarNavItem";
 
-const primaryItems = [
+const sections = [
   {
-    href: "/admin",
-    label: "Dashboard",
-    icon: LayoutDashboard,
+    title: "Workspace",
+    items: [
+      {
+        href: "/admin",
+        label: "Dashboard",
+        icon: LayoutDashboard,
+      },
+      {
+        href: "/admin/orders",
+        label: "Orders",
+        icon: ClipboardList,
+      },
+      {
+        href: "/admin/products",
+        label: "Products",
+        icon: ShoppingBag,
+      },
+      {
+        href: "/admin/inventory",
+        label: "Inventory",
+        icon: Warehouse,
+      },
+      {
+        href: "/admin/customers",
+        label: "Customers",
+        icon: Users,
+      },
+    ],
   },
   {
-    href: "/admin/orders",
-    label: "Orders",
-    icon: ClipboardList,
+    title: "Management",
+    items: [
+      {
+        href: "/admin/catalog",
+        label: "Catalog",
+        icon: Boxes,
+      },
+      {
+        href: "/admin/marketing",
+        label: "Marketing",
+        icon: Megaphone,
+      },
+      {
+        href: "/admin/coupons",
+        label: "Discounts",
+        icon: Percent,
+      },
+      {
+        href: "/admin/reviews",
+        label: "Reviews",
+        icon: FileText,
+      },
+      {
+        href: "/admin/support",
+        label: "Support",
+        icon: Headphones,
+      },
+    ],
   },
   {
-    href: "/admin/products",
-    label: "Products",
-    icon: ShoppingBag,
-  },
-  {
-    href: "/admin/inventory",
-    label: "Inventory",
-    icon: Warehouse,
-  },
-  {
-    href: "/admin/customers",
-    label: "Customers",
-    icon: Users,
-  },
-];
-
-const managementItems = [
-  {
-    href: "/admin/catalog",
-    label: "Catalog",
-    icon: Boxes,
-  },
-  {
-    href: "/admin/marketing",
-    label: "Marketing",
-    icon: Megaphone,
-  },
-  {
-    href: "/admin/coupons",
-    label: "Discounts",
-    icon: Percent,
-  },
-  {
-    href: "/admin/reviews",
-    label: "Reviews",
-    icon: FileText,
-  },
-  {
-    href: "/admin/support",
-    label: "Support",
-    icon: Headphones,
-  },
-];
-
-const systemItems = [
-  {
-    href: "/admin/reports",
-    label: "Reports",
-    icon: BarChart3,
-  },
-  {
-    href: "/admin/settings",
-    label: "Settings",
-    icon: Settings,
+    title: "System",
+    items: [
+      {
+        href: "/admin/reports",
+        label: "Reports",
+        icon: BarChart3,
+      },
+      {
+        href: "/admin/settings",
+        label: "Settings",
+        icon: Settings,
+      },
+    ],
   },
 ];
 
@@ -99,71 +108,61 @@ export function AdminSidebar() {
           href="/admin"
           className="border-b border-[#302f2d] px-6 py-6"
         >
-          <p className="text-[10px] uppercase tracking-[0.28em] text-[#efa7ae]">
-            Aayesha Fashion
-          </p>
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center border border-[#efa7ae]/40 text-[#efa7ae]">
+              <PackageCheck
+                size={17}
+                strokeWidth={1.5}
+              />
+            </div>
 
-          <p className="mt-1 font-serif text-2xl text-white">
-            Admin
-          </p>
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.25em] text-[#efa7ae]">
+                Aayesha Fashion
+              </p>
+
+              <p className="font-serif text-xl leading-none text-white">
+                Admin
+              </p>
+            </div>
+          </div>
         </Link>
 
         <nav className="flex-1 overflow-y-auto px-3 py-5">
-          <SidebarSection
-            title="Workspace"
-            items={primaryItems}
-            pathname={pathname}
-          />
+          {sections.map((section) => (
+            <div
+              key={section.title}
+              className="mb-6"
+            >
+              <p className="mb-2 px-3 text-[10px] uppercase tracking-[0.18em] text-[#77736e]">
+                {section.title}
+              </p>
 
-          <SidebarSection
-            title="Management"
-            items={managementItems}
-            pathname={pathname}
-          />
-
-          <SidebarSection
-            title="System"
-            items={systemItems}
-            pathname={pathname}
-          />
+              <div className="space-y-1">
+                {section.items.map(
+                  (item) => (
+                    <SidebarNavItem
+                      key={item.href}
+                      {...item}
+                      pathname={pathname}
+                    />
+                  ),
+                )}
+              </div>
+            </div>
+          ))}
         </nav>
 
         <div className="border-t border-[#302f2d] px-6 py-5">
-          <p className="text-[10px] leading-5 text-[#969696]">
-            Store operations
-            <br />
+          <p className="text-[10px] leading-5 text-[#77736e]">
+            Store administration
+          </p>
+
+          <p className="mt-1 text-xs text-[#c8c4c0]">
             Aayesha Fashion
           </p>
         </div>
       </div>
     </aside>
-  );
-}
-
-function SidebarSection({
-  title,
-  items,
-  pathname,
-}: {
-  title: string;
-  items: typeof primaryItems;
-  pathname: string;
-}) {
-  return (
-    <div className="mb-6">
-      <p className="mb-2 px-3 text-[10px] uppercase tracking-[0.18em] text-[#77736e]">
-        {title}
-      </p>
-
-      <div className="space-y-1">
-        {items.map((item) => (
-          <SidebarNavItem
-            key={item.href}
-            {...item}
-            pathname={pathname}
-          />
-        ))}
-      </div>
-    </div>
   );
 }

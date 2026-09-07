@@ -6,16 +6,17 @@ import { useState } from "react";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 export function UserMenu() {
-  const {
-    user,
-    logout,
-  } = useAdminAuth();
+  const { user, logout } =
+    useAdminAuth();
 
   const [open, setOpen] =
     useState(false);
 
-  const name =
+  const displayName =
     user?.name ||
+    [user?.firstName, user?.lastName]
+      .filter(Boolean)
+      .join(" ") ||
     user?.email ||
     "Administrator";
 
@@ -26,23 +27,24 @@ export function UserMenu() {
         onClick={() =>
           setOpen((value) => !value)
         }
-        className="flex items-center gap-2 border border-[#e7e2dd] bg-white px-3 py-2"
+        className="flex h-10 items-center gap-2 border border-[#e7e2dd] bg-white px-3 text-sm"
       >
         <UserCircle
           size={18}
+          strokeWidth={1.6}
           className="text-[#6f706f]"
         />
 
-        <span className="hidden max-w-[140px] truncate text-sm text-[#292c2c] sm:block">
-          {name}
+        <span className="hidden max-w-[150px] truncate sm:block">
+          {displayName}
         </span>
       </button>
 
       {open && (
-        <div className="absolute right-0 top-[calc(100%+8px)] z-40 w-64 border border-[#e7e2dd] bg-white p-2 shadow-lg">
+        <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 border border-[#e7e2dd] bg-white p-2 shadow-xl">
           <div className="border-b border-[#eee9e4] px-3 py-3">
             <p className="text-sm font-medium text-[#171717]">
-              {name}
+              {displayName}
             </p>
 
             <p className="mt-1 truncate text-xs text-[#969696]">
@@ -51,7 +53,10 @@ export function UserMenu() {
 
             {user?.adminRole && (
               <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-[#969696]">
-                {user.adminRole}
+                {user.adminRole.replace(
+                  /_/g,
+                  " ",
+                )}
               </p>
             )}
           </div>
@@ -61,7 +66,7 @@ export function UserMenu() {
             onClick={() =>
               void logout()
             }
-            className="mt-2 flex w-full items-center gap-3 px-3 py-2.5 text-sm text-[#6f706f] hover:bg-[#f5f1ec] hover:text-[#171717]"
+            className="mt-2 flex w-full items-center gap-3 px-3 py-2.5 text-sm text-[#6f706f] transition hover:bg-[#f5f1ec] hover:text-[#171717]"
           >
             <LogOut size={17} />
             Sign out

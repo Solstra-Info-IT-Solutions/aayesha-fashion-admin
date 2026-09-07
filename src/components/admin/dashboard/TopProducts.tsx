@@ -7,12 +7,12 @@ export function TopProducts({
   loading,
 }: {
   products: TopProduct[];
-  loading?: boolean;
+  loading: boolean;
 }) {
   return (
     <section className="border border-[#e7e2dd] bg-white p-6">
       <div>
-        <p className="text-xs uppercase tracking-[0.14em] text-[#969696]">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
           Performance
         </p>
 
@@ -26,15 +26,14 @@ export function TopProducts({
           <p className="text-sm text-[#969696]">
             Loading products...
           </p>
-        ) : products.length ===
-          0 ? (
+        ) : products.length === 0 ? (
           <p className="text-sm text-[#969696]">
             No product performance data.
           </p>
         ) : (
           products.map(
             (product) => (
-              <div
+              <article
                 key={product.id}
                 className="border border-[#eee9e4] p-4"
               >
@@ -42,9 +41,9 @@ export function TopProducts({
                   {product.name}
                 </p>
 
-                <div className="mt-4 flex items-end justify-between">
+                <div className="mt-5 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-[#969696]">
+                    <p className="text-[9px] uppercase tracking-[0.12em] text-[#969696]">
                       Units
                     </p>
 
@@ -53,8 +52,8 @@ export function TopProducts({
                     </p>
                   </div>
 
-                  <div className="text-right">
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-[#969696]">
+                  <div>
+                    <p className="text-[9px] uppercase tracking-[0.12em] text-[#969696]">
                       Revenue
                     </p>
 
@@ -66,7 +65,7 @@ export function TopProducts({
                     </p>
                   </div>
                 </div>
-              </div>
+              </article>
             ),
           )
         )}

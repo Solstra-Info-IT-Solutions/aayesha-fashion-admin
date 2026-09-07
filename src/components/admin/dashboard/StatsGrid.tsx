@@ -1,8 +1,8 @@
 import {
   IndianRupee,
   Package,
-  Users,
   ShoppingBag,
+  Users,
 } from "lucide-react";
 
 import type {
@@ -16,11 +16,9 @@ export function StatsGrid({
   loading,
 }: {
   summary: DashboardSummary;
-  loading?: boolean;
+  loading: boolean;
 }) {
-  const formatCurrency = (
-    value: number,
-  ) =>
+  const currency =
     new Intl.NumberFormat(
       "en-IN",
       {
@@ -28,14 +26,14 @@ export function StatsGrid({
         currency: "INR",
         maximumFractionDigits: 0,
       },
-    ).format(value);
+    );
 
   const cards = [
     {
       label: "Revenue",
       value: loading
         ? "—"
-        : formatCurrency(
+        : currency.format(
             summary.revenue,
           ),
       helper: "Current reporting period",

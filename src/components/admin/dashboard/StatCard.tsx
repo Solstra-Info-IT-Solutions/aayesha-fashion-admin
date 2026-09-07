@@ -1,27 +1,29 @@
 import type { LucideIcon } from "lucide-react";
 
+type StatCardProps = {
+  label: string;
+  value: string;
+  helper: string;
+  icon: LucideIcon;
+};
+
 export function StatCard({
   label,
   value,
   helper,
   icon: Icon,
-}: {
-  label: string;
-  value: string;
-  helper?: string;
-  icon: LucideIcon;
-}) {
+}: StatCardProps) {
   return (
-    <div className="border border-[#e7e2dd] bg-white p-5">
+    <article className="border border-[#e7e2dd] bg-white p-5">
       <div className="flex items-start justify-between">
-        <p className="text-xs uppercase tracking-[0.14em] text-[#969696]">
+        <span className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
           {label}
-        </p>
+        </span>
 
         <Icon
           size={18}
           strokeWidth={1.6}
-          className="text-[#b5aea7]"
+          className="text-[#b8b0a8]"
         />
       </div>
 
@@ -29,11 +31,9 @@ export function StatCard({
         {value}
       </p>
 
-      {helper && (
-        <p className="mt-2 text-xs text-[#969696]">
-          {helper}
-        </p>
-      )}
-    </div>
+      <p className="mt-2 text-xs text-[#969696]">
+        {helper}
+      </p>
+    </article>
   );
 }
