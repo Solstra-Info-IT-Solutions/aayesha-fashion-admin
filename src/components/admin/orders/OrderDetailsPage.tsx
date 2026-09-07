@@ -1,172 +1,135 @@
 "use client";
 
-import Link from "next/link";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useOrderDetails } from "@/hooks/useOrderDetails";
 
-import {
-  Loader2,
-} from "lucide-react";
+import OrderDetailHeader from "./OrderDetailHeader";
+import OrderCustomerCard from "./OrderCustomerCard";
+import OrderAddressCard from "./OrderAddressCard";
+import OrderItemsCard from "./OrderItemsCard";
+import OrderSummaryCard from "./OrderSummaryCard";
+import OrderActionsCard from "./OrderActionsCard";
+import OrderTimeline from "./OrderTimeline";
 
-import {
-  useOrderDetails,
-} from "@/hooks/useOrderDetails";
-
-import {
-  OrderDetailHeader,
-} from "./OrderDetailHeader";
-
-import {
-  OrderCustomerCard,
-} from "./OrderCustomerCard";
-
-import {
-  OrderAddressCard,
-} from "./OrderAddressCard";
-
-import {
-  OrderItemsCard,
-} from "./OrderItemsCard";
-
-import {
-  OrderSummaryCard,
-} from "./OrderSummaryCard";
-
-import {
-  OrderActionsCard,
-} from "./OrderActionsCard";
-
-import {
-  OrderTimeline,
-} from "./OrderTimeline";
-
-export function OrderDetailsPage({
-  orderNumber,
-}: {
+type OrderDetailsPageProps = {
   orderNumber: string;
-}) {
+};
+
+export default function OrderDetailsPage({
+  orderNumber,
+}: OrderDetailsPageProps) {
+  const router = useRouter();
+
   const {
     order,
     loading,
-    actionLoading,
     error,
-    refresh,
-    changeStatus,
-    changePayment,
-    changeShipping,
-    saveNotes,
-    cancel,
-  } = useOrderDetails(
-    orderNumber,
-  );
+    actionLoading,
+    updateStatus,
+    updatePayment,
+    updateShipping,
+    updateNotes,
+    cancelOrder,
+    refetch,
+  } = useOrderDetails(orderNumber);
 
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <Loader2
-          size={24}
-          className="animate-spin text-[#292c2c]"
-        />
+        <div className="flex items-center gap-3 text-sm text-neutral-500">
+          <Loader2 className="h-5 w-5 animate-spin" />
+          Loading order details...
+        </div>
       </div>
     );
   }
 
-  if (!order) {
+  if (error || !order) {
     return (
-      <div className="mx-auto max-w-xl py-20 text-center">
-        <h1 className="font-serif text-3xl text-[#171717]">
-          Order unavailable
-        </h1>
+      <div className="flex min-h-[60vh] items-center justify-center px-6">
+        <div className="w-full max-w-lg rounded-2xl border border-neutral-200 bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+            !
+          </div>
 
-        <p className="mt-3 text-sm text-[#6f706f]">
-          {error ||
-            "The requested order could not be loaded."}
-        </p>
+          <h2 className="text-xl font-semibold text-neutral-900">
+            Unable to load order
+          </h2>
 
-        <Link
-          href="/admin/orders"
-          className="mt-6 inline-flex border border-[#d8d1ca] bg-white px-5 py-3 text-sm text-[#292c2c]"
-        >
-          Back to orders
-        </Link>
+          <p className="mt-2 text-sm leading-6 text-neutral-500">
+            {error || "The requested order could not be found."}
+          </p>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Go Back
+            </button>
+
+            <button
+              type="button"
+              onClick={() => void refetch()}
+              className="inline-flex items-center justify-center rounded-xl bg-neutral-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-7">
+    <div className="space-y-6">
       <OrderDetailHeader
         order={order}
+        onBack={() => router.back()}
+        onRefresh={() => void refetch()}
       />
 
-      {error && (
-        <div className="flex items-center justify-between gap-4 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          <span>{error}</span>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="min-w-0 space-y-6">
+          <OrderCustomerCard order={order} />
 
-          <button
-            type="button"
-            onClick={() =>
-              void refresh()
-            }
-            className="font-medium underline"
-          >
-            Retry
-          </button>
-        </div>
-      )}
+          <OrderAddressCard order={order} />
 
-      <div className="grid gap-6 xl:grid-cols-[1.45fr_0.85fr]">
-        <div className="space-y-6">
-          <OrderItemsCard
-            order={order}
-          />
+          <OrderItemsCard order={order} />
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            <OrderCustomerCard
-              order={order}
-            />
+          <OrderSummaryCard order={order} />
 
-            <OrderAddressCard
-              order={order}
-            />
-          </div>
-
-          <OrderTimeline
-            order={order}
-          />
+          <OrderTimeline order={order} />
         </div>
 
-        <div className="space-y-6">
-          <OrderSummaryCard
-            order={order}
-          />
-
+        <aside className="min-w-0">
           <OrderActionsCard
             order={order}
-            loading={
-              actionLoading
-            }
-            onStatus={async (
-              status,
-              note,
-            ) => {
-              await changeStatus(
-                status,
-                note,
-              );
+            statusLoading={actionLoading.status}
+            paymentLoading={actionLoading.payment}
+            shippingLoading={actionLoading.shipping}
+            notesLoading={actionLoading.notes}
+            cancelLoading={actionLoading.cancel}
+            onStatusUpdate={async (status) => {
+              await updateStatus(status);
             }}
-            onPayment={
-              changePayment
-            }
-            onShipping={
-              changeShipping
-            }
-            onNotes={
-              saveNotes
-            }
-            onCancel={
-              cancel
-            }
+            onPaymentUpdate={async (input) => {
+              await updatePayment(input);
+            }}
+            onShippingUpdate={async (input) => {
+              await updateShipping(input);
+            }}
+            onNotesUpdate={async (notes) => {
+              await updateNotes(notes);
+            }}
+            onCancel={async (reason) => {
+              await cancelOrder(reason);
+            }}
           />
-        </div>
+        </aside>
       </div>
     </div>
   );
