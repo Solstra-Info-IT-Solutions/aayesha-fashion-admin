@@ -1,18 +1,46 @@
 "use client";
 
-import { ArrowLeft, Loader2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Loader2,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { useOrderDetails } from "@/hooks/useOrderDetails";
-import type { OrderStatus } from "@/types/order";
+import {
+  useOrderDetails,
+} from "@/hooks/useOrderDetails";
 
-import { OrderDetailHeader } from "./OrderDetailHeader";
-import { OrderCustomerCard } from "./OrderCustomerCard";
-import { OrderAddressCard } from "./OrderAddressCard";
-import { OrderItemsCard } from "./OrderItemsCard";
-import { OrderSummaryCard } from "./OrderSummaryCard";
-import { OrderActionsCard } from "./OrderActionsCard";
-import { OrderTimeline } from "./OrderTimeline";
+import type {
+  OrderStatus,
+} from "@/types/order";
+
+import {
+  OrderDetailHeader,
+} from "./OrderDetailHeader";
+
+import {
+  OrderCustomerCard,
+} from "./OrderCustomerCard";
+
+import {
+  OrderAddressCard,
+} from "./OrderAddressCard";
+
+import {
+  OrderItemsCard,
+} from "./OrderItemsCard";
+
+import {
+  OrderSummaryCard,
+} from "./OrderSummaryCard";
+
+import {
+  OrderActionsCard,
+} from "./OrderActionsCard";
+
+import {
+  OrderTimeline,
+} from "./OrderTimeline";
 
 type OrderDetailsPageProps = {
   orderNumber: string;
@@ -33,8 +61,12 @@ export function OrderDetailsPage({
     changePayment,
     changeShipping,
     saveNotes,
-    cancelOrder,
+    cancel,
   } = useOrderDetails(orderNumber);
+
+  /* =========================================================
+     LOADING
+  ========================================================= */
 
   if (loading) {
     return (
@@ -46,6 +78,10 @@ export function OrderDetailsPage({
       </div>
     );
   }
+
+  /* =========================================================
+     ERROR / NOT FOUND
+  ========================================================= */
 
   if (error || !order) {
     return (
@@ -60,7 +96,8 @@ export function OrderDetailsPage({
           </h2>
 
           <p className="mt-2 text-sm leading-6 text-neutral-500">
-            {error || "The requested order could not be found."}
+            {error ||
+              "The requested order could not be found."}
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
@@ -86,14 +123,22 @@ export function OrderDetailsPage({
     );
   }
 
+  /* =========================================================
+     PAGE
+  ========================================================= */
+
   return (
     <div className="space-y-6">
+      {/* -----------------------------------------------------
+          HEADER
+      ----------------------------------------------------- */}
+
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={() => router.back()}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-700 transition hover:bg-neutral-50"
           aria-label="Go back"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-white text-neutral-700 transition hover:bg-neutral-50"
         >
           <ArrowLeft className="h-4 w-4" />
         </button>
@@ -105,25 +150,47 @@ export function OrderDetailsPage({
         <button
           type="button"
           onClick={() => void refresh()}
-          disabled={loading || actionLoading}
-          className="rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={actionLoading}
+          className="shrink-0 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Refresh
         </button>
       </div>
 
+      {/* -----------------------------------------------------
+          CONTENT
+      ----------------------------------------------------- */}
+
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+        {/* ===================================================
+            LEFT
+        =================================================== */}
+
         <div className="min-w-0 space-y-6">
-          <OrderCustomerCard order={order} />
+          <OrderCustomerCard
+            order={order}
+          />
 
-          <OrderAddressCard order={order} />
+          <OrderAddressCard
+            order={order}
+          />
 
-          <OrderItemsCard order={order} />
+          <OrderItemsCard
+            order={order}
+          />
 
-          <OrderSummaryCard order={order} />
+          <OrderSummaryCard
+            order={order}
+          />
 
-          <OrderTimeline order={order} />
+          <OrderTimeline
+            order={order}
+          />
         </div>
+
+        {/* ===================================================
+            RIGHT
+        =================================================== */}
 
         <aside className="min-w-0">
           <OrderActionsCard
@@ -133,19 +200,30 @@ export function OrderDetailsPage({
               status: OrderStatus,
               note?: string,
             ) => {
-              await changeStatus(status, note);
+              await changeStatus(
+                status,
+                note,
+              );
             }}
-            onPayment={async (input) => {
+            onPayment={async (
+              input,
+            ) => {
               await changePayment(input);
             }}
-            onShipping={async (input) => {
+            onShipping={async (
+              input,
+            ) => {
               await changeShipping(input);
             }}
-            onNotes={async (notes) => {
+            onNotes={async (
+              notes,
+            ) => {
               await saveNotes(notes);
             }}
-            onCancel={async (reason) => {
-              await cancelOrder(reason);
+            onCancel={async (
+              reason,
+            ) => {
+              await cancel(reason);
             }}
           />
         </aside>
