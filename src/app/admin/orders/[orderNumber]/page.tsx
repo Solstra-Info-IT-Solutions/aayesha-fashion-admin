@@ -1,25 +1,15 @@
-import {
-  OrderDetailsPage,
-} from "@/components/admin/orders/OrderDetailsPage";
+import { OrderDetailsPage } from "@/components/admin/orders/OrderDetailsPage";
 
-type PageProps = {
+type OrderDetailsRoutePageProps = {
   params: Promise<{
     orderNumber: string;
   }>;
 };
 
-export default async function OrderDetailsRoute({
+export default async function Page({
   params,
-}: PageProps) {
-  const {
-    orderNumber,
-  } = await params;
+}: OrderDetailsRoutePageProps) {
+  const { orderNumber } = await params;
 
-  return (
-    <OrderDetailsPage
-      orderNumber={decodeURIComponent(
-        orderNumber,
-      )}
-    />
-  );
+  return <OrderDetailsPage orderNumber={orderNumber} />;
 }
