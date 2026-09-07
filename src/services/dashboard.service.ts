@@ -1,6 +1,4 @@
-import {
-  apiGet,
-} from "@/lib/api";
+import { apiGet } from "@/lib/api";
 
 import type {
   DashboardData,
@@ -21,7 +19,7 @@ export async function getDashboard(
     );
 
   return (
-    response.data || {
+    response.data ?? {
       summary: {
         revenue: 0,
         orders: 0,
