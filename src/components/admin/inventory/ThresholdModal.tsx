@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { getAccessToken } from "@/lib/api";
 import {
   updateInventoryThreshold,
 } from "@/services/inventory.service";
@@ -35,6 +34,8 @@ export default function ThresholdModal({
     setThreshold(
       String(item.lowStockThreshold),
     );
+
+    setSaving(false);
   }, [open, item]);
 
   if (!open || !item) {
@@ -44,10 +45,7 @@ export default function ThresholdModal({
   const submit = async () => {
     const value = Number(threshold);
 
-    if (
-      !Number.isInteger(value) ||
-      value < 0
-    ) {
+    if (!Number.isInteger(value) || value < 0) {
       toast.error(
         "Threshold must be a whole number greater than or equal to 0.",
       );
@@ -57,14 +55,11 @@ export default function ThresholdModal({
     setSaving(true);
 
     try {
-      await updateInventoryThreshold(
-        {
-          productId: item.productId,
-          variantId: item.variantId,
-          lowStockThreshold: value,
-        },
-        getAccessToken(),
-      );
+      await updateInventoryThreshold({
+        productId: item.productId,
+        variantId: item.variantId,
+        lowStockThreshold: value,
+      });
 
       toast.success(
         "Low-stock threshold updated.",
@@ -100,14 +95,16 @@ export default function ThresholdModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-[#969696] hover:bg-[#f5f1ec]"
+            disabled={saving}
+            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:opacity-50"
+            aria-label="Close threshold"
           >
             <X size={18} />
           </button>
         </div>
 
         <div className="space-y-5 px-6 py-6">
-          <div className="rounded-xl bg-[#fcfbf9] p-4">
+          <div className="rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-4">
             <p className="text-xs text-[#969696]">
               Current available stock
             </p>
@@ -119,7 +116,7 @@ export default function ThresholdModal({
 
           <div>
             <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
-              Threshold
+              Low Stock Threshold
             </label>
 
             <input
@@ -129,7 +126,8 @@ export default function ThresholdModal({
               onChange={(event) =>
                 setThreshold(event.target.value)
               }
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+              disabled={saving}
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
 
             <p className="mt-2 text-xs leading-5 text-[#969696]">
@@ -143,7 +141,7 @@ export default function ThresholdModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c]"
+            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:opacity-50"
           >
             Cancel
           </button>
@@ -152,7 +150,7 @@ export default function ThresholdModal({
             type="button"
             onClick={() => void submit()}
             disabled={saving}
-            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white disabled:opacity-60"
+            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:opacity-60"
           >
             {saving ? "Saving..." : "Save Threshold"}
           </button>

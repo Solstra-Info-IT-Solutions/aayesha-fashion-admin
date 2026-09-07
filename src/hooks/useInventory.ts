@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import { getAccessToken } from "@/lib/api";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
@@ -18,7 +17,10 @@ import type {
 } from "@/types/inventory";
 
 export function useInventory(query: InventoryQuery) {
-  const { isAuthenticated, isLoading: authLoading } = useAdminAuth();
+  const {
+    isAuthenticated,
+    isLoading: authLoading,
+  } = useAdminAuth();
 
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [pagination, setPagination] =
@@ -28,8 +30,12 @@ export function useInventory(query: InventoryQuery) {
     useState<InventorySummary | null>(null);
 
   const [loading, setLoading] = useState(true);
-  const [summaryLoading, setSummaryLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [summaryLoading, setSummaryLoading] =
+    useState(true);
+
+  const [error, setError] = useState<string | null>(
+    null,
+  );
 
   const fetchInventory = useCallback(async () => {
     if (!isAuthenticated) {
@@ -40,10 +46,7 @@ export function useInventory(query: InventoryQuery) {
     setError(null);
 
     try {
-      const response = await getInventory(
-        query,
-        getAccessToken(),
-      );
+      const response = await getInventory(query);
 
       setItems(response.data.items);
       setPagination(response.data.pagination);
@@ -73,13 +76,15 @@ export function useInventory(query: InventoryQuery) {
     setSummaryLoading(true);
 
     try {
-      const response = await getInventorySummary(
-        getAccessToken(),
-      );
+      const response =
+        await getInventorySummary();
 
       setSummary(response.data);
     } catch (err) {
-      console.error("Inventory summary error:", err);
+      console.error(
+        "Inventory summary error:",
+        err,
+      );
     } finally {
       setSummaryLoading(false);
     }

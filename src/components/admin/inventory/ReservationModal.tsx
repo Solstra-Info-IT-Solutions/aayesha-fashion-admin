@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { getAccessToken } from "@/lib/api";
 import {
   releaseReservation,
   reserveStock,
@@ -28,9 +27,9 @@ export default function ReservationModal({
   onClose,
   onSuccess,
 }: ReservationModalProps) {
-  const [mode, setMode] = useState<
-    "reserve" | "release"
-  >("reserve");
+  const [mode, setMode] = useState<"reserve" | "release">(
+    "reserve",
+  );
 
   const [quantity, setQuantity] = useState("");
   const [reason, setReason] = useState("");
@@ -51,6 +50,7 @@ export default function ReservationModal({
     setReferenceType("order");
     setReferenceId("");
     setNotes("");
+    setSaving(false);
   }, [open, item]);
 
   if (!open || !item) {
@@ -77,6 +77,26 @@ export default function ReservationModal({
       return;
     }
 
+    if (
+      mode === "reserve" &&
+      parsedQuantity > item.available
+    ) {
+      toast.error(
+        `Only ${item.available} units are currently available.`,
+      );
+      return;
+    }
+
+    if (
+      mode === "release" &&
+      parsedQuantity > item.reserved
+    ) {
+      toast.error(
+        `Only ${item.reserved} units are currently reserved.`,
+      );
+      return;
+    }
+
     setSaving(true);
 
     try {
@@ -87,27 +107,25 @@ export default function ReservationModal({
         reason: reason.trim(),
         referenceType,
         ...(referenceId.trim()
-          ? { referenceId: referenceId.trim() }
+          ? {
+              referenceId: referenceId.trim(),
+            }
           : {}),
         ...(notes.trim()
-          ? { notes: notes.trim() }
+          ? {
+              notes: notes.trim(),
+            }
           : {}),
       };
 
       if (mode === "reserve") {
-        await reserveStock(
-          payload,
-          getAccessToken(),
-        );
+        await reserveStock(payload);
 
         toast.success(
           "Stock reserved successfully.",
         );
       } else {
-        await releaseReservation(
-          payload,
-          getAccessToken(),
-        );
+        await releaseReservation(payload);
 
         toast.success(
           "Reservation released successfully.",
@@ -135,6 +153,7 @@ export default function ReservationModal({
             <h2 className="text-lg font-semibold text-[#171717]">
               Reservation
             </h2>
+
             <p className="mt-1 text-sm text-[#6f706f]">
               {item.productName} · {item.sku}
             </p>
@@ -143,21 +162,24 @@ export default function ReservationModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-[#969696] hover:bg-[#f5f1ec]"
+            disabled={saving}
+            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:cursor-not-allowed disabled:opacity-50"
+            aria-label="Close reservation"
           >
             <X size={18} />
           </button>
         </div>
 
-        <div className="space-y-4 px-6 py-6">
+        <div className="space-y-5 px-6 py-6">
           <div className="grid grid-cols-2 gap-2 rounded-xl bg-[#f5f1ec] p-1">
             <button
               type="button"
               onClick={() => setMode("reserve")}
-              className={`rounded-lg px-3 py-2 text-sm font-medium ${
+              disabled={saving}
+              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                 mode === "reserve"
                   ? "bg-white text-[#171717] shadow-sm"
-                  : "text-[#6f706f]"
+                  : "text-[#6f706f] hover:text-[#292c2c]"
               }`}
             >
               Reserve
@@ -166,10 +188,11 @@ export default function ReservationModal({
             <button
               type="button"
               onClick={() => setMode("release")}
-              className={`rounded-lg px-3 py-2 text-sm font-medium ${
+              disabled={saving}
+              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                 mode === "release"
                   ? "bg-white text-[#171717] shadow-sm"
-                  : "text-[#6f706f]"
+                  : "text-[#6f706f] hover:text-[#292c2c]"
               }`}
             >
               Release
@@ -181,7 +204,7 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Stock
               </p>
-              <p className="mt-1 font-semibold">
+              <p className="mt-1 font-semibold text-[#171717]">
                 {item.stock}
               </p>
             </div>
@@ -190,7 +213,7 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Reserved
               </p>
-              <p className="mt-1 font-semibold">
+              <p className="mt-1 font-semibold text-[#171717]">
                 {item.reserved}
               </p>
             </div>
@@ -199,14 +222,14 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Available
               </p>
-              <p className="mt-1 font-semibold">
+              <p className="mt-1 font-semibold text-[#171717]">
                 {item.available}
               </p>
             </div>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium">
+            <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
               Quantity
             </label>
 
@@ -217,12 +240,20 @@ export default function ReservationModal({
               onChange={(event) =>
                 setQuantity(event.target.value)
               }
-              className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+              disabled={saving}
+              placeholder="Enter quantity"
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
+
+            <p className="mt-1.5 text-xs text-[#969696]">
+              {mode === "reserve"
+                ? `Maximum available: ${item.available}`
+                : `Maximum reserved: ${item.reserved}`}
+            </p>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium">
+            <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
               Reason
             </label>
 
@@ -231,14 +262,19 @@ export default function ReservationModal({
               onChange={(event) =>
                 setReason(event.target.value)
               }
-              placeholder="e.g. Customer order"
-              className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+              disabled={saving}
+              placeholder={
+                mode === "reserve"
+                  ? "e.g. Customer order"
+                  : "e.g. Order cancelled"
+              }
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-sm font-medium">
+              <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
                 Reference Type
               </label>
 
@@ -246,10 +282,12 @@ export default function ReservationModal({
                 value={referenceType}
                 onChange={(event) =>
                   setReferenceType(
-                    event.target.value as InventoryReferenceType,
+                    event.target
+                      .value as InventoryReferenceType,
                   )
                 }
-                className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+                disabled={saving}
+                className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
               >
                 <option value="order">Order</option>
                 <option value="manual">Manual</option>
@@ -261,7 +299,7 @@ export default function ReservationModal({
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium">
+              <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
                 Reference ID
               </label>
 
@@ -270,14 +308,15 @@ export default function ReservationModal({
                 onChange={(event) =>
                   setReferenceId(event.target.value)
                 }
+                disabled={saving}
                 placeholder="Optional"
-                className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+                className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium">
+            <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
               Notes
             </label>
 
@@ -286,8 +325,10 @@ export default function ReservationModal({
               onChange={(event) =>
                 setNotes(event.target.value)
               }
+              disabled={saving}
               rows={3}
-              className="w-full resize-none rounded-xl border border-[#d8d1ca] px-3 py-2.5 text-sm outline-none focus:border-[#d98791]"
+              placeholder="Optional notes..."
+              className="w-full resize-none rounded-xl border border-[#d8d1ca] px-3 py-2.5 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
           </div>
         </div>
@@ -297,7 +338,7 @@ export default function ReservationModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium"
+            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Cancel
           </button>
@@ -306,7 +347,7 @@ export default function ReservationModal({
             type="button"
             onClick={() => void submit()}
             disabled={saving}
-            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white disabled:opacity-60"
+            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {saving
               ? "Saving..."

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { getAccessToken } from "@/lib/api";
 import { adjustStock } from "@/services/inventory.service";
 
 import type {
@@ -43,6 +42,7 @@ export default function StockAdjustmentModal({
     setReferenceType("manual");
     setReferenceId("");
     setNotes("");
+    setSaving(false);
   }, [open, item]);
 
   if (!open || !item) {
@@ -69,27 +69,41 @@ export default function StockAdjustmentModal({
       return;
     }
 
+    if (
+      parsedQuantity < 0 &&
+      Math.abs(parsedQuantity) >
+        item.stock - item.reserved
+    ) {
+      toast.error(
+        "Stock cannot be reduced below the reserved quantity.",
+      );
+      return;
+    }
+
     setSaving(true);
 
     try {
-      await adjustStock(
-        {
-          productId: item.productId,
-          variantId: item.variantId,
-          quantity: parsedQuantity,
-          reason: reason.trim(),
-          referenceType,
-          ...(referenceId.trim()
-            ? { referenceId: referenceId.trim() }
-            : {}),
-          ...(notes.trim()
-            ? { notes: notes.trim() }
-            : {}),
-        },
-        getAccessToken(),
-      );
+      await adjustStock({
+        productId: item.productId,
+        variantId: item.variantId,
+        quantity: parsedQuantity,
+        reason: reason.trim(),
+        referenceType,
+        ...(referenceId.trim()
+          ? {
+              referenceId: referenceId.trim(),
+            }
+          : {}),
+        ...(notes.trim()
+          ? {
+              notes: notes.trim(),
+            }
+          : {}),
+      });
 
-      toast.success("Stock updated successfully.");
+      toast.success(
+        "Stock updated successfully.",
+      );
 
       await onSuccess();
       onClose();
@@ -112,6 +126,7 @@ export default function StockAdjustmentModal({
             <h2 className="text-lg font-semibold text-[#171717]">
               Adjust Stock
             </h2>
+
             <p className="mt-1 text-sm text-[#6f706f]">
               {item.productName} · {item.sku}
             </p>
@@ -120,19 +135,22 @@ export default function StockAdjustmentModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-[#969696] hover:bg-[#f5f1ec]"
+            disabled={saving}
+            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:opacity-50"
+            aria-label="Close stock adjustment"
           >
             <X size={18} />
           </button>
         </div>
 
-        <div className="space-y-4 px-6 py-6">
+        <div className="space-y-5 px-6 py-6">
           <div className="rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-4">
             <div className="grid grid-cols-3 gap-3 text-center">
               <div>
                 <p className="text-xs text-[#969696]">
                   Stock
                 </p>
+
                 <p className="mt-1 font-semibold text-[#171717]">
                   {item.stock}
                 </p>
@@ -142,6 +160,7 @@ export default function StockAdjustmentModal({
                 <p className="text-xs text-[#969696]">
                   Reserved
                 </p>
+
                 <p className="mt-1 font-semibold text-[#171717]">
                   {item.reserved}
                 </p>
@@ -151,6 +170,7 @@ export default function StockAdjustmentModal({
                 <p className="text-xs text-[#969696]">
                   Available
                 </p>
+
                 <p className="mt-1 font-semibold text-[#171717]">
                   {item.available}
                 </p>
@@ -169,8 +189,9 @@ export default function StockAdjustmentModal({
               onChange={(event) =>
                 setQuantity(event.target.value)
               }
+              disabled={saving}
               placeholder="e.g. 10 or -2"
-              className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
 
             <p className="mt-1.5 text-xs text-[#969696]">
@@ -188,8 +209,9 @@ export default function StockAdjustmentModal({
               onChange={(event) =>
                 setReason(event.target.value)
               }
+              disabled={saving}
               placeholder="Why is the stock changing?"
-              className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
           </div>
 
@@ -203,10 +225,12 @@ export default function StockAdjustmentModal({
                 value={referenceType}
                 onChange={(event) =>
                   setReferenceType(
-                    event.target.value as InventoryReferenceType,
+                    event.target
+                      .value as InventoryReferenceType,
                   )
                 }
-                className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+                disabled={saving}
+                className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
               >
                 <option value="manual">Manual</option>
                 <option value="order">Order</option>
@@ -227,8 +251,9 @@ export default function StockAdjustmentModal({
                 onChange={(event) =>
                   setReferenceId(event.target.value)
                 }
+                disabled={saving}
                 placeholder="Optional"
-                className="h-10 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+                className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
               />
             </div>
           </div>
@@ -243,9 +268,10 @@ export default function StockAdjustmentModal({
               onChange={(event) =>
                 setNotes(event.target.value)
               }
+              disabled={saving}
               rows={3}
               placeholder="Optional notes..."
-              className="w-full resize-none rounded-xl border border-[#d8d1ca] px-3 py-2.5 text-sm outline-none focus:border-[#d98791]"
+              className="w-full resize-none rounded-xl border border-[#d8d1ca] px-3 py-2.5 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
           </div>
         </div>
@@ -255,7 +281,7 @@ export default function StockAdjustmentModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] hover:bg-[#fcfbf9]"
+            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:opacity-50"
           >
             Cancel
           </button>
@@ -264,7 +290,7 @@ export default function StockAdjustmentModal({
             type="button"
             onClick={() => void submit()}
             disabled={saving}
-            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#292c2c] disabled:opacity-60"
+            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:opacity-60"
           >
             {saving ? "Saving..." : "Update Stock"}
           </button>

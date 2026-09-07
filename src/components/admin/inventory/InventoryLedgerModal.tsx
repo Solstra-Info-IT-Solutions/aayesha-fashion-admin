@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-import { getAccessToken } from "@/lib/api";
 import {
   getInventoryLedger,
 } from "@/services/inventory.service";
@@ -35,9 +34,7 @@ function formatDate(value: string) {
 function formatType(type: string) {
   return type
     .replaceAll("_", " ")
-    .replace(/\b\w/g, (char) =>
-      char.toUpperCase(),
-    );
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 export default function InventoryLedgerModal({
@@ -45,8 +42,9 @@ export default function InventoryLedgerModal({
   open,
   onClose,
 }: InventoryLedgerModalProps) {
-  const [entries, setEntries] =
-    useState<InventoryLedgerEntry[]>([]);
+  const [entries, setEntries] = useState<
+    InventoryLedgerEntry[]
+  >([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -54,20 +52,16 @@ export default function InventoryLedgerModal({
       return;
     }
 
-    const load = async () => {
+    const loadLedger = async () => {
       setLoading(true);
 
       try {
-        const response =
-          await getInventoryLedger(
-            {
-              productId: item.productId,
-              variantId: item.variantId,
-              page: 1,
-              limit: 50,
-            },
-            getAccessToken(),
-          );
+        const response = await getInventoryLedger({
+          productId: item.productId,
+          variantId: item.variantId,
+          page: 1,
+          limit: 50,
+        });
 
         setEntries(response.data.entries);
       } catch (error) {
@@ -75,12 +69,14 @@ export default function InventoryLedgerModal({
           "Failed to load inventory ledger:",
           error,
         );
+
+        setEntries([]);
       } finally {
         setLoading(false);
       }
     };
 
-    void load();
+    void loadLedger();
   }, [open, item]);
 
   if (!open || !item) {
@@ -104,7 +100,8 @@ export default function InventoryLedgerModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-[#969696] hover:bg-[#f5f1ec]"
+            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c]"
+            aria-label="Close ledger"
           >
             <X size={18} />
           </button>
@@ -135,18 +132,23 @@ export default function InventoryLedgerModal({
                   <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Date
                   </th>
+
                   <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Type
                   </th>
+
                   <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Quantity
                   </th>
+
                   <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Stock
                   </th>
+
                   <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Reserved
                   </th>
+
                   <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
                     Reason
                   </th>
@@ -164,7 +166,7 @@ export default function InventoryLedgerModal({
                     </td>
 
                     <td className="px-4 py-4">
-                      <span className="rounded-full bg-[#f5f1ec] px-2.5 py-1 text-xs font-medium text-[#6f706f]">
+                      <span className="inline-flex rounded-full bg-[#f5f1ec] px-2.5 py-1 text-xs font-medium text-[#6f706f]">
                         {formatType(entry.type)}
                       </span>
                     </td>
@@ -195,14 +197,26 @@ export default function InventoryLedgerModal({
                       </span>
                     </td>
 
-                    <td className="max-w-[300px] px-4 py-4 text-sm text-[#6f706f]">
+                    <td className="max-w-[320px] px-4 py-4 text-sm text-[#6f706f]">
                       <p className="truncate">
                         {entry.reason || "—"}
                       </p>
 
+                      {entry.referenceType && (
+                        <p className="mt-1 text-xs text-[#969696]">
+                          Type: {entry.referenceType}
+                        </p>
+                      )}
+
                       {entry.referenceId && (
                         <p className="mt-1 text-xs text-[#969696]">
                           Ref: {entry.referenceId}
+                        </p>
+                      )}
+
+                      {entry.notes && (
+                        <p className="mt-1 truncate text-xs text-[#969696]">
+                          {entry.notes}
                         </p>
                       )}
                     </td>
