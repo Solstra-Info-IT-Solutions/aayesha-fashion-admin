@@ -1,10 +1,5 @@
-import { EmptyState } from "@/components/admin/dashboard/EmptyState";
+import { OrdersPage } from "@/components/admin/orders/OrdersPage";
 
-export default function OrdersPage() {
-  return (
-    <EmptyState
-      title="Orders"
-      message="Order management is being connected to the existing admin order APIs."
-    />
-  );
+export default function AdminOrdersPage() {
+  return <OrdersPage />;
 }
