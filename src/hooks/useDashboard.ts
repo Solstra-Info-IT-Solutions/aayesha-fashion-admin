@@ -6,8 +6,13 @@ import {
   useState,
 } from "react";
 
-import { getDashboard } from "@/services/dashboard.service";
-import { useAdminAuth } from "@/hooks/useAdminAuth";
+import {
+  getDashboard,
+} from "@/services/dashboard.service";
+
+import {
+  useAdminAuth,
+} from "@/hooks/useAdminAuth";
 
 import type {
   DashboardData,
@@ -43,7 +48,7 @@ export function useDashboard() {
     useState(false);
 
   const [error, setError] =
-    useState<string | undefined>();
+    useState<string>();
 
   const loadDashboard =
     useCallback(async () => {
@@ -64,18 +69,11 @@ export function useDashboard() {
             accessToken,
           );
 
-        setData({
-          ...emptyDashboard,
-          ...result,
-          summary: {
-            ...emptyDashboard.summary,
-            ...(result.summary ?? {}),
-          },
-        });
-      } catch (err) {
+        setData(result);
+      } catch (error) {
         setError(
-          err instanceof Error
-            ? err.message
+          error instanceof Error
+            ? error.message
             : "Unable to load dashboard.",
         );
       } finally {
