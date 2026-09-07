@@ -1,11 +1,18 @@
 // src/lib/api.ts
 
+/* =========================================================
+   API BASE URL
+========================================================= */
+
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "") || "";
+  process.env.NEXT_PUBLIC_API_BASE_URL?.trim().replace(
+    /\/+$/,
+    "",
+  ) || "";
 
 if (!API_BASE_URL) {
   console.warn(
-    "NEXT_PUBLIC_API_BASE_URL is not configured.",
+    "[Aayesha Admin] NEXT_PUBLIC_API_BASE_URL is not configured.",
   );
 }
 
@@ -13,8 +20,9 @@ if (!API_BASE_URL) {
    TYPES
 ========================================================= */
 
-export type ApiErrorResponse = {
+export type ApiErrorPayload = {
   success?: false;
+
   error?: {
     code?: string;
     message?: string;
@@ -23,9 +31,9 @@ export type ApiErrorResponse = {
 };
 
 export class ApiError extends Error {
-  status: number;
-  code?: string;
-  details?: unknown;
+  public readonly status: number;
+  public readonly code?: string;
+  public readonly details?: unknown;
 
   constructor(
     message: string,
@@ -39,16 +47,137 @@ export class ApiError extends Error {
     this.status = status;
     this.code = code;
     this.details = details;
+
+    Object.setPrototypeOf(
+      this,
+      ApiError.prototype,
+    );
+  }
+}
+
+/* =========================================================
+   REQUEST OPTIONS
+========================================================= */
+
+export type ApiFetchOptions =
+  RequestInit & {
+    accessToken?: string | null;
+  };
+
+/* =========================================================
+   URL BUILDER
+========================================================= */
+
+function buildApiUrl(
+  path: string,
+): string {
+  const normalizedPath = path.startsWith("/")
+    ? path
+    : `/${path}`;
+
+  return `${API_BASE_URL}${normalizedPath}`;
+}
+
+/* =========================================================
+   REQUEST HEADERS
+========================================================= */
+
+function createRequestHeaders(
+  headers?: HeadersInit,
+  body?: BodyInit | null,
+  accessToken?: string | null,
+): Headers {
+  const requestHeaders =
+    new Headers(headers);
+
+  /*
+   * JSON body automatically gets JSON content type.
+   *
+   * Do not force Content-Type when there is no body,
+   * because GET/DELETE requests do not need it.
+   */
+  if (
+    body &&
+    !requestHeaders.has(
+      "Content-Type",
+    )
+  ) {
+    requestHeaders.set(
+      "Content-Type",
+      "application/json",
+    );
+  }
+
+  /*
+   * Access token is kept in memory and sent through
+   * the Authorization header.
+   */
+  if (accessToken) {
+    requestHeaders.set(
+      "Authorization",
+      `Bearer ${accessToken}`,
+    );
+  }
+
+  return requestHeaders;
+}
+
+/* =========================================================
+   RESPONSE PARSER
+========================================================= */
+
+async function parseResponse(
+  response: Response,
+): Promise<unknown> {
+  /*
+   * 204 No Content
+   */
+  if (
+    response.status === 204
+  ) {
+    return null;
+  }
+
+  const contentType =
+    response.headers.get(
+      "content-type",
+    ) || "";
+
+  /*
+   * JSON response
+   */
+  if (
+    contentType
+      .toLowerCase()
+      .includes("application/json")
+  ) {
+    try {
+      return await response.json();
+    } catch {
+      return null;
+    }
+  }
+
+  /*
+   * Non-JSON response
+   */
+  try {
+    const text =
+      await response.text();
+
+    return text
+      ? {
+          message: text,
+        }
+      : null;
+  } catch {
+    return null;
   }
 }
 
 /* =========================================================
    API FETCH
 ========================================================= */
-
-type ApiFetchOptions = RequestInit & {
-  accessToken?: string | null;
-};
 
 export async function apiFetch<T>(
   path: string,
@@ -57,6 +186,7 @@ export async function apiFetch<T>(
   const {
     accessToken,
     headers,
+    body,
     ...requestOptions
   } = options;
 
@@ -68,35 +198,15 @@ export async function apiFetch<T>(
     );
   }
 
-  const normalizedPath = path.startsWith("/")
-    ? path
-    : `/${path}`;
-
   const url =
-    `${API_BASE_URL}${normalizedPath}`;
+    buildApiUrl(path);
 
-  const requestHeaders = new Headers(
-    headers,
-  );
-
-  if (
-    !requestHeaders.has(
-      "Content-Type",
-    ) &&
-    requestOptions.body
-  ) {
-    requestHeaders.set(
-      "Content-Type",
-      "application/json",
+  const requestHeaders =
+    createRequestHeaders(
+      headers,
+      body,
+      accessToken,
     );
-  }
-
-  if (accessToken) {
-    requestHeaders.set(
-      "Authorization",
-      `Bearer ${accessToken}`,
-    );
-  }
 
   let response: Response;
 
@@ -105,9 +215,19 @@ export async function apiFetch<T>(
       url,
       {
         ...requestOptions,
+        body,
         headers:
           requestHeaders,
+
+        /*
+         * Required for the backend HTTP-only
+         * refresh-token cookie.
+         */
         credentials: "include",
+
+        /*
+         * Admin data should always be fresh.
+         */
         cache: "no-store",
       },
     );
@@ -121,40 +241,20 @@ export async function apiFetch<T>(
     );
   }
 
-  let payload: unknown = null;
+  const payload =
+    await parseResponse(
+      response,
+    );
 
-  const contentType =
-    response.headers.get(
-      "content-type",
-    ) || "";
-
-  if (
-    contentType.includes(
-      "application/json",
-    )
-  ) {
-    try {
-      payload =
-        await response.json();
-    } catch {
-      payload = null;
-    }
-  } else {
-    try {
-      const text =
-        await response.text();
-
-      payload = text
-        ? { message: text }
-        : null;
-    } catch {
-      payload = null;
-    }
-  }
+  /* =======================================================
+     ERROR RESPONSE
+  ======================================================= */
 
   if (!response.ok) {
     const errorPayload =
-      payload as ApiErrorResponse | null;
+      payload as
+        | ApiErrorPayload
+        | null;
 
     throw new ApiError(
       errorPayload?.error?.message ||
@@ -169,13 +269,13 @@ export async function apiFetch<T>(
 }
 
 /* =========================================================
-   HTTP HELPERS
+   GET
 ========================================================= */
 
 export function apiGet<T>(
   path: string,
   accessToken?: string | null,
-) {
+): Promise<T> {
   return apiFetch<T>(
     path,
     {
@@ -185,11 +285,15 @@ export function apiGet<T>(
   );
 }
 
+/* =========================================================
+   POST
+========================================================= */
+
 export function apiPost<T>(
   path: string,
   body?: unknown,
   accessToken?: string | null,
-) {
+): Promise<T> {
   return apiFetch<T>(
     path,
     {
@@ -203,11 +307,15 @@ export function apiPost<T>(
   );
 }
 
+/* =========================================================
+   PUT
+========================================================= */
+
 export function apiPut<T>(
   path: string,
   body?: unknown,
   accessToken?: string | null,
-) {
+): Promise<T> {
   return apiFetch<T>(
     path,
     {
@@ -221,11 +329,15 @@ export function apiPut<T>(
   );
 }
 
+/* =========================================================
+   PATCH
+========================================================= */
+
 export function apiPatch<T>(
   path: string,
   body?: unknown,
   accessToken?: string | null,
-) {
+): Promise<T> {
   return apiFetch<T>(
     path,
     {
@@ -239,10 +351,14 @@ export function apiPatch<T>(
   );
 }
 
+/* =========================================================
+   DELETE
+========================================================= */
+
 export function apiDelete<T>(
   path: string,
   accessToken?: string | null,
-) {
+): Promise<T> {
   return apiFetch<T>(
     path,
     {
@@ -252,4 +368,10 @@ export function apiDelete<T>(
   );
 }
 
-export { API_BASE_URL };
+/* =========================================================
+   EXPORT
+========================================================= */
+
+export {
+  API_BASE_URL,
+};
