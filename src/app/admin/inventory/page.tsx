@@ -1,10 +1,5 @@
-import { EmptyState } from "@/components/admin/dashboard/EmptyState";
+import InventoryPage from "@/components/admin/inventory/InventoryPage";
 
-export default function InventoryPage() {
-  return (
-    <EmptyState
-      title="Inventory"
-      message="Inventory operations will be connected to the existing stock, reservation and ledger APIs."
-    />
-  );
+export default function AdminInventoryPage() {
+  return <InventoryPage />;
 }
