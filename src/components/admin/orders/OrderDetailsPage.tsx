@@ -2,15 +2,16 @@
 
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+
 import { useOrderDetails } from "@/hooks/useOrderDetails";
 
-import OrderDetailHeader from "./OrderDetailHeader";
-import OrderCustomerCard from "./OrderCustomerCard";
-import OrderAddressCard from "./OrderAddressCard";
-import OrderItemsCard from "./OrderItemsCard";
-import OrderSummaryCard from "./OrderSummaryCard";
-import OrderActionsCard from "./OrderActionsCard";
-import OrderTimeline from "./OrderTimeline";
+import { OrderDetailHeader } from "./OrderDetailHeader";
+import { OrderCustomerCard } from "./OrderCustomerCard";
+import { OrderAddressCard } from "./OrderAddressCard";
+import { OrderItemsCard } from "./OrderItemsCard";
+import { OrderSummaryCard } from "./OrderSummaryCard";
+import { OrderActionsCard } from "./OrderActionsCard";
+import { OrderTimeline } from "./OrderTimeline";
 
 type OrderDetailsPageProps = {
   orderNumber: string;
