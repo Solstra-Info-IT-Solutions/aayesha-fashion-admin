@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import {
   updateInventoryThreshold,
 } from "@/services/inventory.service";
@@ -23,8 +25,14 @@ export default function ThresholdModal({
   onClose,
   onSuccess,
 }: ThresholdModalProps) {
-  const [threshold, setThreshold] = useState("");
-  const [saving, setSaving] = useState(false);
+  const { accessToken } =
+    useAdminAuth();
+
+  const [threshold, setThreshold] =
+    useState("");
+
+  const [saving, setSaving] =
+    useState(false);
 
   useEffect(() => {
     if (!open || !item) {
@@ -32,7 +40,9 @@ export default function ThresholdModal({
     }
 
     setThreshold(
-      String(item.lowStockThreshold),
+      String(
+        item.lowStockThreshold,
+      ),
     );
 
     setSaving(false);
@@ -43,9 +53,19 @@ export default function ThresholdModal({
   }
 
   const submit = async () => {
+    if (!accessToken) {
+      toast.error(
+        "Your admin session has expired. Please login again.",
+      );
+      return;
+    }
+
     const value = Number(threshold);
 
-    if (!Number.isInteger(value) || value < 0) {
+    if (
+      !Number.isInteger(value) ||
+      value < 0
+    ) {
       toast.error(
         "Threshold must be a whole number greater than or equal to 0.",
       );
@@ -55,17 +75,21 @@ export default function ThresholdModal({
     setSaving(true);
 
     try {
-      await updateInventoryThreshold({
-        productId: item.productId,
-        variantId: item.variantId,
-        lowStockThreshold: value,
-      });
+      await updateInventoryThreshold(
+        {
+          productId: item.productId,
+          variantId: item.variantId,
+          lowStockThreshold: value,
+        },
+        accessToken,
+      );
 
       toast.success(
         "Low-stock threshold updated.",
       );
 
       await onSuccess();
+
       onClose();
     } catch (error) {
       toast.error(
@@ -88,7 +112,8 @@ export default function ThresholdModal({
             </h2>
 
             <p className="mt-1 text-sm text-[#6f706f]">
-              {item.productName} · {item.sku}
+              {item.productName} ·{" "}
+              {item.sku}
             </p>
           </div>
 
@@ -124,7 +149,9 @@ export default function ThresholdModal({
               min={0}
               value={threshold}
               onChange={(event) =>
-                setThreshold(event.target.value)
+                setThreshold(
+                  event.target.value,
+                )
               }
               disabled={saving}
               className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
@@ -148,11 +175,15 @@ export default function ThresholdModal({
 
           <button
             type="button"
-            onClick={() => void submit()}
+            onClick={() =>
+              void submit()
+            }
             disabled={saving}
             className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:opacity-60"
           >
-            {saving ? "Saving..." : "Save Threshold"}
+            {saving
+              ? "Saving..."
+              : "Save Threshold"}
           </button>
         </div>
       </div>

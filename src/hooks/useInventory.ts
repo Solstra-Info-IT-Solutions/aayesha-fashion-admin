@@ -16,89 +16,135 @@ import type {
   InventorySummary,
 } from "@/types/inventory";
 
-export function useInventory(query: InventoryQuery) {
+export function useInventory(
+  query: InventoryQuery,
+) {
   const {
     isAuthenticated,
     isLoading: authLoading,
+    accessToken,
   } = useAdminAuth();
 
-  const [items, setItems] = useState<InventoryItem[]>([]);
+  const [items, setItems] = useState<
+    InventoryItem[]
+  >([]);
+
   const [pagination, setPagination] =
-    useState<InventoryPagination | null>(null);
+    useState<InventoryPagination | null>(
+      null,
+    );
 
   const [summary, setSummary] =
-    useState<InventorySummary | null>(null);
+    useState<InventorySummary | null>(
+      null,
+    );
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
+
   const [summaryLoading, setSummaryLoading] =
     useState(true);
 
-  const [error, setError] = useState<string | null>(
-    null,
+  const [error, setError] =
+    useState<string | null>(null);
+
+  const fetchInventory = useCallback(
+    async () => {
+      if (
+        !isAuthenticated ||
+        !accessToken
+      ) {
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response =
+          await getInventory(
+            query,
+            accessToken,
+          );
+
+        setItems(response.data.items);
+
+        setPagination(
+          response.data.pagination,
+        );
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to load inventory.",
+        );
+      } finally {
+        setLoading(false);
+      }
+    },
+    [
+      isAuthenticated,
+      accessToken,
+      query.page,
+      query.limit,
+      query.search,
+      query.status,
+      query.sort,
+    ],
   );
 
-  const fetchInventory = useCallback(async () => {
-    if (!isAuthenticated) {
-      return;
-    }
+  const fetchSummary = useCallback(
+    async () => {
+      if (
+        !isAuthenticated ||
+        !accessToken
+      ) {
+        return;
+      }
 
-    setLoading(true);
-    setError(null);
+      setSummaryLoading(true);
 
-    try {
-      const response = await getInventory(query);
+      try {
+        const response =
+          await getInventorySummary(
+            accessToken,
+          );
 
-      setItems(response.data.items);
-      setPagination(response.data.pagination);
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Failed to load inventory.",
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, [
-    isAuthenticated,
-    query.page,
-    query.limit,
-    query.search,
-    query.status,
-    query.sort,
-  ]);
+        setSummary(response.data);
+      } catch (err) {
+        console.error(
+          "Inventory summary error:",
+          err,
+        );
+      } finally {
+        setSummaryLoading(false);
+      }
+    },
+    [
+      isAuthenticated,
+      accessToken,
+    ],
+  );
 
-  const fetchSummary = useCallback(async () => {
-    if (!isAuthenticated) {
-      return;
-    }
-
-    setSummaryLoading(true);
-
-    try {
-      const response =
-        await getInventorySummary();
-
-      setSummary(response.data);
-    } catch (err) {
-      console.error(
-        "Inventory summary error:",
-        err,
-      );
-    } finally {
-      setSummaryLoading(false);
-    }
-  }, [isAuthenticated]);
-
-  const refresh = useCallback(async () => {
-    await Promise.all([
-      fetchInventory(),
-      fetchSummary(),
-    ]);
-  }, [fetchInventory, fetchSummary]);
+  const refresh = useCallback(
+    async () => {
+      await Promise.all([
+        fetchInventory(),
+        fetchSummary(),
+      ]);
+    },
+    [
+      fetchInventory,
+      fetchSummary,
+    ],
+  );
 
   useEffect(() => {
-    if (authLoading || !isAuthenticated) {
+    if (
+      authLoading ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -106,11 +152,16 @@ export function useInventory(query: InventoryQuery) {
   }, [
     authLoading,
     isAuthenticated,
+    accessToken,
     fetchInventory,
   ]);
 
   useEffect(() => {
-    if (authLoading || !isAuthenticated) {
+    if (
+      authLoading ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -118,6 +169,7 @@ export function useInventory(query: InventoryQuery) {
   }, [
     authLoading,
     isAuthenticated,
+    accessToken,
     fetchSummary,
   ]);
 

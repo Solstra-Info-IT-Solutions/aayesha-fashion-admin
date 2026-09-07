@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import { adjustStock } from "@/services/inventory.service";
 
 import type {
@@ -24,13 +26,27 @@ export default function StockAdjustmentModal({
   onClose,
   onSuccess,
 }: StockAdjustmentModalProps) {
-  const [quantity, setQuantity] = useState("");
-  const [reason, setReason] = useState("");
+  const { accessToken } = useAdminAuth();
+
+  const [quantity, setQuantity] =
+    useState("");
+
+  const [reason, setReason] =
+    useState("");
+
   const [referenceType, setReferenceType] =
-    useState<InventoryReferenceType>("manual");
-  const [referenceId, setReferenceId] = useState("");
-  const [notes, setNotes] = useState("");
-  const [saving, setSaving] = useState(false);
+    useState<InventoryReferenceType>(
+      "manual",
+    );
+
+  const [referenceId, setReferenceId] =
+    useState("");
+
+  const [notes, setNotes] =
+    useState("");
+
+  const [saving, setSaving] =
+    useState(false);
 
   useEffect(() => {
     if (!open) {
@@ -50,7 +66,15 @@ export default function StockAdjustmentModal({
   }
 
   const submit = async () => {
-    const parsedQuantity = Number(quantity);
+    if (!accessToken) {
+      toast.error(
+        "Your admin session has expired. Please login again.",
+      );
+      return;
+    }
+
+    const parsedQuantity =
+      Number(quantity);
 
     if (
       !Number.isInteger(parsedQuantity) ||
@@ -83,29 +107,34 @@ export default function StockAdjustmentModal({
     setSaving(true);
 
     try {
-      await adjustStock({
-        productId: item.productId,
-        variantId: item.variantId,
-        quantity: parsedQuantity,
-        reason: reason.trim(),
-        referenceType,
-        ...(referenceId.trim()
-          ? {
-              referenceId: referenceId.trim(),
-            }
-          : {}),
-        ...(notes.trim()
-          ? {
-              notes: notes.trim(),
-            }
-          : {}),
-      });
+      await adjustStock(
+        {
+          productId: item.productId,
+          variantId: item.variantId,
+          quantity: parsedQuantity,
+          reason: reason.trim(),
+          referenceType,
+          ...(referenceId.trim()
+            ? {
+                referenceId:
+                  referenceId.trim(),
+              }
+            : {}),
+          ...(notes.trim()
+            ? {
+                notes: notes.trim(),
+              }
+            : {}),
+        },
+        accessToken,
+      );
 
       toast.success(
         "Stock updated successfully.",
       );
 
       await onSuccess();
+
       onClose();
     } catch (error) {
       toast.error(
@@ -128,7 +157,8 @@ export default function StockAdjustmentModal({
             </h2>
 
             <p className="mt-1 text-sm text-[#6f706f]">
-              {item.productName} · {item.sku}
+              {item.productName} ·{" "}
+              {item.sku}
             </p>
           </div>
 
@@ -187,7 +217,9 @@ export default function StockAdjustmentModal({
               type="number"
               value={quantity}
               onChange={(event) =>
-                setQuantity(event.target.value)
+                setQuantity(
+                  event.target.value,
+                )
               }
               disabled={saving}
               placeholder="e.g. 10 or -2"
@@ -195,7 +227,8 @@ export default function StockAdjustmentModal({
             />
 
             <p className="mt-1.5 text-xs text-[#969696]">
-              Positive quantity adds stock. Negative quantity removes stock.
+              Positive quantity adds stock.
+              Negative quantity removes stock.
             </p>
           </div>
 
@@ -207,7 +240,9 @@ export default function StockAdjustmentModal({
             <input
               value={reason}
               onChange={(event) =>
-                setReason(event.target.value)
+                setReason(
+                  event.target.value,
+                )
               }
               disabled={saving}
               placeholder="Why is the stock changing?"
@@ -232,12 +267,24 @@ export default function StockAdjustmentModal({
                 disabled={saving}
                 className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
               >
-                <option value="manual">Manual</option>
-                <option value="order">Order</option>
-                <option value="return">Return</option>
-                <option value="exchange">Exchange</option>
-                <option value="system">System</option>
-                <option value="bulk">Bulk</option>
+                <option value="manual">
+                  Manual
+                </option>
+                <option value="order">
+                  Order
+                </option>
+                <option value="return">
+                  Return
+                </option>
+                <option value="exchange">
+                  Exchange
+                </option>
+                <option value="system">
+                  System
+                </option>
+                <option value="bulk">
+                  Bulk
+                </option>
               </select>
             </div>
 
@@ -249,7 +296,9 @@ export default function StockAdjustmentModal({
               <input
                 value={referenceId}
                 onChange={(event) =>
-                  setReferenceId(event.target.value)
+                  setReferenceId(
+                    event.target.value,
+                  )
                 }
                 disabled={saving}
                 placeholder="Optional"
@@ -266,7 +315,9 @@ export default function StockAdjustmentModal({
             <textarea
               value={notes}
               onChange={(event) =>
-                setNotes(event.target.value)
+                setNotes(
+                  event.target.value,
+                )
               }
               disabled={saving}
               rows={3}
@@ -288,11 +339,15 @@ export default function StockAdjustmentModal({
 
           <button
             type="button"
-            onClick={() => void submit()}
+            onClick={() =>
+              void submit()
+            }
             disabled={saving}
             className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:opacity-60"
           >
-            {saving ? "Saving..." : "Update Stock"}
+            {saving
+              ? "Saving..."
+              : "Update Stock"}
           </button>
         </div>
       </div>

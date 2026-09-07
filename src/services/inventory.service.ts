@@ -19,17 +19,28 @@ import type {
 const BASE_PATH = "/admin/inventory";
 
 const buildQueryString = (
-  params: Record<string, string | number | undefined>,
+  params: Record<
+    string,
+    string | number | undefined
+  >,
 ) => {
   const searchParams = new URLSearchParams();
 
-  Object.entries(params).forEach(([key, value]) => {
-    if (value === undefined || value === "") {
-      return;
-    }
+  Object.entries(params).forEach(
+    ([key, value]) => {
+      if (
+        value === undefined ||
+        value === ""
+      ) {
+        return;
+      }
 
-    searchParams.set(key, String(value));
-  });
+      searchParams.set(
+        key,
+        String(value),
+      );
+    },
+  );
 
   const query = searchParams.toString();
 

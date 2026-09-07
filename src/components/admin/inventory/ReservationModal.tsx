@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import {
   releaseReservation,
   reserveStock,
@@ -27,17 +29,32 @@ export default function ReservationModal({
   onClose,
   onSuccess,
 }: ReservationModalProps) {
-  const [mode, setMode] = useState<"reserve" | "release">(
-    "reserve",
-  );
+  const { accessToken } =
+    useAdminAuth();
 
-  const [quantity, setQuantity] = useState("");
-  const [reason, setReason] = useState("");
+  const [mode, setMode] = useState<
+    "reserve" | "release"
+  >("reserve");
+
+  const [quantity, setQuantity] =
+    useState("");
+
+  const [reason, setReason] =
+    useState("");
+
   const [referenceType, setReferenceType] =
-    useState<InventoryReferenceType>("order");
-  const [referenceId, setReferenceId] = useState("");
-  const [notes, setNotes] = useState("");
-  const [saving, setSaving] = useState(false);
+    useState<InventoryReferenceType>(
+      "order",
+    );
+
+  const [referenceId, setReferenceId] =
+    useState("");
+
+  const [notes, setNotes] =
+    useState("");
+
+  const [saving, setSaving] =
+    useState(false);
 
   useEffect(() => {
     if (!open) {
@@ -58,7 +75,15 @@ export default function ReservationModal({
   }
 
   const submit = async () => {
-    const parsedQuantity = Number(quantity);
+    if (!accessToken) {
+      toast.error(
+        "Your admin session has expired. Please login again.",
+      );
+      return;
+    }
+
+    const parsedQuantity =
+      Number(quantity);
 
     if (
       !Number.isInteger(parsedQuantity) ||
@@ -108,7 +133,8 @@ export default function ReservationModal({
         referenceType,
         ...(referenceId.trim()
           ? {
-              referenceId: referenceId.trim(),
+              referenceId:
+                referenceId.trim(),
             }
           : {}),
         ...(notes.trim()
@@ -119,13 +145,19 @@ export default function ReservationModal({
       };
 
       if (mode === "reserve") {
-        await reserveStock(payload);
+        await reserveStock(
+          payload,
+          accessToken,
+        );
 
         toast.success(
           "Stock reserved successfully.",
         );
       } else {
-        await releaseReservation(payload);
+        await releaseReservation(
+          payload,
+          accessToken,
+        );
 
         toast.success(
           "Reservation released successfully.",
@@ -133,6 +165,7 @@ export default function ReservationModal({
       }
 
       await onSuccess();
+
       onClose();
     } catch (error) {
       toast.error(
@@ -155,7 +188,8 @@ export default function ReservationModal({
             </h2>
 
             <p className="mt-1 text-sm text-[#6f706f]">
-              {item.productName} · {item.sku}
+              {item.productName} ·{" "}
+              {item.sku}
             </p>
           </div>
 
@@ -163,7 +197,7 @@ export default function ReservationModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:opacity-50"
             aria-label="Close reservation"
           >
             <X size={18} />
@@ -174,12 +208,14 @@ export default function ReservationModal({
           <div className="grid grid-cols-2 gap-2 rounded-xl bg-[#f5f1ec] p-1">
             <button
               type="button"
-              onClick={() => setMode("reserve")}
+              onClick={() =>
+                setMode("reserve")
+              }
               disabled={saving}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                 mode === "reserve"
                   ? "bg-white text-[#171717] shadow-sm"
-                  : "text-[#6f706f] hover:text-[#292c2c]"
+                  : "text-[#6f706f]"
               }`}
             >
               Reserve
@@ -187,12 +223,14 @@ export default function ReservationModal({
 
             <button
               type="button"
-              onClick={() => setMode("release")}
+              onClick={() =>
+                setMode("release")
+              }
               disabled={saving}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
                 mode === "release"
                   ? "bg-white text-[#171717] shadow-sm"
-                  : "text-[#6f706f] hover:text-[#292c2c]"
+                  : "text-[#6f706f]"
               }`}
             >
               Release
@@ -204,6 +242,7 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Stock
               </p>
+
               <p className="mt-1 font-semibold text-[#171717]">
                 {item.stock}
               </p>
@@ -213,6 +252,7 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Reserved
               </p>
+
               <p className="mt-1 font-semibold text-[#171717]">
                 {item.reserved}
               </p>
@@ -222,6 +262,7 @@ export default function ReservationModal({
               <p className="text-xs text-[#969696]">
                 Available
               </p>
+
               <p className="mt-1 font-semibold text-[#171717]">
                 {item.available}
               </p>
@@ -238,11 +279,13 @@ export default function ReservationModal({
               min={1}
               value={quantity}
               onChange={(event) =>
-                setQuantity(event.target.value)
+                setQuantity(
+                  event.target.value,
+                )
               }
               disabled={saving}
               placeholder="Enter quantity"
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
 
             <p className="mt-1.5 text-xs text-[#969696]">
@@ -260,7 +303,9 @@ export default function ReservationModal({
             <input
               value={reason}
               onChange={(event) =>
-                setReason(event.target.value)
+                setReason(
+                  event.target.value,
+                )
               }
               disabled={saving}
               placeholder={
@@ -268,7 +313,7 @@ export default function ReservationModal({
                   ? "e.g. Customer order"
                   : "e.g. Order cancelled"
               }
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
             />
           </div>
 
@@ -289,12 +334,24 @@ export default function ReservationModal({
                 disabled={saving}
                 className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
               >
-                <option value="order">Order</option>
-                <option value="manual">Manual</option>
-                <option value="return">Return</option>
-                <option value="exchange">Exchange</option>
-                <option value="system">System</option>
-                <option value="bulk">Bulk</option>
+                <option value="order">
+                  Order
+                </option>
+                <option value="manual">
+                  Manual
+                </option>
+                <option value="return">
+                  Return
+                </option>
+                <option value="exchange">
+                  Exchange
+                </option>
+                <option value="system">
+                  System
+                </option>
+                <option value="bulk">
+                  Bulk
+                </option>
               </select>
             </div>
 
@@ -306,7 +363,9 @@ export default function ReservationModal({
               <input
                 value={referenceId}
                 onChange={(event) =>
-                  setReferenceId(event.target.value)
+                  setReferenceId(
+                    event.target.value,
+                  )
                 }
                 disabled={saving}
                 placeholder="Optional"
@@ -323,7 +382,9 @@ export default function ReservationModal({
             <textarea
               value={notes}
               onChange={(event) =>
-                setNotes(event.target.value)
+                setNotes(
+                  event.target.value,
+                )
               }
               disabled={saving}
               rows={3}
@@ -338,16 +399,18 @@ export default function ReservationModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:opacity-50"
           >
             Cancel
           </button>
 
           <button
             type="button"
-            onClick={() => void submit()}
+            onClick={() =>
+              void submit()
+            }
             disabled={saving}
-            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-xl bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:opacity-60"
           >
             {saving
               ? "Saving..."

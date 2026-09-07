@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import {
   getInventoryLedger,
 } from "@/services/inventory.service";
@@ -21,20 +23,31 @@ interface InventoryLedgerModalProps {
 function formatDate(value: string) {
   const date = new Date(value);
 
-  if (Number.isNaN(date.getTime())) {
+  if (
+    Number.isNaN(
+      date.getTime(),
+    )
+  ) {
     return "—";
   }
 
-  return new Intl.DateTimeFormat("en-IN", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(date);
+  return new Intl.DateTimeFormat(
+    "en-IN",
+    {
+      dateStyle: "medium",
+      timeStyle: "short",
+    },
+  ).format(date);
 }
 
 function formatType(type: string) {
   return type
     .replaceAll("_", " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+    .replace(
+      /\b\w/g,
+      (char) =>
+        char.toUpperCase(),
+    );
 }
 
 export default function InventoryLedgerModal({
@@ -42,42 +55,69 @@ export default function InventoryLedgerModal({
   open,
   onClose,
 }: InventoryLedgerModalProps) {
-  const [entries, setEntries] = useState<
-    InventoryLedgerEntry[]
-  >([]);
-  const [loading, setLoading] = useState(false);
+  const { accessToken } =
+    useAdminAuth();
+
+  const [entries, setEntries] =
+    useState<InventoryLedgerEntry[]>(
+      [],
+    );
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [error, setError] =
+    useState<string | null>(null);
 
   useEffect(() => {
-    if (!open || !item) {
+    if (
+      !open ||
+      !item ||
+      !accessToken
+    ) {
       return;
     }
 
     const loadLedger = async () => {
       setLoading(true);
+      setError(null);
 
       try {
-        const response = await getInventoryLedger({
-          productId: item.productId,
-          variantId: item.variantId,
-          page: 1,
-          limit: 50,
-        });
+        const response =
+          await getInventoryLedger(
+            {
+              productId:
+                item.productId,
+              variantId:
+                item.variantId,
+              page: 1,
+              limit: 50,
+            },
+            accessToken,
+          );
 
-        setEntries(response.data.entries);
-      } catch (error) {
-        console.error(
-          "Failed to load inventory ledger:",
-          error,
+        setEntries(
+          response.data.entries,
         );
-
+      } catch (err) {
         setEntries([]);
+
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to load inventory history.",
+        );
       } finally {
         setLoading(false);
       }
     };
 
     void loadLedger();
-  }, [open, item]);
+  }, [
+    open,
+    item,
+    accessToken,
+  ]);
 
   if (!open || !item) {
     return null;
@@ -93,7 +133,8 @@ export default function InventoryLedgerModal({
             </h2>
 
             <p className="mt-1 text-sm text-[#6f706f]">
-              {item.productName} · {item.sku}
+              {item.productName} ·{" "}
+              {item.sku}
             </p>
           </div>
 
@@ -110,7 +151,9 @@ export default function InventoryLedgerModal({
         <div className="overflow-auto">
           {loading ? (
             <div className="space-y-3 p-6">
-              {Array.from({ length: 6 }).map(
+              {Array.from({
+                length: 6,
+              }).map(
                 (_, index) => (
                   <div
                     key={index}
@@ -119,7 +162,14 @@ export default function InventoryLedgerModal({
                 ),
               )}
             </div>
-          ) : entries.length === 0 ? (
+          ) : error ? (
+            <div className="px-6 py-16 text-center">
+              <p className="text-sm text-red-600">
+                {error}
+              </p>
+            </div>
+          ) : entries.length ===
+            0 ? (
             <div className="px-6 py-16 text-center">
               <p className="text-sm text-[#6f706f]">
                 No inventory history available.
@@ -156,72 +206,99 @@ export default function InventoryLedgerModal({
               </thead>
 
               <tbody>
-                {entries.map((entry) => (
-                  <tr
-                    key={entry.id}
-                    className="border-b border-[#f0ece8] last:border-b-0"
-                  >
-                    <td className="px-6 py-4 text-sm text-[#6f706f]">
-                      {formatDate(entry.createdAt)}
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span className="inline-flex rounded-full bg-[#f5f1ec] px-2.5 py-1 text-xs font-medium text-[#6f706f]">
-                        {formatType(entry.type)}
-                      </span>
-                    </td>
-
-                    <td
-                      className={`px-4 py-4 text-right text-sm font-semibold ${
-                        entry.quantity >= 0
-                          ? "text-emerald-700"
-                          : "text-red-700"
-                      }`}
+                {entries.map(
+                  (entry) => (
+                    <tr
+                      key={entry.id}
+                      className="border-b border-[#f0ece8] last:border-b-0"
                     >
-                      {entry.quantity > 0
-                        ? `+${entry.quantity}`
-                        : entry.quantity}
-                    </td>
+                      <td className="px-6 py-4 text-sm text-[#6f706f]">
+                        {formatDate(
+                          entry.createdAt,
+                        )}
+                      </td>
 
-                    <td className="px-4 py-4 text-sm text-[#292c2c]">
-                      {entry.stockBefore} →{" "}
-                      <span className="font-semibold">
-                        {entry.stockAfter}
-                      </span>
-                    </td>
+                      <td className="px-4 py-4">
+                        <span className="inline-flex rounded-full bg-[#f5f1ec] px-2.5 py-1 text-xs font-medium text-[#6f706f]">
+                          {formatType(
+                            entry.type,
+                          )}
+                        </span>
+                      </td>
 
-                    <td className="px-4 py-4 text-sm text-[#292c2c]">
-                      {entry.reservedBefore} →{" "}
-                      <span className="font-semibold">
-                        {entry.reservedAfter}
-                      </span>
-                    </td>
+                      <td
+                        className={`px-4 py-4 text-right text-sm font-semibold ${
+                          entry.quantity >=
+                          0
+                            ? "text-emerald-700"
+                            : "text-red-700"
+                        }`}
+                      >
+                        {entry.quantity >
+                        0
+                          ? `+${entry.quantity}`
+                          : entry.quantity}
+                      </td>
 
-                    <td className="max-w-[320px] px-4 py-4 text-sm text-[#6f706f]">
-                      <p className="truncate">
-                        {entry.reason || "—"}
-                      </p>
+                      <td className="px-4 py-4 text-sm text-[#292c2c]">
+                        {
+                          entry.stockBefore
+                        }{" "}
+                        →{" "}
+                        <span className="font-semibold">
+                          {
+                            entry.stockAfter
+                          }
+                        </span>
+                      </td>
 
-                      {entry.referenceType && (
-                        <p className="mt-1 text-xs text-[#969696]">
-                          Type: {entry.referenceType}
+                      <td className="px-4 py-4 text-sm text-[#292c2c]">
+                        {
+                          entry.reservedBefore
+                        }{" "}
+                        →{" "}
+                        <span className="font-semibold">
+                          {
+                            entry.reservedAfter
+                          }
+                        </span>
+                      </td>
+
+                      <td className="max-w-[320px] px-4 py-4 text-sm text-[#6f706f]">
+                        <p className="truncate">
+                          {entry.reason ||
+                            "—"}
                         </p>
-                      )}
 
-                      {entry.referenceId && (
-                        <p className="mt-1 text-xs text-[#969696]">
-                          Ref: {entry.referenceId}
-                        </p>
-                      )}
+                        {entry.referenceType && (
+                          <p className="mt-1 text-xs text-[#969696]">
+                            Type:{" "}
+                            {
+                              entry.referenceType
+                            }
+                          </p>
+                        )}
 
-                      {entry.notes && (
-                        <p className="mt-1 truncate text-xs text-[#969696]">
-                          {entry.notes}
-                        </p>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                        {entry.referenceId && (
+                          <p className="mt-1 text-xs text-[#969696]">
+                            Ref:{" "}
+                            {
+                              entry.referenceId
+                            }
+                          </p>
+                        )}
+
+                        {entry.notes && (
+                          <p className="mt-1 truncate text-xs text-[#969696]">
+                            {
+                              entry.notes
+                            }
+                          </p>
+                        )}
+                      </td>
+                    </tr>
+                  ),
+                )}
               </tbody>
             </table>
           )}
