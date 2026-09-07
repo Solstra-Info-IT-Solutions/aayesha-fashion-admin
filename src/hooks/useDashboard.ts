@@ -10,10 +10,6 @@ import {
   getDashboard,
 } from "@/services/dashboard.service";
 
-import {
-  useAdminAuth,
-} from "@/hooks/useAdminAuth";
-
 import type {
   DashboardData,
 } from "@/types/dashboard";
@@ -25,6 +21,7 @@ const emptyDashboard: DashboardData = {
     customers: 0,
     products: 0,
   },
+
   revenue: [],
   orderStatus: [],
   recentOrders: [],
@@ -33,43 +30,34 @@ const emptyDashboard: DashboardData = {
 };
 
 export function useDashboard() {
-  const {
-    accessToken,
-    isAuthenticated,
-    isInitialized,
-  } = useAdminAuth();
-
   const [data, setData] =
     useState<DashboardData>(
       emptyDashboard,
     );
 
   const [loading, setLoading] =
-    useState(false);
+    useState(true);
 
   const [error, setError] =
     useState<string>();
 
   const loadDashboard =
     useCallback(async () => {
-      if (
-        !isInitialized ||
-        !isAuthenticated ||
-        !accessToken
-      ) {
-        return;
-      }
-
       setLoading(true);
       setError(undefined);
 
       try {
         const result =
-          await getDashboard(
-            accessToken,
-          );
+          await getDashboard();
 
-        setData(result);
+        setData({
+          ...emptyDashboard,
+          ...result,
+          summary: {
+            ...emptyDashboard.summary,
+            ...(result.summary ?? {}),
+          },
+        });
       } catch (error) {
         setError(
           error instanceof Error
@@ -79,11 +67,7 @@ export function useDashboard() {
       } finally {
         setLoading(false);
       }
-    }, [
-      accessToken,
-      isAuthenticated,
-      isInitialized,
-    ]);
+    }, []);
 
   useEffect(() => {
     void loadDashboard();

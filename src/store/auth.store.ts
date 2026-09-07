@@ -8,6 +8,11 @@ import {
   refreshAdminSession,
 } from "@/services/auth.service";
 
+import {
+  clearAccessToken,
+  setAccessToken,
+} from "@/lib/auth-token";
+
 import type {
   AdminRole,
   AuthUser,
@@ -47,10 +52,6 @@ export const useAuthStore =
       isLoading: false,
       isInitialized: false,
 
-      /* =====================================================
-         LOGIN
-      ===================================================== */
-
       login: async (
         email,
         password,
@@ -85,6 +86,10 @@ export const useAuthStore =
             );
           }
 
+          setAccessToken(
+            result.accessToken,
+          );
+
           set({
             user: result.user,
             accessToken:
@@ -100,10 +105,6 @@ export const useAuthStore =
           });
         }
       },
-
-      /* =====================================================
-         RESTORE SESSION
-      ===================================================== */
 
       initializeAuth:
         async () => {
@@ -131,6 +132,8 @@ export const useAuthStore =
                   "active"
               )
             ) {
+              clearAccessToken();
+
               set({
                 user: null,
                 accessToken: null,
@@ -140,6 +143,10 @@ export const useAuthStore =
               return;
             }
 
+            setAccessToken(
+              result.accessToken,
+            );
+
             set({
               user: result.user,
               accessToken:
@@ -147,6 +154,8 @@ export const useAuthStore =
               isAuthenticated: true,
             });
           } catch {
+            clearAccessToken();
+
             set({
               user: null,
               accessToken: null,
@@ -160,10 +169,6 @@ export const useAuthStore =
           }
         },
 
-      /* =====================================================
-         LOGOUT
-      ===================================================== */
-
       logout: async () => {
         const token =
           get().accessToken;
@@ -173,6 +178,8 @@ export const useAuthStore =
             token,
           );
         } finally {
+          clearAccessToken();
+
           set({
             user: null,
             accessToken: null,
@@ -181,10 +188,6 @@ export const useAuthStore =
           });
         }
       },
-
-      /* =====================================================
-         ADMIN ACCESS
-      ===================================================== */
 
       hasAdminAccess:
         () => {
@@ -199,10 +202,6 @@ export const useAuthStore =
                 "active")
           );
         },
-
-      /* =====================================================
-         ADMIN ROLE
-      ===================================================== */
 
       hasAdminRole:
         (role) => {

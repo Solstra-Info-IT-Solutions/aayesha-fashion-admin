@@ -1,5 +1,9 @@
 import { apiGet } from "@/lib/api";
 
+import {
+  getAccessToken,
+} from "@/lib/auth-token";
+
 import type {
   DashboardData,
 } from "@/types/dashboard";
@@ -9,9 +13,16 @@ type DashboardResponse = {
   data?: DashboardData;
 };
 
-export async function getDashboard(
-  accessToken: string,
-): Promise<DashboardData> {
+export async function getDashboard(): Promise<DashboardData> {
+  const accessToken =
+    getAccessToken();
+
+  if (!accessToken) {
+    throw new Error(
+      "Authentication is required.",
+    );
+  }
+
   const response =
     await apiGet<DashboardResponse>(
       "/admin/dashboard",
