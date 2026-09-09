@@ -53,6 +53,13 @@ export default function ProductEditor({
     isLoading: authLoading,
   } = useAdminAuth();
 
+  console.log("PRODUCT EDITOR AUTH:", {
+  hasToken: Boolean(accessToken),
+  tokenLength: accessToken?.length ?? 0,
+  isAuthenticated,
+  isInitialized,
+});
+
   /*
    * =========================================================
    * PRODUCT EDITOR
