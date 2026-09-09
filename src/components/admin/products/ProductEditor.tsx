@@ -12,17 +12,13 @@ import {
   Save,
 } from "lucide-react";
 
-import {
-  useAdminAuth,
-} from "@/hooks/useAdminAuth";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
   useProductEditor,
 } from "@/hooks/useProductEditor";
 
 import type {
-  ProductAttributes,
-  ProductContent,
   ProductSEO,
 } from "@/types/admin-product";
 
@@ -42,12 +38,26 @@ interface ProductEditorProps {
 export default function ProductEditor({
   productId,
 }: ProductEditorProps) {
-  const router =
-    useRouter();
+  const router = useRouter();
+
+  /*
+   * =========================================================
+   * ADMIN AUTH
+   * =========================================================
+   */
 
   const {
     accessToken,
+    isAuthenticated,
+    isInitialized,
+    isLoading: authLoading,
   } = useAdminAuth();
+
+  /*
+   * =========================================================
+   * PRODUCT EDITOR
+   * =========================================================
+   */
 
   const {
     product,
@@ -69,56 +79,154 @@ export default function ProductEditor({
     moveToDraft,
     archive,
     unpublish,
-  } =
-    useProductEditor({
-      productId,
-    });
+  } = useProductEditor({
+    productId,
+  });
 
-  const isEdit =
-    Boolean(productId);
+  const isEdit = Boolean(productId);
 
   const [
     formError,
     setFormError,
-  ] = useState<
-    string | null
-  >(null);
+  ] = useState<string | null>(null);
+
+  /*
+   * =========================================================
+   * AUTH / ERROR STATE
+   * =========================================================
+   */
 
   useEffect(() => {
-    if (!error) {
+    if (error) {
+      setFormError(error);
       return;
     }
 
-    setFormError(error);
-  }, [error]);
+    if (
+      isInitialized &&
+      !authLoading &&
+      !isAuthenticated
+    ) {
+      setFormError(
+        "Authentication is required. Please login again.",
+      );
+    }
+  }, [
+    error,
+    isInitialized,
+    authLoading,
+    isAuthenticated,
+  ]);
 
-  const saveMain =
-    async () => {
-      setFormError(null);
+  /*
+   * =========================================================
+   * SAVE MAIN PRODUCT
+   * =========================================================
+   */
 
-      try {
-        if (!isEdit) {
-          const created =
-            await create();
+  const saveMain = async () => {
+    setFormError(null);
 
-          router.replace(
-            `/admin/products/${encodeURIComponent(
-              created.id,
-            )}`,
-          );
+    /*
+     * Do not allow API operation until
+     * authentication has been initialized.
+     */
+    if (!isInitialized) {
+      setFormError(
+        "Authentication is still initializing. Please wait.",
+      );
 
-          return;
-        }
+      return;
+    }
 
-        await saveBasic();
-      } catch (reason) {
-        setFormError(
-          reason instanceof Error
-            ? reason.message
-            : "Unable to save product.",
+    if (!isAuthenticated || !accessToken) {
+      setFormError(
+        "Authentication is required. Please login again.",
+      );
+
+      return;
+    }
+
+    try {
+      if (!isEdit) {
+        const created = await create();
+
+        router.replace(
+          `/admin/products/${encodeURIComponent(
+            created.id,
+          )}`,
         );
+
+        return;
       }
-    };
+
+      await saveBasic();
+    } catch (reason) {
+      setFormError(
+        reason instanceof Error
+          ? reason.message
+          : "Unable to save product.",
+      );
+    }
+  };
+
+  /*
+   * =========================================================
+   * AUTH INITIALIZATION
+   * =========================================================
+   */
+
+  if (!isInitialized || authLoading) {
+    return (
+      <div className="space-y-4">
+        {Array.from({
+          length: 6,
+        }).map((_, index) => (
+          <div
+            key={index}
+            className="h-24 animate-pulse rounded-2xl bg-[#f5f1ec]"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  /*
+   * =========================================================
+   * NOT AUTHENTICATED
+   * =========================================================
+   */
+
+  if (!isAuthenticated || !accessToken) {
+    return (
+      <div className="rounded-2xl border border-[#f0d1d1] bg-[#fff5f5] p-6">
+        <p className="text-sm font-semibold text-[#a33a3a]">
+          Authentication is required.
+        </p>
+
+        <p className="mt-2 text-sm text-[#6f706f]">
+          Your admin session is no longer available.
+          Please login again to continue.
+        </p>
+
+        <button
+          type="button"
+          onClick={() =>
+            router.push("/admin/login")
+          }
+          className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-[#171717] px-4 text-sm font-medium text-white"
+        >
+          Login Again
+        </button>
+      </div>
+    );
+  }
+
+  /*
+   * =========================================================
+   * PRODUCT LOADING
+   * =========================================================
+   */
 
   if (loading) {
     return (
@@ -135,8 +243,18 @@ export default function ProductEditor({
     );
   }
 
+  /*
+   * =========================================================
+   * MAIN UI
+   * =========================================================
+   */
+
   return (
     <div className="space-y-6">
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <div className="flex flex-col gap-4 border-b border-[#e7e2dd] pb-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <button
@@ -148,9 +266,8 @@ export default function ProductEditor({
             }
             className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#6f706f] hover:text-[#171717]"
           >
-            <ArrowLeft
-              size={13}
-            />
+            <ArrowLeft size={13} />
+
             Products
           </button>
 
@@ -178,7 +295,7 @@ export default function ProductEditor({
             void saveMain()
           }
           disabled={saving}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#171717] px-4 text-sm font-medium text-white disabled:opacity-50"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-[#171717] px-4 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Save size={15} />
 
@@ -190,14 +307,30 @@ export default function ProductEditor({
         </button>
       </div>
 
+      {/* =====================================================
+          ERROR
+      ===================================================== */}
+
       {formError && (
         <div className="rounded-xl border border-[#f0d1d1] bg-[#fff5f5] px-4 py-3 text-sm text-[#a33a3a]">
           {formError}
         </div>
       )}
 
+      {/* =====================================================
+          CONTENT GRID
+      ===================================================== */}
+
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+        {/* ===================================================
+            MAIN CONTENT
+        =================================================== */}
+
         <div className="space-y-6">
+          {/* =================================================
+              BASIC
+          ================================================= */}
+
           <ProductBasicSection
             name={product.name}
             slug={product.slug}
@@ -212,9 +345,7 @@ export default function ProductEditor({
               ""
             }
             tags={product.tags}
-            onChange={(
-              values,
-            ) => {
+            onChange={(values) => {
               if (
                 values.name !==
                 undefined
@@ -277,13 +408,15 @@ export default function ProductEditor({
             }}
           />
 
+          {/* =================================================
+              CONTENT
+          ================================================= */}
+
           <ProductContentSection
             content={
               product.content
             }
-            onChange={(
-              value,
-            ) =>
+            onChange={(value) =>
               updateProduct(
                 "content",
                 value,
@@ -291,19 +424,25 @@ export default function ProductEditor({
             }
           />
 
+          {/* =================================================
+              ATTRIBUTES
+          ================================================= */}
+
           <ProductAttributesSection
             attributes={
               product.attributes
             }
-            onChange={(
-              value,
-            ) =>
+            onChange={(value) =>
               updateProduct(
                 "attributes",
                 value,
               )
             }
           />
+
+          {/* =================================================
+              MEDIA + VARIANTS
+          ================================================= */}
 
           {isEdit &&
             product.id && (
@@ -355,10 +494,18 @@ export default function ProductEditor({
             )}
         </div>
 
+        {/* ===================================================
+            SIDEBAR
+        =================================================== */}
+
         <aside className="space-y-6">
           {isEdit &&
             product.id && (
               <>
+                {/* =========================================
+                    SEO
+                ========================================= */}
+
                 <ProductSeoSection
                   seo={
                     product.seo ??
@@ -371,18 +518,24 @@ export default function ProductEditor({
                   }
                 />
 
+                {/* =========================================
+                    MERCHANDISING
+                ========================================= */}
+
                 <ProductMerchandisingSection
                   merchandising={
                     product.merchandising
                   }
-                  onChange={(
-                    value,
-                  ) =>
+                  onChange={(value) =>
                     void saveMerchandising(
                       value,
                     )
                   }
                 />
+
+                {/* =========================================
+                    PUBLISH
+                ========================================= */}
 
                 <ProductPublishSection
                   product={
@@ -407,6 +560,10 @@ export default function ProductEditor({
               </>
             )}
 
+          {/* =================================================
+              NEW PRODUCT
+          ================================================= */}
+
           {!isEdit && (
             <div className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
               <p className="text-sm font-semibold text-[#171717]">
@@ -423,15 +580,17 @@ export default function ProductEditor({
             </div>
           )}
 
+          {/* =================================================
+              PRODUCT STATE
+          ================================================= */}
+
           <div className="rounded-2xl border border-[#e7e2dd] bg-[#fcfbf9] p-5">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#969696]">
               Product State
             </p>
 
             <p className="mt-2 text-lg font-semibold capitalize text-[#171717]">
-              {
-                product.status
-              }
+              {product.status}
             </p>
 
             <p className="mt-1 text-xs leading-5 text-[#6f706f]">
