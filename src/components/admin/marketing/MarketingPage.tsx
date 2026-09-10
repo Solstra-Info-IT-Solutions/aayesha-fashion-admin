@@ -534,6 +534,7 @@ import { useAdminAuth } from "@/hooks/useAdminAuth";
 import MarketingHeader from "./MarketingHeader";
 import MarketingStats from "./MarketingStats";
 import MarketingFilters from "./MarketingFilters";
+import MarketingCampaignTable from "./MarketingCampaignTable";
 
 import type {
   MarketingCampaignSort,
@@ -625,6 +626,13 @@ export default function MarketingPage() {
             }
             onClear={handleClear}
           />
+
+          <MarketingCampaignTable
+  campaigns={[]}
+  onArchive={() => {}}
+  onRestore={() => {}}
+  onDelete={() => {}}
+/>
         </div>
       </div>
     </main>
