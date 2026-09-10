@@ -208,39 +208,35 @@ export default function SupportPage() {
     await Promise.all([loadStats(), loadTickets()]);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!accessToken) return;
+  const handleDelete = async (ticket: SupportTicket) => {
+  if (!accessToken) return;
 
-    const ticket = tickets.find((item) => item._id === id);
+  const confirmed = window.confirm(
+    `Are you sure you want to delete ticket ${ticket.ticketNumber}?`
+  );
 
-    const confirmed = window.confirm(
-      ticket
-        ? `Are you sure you want to delete ticket ${ticket.ticketNumber}?`
-        : "Are you sure you want to delete this support ticket?"
+  if (!confirmed) return;
+
+  try {
+    setDeletingId(ticket._id);
+
+    await deleteSupportTicket(accessToken, ticket._id);
+
+    toast.success("Support ticket deleted successfully.");
+
+    await Promise.all([loadTickets(), loadStats()]);
+  } catch (error) {
+    console.error("Failed to delete support ticket:", error);
+
+    toast.error(
+      error instanceof Error
+        ? error.message
+        : "Failed to delete support ticket."
     );
-
-    if (!confirmed) return;
-
-    try {
-      setDeletingId(id);
-
-      await deleteSupportTicket(accessToken, id);
-
-      toast.success("Support ticket deleted successfully.");
-
-      await Promise.all([loadTickets(), loadStats()]);
-    } catch (error) {
-      console.error("Failed to delete support ticket:", error);
-
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Failed to delete support ticket."
-      );
-    } finally {
-      setDeletingId(null);
-    }
-  };
+  } finally {
+    setDeletingId(null);
+  }
+};
 
   if (authLoading) {
     return (
@@ -262,7 +258,10 @@ export default function SupportPage() {
 
   return (
     <div className="space-y-6">
-      <SupportHeader onRefresh={handleRefresh} />
+      <SupportHeader 
+        onRefresh={handleRefresh}
+        refreshing={loading || statsLoading}
+      />
 
       <SupportStats stats={stats} loading={statsLoading} />
 
