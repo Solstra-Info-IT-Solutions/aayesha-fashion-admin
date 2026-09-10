@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Loader2, Save } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { useAdminAuth } from "@/store/useAdminAuth";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
   createMarketingCampaign,
