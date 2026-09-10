@@ -405,30 +405,44 @@ export default function MarketingPage() {
   // ─────────────────────────────────────────────
 
   if (!isInitialized) {
+    // return (
+    //   <main className="min-h-screen bg-[var(--color-background)]">
+    //     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    //       <div className="animate-pulse space-y-6">
+    //         <div className="h-20 rounded-xl bg-gray-100" />
+
+    //         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    //           {Array.from({ length: 4 }).map(
+    //             (_, index) => (
+    //               <div
+    //                 key={index}
+    //                 className="h-32 rounded-xl bg-gray-100"
+    //               />
+    //             ),
+    //           )}
+    //         </div>
+
+    //         <div className="h-16 rounded-xl bg-gray-100" />
+
+    //         <div className="h-96 rounded-xl bg-gray-100" />
+    //       </div>
+    //     </div>
+    //   </main>
+    // );
+
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="animate-pulse space-y-6">
-            <div className="h-20 rounded-xl bg-gray-100" />
+  <main className="min-h-screen bg-[var(--color-background)]">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <h1 className="text-3xl font-semibold text-[var(--color-ink)]">
+        Marketing
+      </h1>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {Array.from({ length: 4 }).map(
-                (_, index) => (
-                  <div
-                    key={index}
-                    className="h-32 rounded-xl bg-gray-100"
-                  />
-                ),
-              )}
-            </div>
-
-            <div className="h-16 rounded-xl bg-gray-100" />
-
-            <div className="h-96 rounded-xl bg-gray-100" />
-          </div>
-        </div>
-      </main>
-    );
+      <p className="mt-2 text-sm text-[var(--color-secondary)]">
+        Marketing page is loading correctly.
+      </p>
+    </div>
+  </main>
+);
   }
 
   if (!isAuthenticated || !accessToken) {
