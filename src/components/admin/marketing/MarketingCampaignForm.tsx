@@ -941,41 +941,40 @@ export default function MarketingCampaignForm({
           </div>
 
           {/* Footer */}
-          {/* Footer */}
-<div className="flex flex-col-reverse gap-3 border-t border-[var(--color-border)] p-5 sm:flex-row sm:items-center sm:justify-end sm:p-7">
-  <Link
-    href={
-      isEdit &&
-      loadedCampaign
-        ? `/admin/marketing/${loadedCampaign._id}`
-        : "/admin/marketing"
-    }
-    className="inline-flex h-11 items-center justify-center rounded-lg border border-[var(--color-border)] px-5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
-  >
-    Cancel
-  </Link>
+          <div className="flex flex-col-reverse gap-3 border-t border-[var(--color-border)] p-5 sm:flex-row sm:items-center sm:justify-end sm:p-7">
+            <Link
+              href={
+                isEdit &&
+                loadedCampaign
+                  ? `/admin/marketing/${loadedCampaign._id}`
+                  : "/admin/marketing"
+              }
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-[var(--color-border)] px-5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+            >
+              Cancel
+            </Link>
 
-  <button
-    type="submit"
-    disabled={submitting}
-    className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[var(--color-rose-dark)] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    {submitting ? (
-      <Loader2
-        size={17}
-        className="animate-spin"
-      />
-    ) : (
-      <Save size={17} />
-    )}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[var(--color-rose-dark)] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitting ? (
+                <Loader2
+                  size={17}
+                  className="animate-spin"
+                />
+              ) : (
+                <Save size={17} />
+              )}
 
-    {submitting
-      ? "Saving..."
-      : isEdit
-        ? "Update Campaign"
-        : "Create Campaign"}
-  </button>
-</div>
+              {submitting
+                ? "Saving..."
+                : isEdit
+                  ? "Update Campaign"
+                  : "Create Campaign"}
+            </button>
+          </div>
         </form>
       </div>
     </main>
