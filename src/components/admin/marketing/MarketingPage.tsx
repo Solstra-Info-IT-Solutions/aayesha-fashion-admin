@@ -530,6 +530,7 @@
 "use client";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
+import MarketingHeader from "./MarketingHeader";
 
 export default function MarketingPage() {
   const {
@@ -555,14 +556,13 @@ export default function MarketingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white p-10">
-      <h1 className="text-3xl font-bold text-black">
-        Marketing Test Page
-      </h1>
-
-      <p className="mt-3 text-gray-600">
-        Marketing route is working.
-      </p>
+    <main className="min-h-screen bg-[var(--color-background)]">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <MarketingHeader
+          refreshing={false}
+          onRefresh={() => {}}
+        />
+      </div>
     </main>
   );
 }
