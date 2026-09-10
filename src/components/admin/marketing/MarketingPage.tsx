@@ -531,6 +531,7 @@
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 import MarketingHeader from "./MarketingHeader";
+import MarketingStats from "./MarketingStats";
 
 export default function MarketingPage() {
   const {
@@ -557,10 +558,15 @@ export default function MarketingPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-background)]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-6">
         <MarketingHeader
           refreshing={false}
           onRefresh={() => {}}
+        />
+
+        <MarketingStats
+          stats={null}
+          loading={false}
         />
       </div>
     </main>
