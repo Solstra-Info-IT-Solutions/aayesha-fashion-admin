@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-import { useAdminAuth } from "@/store/useAdminAuth";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
   archiveMarketingCampaign,
