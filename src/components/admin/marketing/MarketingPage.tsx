@@ -538,6 +538,7 @@ import MarketingCampaignTable from "./MarketingCampaignTable";
 import MarketingCampaignMobileCard from "./MarketingCampaignMobileCard";
 
 import type {
+  MarketingCampaign,
   MarketingCampaignSort,
   MarketingCampaignStatus,
   MarketingCampaignType,
