@@ -535,6 +535,7 @@ import MarketingHeader from "./MarketingHeader";
 import MarketingStats from "./MarketingStats";
 import MarketingFilters from "./MarketingFilters";
 import MarketingCampaignTable from "./MarketingCampaignTable";
+import MarketingCampaignMobileCard from "./MarketingCampaignMobileCard";
 
 import type {
   MarketingCampaignSort,
@@ -633,6 +634,17 @@ export default function MarketingPage() {
   onRestore={() => {}}
   onDelete={() => {}}
 />
+<div className="space-y-3 md:hidden">
+  {([] as MarketingCampaign[]).map((campaign) => (
+    <MarketingCampaignMobileCard
+      key={campaign._id}
+      campaign={campaign}
+      onArchive={() => {}}
+      onRestore={() => {}}
+      onDelete={() => {}}
+    />
+  ))}
+</div>
         </div>
       </div>
     </main>
