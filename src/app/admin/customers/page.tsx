@@ -1,10 +1,5 @@
-import { EmptyState } from "@/components/admin/dashboard/EmptyState";
+import CustomersPage from "@/components/admin/customers/CustomersPage";
 
-export default function CustomersPage() {
-  return (
-    <EmptyState
-      title="Customers"
-      message="Customer management will be connected to the existing admin customer APIs."
-    />
-  );
+export default function Page() {
+  return <CustomersPage />;
 }
