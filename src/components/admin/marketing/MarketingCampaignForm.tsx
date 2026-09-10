@@ -61,6 +61,15 @@ function formatLabel(value: string) {
     );
 }
 
+function generateSlug(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 function toDateTimeLocal(
   value: string | null | undefined,
 ) {
@@ -404,6 +413,8 @@ export default function MarketingCampaignForm({
       const input: MarketingCampaignCreateInput =
         {
           name: form.name.trim(),
+
+          slug: generateSlug(campaignName),
 
           description:
             form.description.trim() ||

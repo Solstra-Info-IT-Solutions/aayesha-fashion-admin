@@ -78,6 +78,7 @@ export type MarketingCampaignListParams = {
 
 export type MarketingCampaignCreateInput = {
   name: string;
+  slug: string;
   description?: string;
   type: MarketingCampaignType;
   status?: MarketingCampaignStatus;
