@@ -76,13 +76,12 @@ export default function MarketingHeader({
         </button>
 
         <Link
-          href="/admin/marketing/create"
-          className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-dark)] px-4 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
-        >
-          <Plus size={17} />
-
-          New Campaign
-        </Link>
+  href="/admin/marketing/create"
+  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#9f1239] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#881337]"
+>
+  <Plus size={17} />
+  New Campaign
+</Link>
       </div>
     </div>
   );
