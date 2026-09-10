@@ -77,7 +77,7 @@ export default function MarketingHeader({
 
         <Link
   href="/admin/marketing/create"
-  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#9f1239] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#881337]"
+  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#000000] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#881337]"
 >
   <Plus size={17} />
   New Campaign
