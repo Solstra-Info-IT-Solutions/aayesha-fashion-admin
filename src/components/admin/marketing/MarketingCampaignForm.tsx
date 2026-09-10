@@ -431,9 +431,9 @@ export default function MarketingCampaignForm({
           startsAt,
 
           endsAt: endsAt || null,
-
-          console.log("CREATE CAMPAIGN PAYLOAD:", input);
         };
+
+        console.log("CREATE CAMPAIGN PAYLOAD:", input);
 
       /*
        * EDIT
