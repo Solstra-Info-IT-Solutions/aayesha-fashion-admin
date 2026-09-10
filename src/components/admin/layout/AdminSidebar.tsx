@@ -65,7 +65,7 @@ const sections = [
         icon: Megaphone,
       },
       {
-        href: "/admin/coupons",
+        href: "/admin/discounts",
         label: "Discounts",
         icon: Percent,
       },
