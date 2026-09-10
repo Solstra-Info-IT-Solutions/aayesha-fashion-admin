@@ -293,7 +293,6 @@ export default function SupportPage() {
           <div className="hidden lg:block">
             <SupportTable
               tickets={tickets}
-              deletingId={deletingId}
               onDelete={handleDelete}
             />
           </div>
@@ -303,7 +302,6 @@ export default function SupportPage() {
               <SupportMobileCard
                 key={ticket._id}
                 ticket={ticket}
-                deleting={deletingId === ticket._id}
                 onDelete={handleDelete}
               />
             ))}
