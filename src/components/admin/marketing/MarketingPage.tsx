@@ -530,8 +530,16 @@
 "use client";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import MarketingHeader from "./MarketingHeader";
 import MarketingStats from "./MarketingStats";
+import MarketingFilters from "./MarketingFilters";
+
+import type {
+  MarketingCampaignSort,
+  MarketingCampaignStatus,
+  MarketingCampaignType,
+} from "@/types/marketing";
 
 export default function MarketingPage() {
   const {
@@ -556,18 +564,68 @@ export default function MarketingPage() {
     );
   }
 
+  const handleSearchChange = (value: string) => {
+    console.log("Search:", value);
+  };
+
+  const handleTypeChange = (
+    value: MarketingCampaignType | "",
+  ) => {
+    console.log("Type:", value);
+  };
+
+  const handleStatusChange = (
+    value: MarketingCampaignStatus | "",
+  ) => {
+    console.log("Status:", value);
+  };
+
+  const handleSortChange = (
+    value: MarketingCampaignSort,
+  ) => {
+    console.log("Sort:", value);
+  };
+
+  const handleIncludeArchivedChange = (
+    value: boolean,
+  ) => {
+    console.log("Archived:", value);
+  };
+
+  const handleClear = () => {
+    console.log("Clear filters");
+  };
+
   return (
     <main className="min-h-screen bg-[var(--color-background)]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-6">
-        <MarketingHeader
-          refreshing={false}
-          onRefresh={() => {}}
-        />
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          <MarketingHeader
+            refreshing={false}
+            onRefresh={() => {}}
+          />
 
-        <MarketingStats
-          stats={null}
-          loading={false}
-        />
+          <MarketingStats
+            stats={null}
+            loading={false}
+          />
+
+          <MarketingFilters
+            search=""
+            type=""
+            status=""
+            sort="newest"
+            includeArchived={false}
+            onSearchChange={handleSearchChange}
+            onTypeChange={handleTypeChange}
+            onStatusChange={handleStatusChange}
+            onSortChange={handleSortChange}
+            onIncludeArchivedChange={
+              handleIncludeArchivedChange
+            }
+            onClear={handleClear}
+          />
+        </div>
       </div>
     </main>
   );
