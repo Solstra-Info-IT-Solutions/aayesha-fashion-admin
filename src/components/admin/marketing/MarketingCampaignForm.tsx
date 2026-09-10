@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Loader2, Save } from "lucide-react";
+import { useRouter } from "next/navigation";
+import {
+  ArrowLeft,
+  Loader2,
+  Save,
+} from "lucide-react";
 import toast from "react-hot-toast";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
@@ -51,10 +56,14 @@ const DEFAULT_FORM: FormState = {
 function formatLabel(value: string) {
   return value
     .replace(/_/g, " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    .replace(/\b\w/g, (letter) =>
+      letter.toUpperCase(),
+    );
 }
 
-function toDateTimeLocal(value: string | null | undefined) {
+function toDateTimeLocal(
+  value: string | null | undefined,
+) {
   if (!value) {
     return "";
   }
@@ -98,8 +107,12 @@ function campaignToForm(
     type: campaign.type,
     status: campaign.status,
     budget: String(campaign.budget ?? 0),
-    startsAt: toDateTimeLocal(campaign.startsAt),
-    endsAt: toDateTimeLocal(campaign.endsAt),
+    startsAt: toDateTimeLocal(
+      campaign.startsAt,
+    ),
+    endsAt: toDateTimeLocal(
+      campaign.endsAt,
+    ),
   };
 }
 
@@ -108,6 +121,8 @@ export default function MarketingCampaignForm({
   campaign,
   campaignId,
 }: MarketingCampaignFormProps) {
+  const router = useRouter();
+
   const {
     accessToken,
     isAuthenticated,
@@ -138,11 +153,12 @@ export default function MarketingCampaignForm({
   const isEdit = mode === "edit";
 
   /*
-   * Load campaign for edit mode.
+   * Load campaign in edit mode.
    *
-   * Priority:
-   * 1. campaign prop if already provided
-   * 2. campaignId from route
+   * If campaign prop is already available,
+   * use it.
+   *
+   * Otherwise fetch campaign using campaignId.
    */
   useEffect(() => {
     if (!isEdit) {
@@ -159,7 +175,9 @@ export default function MarketingCampaignForm({
 
     if (!campaignId) {
       setLoadingCampaign(false);
-      setLoadError("Campaign ID is missing.");
+      setLoadError(
+        "Campaign ID is missing.",
+      );
       return;
     }
 
@@ -229,7 +247,9 @@ export default function MarketingCampaignForm({
     isInitialized,
   ]);
 
-  const updateField = <K extends keyof FormState>(
+  const updateField = <
+    K extends keyof FormState
+  >(
     field: K,
     value: FormState[K],
   ) => {
@@ -252,7 +272,9 @@ export default function MarketingCampaignForm({
     if (!form.name.trim()) {
       nextErrors.name =
         "Campaign name is required.";
-    } else if (form.name.trim().length > 120) {
+    } else if (
+      form.name.trim().length > 120
+    ) {
       nextErrors.name =
         "Campaign name cannot exceed 120 characters.";
     }
@@ -266,7 +288,9 @@ export default function MarketingCampaignForm({
       nextErrors.startsAt =
         "Start date is required.";
     } else {
-      const start = new Date(form.startsAt);
+      const start = new Date(
+        form.startsAt,
+      );
 
       if (Number.isNaN(start.getTime())) {
         nextErrors.startsAt =
@@ -286,8 +310,13 @@ export default function MarketingCampaignForm({
     }
 
     if (form.endsAt) {
-      const start = new Date(form.startsAt);
-      const end = new Date(form.endsAt);
+      const start = new Date(
+        form.startsAt,
+      );
+
+      const end = new Date(
+        form.endsAt,
+      );
 
       if (
         !Number.isNaN(start.getTime()) &&
@@ -299,15 +328,22 @@ export default function MarketingCampaignForm({
       }
     }
 
-    const startsAt = toISOString(form.startsAt);
+    const startsAt = toISOString(
+      form.startsAt,
+    );
 
-    if (form.startsAt && !startsAt) {
+    if (
+      form.startsAt &&
+      !startsAt
+    ) {
       nextErrors.startsAt =
         "Start date must be valid.";
     }
 
     if (form.endsAt) {
-      const endsAt = toISOString(form.endsAt);
+      const endsAt = toISOString(
+        form.endsAt,
+      );
 
       if (!endsAt) {
         nextErrors.endsAt =
@@ -317,7 +353,9 @@ export default function MarketingCampaignForm({
 
     setErrors(nextErrors);
 
-    return Object.keys(nextErrors).length === 0;
+    return (
+      Object.keys(nextErrors).length === 0
+    );
   };
 
   const handleSubmit = async (
@@ -332,12 +370,20 @@ export default function MarketingCampaignForm({
       return;
     }
 
-    if (!accessToken || !isAuthenticated) {
-      toast.error("Authentication required.");
+    if (
+      !accessToken ||
+      !isAuthenticated
+    ) {
+      toast.error(
+        "Authentication required.",
+      );
       return;
     }
 
-    if (isEdit && !loadedCampaign) {
+    if (
+      isEdit &&
+      !loadedCampaign
+    ) {
       toast.error(
         "Campaign details are not loaded yet.",
       );
@@ -355,18 +401,34 @@ export default function MarketingCampaignForm({
         ? toISOString(form.endsAt)
         : "";
 
-      const input: MarketingCampaignCreateInput = {
-        name: form.name.trim(),
-        description:
-          form.description.trim() || undefined,
-        type: form.type,
-        status: form.status,
-        budget: Number(form.budget),
-        startsAt,
-        endsAt: endsAt || null,
-      };
+      const input: MarketingCampaignCreateInput =
+        {
+          name: form.name.trim(),
 
-      if (isEdit && loadedCampaign) {
+          description:
+            form.description.trim() ||
+            undefined,
+
+          type: form.type,
+
+          status: form.status,
+
+          budget: Number(
+            form.budget,
+          ),
+
+          startsAt,
+
+          endsAt: endsAt || null,
+        };
+
+      /*
+       * EDIT
+       */
+      if (
+        isEdit &&
+        loadedCampaign
+      ) {
         await updateMarketingCampaign(
           accessToken,
           loadedCampaign._id,
@@ -377,11 +439,16 @@ export default function MarketingCampaignForm({
           "Campaign updated successfully.",
         );
 
-        window.location.href = `/admin/marketing/${loadedCampaign._id}`;
+        router.push(
+          `/admin/marketing/${loadedCampaign._id}`,
+        );
 
         return;
       }
 
+      /*
+       * CREATE
+       */
       const created =
         await createMarketingCampaign(
           accessToken,
@@ -392,7 +459,9 @@ export default function MarketingCampaignForm({
         "Campaign created successfully.",
       );
 
-      window.location.href = `/admin/marketing/${created._id}`;
+      router.push(
+        `/admin/marketing/${created._id}`,
+      );
     } catch (error) {
       console.error(
         "Failed to save marketing campaign:",
@@ -409,22 +478,38 @@ export default function MarketingCampaignForm({
     }
   };
 
+  /*
+   * Auth initialization
+   */
   if (!isInitialized) {
     return (
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="animate-pulse space-y-5">
           <div className="h-8 w-56 rounded bg-gray-100" />
+
           <div className="h-[600px] rounded-xl bg-gray-100" />
         </div>
       </div>
     );
   }
 
-  if (!isAuthenticated || !accessToken) {
+  /*
+   * Not authenticated
+   */
+  if (
+    !isAuthenticated ||
+    !accessToken
+  ) {
     return null;
   }
 
-  if (isEdit && loadingCampaign) {
+  /*
+   * Edit loading state
+   */
+  if (
+    isEdit &&
+    loadingCampaign
+  ) {
     return (
       <main className="min-h-screen bg-[var(--color-background)]">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
@@ -434,6 +519,7 @@ export default function MarketingCampaignForm({
               className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
             >
               <ArrowLeft size={16} />
+
               Back to Marketing
             </Link>
 
@@ -446,39 +532,46 @@ export default function MarketingCampaignForm({
             <div className="space-y-6 p-5 sm:p-7">
               <div className="space-y-2">
                 <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+
                 <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
               </div>
 
               <div className="space-y-2">
                 <div className="h-4 w-24 animate-pulse rounded bg-gray-100" />
+
                 <div className="h-28 w-full animate-pulse rounded-lg bg-gray-100" />
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
                   <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+
                   <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
                 </div>
 
                 <div className="space-y-2">
                   <div className="h-4 w-24 animate-pulse rounded bg-gray-100" />
+
                   <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <div className="h-4 w-20 animate-pulse rounded bg-gray-100" />
+
                 <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
                   <div className="h-4 w-36 animate-pulse rounded bg-gray-100" />
+
                   <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
                 </div>
 
                 <div className="space-y-2">
                   <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+
                   <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
                 </div>
               </div>
@@ -487,6 +580,7 @@ export default function MarketingCampaignForm({
             <div className="border-t border-[var(--color-border)] p-5 sm:p-7">
               <div className="flex justify-end gap-3">
                 <div className="h-11 w-24 animate-pulse rounded-lg bg-gray-100" />
+
                 <div className="h-11 w-40 animate-pulse rounded-lg bg-gray-100" />
               </div>
             </div>
@@ -496,7 +590,13 @@ export default function MarketingCampaignForm({
     );
   }
 
-  if (isEdit && loadError) {
+  /*
+   * Edit load error
+   */
+  if (
+    isEdit &&
+    loadError
+  ) {
     return (
       <main className="min-h-screen bg-[var(--color-background)]">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
@@ -505,6 +605,7 @@ export default function MarketingCampaignForm({
             className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
           >
             <ArrowLeft size={16} />
+
             Back to Marketing
           </Link>
 
@@ -539,6 +640,7 @@ export default function MarketingCampaignForm({
             className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
           >
             <ArrowLeft size={16} />
+
             Back to Marketing
           </Link>
 
@@ -568,6 +670,7 @@ export default function MarketingCampaignForm({
                 className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
               >
                 Campaign Name
+
                 <span className="ml-1 text-red-500">
                   *
                 </span>
@@ -651,6 +754,7 @@ export default function MarketingCampaignForm({
                   className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
                 >
                   Campaign Type
+
                   <span className="ml-1 text-red-500">
                     *
                   </span>
@@ -723,6 +827,7 @@ export default function MarketingCampaignForm({
                 className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
               >
                 Budget
+
                 <span className="ml-1 text-red-500">
                   *
                 </span>
@@ -770,6 +875,7 @@ export default function MarketingCampaignForm({
                   className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
                 >
                   Start Date & Time
+
                   <span className="ml-1 text-red-500">
                     *
                   </span>
@@ -838,7 +944,8 @@ export default function MarketingCampaignForm({
           <div className="flex flex-col-reverse gap-3 border-t border-[var(--color-border)] p-5 sm:flex-row sm:items-center sm:justify-end sm:p-7">
             <Link
               href={
-                isEdit && loadedCampaign
+                isEdit &&
+                loadedCampaign
                   ? `/admin/marketing/${loadedCampaign._id}`
                   : "/admin/marketing"
               }
