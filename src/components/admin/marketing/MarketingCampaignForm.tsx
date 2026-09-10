@@ -410,11 +410,13 @@ export default function MarketingCampaignForm({
         ? toISOString(form.endsAt)
         : "";
 
+        
+
       const input: MarketingCampaignCreateInput =
         {
           name: form.name.trim(),
 
-          slug: generateSlug(campaignName),
+          slug: generateSlug(form.name.trim()),
 
           description:
             form.description.trim() ||
