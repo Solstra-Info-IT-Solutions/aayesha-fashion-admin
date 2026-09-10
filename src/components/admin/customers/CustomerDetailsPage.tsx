@@ -21,8 +21,11 @@ import {
   useCallback,
   useEffect,
   useState,
+  type ReactNode,
 } from "react";
 import toast from "react-hot-toast";
+
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
   archiveCustomer,
@@ -99,7 +102,7 @@ function formatDateTime(
 function initials(
   name: string,
 ) {
-  return name
+  const result = name
     .trim()
     .split(/\s+/)
     .filter(Boolean)
@@ -109,6 +112,8 @@ function initials(
         part[0]?.toUpperCase() || "",
     )
     .join("");
+
+  return result || "CU";
 }
 
 function statusClass(
@@ -135,6 +140,12 @@ function statusClass(
 export default function CustomerDetailsPage({
   userId,
 }: Props) {
+  const {
+    accessToken,
+    isAuthenticated,
+    isInitialized,
+  } = useAdminAuth();
+
   const [customer, setCustomer] =
     useState<Customer | null>(null);
 
@@ -179,6 +190,14 @@ export default function CustomerDetailsPage({
   const loadCustomer =
     useCallback(
       async () => {
+        if (
+          !isInitialized ||
+          !isAuthenticated ||
+          !accessToken
+        ) {
+          return;
+        }
+
         setLoading(true);
 
         try {
@@ -188,12 +207,23 @@ export default function CustomerDetailsPage({
             orderResult,
             activityResult,
           ] = await Promise.all([
-            getCustomer(userId),
-            getCustomerAddresses(
+            getCustomer(
+              accessToken,
               userId,
             ),
-            getCustomerOrders(userId),
+
+            getCustomerAddresses(
+              accessToken,
+              userId,
+            ),
+
+            getCustomerOrders(
+              accessToken,
+              userId,
+            ),
+
             getCustomerActivity(
+              accessToken,
               userId,
               1,
               20,
@@ -204,12 +234,15 @@ export default function CustomerDetailsPage({
             customerResult.customer;
 
           setCustomer(current);
+
           setAddresses(
             addressResult.addresses || [],
           );
+
           setOrders(
             orderResult.orders || [],
           );
+
           setActivities(
             activityResult.activities ||
               [],
@@ -253,15 +286,36 @@ export default function CustomerDetailsPage({
           setLoading(false);
         }
       },
-      [userId],
+      [
+        accessToken,
+        isAuthenticated,
+        isInitialized,
+        userId,
+      ],
     );
 
   useEffect(() => {
+    if (
+      !isInitialized ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
+      return;
+    }
+
     void loadCustomer();
-  }, [loadCustomer]);
+  }, [
+    isInitialized,
+    isAuthenticated,
+    accessToken,
+    loadCustomer,
+  ]);
 
   async function handleSave() {
-    if (!customer) {
+    if (
+      !customer ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -270,6 +324,7 @@ export default function CustomerDetailsPage({
     try {
       const result =
         await updateCustomer(
+          accessToken,
           userId,
           {
             name,
@@ -314,7 +369,10 @@ export default function CustomerDetailsPage({
   async function handleStatusChange(
     status: Customer["status"],
   ) {
-    if (!customer) {
+    if (
+      !customer ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -323,6 +381,7 @@ export default function CustomerDetailsPage({
     try {
       const result =
         await updateCustomerStatus(
+          accessToken,
           userId,
           status,
         );
@@ -348,7 +407,10 @@ export default function CustomerDetailsPage({
   }
 
   async function handleArchive() {
-    if (!customer) {
+    if (
+      !customer ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -365,6 +427,7 @@ export default function CustomerDetailsPage({
 
     try {
       await archiveCustomer(
+        accessToken,
         userId,
         "Archived from admin panel.",
       );
@@ -386,10 +449,15 @@ export default function CustomerDetailsPage({
   }
 
   async function handleRestore() {
+    if (!accessToken) {
+      return;
+    }
+
     setSaving(true);
 
     try {
       await restoreCustomer(
+        accessToken,
         userId,
       );
 
@@ -410,7 +478,10 @@ export default function CustomerDetailsPage({
   }
 
   async function handleDelete() {
-    if (!customer) {
+    if (
+      !customer ||
+      !accessToken
+    ) {
       return;
     }
 
@@ -427,6 +498,7 @@ export default function CustomerDetailsPage({
 
     try {
       await deleteCustomer(
+        accessToken,
         userId,
       );
 
@@ -447,12 +519,19 @@ export default function CustomerDetailsPage({
     }
   }
 
-  if (loading) {
+  if (
+    !isInitialized ||
+    !isAuthenticated ||
+    !accessToken ||
+    loading
+  ) {
     return (
       <div className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 lg:px-8">
         <div className="h-8 w-48 animate-pulse rounded bg-slate-100" />
+
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
           <div className="h-72 animate-pulse rounded-xl bg-slate-100 lg:col-span-2" />
+
           <div className="h-72 animate-pulse rounded-xl bg-slate-100" />
         </div>
       </div>
@@ -560,7 +639,8 @@ export default function CustomerDetailsPage({
                 value={customer.status}
                 onChange={(event) =>
                   void handleStatusChange(
-                    event.target.value as Customer["status"],
+                    event.target
+                      .value as Customer["status"],
                   )
                 }
                 className="h-10 rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm font-medium text-[var(--color-ink)] outline-none"
@@ -568,12 +648,15 @@ export default function CustomerDetailsPage({
                 <option value="active">
                   Active
                 </option>
+
                 <option value="inactive">
                   Inactive
                 </option>
+
                 <option value="suspended">
                   Suspended
                 </option>
+
                 <option value="blocked">
                   Blocked
                 </option>
@@ -622,7 +705,6 @@ export default function CustomerDetailsPage({
         {/* OVERVIEW CARDS */}
 
         <div className="mb-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-
           <MetricCard
             title="Orders"
             value={String(
@@ -668,7 +750,6 @@ export default function CustomerDetailsPage({
               />
             }
           />
-
         </div>
 
         <div className="grid gap-5 lg:grid-cols-3">
@@ -719,12 +800,15 @@ export default function CustomerDetailsPage({
                       <option value="">
                         Not specified
                       </option>
+
                       <option value="female">
                         Female
                       </option>
+
                       <option value="male">
                         Male
                       </option>
+
                       <option value="other">
                         Other
                       </option>
@@ -803,6 +887,7 @@ export default function CustomerDetailsPage({
                       className="inline-flex h-10 items-center gap-2 rounded-lg bg-[var(--color-ink)] px-5 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
                     >
                       <Check size={16} />
+
                       {saving
                         ? "Saving..."
                         : "Save Changes"}
@@ -970,6 +1055,7 @@ export default function CustomerDetailsPage({
                             <Phone
                               size={13}
                             />
+
                             {
                               address.phone
                             }
@@ -1066,6 +1152,7 @@ export default function CustomerDetailsPage({
                                 className="inline-flex h-8 items-center justify-center rounded-lg border border-[var(--color-border)] px-2.5 text-xs font-medium hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
                               >
                                 View
+
                                 <ChevronRight
                                   size={14}
                                 />
@@ -1079,7 +1166,6 @@ export default function CustomerDetailsPage({
                 </div>
               )}
             </SectionCard>
-
           </div>
 
           {/* RIGHT */}
@@ -1211,7 +1297,6 @@ export default function CustomerDetailsPage({
                 </div>
               )}
             </SectionCard>
-
           </div>
         </div>
       </div>
@@ -1226,7 +1311,7 @@ function MetricCard({
 }: {
   title: string;
   value: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }) {
   return (
     <div className="rounded-xl border border-[var(--color-border)] bg-white p-4 shadow-sm">
@@ -1255,8 +1340,8 @@ function SectionCard({
   children,
 }: {
   title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
+  icon: ReactNode;
+  children: ReactNode;
 }) {
   return (
     <section className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
@@ -1282,7 +1367,7 @@ function InfoItem({
 }: {
   label: string;
   value: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }) {
   return (
     <div>

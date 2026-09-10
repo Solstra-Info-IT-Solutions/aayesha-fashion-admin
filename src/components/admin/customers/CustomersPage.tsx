@@ -19,8 +19,11 @@ import {
   useCallback,
   useEffect,
   useState,
+  type ReactNode,
 } from "react";
 import toast from "react-hot-toast";
+
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
   getCustomerStats,
@@ -156,6 +159,12 @@ function statusClass(
 }
 
 export default function CustomersPage() {
+  const {
+    accessToken,
+    isAuthenticated,
+    isInitialized,
+  } = useAdminAuth();
+
   const [customers, setCustomers] =
     useState<Customer[]>([]);
 
@@ -204,22 +213,33 @@ export default function CustomersPage() {
   const loadCustomers =
     useCallback(
       async () => {
+        if (
+          !isInitialized ||
+          !isAuthenticated ||
+          !accessToken
+        ) {
+          return;
+        }
+
         setLoading(true);
 
         try {
           const result =
-            await getCustomers({
-              page,
-              limit,
-              search,
-              status,
-              sort,
-              includeArchived,
-              marketingEmails:
-                marketingEmails || undefined,
-              marketingWhatsapp:
-                marketingWhatsapp || undefined,
-            });
+            await getCustomers(
+              accessToken,
+              {
+                page,
+                limit,
+                search,
+                status,
+                sort,
+                includeArchived,
+                marketingEmails:
+                  marketingEmails || undefined,
+                marketingWhatsapp:
+                  marketingWhatsapp || undefined,
+              },
+            );
 
           setCustomers(
             result.customers,
@@ -243,6 +263,9 @@ export default function CustomersPage() {
         }
       },
       [
+        accessToken,
+        isAuthenticated,
+        isInitialized,
         page,
         limit,
         search,
@@ -257,11 +280,21 @@ export default function CustomersPage() {
   const loadStats =
     useCallback(
       async () => {
+        if (
+          !isInitialized ||
+          !isAuthenticated ||
+          !accessToken
+        ) {
+          return;
+        }
+
         setStatsLoading(true);
 
         try {
           const result =
-            await getCustomerStats();
+            await getCustomerStats(
+              accessToken,
+            );
 
           setStats(result);
         } catch (error) {
@@ -274,16 +307,46 @@ export default function CustomersPage() {
           setStatsLoading(false);
         }
       },
-      [],
+      [
+        accessToken,
+        isAuthenticated,
+        isInitialized,
+      ],
     );
 
   useEffect(() => {
+    if (
+      !isInitialized ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
+      return;
+    }
+
     void loadCustomers();
-  }, [loadCustomers]);
+  }, [
+    isInitialized,
+    isAuthenticated,
+    accessToken,
+    loadCustomers,
+  ]);
 
   useEffect(() => {
+    if (
+      !isInitialized ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
+      return;
+    }
+
     void loadStats();
-  }, [loadStats]);
+  }, [
+    isInitialized,
+    isAuthenticated,
+    accessToken,
+    loadStats,
+  ]);
 
   function handleSearch(
     value: string,
@@ -308,6 +371,11 @@ export default function CustomersPage() {
     setSort("newest");
     setPage(1);
   }
+
+  const authLoading =
+    !isInitialized ||
+    !isAuthenticated ||
+    !accessToken;
 
   return (
     <div className="min-h-full bg-[var(--color-background)]">
@@ -335,11 +403,12 @@ export default function CustomersPage() {
 
           <button
             type="button"
+            disabled={authLoading}
             onClick={() => {
               void loadCustomers();
               void loadStats();
             }}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-slate-50"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <RefreshCw
               size={16}
@@ -362,7 +431,9 @@ export default function CustomersPage() {
             value={
               statsLoading
                 ? "—"
-                : String(stats?.total ?? 0)
+                : String(
+                    stats?.total ?? 0,
+                  )
             }
             icon={<Users size={19} />}
           />
@@ -372,7 +443,9 @@ export default function CustomersPage() {
             value={
               statsLoading
                 ? "—"
-                : String(stats?.active ?? 0)
+                : String(
+                    stats?.active ?? 0,
+                  )
             }
             icon={<UserRound size={19} />}
           />
@@ -398,7 +471,11 @@ export default function CustomersPage() {
                     stats?.totalSpent ?? 0,
                   )
             }
-            icon={<span className="text-base font-semibold">₹</span>}
+            icon={
+              <span className="text-base font-semibold">
+                ₹
+              </span>
+            }
           />
 
           <StatCard
@@ -410,7 +487,9 @@ export default function CustomersPage() {
                     stats?.archived ?? 0,
                   )
             }
-            icon={<MoreHorizontal size={19} />}
+            icon={
+              <MoreHorizontal size={19} />
+            }
           />
 
         </div>
@@ -519,9 +598,11 @@ export default function CustomersPage() {
                   <option value="">
                     Email Marketing: All
                   </option>
+
                   <option value="true">
                     Email Marketing: Yes
                   </option>
+
                   <option value="false">
                     Email Marketing: No
                   </option>
@@ -540,9 +621,11 @@ export default function CustomersPage() {
                   <option value="">
                     WhatsApp: All
                   </option>
+
                   <option value="true">
                     WhatsApp: Yes
                   </option>
+
                   <option value="false">
                     WhatsApp: No
                   </option>
@@ -614,7 +697,7 @@ export default function CustomersPage() {
               </thead>
 
               <tbody>
-                {loading ? (
+                {loading || authLoading ? (
                   <CustomerSkeleton />
                 ) : customers.length === 0 ? (
                   <tr>
@@ -751,6 +834,7 @@ export default function CustomersPage() {
           {/* PAGINATION */}
 
           {!loading &&
+            !authLoading &&
             customers.length > 0 && (
               <div className="flex flex-col gap-3 border-t border-[var(--color-border)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm text-slate-500">
@@ -838,7 +922,7 @@ function StatCard({
 }: {
   title: string;
   value: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }) {
   return (
     <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">

@@ -36,11 +36,17 @@ function buildQuery(
   const query = new URLSearchParams();
 
   if (params.page) {
-    query.set("page", String(params.page));
+    query.set(
+      "page",
+      String(params.page),
+    );
   }
 
   if (params.limit) {
-    query.set("limit", String(params.limit));
+    query.set(
+      "limit",
+      String(params.limit),
+    );
   }
 
   if (params.search?.trim()) {
@@ -51,7 +57,10 @@ function buildQuery(
   }
 
   if (params.status) {
-    query.set("status", params.status);
+    query.set(
+      "status",
+      params.status,
+    );
   }
 
   if (params.marketingEmails) {
@@ -76,7 +85,10 @@ function buildQuery(
   );
 
   if (params.sort) {
-    query.set("sort", params.sort);
+    query.set(
+      "sort",
+      params.sort,
+    );
   }
 
   return query.toString();
@@ -95,7 +107,12 @@ async function unwrap<T>(
   return response.data;
 }
 
+/* =========================================================
+   CUSTOMER LIST
+========================================================= */
+
 export async function getCustomers(
+  accessToken: string,
   params: ListCustomersParams = {},
 ): Promise<CustomerListResponse> {
   const query = buildQuery({
@@ -107,45 +124,72 @@ export async function getCustomers(
   });
 
   const response =
-    await apiFetch<ApiResponse<CustomerListResponse>>(
+    await apiFetch<
+      ApiResponse<CustomerListResponse>
+    >(
       `/admin/customers?${query}`,
       {
         method: "GET",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
-export async function getCustomerStats(): Promise<CustomerStats> {
+/* =========================================================
+   CUSTOMER STATS
+========================================================= */
+
+export async function getCustomerStats(
+  accessToken: string,
+): Promise<CustomerStats> {
   const response =
-    await apiFetch<ApiResponse<CustomerStats>>(
+    await apiFetch<
+      ApiResponse<CustomerStats>
+    >(
       "/admin/customers/stats",
       {
         method: "GET",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   CUSTOMER DETAILS
+========================================================= */
+
 export async function getCustomer(
+  accessToken: string,
   userId: string,
-): Promise<{ customer: Customer }> {
+): Promise<{
+  customer: Customer;
+}> {
   const response =
     await apiFetch<
-      ApiResponse<{ customer: Customer }>
+      ApiResponse<{
+        customer: Customer;
+      }>
     >(
       `/admin/customers/${userId}`,
       {
         method: "GET",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   UPDATE CUSTOMER
+========================================================= */
+
 export async function updateCustomer(
+  accessToken: string,
   userId: string,
   payload: Partial<
     Pick<
@@ -160,37 +204,54 @@ export async function updateCustomer(
       | "marketingWhatsapp"
     >
   >,
-): Promise<{ customer: Customer }> {
+): Promise<{
+  customer: Customer;
+}> {
   const response =
     await apiFetch<
-      ApiResponse<{ customer: Customer }>
+      ApiResponse<{
+        customer: Customer;
+      }>
     >(
       `/admin/customers/${userId}`,
       {
         method: "PATCH",
+        accessToken,
         headers: {
           "Content-Type":
             "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(
+          payload,
+        ),
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   UPDATE CUSTOMER STATUS
+========================================================= */
+
 export async function updateCustomerStatus(
+  accessToken: string,
   userId: string,
   status: Customer["status"],
   reason?: string,
-): Promise<{ customer: Customer }> {
+): Promise<{
+  customer: Customer;
+}> {
   const response =
     await apiFetch<
-      ApiResponse<{ customer: Customer }>
+      ApiResponse<{
+        customer: Customer;
+      }>
     >(
       `/admin/customers/${userId}/status`,
       {
         method: "PATCH",
+        accessToken,
         headers: {
           "Content-Type":
             "application/json",
@@ -205,10 +266,17 @@ export async function updateCustomerStatus(
   return unwrap(response);
 }
 
+/* =========================================================
+   ARCHIVE CUSTOMER
+========================================================= */
+
 export async function archiveCustomer(
+  accessToken: string,
   userId: string,
   reason?: string,
-) {
+): Promise<{
+  customer: Customer;
+}> {
   const response =
     await apiFetch<
       ApiResponse<{
@@ -218,6 +286,7 @@ export async function archiveCustomer(
       `/admin/customers/${userId}/archive`,
       {
         method: "PATCH",
+        accessToken,
         headers: {
           "Content-Type":
             "application/json",
@@ -231,9 +300,16 @@ export async function archiveCustomer(
   return unwrap(response);
 }
 
+/* =========================================================
+   RESTORE CUSTOMER
+========================================================= */
+
 export async function restoreCustomer(
+  accessToken: string,
   userId: string,
-) {
+): Promise<{
+  customer: Customer;
+}> {
   const response =
     await apiFetch<
       ApiResponse<{
@@ -243,15 +319,24 @@ export async function restoreCustomer(
       `/admin/customers/${userId}/restore`,
       {
         method: "PATCH",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   DELETE CUSTOMER
+========================================================= */
+
 export async function deleteCustomer(
+  accessToken: string,
   userId: string,
-) {
+): Promise<{
+  deleted: boolean;
+  userId: string;
+}> {
   const response =
     await apiFetch<
       ApiResponse<{
@@ -262,13 +347,19 @@ export async function deleteCustomer(
       `/admin/customers/${userId}`,
       {
         method: "DELETE",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   CUSTOMER ADDRESSES
+========================================================= */
+
 export async function getCustomerAddresses(
+  accessToken: string,
   userId: string,
 ): Promise<{
   addresses: CustomerAddress[];
@@ -282,13 +373,19 @@ export async function getCustomerAddresses(
       `/admin/customers/${userId}/addresses`,
       {
         method: "GET",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   CUSTOMER ORDERS
+========================================================= */
+
 export async function getCustomerOrders(
+  accessToken: string,
   userId: string,
 ): Promise<{
   orders: CustomerOrder[];
@@ -318,13 +415,19 @@ export async function getCustomerOrders(
       `/admin/customers/${userId}/orders`,
       {
         method: "GET",
+        accessToken,
       },
     );
 
   return unwrap(response);
 }
 
+/* =========================================================
+   CUSTOMER ACTIVITY
+========================================================= */
+
 export async function getCustomerActivity(
+  accessToken: string,
   userId: string,
   page = 1,
   limit = 20,
@@ -339,10 +442,11 @@ export async function getCustomerActivity(
     hasPreviousPage: boolean;
   };
 }> {
-  const query = new URLSearchParams({
-    page: String(page),
-    limit: String(limit),
-  });
+  const query =
+    new URLSearchParams({
+      page: String(page),
+      limit: String(limit),
+    });
 
   const response =
     await apiFetch<
@@ -361,6 +465,7 @@ export async function getCustomerActivity(
       `/admin/customers/${userId}/activity?${query}`,
       {
         method: "GET",
+        accessToken,
       },
     );
 
