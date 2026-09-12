@@ -30,6 +30,7 @@ import type {
 import { HomepageHeader } from "./HomepageHeader";
 import { HomepageTabs } from "./HomepageTabs";
 import { HeroSectionEditor } from "./HeroSectionEditor";
+import { BrandStorySectionEditor } from "./BrandStorySectionEditor";
 
 type HomepageTab =
   | "hero"
@@ -247,22 +248,38 @@ function HomepageTabContent({
 
         <div className="p-6">
           {activeTab === "hero" ? (
-            homepage.hero ? (
-              <HeroSectionEditor
-                data={homepage.hero}
-                onSave={(data) =>
-                  onHomepageUpdate("hero", data)
-                }
-              />
-            ) : (
-              <HomepageNotConfigured title="Hero" />
-            )
-          ) : (
-            <HomepagePlaceholder
-              title={labels[activeTab]}
-              data={currentData}
-            />
-          )}
+  homepage.hero ? (
+    <HeroSectionEditor
+      data={homepage.hero}
+      onSave={(data) =>
+        onHomepageUpdate("hero", data)
+      }
+    />
+  ) : (
+    <HomepageNotConfigured title="Hero" />
+  )
+) : activeTab === "brand-story" ? (
+  homepage.brandStory ? (
+    <BrandStorySectionEditor
+      data={homepage.brandStory}
+      onSave={(data) =>
+        onHomepageUpdate(
+          "brand-story",
+          data,
+        )
+      }
+    />
+  ) : (
+    <HomepageNotConfigured
+      title="Brand Story"
+    />
+  )
+) : (
+  <HomepagePlaceholder
+    title={labels[activeTab]}
+    data={currentData}
+  />
+)}
         </div>
       </div>
     </section>
