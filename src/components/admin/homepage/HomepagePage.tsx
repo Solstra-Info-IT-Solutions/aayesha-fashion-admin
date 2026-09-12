@@ -29,8 +29,17 @@ import type {
 
 import { HomepageHeader } from "./HomepageHeader";
 import { HomepageTabs } from "./HomepageTabs";
+
 import { HeroSectionEditor } from "./HeroSectionEditor";
 import { BrandStorySectionEditor } from "./BrandStorySectionEditor";
+import { WhyChooseUsSectionEditor } from "./WhyChooseUsSectionEditor";
+import { TestimonialsSectionEditor } from "./TestimonialsSectionEditor";
+import { InstagramSectionEditor } from "./InstagramSectionEditor";
+import { NewsletterSectionEditor } from "./NewsletterSectionEditor";
+
+/* =========================================================
+   HOMEPAGE TAB
+========================================================= */
 
 type HomepageTab =
   | "hero"
@@ -39,6 +48,10 @@ type HomepageTab =
   | "testimonials"
   | "instagram"
   | "newsletter";
+
+/* =========================================================
+   HOMEPAGE STATE
+========================================================= */
 
 interface HomepageState {
   hero: HomepageHero | null;
@@ -49,6 +62,10 @@ interface HomepageState {
   newsletter: HomepageNewsletter | null;
 }
 
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
 const initialState: HomepageState = {
   hero: null,
   brandStory: null,
@@ -57,6 +74,10 @@ const initialState: HomepageState = {
   instagram: null,
   newsletter: null,
 };
+
+/* =========================================================
+   PAGE
+========================================================= */
 
 export function HomepagePage(): ReactElement {
   const { accessToken } = useAdminAuth();
@@ -67,10 +88,15 @@ export function HomepagePage(): ReactElement {
   const [homepage, setHomepage] =
     useState<HomepageState>(initialState);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
 
   const [error, setError] =
     useState<string | null>(null);
+
+  /* =======================================================
+     LOAD HOMEPAGE
+  ======================================================= */
 
   const loadHomepage = useCallback(async () => {
     if (!accessToken) {
@@ -122,26 +148,40 @@ export function HomepagePage(): ReactElement {
     }
   }, [accessToken]);
 
+  /* =======================================================
+     INITIAL LOAD
+  ======================================================= */
+
   useEffect(() => {
     void loadHomepage();
   }, [loadHomepage]);
+
+  /* =======================================================
+     UPDATE HOMEPAGE SECTION
+  ======================================================= */
 
   async function handleHomepageUpdate(
     tab: HomepageTab,
     value: unknown,
   ): Promise<void> {
     if (!accessToken) {
-      throw new Error("Authentication required.");
+      throw new Error(
+        "Authentication required.",
+      );
     }
 
-    const settingKey = tabSettingKey(tab);
-    const stateKey = tabStateKey(tab);
+    const settingKey =
+      tabSettingKey(tab);
 
-    const updated = await updateHomepageSetting(
-      accessToken,
-      settingKey,
-      value,
-    );
+    const stateKey =
+      tabStateKey(tab);
+
+    const updated =
+      await updateHomepageSetting(
+        accessToken,
+        settingKey,
+        value,
+      );
 
     setHomepage((current) => ({
       ...current,
@@ -149,18 +189,38 @@ export function HomepagePage(): ReactElement {
     }));
   }
 
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <div className="min-h-full bg-[#f7f5f2]">
+      {/* ===================================================
+          HEADER
+      =================================================== */}
+
       <HomepageHeader
         onRefresh={loadHomepage}
         refreshing={loading}
       />
 
+      {/* ===================================================
+          MAIN
+      =================================================== */}
+
       <main className="mx-auto max-w-[1500px] px-6 py-6 lg:px-8">
+        {/* =================================================
+            TABS
+        ================================================= */}
+
         <HomepageTabs
           activeTab={activeTab}
           onChange={setActiveTab}
         />
+
+        {/* =================================================
+            CONTENT
+        ================================================= */}
 
         {error ? (
           <div className="mt-6 border border-red-200 bg-red-50 px-5 py-4">
@@ -170,7 +230,9 @@ export function HomepagePage(): ReactElement {
 
             <button
               type="button"
-              onClick={() => void loadHomepage()}
+              onClick={() =>
+                void loadHomepage()
+              }
               className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-red-800 underline underline-offset-4"
             >
               Try Again
@@ -182,13 +244,19 @@ export function HomepagePage(): ReactElement {
           <HomepageTabContent
             activeTab={activeTab}
             homepage={homepage}
-            onHomepageUpdate={handleHomepageUpdate}
+            onHomepageUpdate={
+              handleHomepageUpdate
+            }
           />
         )}
       </main>
     </div>
   );
 }
+
+/* =========================================================
+   LOADING
+========================================================= */
 
 function HomepageLoading(): ReactElement {
   return (
@@ -207,6 +275,10 @@ function HomepageLoading(): ReactElement {
   );
 }
 
+/* =========================================================
+   TAB CONTENT PROPS
+========================================================= */
+
 interface HomepageTabContentProps {
   activeTab: HomepageTab;
   homepage: HomepageState;
@@ -216,12 +288,19 @@ interface HomepageTabContentProps {
   ) => Promise<void>;
 }
 
+/* =========================================================
+   TAB CONTENT
+========================================================= */
+
 function HomepageTabContent({
   activeTab,
   homepage,
   onHomepageUpdate,
 }: HomepageTabContentProps): ReactElement {
-  const labels: Record<HomepageTab, string> = {
+  const labels: Record<
+    HomepageTab,
+    string
+  > = {
     hero: "Hero",
     "brand-story": "Brand Story",
     "why-choose-us": "Why Ayesha",
@@ -236,6 +315,10 @@ function HomepageTabContent({
   return (
     <section className="mt-6">
       <div className="border border-[#e3ded8] bg-white">
+        {/* =================================================
+            SECTION HEADER
+        ================================================= */}
+
         <div className="border-b border-[#e8e3de] px-6 py-5">
           <p className="text-[10px] uppercase tracking-[0.2em] text-[#9a928b]">
             Homepage / {labels[activeTab]}
@@ -246,40 +329,161 @@ function HomepageTabContent({
           </h2>
         </div>
 
+        {/* =================================================
+            SECTION EDITOR
+        ================================================= */}
+
         <div className="p-6">
+          {/* =================================================
+              HERO
+          ================================================= */}
+
           {activeTab === "hero" ? (
-  homepage.hero ? (
-    <HeroSectionEditor
-      data={homepage.hero}
-      onSave={(data) =>
-        onHomepageUpdate("hero", data)
-      }
-    />
-  ) : (
-    <HomepageNotConfigured title="Hero" />
-  )
-) : activeTab === "brand-story" ? (
-  homepage.brandStory ? (
-    <BrandStorySectionEditor
-      data={homepage.brandStory}
-      onSave={(data) =>
-        onHomepageUpdate(
-          "brand-story",
-          data,
-        )
-      }
-    />
-  ) : (
-    <HomepageNotConfigured
-      title="Brand Story"
-    />
-  )
-) : (
-  <HomepagePlaceholder
-    title={labels[activeTab]}
-    data={currentData}
-  />
-)}
+            homepage.hero ? (
+              <HeroSectionEditor
+                data={homepage.hero}
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "hero",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Hero"
+              />
+            )
+
+          /* =================================================
+             BRAND STORY
+          ================================================= */
+
+          ) : activeTab === "brand-story" ? (
+            homepage.brandStory ? (
+              <BrandStorySectionEditor
+                data={
+                  homepage.brandStory
+                }
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "brand-story",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Brand Story"
+              />
+            )
+
+          /* =================================================
+             WHY AYESHA
+          ================================================= */
+
+          ) : activeTab ===
+            "why-choose-us" ? (
+            homepage.whyChooseUs ? (
+              <WhyChooseUsSectionEditor
+                data={
+                  homepage.whyChooseUs
+                }
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "why-choose-us",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Why Ayesha"
+              />
+            )
+
+          /* =================================================
+             TESTIMONIALS
+          ================================================= */
+
+          ) : activeTab ===
+            "testimonials" ? (
+            homepage.testimonials ? (
+              <TestimonialsSectionEditor
+                data={
+                  homepage.testimonials
+                }
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "testimonials",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Testimonials"
+              />
+            )
+
+          /* =================================================
+             INSTAGRAM
+          ================================================= */
+
+          ) : activeTab ===
+            "instagram" ? (
+            homepage.instagram ? (
+              <InstagramSectionEditor
+                data={
+                  homepage.instagram
+                }
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "instagram",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Instagram"
+              />
+            )
+
+          /* =================================================
+             NEWSLETTER
+          ================================================= */
+
+          ) : activeTab ===
+            "newsletter" ? (
+            homepage.newsletter ? (
+              <NewsletterSectionEditor
+                data={
+                  homepage.newsletter
+                }
+                onSave={(data) =>
+                  onHomepageUpdate(
+                    "newsletter",
+                    data,
+                  )
+                }
+              />
+            ) : (
+              <HomepageNotConfigured
+                title="Newsletter"
+              />
+            )
+
+          /* =================================================
+             FALLBACK
+          ================================================= */
+
+          ) : (
+            <HomepagePlaceholder
+              title={labels[activeTab]}
+              data={currentData}
+            />
+          )}
         </div>
       </div>
     </section>
@@ -342,6 +546,10 @@ function tabSettingKey(
   }
 }
 
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
 interface HomepagePlaceholderProps {
   title: string;
   data: unknown;
@@ -358,8 +566,9 @@ function HomepagePlaceholder({
       </p>
 
       <p className="mt-1 text-sm text-[#77736e]">
-        CMS data loaded successfully. Editor controls
-        will be added in the next step.
+        CMS data loaded successfully.
+        Editor controls will be added
+        in the next step.
       </p>
 
       <div className="mt-5 rounded border border-[#e5e0db] bg-white p-4">
@@ -368,12 +577,18 @@ function HomepagePlaceholder({
         </p>
 
         <p className="mt-2 text-sm text-[#4a4541]">
-          {data ? "Configured" : "Not configured"}
+          {data
+            ? "Configured"
+            : "Not configured"}
         </p>
       </div>
     </div>
   );
 }
+
+/* =========================================================
+   NOT CONFIGURED
+========================================================= */
 
 function HomepageNotConfigured({
   title,
@@ -387,8 +602,8 @@ function HomepageNotConfigured({
       </p>
 
       <p className="mt-1 text-xs text-[#77736e]">
-        Create the homepage configuration before editing
-        this section.
+        Create the homepage configuration
+        before editing this section.
       </p>
     </div>
   );
