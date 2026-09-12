@@ -1,3 +1,5 @@
+import { apiFetch } from "@/lib/api";
+
 export interface UploadImageResponse {
   url: string;
   publicId: string;
@@ -17,10 +19,6 @@ interface UploadApiResponse {
   };
 }
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:5000/api";
-
 export async function uploadImage(
   accessToken: string,
   file: File,
@@ -29,34 +27,22 @@ export async function uploadImage(
 
   formData.append("image", file);
 
-  const response = await fetch(
-    `${API_BASE_URL}/admin/uploads`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+  const response =
+    await apiFetch<UploadApiResponse>(
+      "/admin/uploads",
+      {
+        method: "POST",
+        accessToken,
+        body: formData,
       },
-      body: formData,
-    },
-  );
-
-  let result: UploadApiResponse;
-
-  try {
-    result =
-      (await response.json()) as UploadApiResponse;
-  } catch {
-    throw new Error(
-      "Invalid response received from upload server.",
     );
-  }
 
-  if (!response.ok || !result.success) {
+  if (!response.success) {
     throw new Error(
-      result.error?.message ||
+      response.error?.message ||
         "Failed to upload image.",
     );
   }
 
-  return result.data;
+  return response.data;
 }
