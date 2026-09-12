@@ -9,6 +9,7 @@ import {
   FileText,
   Headphones,
   LayoutDashboard,
+  LayoutTemplate,
   Megaphone,
   PackageCheck,
   Percent,
@@ -58,6 +59,11 @@ const sections = [
         href: "/admin/catalog",
         label: "Catalog",
         icon: Boxes,
+      },
+      {
+        href: "/admin/homepage",
+        label: "Homepage",
+        icon: LayoutTemplate,
       },
       {
         href: "/admin/marketing",
@@ -139,15 +145,13 @@ export function AdminSidebar() {
               </p>
 
               <div className="space-y-1">
-                {section.items.map(
-                  (item) => (
-                    <SidebarNavItem
-                      key={item.href}
-                      {...item}
-                      pathname={pathname}
-                    />
-                  ),
-                )}
+                {section.items.map((item) => (
+                  <SidebarNavItem
+                    key={item.href}
+                    {...item}
+                    pathname={pathname}
+                  />
+                ))}
               </div>
             </div>
           ))}

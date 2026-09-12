@@ -1,9 +1,9 @@
 export type SettingValue = unknown;
 
-export type StoreSetting = {
+export type StoreSetting<T = SettingValue> = {
   _id: string;
   key: string;
-  value: SettingValue;
+  value: T;
   group: string;
   isPublic: boolean;
   updatedBy: string | null;
@@ -15,9 +15,9 @@ export type SettingListParams = {
   group?: string;
 };
 
-export type SettingUpsertInput = {
+export type SettingUpsertInput<T = SettingValue> = {
   key: string;
-  value: SettingValue;
+  value: T;
   group: string;
   isPublic?: boolean;
 };
