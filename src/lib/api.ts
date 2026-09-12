@@ -91,13 +91,23 @@ function createRequestHeaders(
     new Headers(headers);
 
   /*
-   * JSON body automatically gets JSON content type.
+   * FormData requests must NOT receive a manually
+   * assigned Content-Type.
    *
-   * Do not force Content-Type when there is no body,
-   * because GET/DELETE requests do not need it.
+   * The browser automatically creates:
+   *
+   * multipart/form-data; boundary=...
+   *
+   * If we set application/json here, Multer cannot
+   * parse the uploaded file.
    */
+  const isFormData =
+    typeof FormData !== "undefined" &&
+    body instanceof FormData;
+
   if (
     body &&
+    !isFormData &&
     !requestHeaders.has(
       "Content-Type",
     )
@@ -116,6 +126,16 @@ function createRequestHeaders(
     requestHeaders.set(
       "Authorization",
       `Bearer ${accessToken}`,
+    );
+  }
+
+  /*
+   * Never allow an existing JSON Content-Type to remain
+   * on a FormData request.
+   */
+  if (isFormData) {
+    requestHeaders.delete(
+      "Content-Type",
     );
   }
 
