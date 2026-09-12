@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import {
   Loader2,
   Save,
@@ -15,9 +16,14 @@ import {
 } from "lucide-react";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
+
 import { uploadImage } from "@/services/upload.service";
 
 import type { HomepageBrandStory } from "@/types/homepage";
+
+/* =========================================================
+   TYPES
+========================================================= */
 
 interface BrandStorySectionEditorProps {
   data: HomepageBrandStory;
@@ -28,6 +34,10 @@ interface BrandStorySectionEditorProps {
 
 type UploadTarget = "image" | null;
 
+/* =========================================================
+   CONSTANTS
+========================================================= */
+
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const ALLOWED_IMAGE_TYPES = [
@@ -35,6 +45,10 @@ const ALLOWED_IMAGE_TYPES = [
   "image/png",
   "image/webp",
 ];
+
+/* =========================================================
+   BRAND STORY EDITOR
+========================================================= */
 
 export function BrandStorySectionEditor({
   data,
@@ -57,9 +71,17 @@ export function BrandStorySectionEditor({
   const [success, setSuccess] =
     useState<string | null>(null);
 
+  /* =======================================================
+     SYNC DATA
+  ======================================================= */
+
   useEffect(() => {
     setForm(data);
   }, [data]);
+
+  /* =======================================================
+     FIELD CHANGE
+  ======================================================= */
 
   function handleChange(
     field: keyof HomepageBrandStory,
@@ -74,13 +96,18 @@ export function BrandStorySectionEditor({
     setSuccess(null);
   }
 
+  /* =======================================================
+     IMAGE UPLOAD
+  ======================================================= */
+
   async function handleImageUpload(
     event: ChangeEvent<HTMLInputElement>,
   ): Promise<void> {
     const file = event.target.files?.[0];
 
     /*
-     * Reset input so the same file can be selected again.
+     * Reset input so the same file can
+     * be selected again if required.
      */
     event.target.value = "";
 
@@ -92,6 +119,7 @@ export function BrandStorySectionEditor({
       setError(
         "Authentication required. Please log in again.",
       );
+
       return;
     }
 
@@ -103,6 +131,7 @@ export function BrandStorySectionEditor({
       setError(
         "Only JPEG, PNG, and WebP images are allowed.",
       );
+
       return;
     }
 
@@ -110,6 +139,7 @@ export function BrandStorySectionEditor({
       setError(
         "Image size must be 5MB or less.",
       );
+
       return;
     }
 
@@ -147,6 +177,10 @@ export function BrandStorySectionEditor({
     }
   }
 
+  /* =======================================================
+     REMOVE IMAGE
+  ======================================================= */
+
   function handleRemoveImage(): void {
     setForm((current) => ({
       ...current,
@@ -156,6 +190,10 @@ export function BrandStorySectionEditor({
     setError(null);
     setSuccess(null);
   }
+
+  /* =======================================================
+     SAVE
+  ======================================================= */
 
   async function handleSubmit(
     event: FormEvent<HTMLFormElement>,
@@ -169,6 +207,7 @@ export function BrandStorySectionEditor({
       setError(
         "Brand Story title is required.",
       );
+
       return;
     }
 
@@ -176,6 +215,7 @@ export function BrandStorySectionEditor({
       setError(
         "Brand Story description is required.",
       );
+
       return;
     }
 
@@ -183,6 +223,7 @@ export function BrandStorySectionEditor({
       setError(
         "Brand Story image is required.",
       );
+
       return;
     }
 
@@ -190,6 +231,7 @@ export function BrandStorySectionEditor({
       setError(
         "Button label is required.",
       );
+
       return;
     }
 
@@ -197,6 +239,7 @@ export function BrandStorySectionEditor({
       setError(
         "Button link is required.",
       );
+
       return;
     }
 
@@ -211,15 +254,18 @@ export function BrandStorySectionEditor({
         enabled: form.enabled,
         eyebrow: form.eyebrow.trim(),
         title: form.title.trim(),
-        description: form.description.trim(),
+        description:
+          form.description.trim(),
         image: form.image.trim(),
-        buttonLabel: form.buttonLabel.trim(),
+        buttonLabel:
+          form.buttonLabel.trim(),
         href: form.href.trim(),
       };
 
       await onSave(normalized);
 
       setForm(normalized);
+
       setSuccess(
         "Brand Story saved successfully.",
       );
@@ -239,52 +285,58 @@ export function BrandStorySectionEditor({
     }
   }
 
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <form
       onSubmit={handleSubmit}
       className="space-y-6"
     >
       {/* =====================================================
-          STATUS
+          SECTION STATUS
       ===================================================== */}
 
       <div className="flex items-center justify-between border border-[#e5e0db] bg-[#faf9f7] px-5 py-4">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-[#9a928b]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#77736e]">
             Section Status
           </p>
 
           <p className="mt-1 text-sm text-[#393532]">
             {form.enabled
-              ? "Visible on homepage"
-              : "Hidden from homepage"}
+              ? "Brand Story is visible on the homepage."
+              : "Brand Story is hidden from the homepage."}
           </p>
         </div>
 
         <button
           type="button"
+          role="switch"
+          aria-checked={form.enabled}
+          aria-label={
+            form.enabled
+              ? "Disable Brand Story"
+              : "Enable Brand Story"
+          }
           onClick={() =>
             handleChange(
               "enabled",
               !form.enabled,
             )
           }
-          className={`relative h-6 w-11 rounded-full transition-colors ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b58b72]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#292522]"
-              : "bg-[#c9c3bd]"
+              ? "bg-[#8f6b57]"
+              : "bg-[#d8d0c8]"
           }`}
-          aria-label={
-            form.enabled
-              ? "Disable Brand Story"
-              : "Enable Brand Story"
-          }
         >
           <span
-            className={`absolute top-1 h-4 w-4 rounded-full bg-white transition-transform ${
+            className={`block h-5 w-5 rounded-full bg-[#fffdf9] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
               form.enabled
-                ? "translate-x-6"
-                : "translate-x-1"
+                ? "translate-x-5"
+                : "translate-x-0"
             }`}
           />
         </button>
@@ -319,6 +371,10 @@ export function BrandStorySectionEditor({
           placeholder="Made for the woman you are."
         />
       </div>
+
+      {/* =====================================================
+          DESCRIPTION
+      ===================================================== */}
 
       <TextAreaField
         label="Description"
@@ -374,7 +430,7 @@ export function BrandStorySectionEditor({
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <label
-              className={`inline-flex cursor-pointer items-center gap-2 border border-[#292522] bg-[#292522] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-white transition hover:bg-[#403a35] ${
+              className={`inline-flex cursor-pointer items-center gap-2 border border-[#8f6b57] bg-[#8f6b57] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf9] transition hover:border-[#755644] hover:bg-[#755644] ${
                 uploading
                   ? "pointer-events-none opacity-60"
                   : ""
@@ -403,7 +459,9 @@ export function BrandStorySectionEditor({
                 type="file"
                 accept="image/jpeg,image/png,image/webp"
                 onChange={handleImageUpload}
-                disabled={uploading !== null}
+                disabled={
+                  uploading !== null
+                }
                 className="hidden"
               />
             </label>
@@ -460,8 +518,8 @@ export function BrandStorySectionEditor({
       )}
 
       {success && !error && (
-        <div className="border border-green-200 bg-green-50 px-4 py-3">
-          <p className="text-sm text-green-700">
+        <div className="border border-[#d9e3d8] bg-[#f4f8f2] px-4 py-3">
+          <p className="text-sm text-[#557050]">
             {success}
           </p>
         </div>
@@ -478,7 +536,7 @@ export function BrandStorySectionEditor({
             saving ||
             uploading !== null
           }
-          className="inline-flex items-center gap-2 bg-[#292522] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-white transition hover:bg-[#403a35] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#8f6b57] bg-[#8f6b57] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf9] transition hover:border-[#755644] hover:bg-[#755644] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -503,7 +561,7 @@ export function BrandStorySectionEditor({
 }
 
 /* =========================================================
-   FIELD
+   TEXT FIELD
 ========================================================= */
 
 function Field({
@@ -528,7 +586,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d8d1ca] bg-white px-3 text-sm text-[#292522] outline-none transition placeholder:text-[#b0a9a2] focus:border-[#292522]"
+        className="mt-2 h-11 w-full border border-[#d8d1ca] bg-white px-3 text-sm text-[#292522] outline-none transition placeholder:text-[#b0a9a2] focus:border-[#8f6b57] focus:ring-1 focus:ring-[#8f6b57]/20"
       />
     </div>
   );
@@ -560,7 +618,7 @@ function TextAreaField({
         }
         placeholder={placeholder}
         rows={6}
-        className="mt-2 w-full resize-y border border-[#d8d1ca] bg-white px-3 py-3 text-sm leading-7 text-[#292522] outline-none transition placeholder:text-[#b0a9a2] focus:border-[#292522]"
+        className="mt-2 w-full resize-y border border-[#d8d1ca] bg-white px-3 py-3 text-sm leading-7 text-[#292522] outline-none transition placeholder:text-[#b0a9a2] focus:border-[#8f6b57] focus:ring-1 focus:ring-[#8f6b57]/20"
       />
     </div>
   );
