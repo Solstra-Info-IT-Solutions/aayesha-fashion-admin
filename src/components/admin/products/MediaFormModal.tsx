@@ -311,8 +311,8 @@ export default function MediaFormModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
-      <div className="w-full max-w-2xl rounded-2xl bg-white shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/30 p-4">
+      <div className="my-auto flex max-h-[calc(100vh-32px)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* HEADER */}
         <div className="flex items-center justify-between border-b border-[#e7e2dd] px-6 py-5">
           <div>
@@ -341,7 +341,7 @@ export default function MediaFormModal({
           </button>
         </div>
 
-        <div className="space-y-5 px-6 py-6">
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
           {/* UPLOAD */}
           <div>
             <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
@@ -420,28 +420,36 @@ export default function MediaFormModal({
 
           {/* PREVIEW */}
           {src && (
-            <div className="overflow-hidden rounded-xl border border-[#e7e2dd] bg-[#f5f1ec]">
-              <div className="relative aspect-[4/3]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={
-                    alt ||
-                    "Product media preview"
-                  }
-                  className="h-full w-full object-contain"
-                />
+  <div className="flex items-center gap-4 rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-3">
+    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-[#e7e2dd] bg-[#f5f1ec]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={
+          alt ||
+          "Product media preview"
+        }
+        className="h-full w-full object-cover"
+      />
 
-                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium text-[#292c2c] shadow-sm">
-                  <ImageIcon
-                    size={12}
-                  />
+      <div className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-white/90 px-1.5 py-1 text-[9px] font-medium text-[#292c2c] shadow-sm">
+        <ImageIcon size={10} />
+        Preview
+      </div>
+    </div>
 
-                  Preview
-                </div>
-              </div>
-            </div>
-          )}
+    <div className="min-w-0">
+      <p className="text-sm font-medium text-[#292c2c]">
+        Image uploaded
+      </p>
+
+      <p className="mt-1 text-xs leading-5 text-[#969696]">
+        This image will be saved as
+        product media.
+      </p>
+    </div>
+  </div>
+)}
 
           {/* SOURCE URL */}
           <label>
