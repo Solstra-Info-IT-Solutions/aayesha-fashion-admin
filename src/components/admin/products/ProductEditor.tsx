@@ -53,13 +53,6 @@ export default function ProductEditor({
     isLoading: authLoading,
   } = useAdminAuth();
 
-  console.log("PRODUCT EDITOR AUTH:", {
-    hasToken: Boolean(accessToken),
-    tokenLength: accessToken?.length ?? 0,
-    isAuthenticated,
-    isInitialized,
-  });
-
   /*
    * =========================================================
    * PRODUCT EDITOR
@@ -86,7 +79,7 @@ export default function ProductEditor({
     moveToDraft,
     archive,
     unpublish,
-    deleteProduct
+    deleteProduct,
   } = useProductEditor({
     productId,
   });
@@ -126,38 +119,43 @@ export default function ProductEditor({
     isAuthenticated,
   ]);
 
+  /*
+   * =========================================================
+   * DELETE PRODUCT
+   * =========================================================
+   */
 
   const handleDeleteProduct = async () => {
-  if (!isEdit || !productId) {
-    return;
-  }
+    if (!isEdit || !productId) {
+      return;
+    }
 
-  const confirmed = window.confirm(
-    "Are you sure you want to permanently delete this product? This action cannot be undone.",
-  );
-
-  if (!confirmed) {
-    return;
-  }
-
-  setFormError(null);
-
-  try {
-    await deleteProduct();
-
-    router.replace("/admin/products");
-  } catch (reason) {
-    setFormError(
-      reason instanceof Error
-        ? reason.message
-        : "Unable to delete product.",
+    const confirmed = window.confirm(
+      "Are you sure you want to permanently delete this product? This action cannot be undone.",
     );
-  }
-};
+
+    if (!confirmed) {
+      return;
+    }
+
+    setFormError(null);
+
+    try {
+      await deleteProduct();
+
+      router.replace("/admin/products");
+    } catch (reason) {
+      setFormError(
+        reason instanceof Error
+          ? reason.message
+          : "Unable to delete product.",
+      );
+    }
+  };
 
   /*
    * =========================================================
-   * SAVE MAIN PRODUCT
+   * SAVE / CREATE MAIN PRODUCT
    * =========================================================
    */
 
@@ -165,8 +163,8 @@ export default function ProductEditor({
     setFormError(null);
 
     /*
-     * Do not allow API operation until
-     * authentication has been initialized.
+     * Authentication must be initialized
+     * before any API operation.
      */
     if (!isInitialized) {
       setFormError(
@@ -185,9 +183,35 @@ export default function ProductEditor({
     }
 
     try {
+      /*
+       * -----------------------------------------------------
+       * CREATE PRODUCT
+       * -----------------------------------------------------
+       */
+
       if (!isEdit) {
         const created = await create();
 
+        /*
+         * The newly created product must have
+         * a real database ID before media can
+         * be associated with it.
+         */
+        if (!created?.id) {
+          setFormError(
+            "Product was created, but no product ID was returned.",
+          );
+
+          return;
+        }
+
+        /*
+         * Open the newly created product in
+         * edit mode.
+         *
+         * Media, variants, SEO, merchandising
+         * and publishing are now available.
+         */
         router.replace(
           `/admin/products/${encodeURIComponent(
             created.id,
@@ -196,6 +220,12 @@ export default function ProductEditor({
 
         return;
       }
+
+      /*
+       * -----------------------------------------------------
+       * EDIT PRODUCT
+       * -----------------------------------------------------
+       */
 
       await saveBasic();
     } catch (reason) {
@@ -489,56 +519,60 @@ export default function ProductEditor({
           />
 
           {/* =================================================
-              MEDIA + VARIANTS
+              MEDIA
+          ================================================= */}
+
+          {product.id && (
+            <ProductMediaSection
+              productId={
+                product.id
+              }
+              media={
+                product.media ??
+                []
+              }
+              saving={
+                actionLoading
+              }
+              onSaveMedia={
+                saveMedia
+              }
+              onDeleteMedia={
+                removeMedia
+              }
+            />
+          )}
+
+          {/* =================================================
+              VARIANTS
           ================================================= */}
 
           {isEdit &&
             product.id && (
-              <>
-                <ProductMediaSection
-                  productId={
-                    product.id
-                  }
-                  media={
-                    product.media ??
-                    []
-                  }
-                  saving={
-                    actionLoading
-                  }
-                  onSaveMedia={
-                    saveMedia
-                  }
-                  onDeleteMedia={
-                    removeMedia
-                  }
-                />
-
-                <ProductVariantsSection
-                  productId={
-                    product.id
-                  }
-                  variants={
-                    product.variants ??
-                    []
-                  }
-                  accessToken={
-                    accessToken
-                  }
-                  saving={
-                    actionLoading
-                  }
-                  onCreate={
-                    createVariant
-                  }
-                  onUpdate={
-                    updateVariant
-                  }
-                  onDelete={
-                    removeVariant
-                  }
-                />
-              </>
+              <ProductVariantsSection
+                productId={
+                  product.id
+                }
+                variants={
+                  product.variants ??
+                  []
+                }
+                accessToken={
+                  accessToken
+                }
+                saving={
+                  actionLoading
+                }
+                onCreate={
+                  createVariant
+                }
+                onUpdate={
+                  updateVariant
+                }
+                onDelete={
+                  removeVariant
+                }
+              />
             )}
         </div>
 
@@ -547,6 +581,10 @@ export default function ProductEditor({
         =================================================== */}
 
         <aside className="min-w-0 space-y-5">
+          {/* =================================================
+              EDIT-ONLY SIDEBAR
+          ================================================= */}
+
           {isEdit &&
             product.id && (
               <>
@@ -612,21 +650,20 @@ export default function ProductEditor({
             )}
 
           {/* =================================================
-              NEW PRODUCT
+              CREATE MODE INFO
           ================================================= */}
 
           {!isEdit && (
             <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
               <p className="break-words text-sm font-semibold leading-5 text-[#171717]">
-                Next steps
+                Product Setup
               </p>
 
               <p className="mt-2 break-words text-sm leading-5 text-[#6f706f]">
-                Create the product first.
-                After creation, dedicated
-                sections for media, SEO,
-                merchandising, variants and
-                publishing become available.
+                Save the product to generate
+                its product ID. Media and
+                additional product settings
+                will then become available.
               </p>
             </div>
           )}
