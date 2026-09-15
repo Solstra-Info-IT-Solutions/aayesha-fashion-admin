@@ -184,6 +184,7 @@ export default function ProductMediaSection({
 
       <MediaFormModal
         open={modalOpen}
+        productId={productId}
         media={editingMedia}
         saving={saving}
         onClose={() => {
