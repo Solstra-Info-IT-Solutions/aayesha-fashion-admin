@@ -361,6 +361,8 @@ export default function CatalogResourcePage({
           item as Category;
 
         setForm({
+          id:
+            category._id,
           name:
             category.name,
           slug:
@@ -397,6 +399,7 @@ export default function CatalogResourcePage({
           item as Collection;
 
         setForm({
+          id:collection._id,
           name:
             collection.name,
           slug:
