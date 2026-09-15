@@ -47,12 +47,6 @@ interface VariantFormModalProps {
   ) => Promise<void>;
 }
 
-/*
- * Catalog master types do not require `id` at the
- * TypeScript level in the existing admin catalog model.
- *
- * The API can nevertheless return Mongo's `_id`.
- */
 type ColorMasterWithId =
   ColorMaster & {
     _id?: string;
@@ -86,6 +80,15 @@ function getColorId(
   );
 }
 
+const labelClassName =
+  "mb-1.5 block break-words text-xs font-medium leading-5 text-[#292c2c]";
+
+const inputClassName =
+  "box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#171717] outline-none transition placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:cursor-not-allowed disabled:bg-[#f5f1ec]";
+
+const selectClassName =
+  "box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:cursor-not-allowed disabled:bg-[#f5f1ec]";
+
 export default function VariantFormModal({
   open,
   productId,
@@ -96,6 +99,8 @@ export default function VariantFormModal({
   onCreate,
   onUpdate,
 }: VariantFormModalProps) {
+  void productId;
+
   const isEdit = Boolean(variant);
 
   const [
@@ -160,12 +165,6 @@ export default function VariantFormModal({
     useState<VariantStatus>(
       "active",
     );
-
-  /*
-   * =======================================================
-   * PREFILL FORM
-   * =======================================================
-   */
 
   useEffect(() => {
     if (!open) {
@@ -265,12 +264,6 @@ export default function VariantFormModal({
     variant,
   ]);
 
-  /*
-   * =======================================================
-   * LOAD CATALOG MASTERS
-   * =======================================================
-   */
-
   useEffect(() => {
     if (
       !open ||
@@ -336,12 +329,6 @@ export default function VariantFormModal({
     accessToken,
   ]);
 
-  /*
-   * =======================================================
-   * SELECTED MASTER VALUES
-   * =======================================================
-   */
-
   const selectedColor =
     colors.find(
       (color) =>
@@ -355,12 +342,6 @@ export default function VariantFormModal({
         size.code ===
         sizeCode,
     );
-
-  /*
-   * =======================================================
-   * SUBMIT
-   * =======================================================
-   */
 
   const submit = async () => {
     if (!accessToken) {
@@ -391,12 +372,6 @@ export default function VariantFormModal({
       return;
     }
 
-    /*
-     * -------------------------------------------------------
-     * NUMERIC VALUES
-     * -------------------------------------------------------
-     */
-
     const mrpValue =
       Number(mrp);
 
@@ -415,12 +390,6 @@ export default function VariantFormModal({
       Number(
         lowStockThreshold,
       );
-
-    /*
-     * -------------------------------------------------------
-     * PRICE VALIDATION
-     * -------------------------------------------------------
-     */
 
     if (
       !Number.isFinite(
@@ -471,12 +440,6 @@ export default function VariantFormModal({
       }
     }
 
-    /*
-     * -------------------------------------------------------
-     * INVENTORY VALIDATION
-     * -------------------------------------------------------
-     */
-
     if (
       !Number.isInteger(
         stockValue,
@@ -523,12 +486,6 @@ export default function VariantFormModal({
       return;
     }
 
-    /*
-     * -------------------------------------------------------
-     * WEIGHT
-     * -------------------------------------------------------
-     */
-
     let weightValue:
       | number
       | undefined;
@@ -549,12 +506,6 @@ export default function VariantFormModal({
         return;
       }
     }
-
-    /*
-     * -------------------------------------------------------
-     * CANONICAL PRODUCT TYPES
-     * -------------------------------------------------------
-     */
 
     const color: ProductColor =
       {
@@ -614,12 +565,6 @@ export default function VariantFormModal({
           : {}),
       };
 
-    /*
-     * =======================================================
-     * UPDATE
-     * =======================================================
-     */
-
     if (
       isEdit &&
       variant
@@ -660,12 +605,6 @@ export default function VariantFormModal({
 
       return;
     }
-
-    /*
-     * =======================================================
-     * CREATE
-     * =======================================================
-     */
 
     const payload:
       CreateProductVariantInput =
@@ -714,29 +653,23 @@ export default function VariantFormModal({
     );
   };
 
-  /*
-   * =======================================================
-   * CLOSED
-   * =======================================================
-   */
-
   if (!open) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
-      <div className="flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/30 p-4">
+      <div className="my-auto flex max-h-[calc(100vh-32px)] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* HEADER */}
-        <div className="flex items-center justify-between border-b border-[#e7e2dd] px-6 py-5">
-          <div>
-            <h2 className="text-lg font-semibold text-[#171717]">
+        <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[#e7e2dd] px-4 py-4 sm:px-6">
+          <div className="min-w-0">
+            <h2 className="break-words text-base font-semibold leading-6 text-[#171717] sm:text-lg">
               {isEdit
                 ? "Edit Variant"
                 : "Add Variant"}
             </h2>
 
-            <p className="mt-1 text-sm text-[#6f706f]">
+            <p className="mt-0.5 break-words text-xs leading-5 text-[#6f706f] sm:text-sm">
               Configure SKU, size, color and pricing.
             </p>
           </div>
@@ -745,7 +678,7 @@ export default function VariantFormModal({
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-lg p-2 text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:opacity-50"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[#969696] transition hover:bg-[#f5f1ec] hover:text-[#292c2c] disabled:opacity-50"
             aria-label="Close variant form"
           >
             <X size={18} />
@@ -753,32 +686,31 @@ export default function VariantFormModal({
         </div>
 
         {/* BODY */}
-        <div className="overflow-y-auto px-6 py-6">
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6">
           {mastersLoading ? (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {Array.from({
                 length: 8,
               }).map(
                 (_, index) => (
                   <div
                     key={index}
-                    className="h-11 animate-pulse rounded-xl bg-[#f5f1ec]"
+                    className="h-10 animate-pulse rounded-xl bg-[#f5f1ec]"
                   />
                 ),
               )}
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* IDENTITY */}
-
-              <section>
-                <h3 className="text-sm font-semibold text-[#171717]">
+              <section className="min-w-0">
+                <h3 className="text-sm font-semibold leading-5 text-[#171717]">
                   Variant Identity
                 </h3>
 
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                <div className="mt-3 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       SKU
                     </label>
 
@@ -794,12 +726,12 @@ export default function VariantFormModal({
                       }
                       disabled={saving}
                       placeholder="e.g. AF-ANR-PNK-M"
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Barcode
                     </label>
 
@@ -815,22 +747,21 @@ export default function VariantFormModal({
                       }
                       disabled={saving}
                       placeholder="Optional"
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm text-[#171717] outline-none placeholder:text-[#969696] focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
                 </div>
               </section>
 
               {/* OPTIONS */}
-
-              <section>
-                <h3 className="text-sm font-semibold text-[#171717]">
+              <section className="min-w-0">
+                <h3 className="text-sm font-semibold leading-5 text-[#171717]">
                   Variant Options
                 </h3>
 
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                <div className="mt-3 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Color
                     </label>
 
@@ -848,7 +779,7 @@ export default function VariantFormModal({
                         saving ||
                         mastersLoading
                       }
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={selectClassName}
                     >
                       <option value="">
                         Select color
@@ -877,22 +808,24 @@ export default function VariantFormModal({
                     {selectedColor?.hex && (
                       <div className="mt-2 flex items-center gap-2 text-xs text-[#969696]">
                         <span
-                          className="h-4 w-4 rounded-full border border-[#d8d1ca]"
+                          className="h-4 w-4 shrink-0 rounded-full border border-[#d8d1ca]"
                           style={{
                             backgroundColor:
                               selectedColor.hex,
                           }}
                         />
 
-                        {
-                          selectedColor.hex
-                        }
+                        <span className="break-all">
+                          {
+                            selectedColor.hex
+                          }
+                        </span>
                       </div>
                     )}
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Size
                     </label>
 
@@ -910,7 +843,7 @@ export default function VariantFormModal({
                         saving ||
                         mastersLoading
                       }
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={selectClassName}
                     >
                       <option value="">
                         Select size
@@ -943,15 +876,14 @@ export default function VariantFormModal({
               </section>
 
               {/* PRICING */}
-
-              <section>
-                <h3 className="text-sm font-semibold text-[#171717]">
+              <section className="min-w-0">
+                <h3 className="text-sm font-semibold leading-5 text-[#171717]">
                   Pricing
                 </h3>
 
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                <div className="mt-3 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       MRP
                     </label>
 
@@ -969,12 +901,12 @@ export default function VariantFormModal({
                         )
                       }
                       disabled={saving}
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Selling Price
                     </label>
 
@@ -994,12 +926,12 @@ export default function VariantFormModal({
                         )
                       }
                       disabled={saving}
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Compare At Price
                     </label>
 
@@ -1020,56 +952,55 @@ export default function VariantFormModal({
                       }
                       disabled={saving}
                       placeholder="Optional"
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none placeholder:text-[#969696] focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
                 </div>
               </section>
 
               {/* INVENTORY */}
-
-              <section>
-                <h3 className="text-sm font-semibold text-[#171717]">
+              <section className="min-w-0">
+                <h3 className="text-sm font-semibold leading-5 text-[#171717]">
                   Inventory
                 </h3>
 
                 {isEdit ? (
-                  <div className="mt-4 rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-4">
-                    <p className="text-sm font-medium text-[#292c2c]">
+                  <div className="mt-3 rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-3.5">
+                    <p className="break-words text-sm font-medium leading-5 text-[#292c2c]">
                       Inventory is managed separately
                     </p>
 
-                    <p className="mt-1 text-xs leading-5 text-[#6f706f]">
+                    <p className="mt-1 break-words text-xs leading-5 text-[#6f706f]">
                       Use the Inventory module to adjust stock, reservations and low-stock thresholds.
                     </p>
 
-                    <div className="mt-4 grid grid-cols-3 gap-3">
-                      <div>
-                        <p className="text-xs text-[#969696]">
+                    <div className="mt-3 grid grid-cols-3 gap-3">
+                      <div className="min-w-0">
+                        <p className="text-[11px] text-[#969696]">
                           Stock
                         </p>
 
-                        <p className="mt-1 font-semibold text-[#171717]">
+                        <p className="mt-0.5 text-sm font-semibold text-[#171717]">
                           {stock}
                         </p>
                       </div>
 
-                      <div>
-                        <p className="text-xs text-[#969696]">
+                      <div className="min-w-0">
+                        <p className="text-[11px] text-[#969696]">
                           Reserved
                         </p>
 
-                        <p className="mt-1 font-semibold text-[#171717]">
+                        <p className="mt-0.5 text-sm font-semibold text-[#171717]">
                           {reserved}
                         </p>
                       </div>
 
-                      <div>
-                        <p className="text-xs text-[#969696]">
+                      <div className="min-w-0">
+                        <p className="text-[11px] text-[#969696]">
                           Threshold
                         </p>
 
-                        <p className="mt-1 font-semibold text-[#171717]">
+                        <p className="mt-0.5 text-sm font-semibold text-[#171717]">
                           {
                             lowStockThreshold
                           }
@@ -1078,18 +1009,16 @@ export default function VariantFormModal({
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-4 grid gap-4 sm:grid-cols-3">
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="mt-3 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div className="min-w-0">
+                      <label className={labelClassName}>
                         Initial Stock
                       </label>
 
                       <input
                         type="number"
                         min={0}
-                        value={
-                          stock
-                        }
+                        value={stock}
                         onChange={(
                           event,
                         ) =>
@@ -1101,12 +1030,12 @@ export default function VariantFormModal({
                         disabled={
                           saving
                         }
-                        className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                        className={inputClassName}
                       />
                     </div>
 
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                    <div className="min-w-0">
+                      <label className={labelClassName}>
                         Reserved
                       </label>
 
@@ -1127,12 +1056,12 @@ export default function VariantFormModal({
                         disabled={
                           saving
                         }
-                        className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                        className={inputClassName}
                       />
                     </div>
 
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                    <div className="min-w-0">
+                      <label className={labelClassName}>
                         Low Stock Threshold
                       </label>
 
@@ -1153,7 +1082,7 @@ export default function VariantFormModal({
                         disabled={
                           saving
                         }
-                        className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                        className={inputClassName}
                       />
                     </div>
                   </div>
@@ -1161,15 +1090,14 @@ export default function VariantFormModal({
               </section>
 
               {/* ADDITIONAL */}
-
-              <section>
-                <h3 className="text-sm font-semibold text-[#171717]">
+              <section className="min-w-0">
+                <h3 className="text-sm font-semibold leading-5 text-[#171717]">
                   Additional Details
                 </h3>
 
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                <div className="mt-3 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Weight
                     </label>
 
@@ -1188,12 +1116,12 @@ export default function VariantFormModal({
                       }
                       disabled={saving}
                       placeholder="Optional"
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none placeholder:text-[#969696] focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={inputClassName}
                     />
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+                  <div className="min-w-0">
+                    <label className={labelClassName}>
                       Status
                     </label>
 
@@ -1210,7 +1138,7 @@ export default function VariantFormModal({
                       disabled={
                         saving
                       }
-                      className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791] disabled:bg-[#f5f1ec]"
+                      className={selectClassName}
                     >
                       <option value="active">
                         Active
@@ -1232,13 +1160,12 @@ export default function VariantFormModal({
         </div>
 
         {/* FOOTER */}
-
-        <div className="flex justify-end gap-3 border-t border-[#e7e2dd] px-6 py-4">
+        <div className="flex shrink-0 flex-col-reverse gap-2 border-t border-[#e7e2dd] bg-white px-4 py-3 sm:flex-row sm:justify-end sm:px-6">
           <button
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="rounded-xl border border-[#d8d1ca] px-4 py-2.5 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:opacity-50"
+            className="h-10 rounded-xl border border-[#d8d1ca] px-4 text-sm font-medium text-[#292c2c] transition hover:bg-[#fcfbf9] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Cancel
           </button>
@@ -1252,7 +1179,7 @@ export default function VariantFormModal({
               saving ||
               mastersLoading
             }
-            className="rounded-xl bg-[#171717] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:cursor-not-allowed disabled:opacity-60"
+            className="h-10 rounded-xl bg-[#171717] px-5 text-sm font-medium text-white transition hover:bg-[#292c2c] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {saving
               ? "Saving..."

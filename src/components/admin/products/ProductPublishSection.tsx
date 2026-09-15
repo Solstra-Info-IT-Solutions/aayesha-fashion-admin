@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  useState,
-} from "react";
-
+import { useState } from "react";
 import {
   Archive,
   EyeOff,
@@ -23,6 +20,9 @@ interface ProductPublishSectionProps {
   onUnpublish: () => Promise<void>;
 }
 
+const buttonBaseClass =
+  "flex h-10 min-w-0 w-full items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50";
+
 export default function ProductPublishSection({
   product,
   saving = false,
@@ -34,9 +34,7 @@ export default function ProductPublishSection({
   const [
     action,
     setAction,
-  ] = useState<
-    string | null
-  >(null);
+  ] = useState<string | null>(null);
 
   const run = async (
     key: string,
@@ -52,47 +50,48 @@ export default function ProductPublishSection({
   };
 
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <h2 className="text-base font-semibold text-[#171717]">
-        Publish
-      </h2>
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="min-w-0">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
+          Publish
+        </h2>
 
-      <p className="mt-1 text-sm text-[#6f706f]">
-        Control storefront availability and
-        product lifecycle.
-      </p>
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
+          Control storefront availability and
+          product lifecycle.
+        </p>
+      </div>
 
-      <div className="mt-5 rounded-xl bg-[#fcfbf9] p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-[#6f706f]">
+      {/* CURRENT STATUS */}
+      <div className="mt-5 min-w-0 overflow-hidden rounded-xl bg-[#fcfbf9] p-3.5">
+        <div className="flex min-w-0 items-center justify-between gap-3">
+          <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#6f706f]">
             Current Status
           </span>
 
-          <span className="rounded-full bg-[#171717] px-3 py-1 text-xs font-medium capitalize text-white">
-            {
-              product.status
-            }
+          <span className="shrink-0 rounded-full bg-[#171717] px-2.5 py-1 text-[11px] font-medium capitalize leading-4 text-white">
+            {product.status}
           </span>
         </div>
 
         {product.publishedAt && (
-          <p className="mt-3 text-xs text-[#969696]">
+          <p className="mt-2.5 break-words text-[11px] leading-5 text-[#969696]">
             Published{" "}
             {new Date(
               product.publishedAt,
-            ).toLocaleString(
-              "en-IN",
-            )}
+            ).toLocaleString("en-IN")}
           </p>
         )}
       </div>
 
-      <div className="mt-4 grid gap-2">
+      {/* ACTIONS */}
+      <div className="mt-4 grid min-w-0 gap-2">
+        {/* PUBLISH */}
         <button
           type="button"
           disabled={
-            saving ||
-            action !== null
+            saving || action !== null
           }
           onClick={() =>
             void run(
@@ -100,20 +99,22 @@ export default function ProductPublishSection({
               onPublish,
             )
           }
-          className="flex h-11 items-center justify-center gap-2 rounded-xl bg-[#171717] text-sm font-medium text-white disabled:opacity-50"
+          className={`${buttonBaseClass} bg-[#171717] text-white hover:opacity-90`}
         >
-          <Globe size={15} />
-          {action ===
-          "publish"
-            ? "Publishing..."
-            : "Publish Product"}
+          <Globe size={14} className="shrink-0" />
+
+          <span className="min-w-0 truncate">
+            {action === "publish"
+              ? "Publishing..."
+              : "Publish Product"}
+          </span>
         </button>
 
+        {/* DRAFT */}
         <button
           type="button"
           disabled={
-            saving ||
-            action !== null
+            saving || action !== null
           }
           onClick={() =>
             void run(
@@ -121,21 +122,21 @@ export default function ProductPublishSection({
               onDraft,
             )
           }
-          className="flex h-11 items-center justify-center gap-2 rounded-xl border border-[#d8d1ca] text-sm font-medium text-[#292c2c] disabled:opacity-50"
+          className={`${buttonBaseClass} border border-[#d8d1ca] bg-white text-[#292c2c] hover:bg-[#f8f6f3]`}
         >
-          {action ===
-          "draft"
-            ? "Updating..."
-            : "Move to Draft"}
+          <span className="min-w-0 truncate">
+            {action === "draft"
+              ? "Updating..."
+              : "Move to Draft"}
+          </span>
         </button>
 
-        {product.status ===
-          "active" && (
+        {/* UNPUBLISH */}
+        {product.status === "active" && (
           <button
             type="button"
             disabled={
-              saving ||
-              action !== null
+              saving || action !== null
             }
             onClick={() =>
               void run(
@@ -143,22 +144,25 @@ export default function ProductPublishSection({
                 onUnpublish,
               )
             }
-            className="flex h-11 items-center justify-center gap-2 rounded-xl border border-[#efdede] text-sm font-medium text-[#a33a3a] disabled:opacity-50"
+            className={`${buttonBaseClass} border border-[#efdede] bg-white text-[#a33a3a] hover:bg-[#fff7f7]`}
           >
             <EyeOff
-              size={15}
+              size={14}
+              className="shrink-0"
             />
-            Unpublish
+
+            <span className="min-w-0 truncate">
+              Unpublish
+            </span>
           </button>
         )}
 
-        {product.status !==
-          "archived" && (
+        {/* ARCHIVE */}
+        {product.status !== "archived" && (
           <button
             type="button"
             disabled={
-              saving ||
-              action !== null
+              saving || action !== null
             }
             onClick={() =>
               void run(
@@ -166,12 +170,16 @@ export default function ProductPublishSection({
                 onArchive,
               )
             }
-            className="flex h-11 items-center justify-center gap-2 rounded-xl border border-[#efdede] text-sm font-medium text-[#a33a3a] disabled:opacity-50"
+            className={`${buttonBaseClass} border border-[#efdede] bg-white text-[#a33a3a] hover:bg-[#fff7f7]`}
           >
             <Archive
-              size={15}
+              size={14}
+              className="shrink-0"
             />
-            Archive
+
+            <span className="min-w-0 truncate">
+              Archive
+            </span>
           </button>
         )}
       </div>

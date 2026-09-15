@@ -39,8 +39,6 @@ export default function ProductVariantsSection({
   onUpdate,
   onDelete,
 }: ProductVariantsSectionProps) {
-  void productId;
-
   const [
     modalOpen,
     setModalOpen,
@@ -54,41 +52,38 @@ export default function ProductVariantsSection({
       null,
     );
 
-  const saveCreate =
-    async (
-      variant: ProductVariant,
-    ) => {
-      await onCreate(
-        variant,
-      );
+  const saveCreate = async (
+    variant: ProductVariant,
+  ) => {
+    await onCreate(variant);
 
-      setModalOpen(false);
-      setEditingVariant(null);
-    };
+    setModalOpen(false);
+    setEditingVariant(null);
+  };
 
-  const saveUpdate =
-    async (
-      variantId: string,
-      variant: Partial<ProductVariant>,
-    ) => {
-      await onUpdate(
-        variantId,
-        variant,
-      );
+  const saveUpdate = async (
+    variantId: string,
+    variant: Partial<ProductVariant>,
+  ) => {
+    await onUpdate(
+      variantId,
+      variant,
+    );
 
-      setModalOpen(false);
-      setEditingVariant(null);
-    };
+    setModalOpen(false);
+    setEditingVariant(null);
+  };
 
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <h2 className="text-base font-semibold text-[#171717]">
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
             Variants & SKU
           </h2>
 
-          <p className="mt-1 text-sm text-[#6f706f]">
+          <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
             Manage color, size, price and
             SKU-level configuration.
           </p>
@@ -96,71 +91,71 @@ export default function ProductVariantsSection({
 
         <button
           type="button"
+          disabled={saving}
           onClick={() => {
-            setEditingVariant(
-              null,
-            );
+            setEditingVariant(null);
             setModalOpen(true);
           }}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#171717] px-3.5 py-2.5 text-sm font-medium text-white"
+          className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#171717] px-4 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={15} />
           Add Variant
         </button>
       </div>
 
-      <div className="mt-5">
-        {variants.length ===
-        0 ? (
-          <div className="rounded-xl border border-dashed border-[#d8d1ca] px-4 py-10 text-center text-sm text-[#969696]">
-            No variants added yet.
+      {/* VARIANT TABLE / EMPTY STATE */}
+      <div className="mt-6 min-w-0">
+        {variants.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-[#d8d1ca] bg-[#fcfbf9] px-5 py-12 text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#f5f1ec]">
+              <Plus
+                size={18}
+                className="text-[#969696]"
+              />
+            </div>
+
+            <p className="mt-3 break-words text-sm font-medium text-[#292c2c]">
+              No variants added yet
+            </p>
+
+            <p className="mx-auto mt-1.5 max-w-md break-words text-xs leading-5 text-[#969696]">
+              Add color, size, pricing and SKU
+              information for this product.
+            </p>
           </div>
         ) : (
-          <VariantTable
-            variants={
-              variants
-            }
-            onEdit={(
-              variant,
-            ) => {
-              setEditingVariant(
-                variant,
-              );
-              setModalOpen(true);
-            }}
-            onDelete={(
-              variant,
-            ) => {
-              void onDelete(
-                variant.id,
-              );
-            }}
-          />
+          <div className="min-w-0 max-w-full overflow-x-auto rounded-xl border border-[#e7e2dd]">
+            <VariantTable
+              variants={variants}
+              onEdit={(variant) => {
+                setEditingVariant(
+                  variant,
+                );
+                setModalOpen(true);
+              }}
+              onDelete={(variant) => {
+                void onDelete(
+                  variant.id,
+                );
+              }}
+            />
+          </div>
         )}
       </div>
 
+      {/* VARIANT MODAL */}
       <VariantFormModal
         open={modalOpen}
         productId={productId}
-        variant={
-          editingVariant
-        }
+        variant={editingVariant}
         saving={saving}
-        accessToken={
-          accessToken
-        }
+        accessToken={accessToken}
         onClose={() => {
           setModalOpen(false);
-          setEditingVariant(
-            null,
-          );
+          setEditingVariant(null);
         }}
-        onCreate={
-          saveCreate
-        }
-        onUpdate={
-          saveUpdate
-        }
+        onCreate={saveCreate}
+        onUpdate={saveUpdate}
       />
     </section>
   );

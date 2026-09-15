@@ -11,17 +11,22 @@ interface ProductMerchandisingSectionProps {
   ) => void;
 }
 
-const badges =
-  [
-    "new",
-    "best-seller",
-    "featured",
-    "exclusive",
-    "limited",
-    "sale",
-    "trending",
-    "back-in-stock",
-  ] as const;
+const badges = [
+  "new",
+  "best-seller",
+  "featured",
+  "exclusive",
+  "limited",
+  "sale",
+  "trending",
+  "back-in-stock",
+] as const;
+
+const checkboxItems = [
+  ["isNew", "New"],
+  ["isFeatured", "Featured"],
+  ["isBestSeller", "Best Seller"],
+] as const;
 
 export default function ProductMerchandisingSection({
   merchandising,
@@ -39,8 +44,7 @@ export default function ProductMerchandisingSection({
       ...merchandising,
       badges: exists
         ? merchandising.badges.filter(
-            (item) =>
-              item !== badge,
+            (item) => item !== badge,
           )
         : [
             ...merchandising.badges,
@@ -50,54 +54,45 @@ export default function ProductMerchandisingSection({
   };
 
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <h2 className="text-base font-semibold text-[#171717]">
-        Merchandising
-      </h2>
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="min-w-0">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
+          Merchandising
+        </h2>
 
-      <p className="mt-1 text-sm text-[#6f706f]">
-        Storefront visibility and commercial
-        positioning.
-      </p>
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
+          Storefront visibility and commercial
+          positioning.
+        </p>
+      </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        {[
-          ["isNew", "New"],
-          [
-            "isFeatured",
-            "Featured",
-          ],
-          [
-            "isBestSeller",
-            "Best Seller",
-          ],
-        ].map(
+      {/* VISIBILITY OPTIONS */}
+      <div className="mt-5 grid min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-3">
+        {checkboxItems.map(
           ([key, label]) => (
             <label
               key={key}
-              className="flex items-center gap-3 rounded-xl border border-[#e7e2dd] px-4 py-3"
+              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e7e2dd] bg-white px-3 py-2.5 transition hover:bg-[#fcfbf9]"
             >
               <input
                 type="checkbox"
-                checked={
-                  Boolean(
-                    merchandising[
-                      key as keyof ProductMerchandising
-                    ],
-                  )
-                }
+                checked={Boolean(
+                  merchandising[
+                    key as keyof ProductMerchandising
+                  ],
+                )}
                 onChange={(event) =>
                   onChange({
                     ...merchandising,
                     [key]:
-                      event.target
-                        .checked,
+                      event.target.checked,
                   })
                 }
-                className="h-4 w-4 accent-[#171717]"
+                className="h-4 w-4 shrink-0 accent-[#171717]"
               />
 
-              <span className="text-sm font-medium text-[#292c2c]">
+              <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#292c2c]">
                 {label}
               </span>
             </label>
@@ -105,12 +100,13 @@ export default function ProductMerchandisingSection({
         )}
       </div>
 
-      <div className="mt-5">
-        <p className="mb-2 text-sm font-medium text-[#292c2c]">
+      {/* BADGES */}
+      <div className="mt-5 min-w-0">
+        <p className="mb-2 text-xs font-medium leading-5 text-[#292c2c]">
           Badges
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex min-w-0 max-w-full flex-wrap gap-1.5">
           {badges.map(
             (badge) => {
               const selected =
@@ -127,16 +123,18 @@ export default function ProductMerchandisingSection({
                       badge,
                     )
                   }
-                  className={`rounded-full border px-3 py-1.5 text-xs font-medium capitalize ${
+                  className={`inline-flex max-w-full items-center justify-center rounded-full border px-2.5 py-1.5 text-[11px] font-medium capitalize leading-4 transition ${
                     selected
                       ? "border-[#171717] bg-[#171717] text-white"
-                      : "border-[#d8d1ca] text-[#6f706f]"
+                      : "border-[#d8d1ca] bg-white text-[#6f706f] hover:bg-[#f8f6f3]"
                   }`}
                 >
-                  {badge.replace(
-                    "-",
-                    " ",
-                  )}
+                  <span className="break-words">
+                    {badge.replace(
+                      "-",
+                      " ",
+                    )}
+                  </span>
                 </button>
               );
             },
@@ -144,9 +142,10 @@ export default function ProductMerchandisingSection({
         </div>
       </div>
 
-      <div className="mt-5 max-w-xs">
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+      {/* RANKING */}
+      <div className="mt-5 min-w-0 max-w-xs">
+        <label className="block min-w-0">
+          <span className="mb-1.5 block break-words text-xs font-medium leading-5 text-[#292c2c]">
             Ranking
           </span>
 
@@ -154,15 +153,14 @@ export default function ProductMerchandisingSection({
             type="number"
             min={0}
             value={
-              merchandising.ranking ??
-              ""
+              merchandising.ranking ?? ""
             }
             onChange={(event) =>
               onChange({
                 ...merchandising,
                 ranking:
-                  event.target
-                    .value === ""
+                  event.target.value ===
+                  ""
                     ? undefined
                     : Math.max(
                         0,
@@ -173,7 +171,7 @@ export default function ProductMerchandisingSection({
                       ),
               })
             }
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+            className="box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
           />
         </label>
       </div>

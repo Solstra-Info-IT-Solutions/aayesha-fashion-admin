@@ -11,49 +11,58 @@ interface ProductContentSectionProps {
   ) => void;
 }
 
+const inputClassName =
+  "box-border min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
+
+const labelClassName =
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#292c2c]";
+
 export default function ProductContentSection({
   content,
   onChange,
 }: ProductContentSectionProps) {
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <h2 className="text-base font-semibold text-[#171717]">
-        Content
-      </h2>
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="min-w-0">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
+          Content
+        </h2>
 
-      <p className="mt-1 text-sm text-[#6f706f]">
-        Product description and customer-facing
-        information.
-      </p>
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
+          Product description and customer-facing
+          information.
+        </p>
+      </div>
 
-      <div className="mt-5 space-y-4">
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+      <div className="mt-5 min-w-0 space-y-4">
+        {/* DESCRIPTION */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Description
           </span>
 
           <textarea
             value={
-              content.description ??
-              ""
+              content.description ?? ""
             }
             onChange={(event) =>
               onChange({
                 ...content,
                 description:
-                  event.target
-                    .value,
+                  event.target.value,
               })
             }
             rows={7}
             placeholder="Write a detailed product description..."
-            className="w-full rounded-xl border border-[#d8d1ca] px-3 py-3 text-sm leading-6 outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+            className={`${inputClassName} resize-y py-3 leading-6`}
           />
         </label>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label>
-            <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* FORMAT + FIT NOTE */}
+        <div className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
+          <label className="block min-w-0">
+            <span className={labelClassName}>
               Description Format
             </span>
 
@@ -69,7 +78,7 @@ export default function ProductContentSection({
                       .value as ProductContent["descriptionFormat"],
                 })
               }
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
+              className={`${inputClassName} h-11`}
             >
               <option value="plain">
                 Plain
@@ -85,46 +94,43 @@ export default function ProductContentSection({
             </select>
           </label>
 
-          <label>
-            <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+          <label className="block min-w-0">
+            <span className={labelClassName}>
               Fit Note
             </span>
 
             <input
               value={
-                content.fitNote ??
-                ""
+                content.fitNote ?? ""
               }
               onChange={(event) =>
                 onChange({
                   ...content,
                   fitNote:
-                    event.target
-                      .value,
+                    event.target.value,
                 })
               }
               placeholder="Regular fit"
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+              className={`${inputClassName} h-11`}
             />
           </label>
         </div>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* HIGHLIGHTS */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Highlights
           </span>
 
           <textarea
             value={(
-              content.highlights ??
-              []
+              content.highlights ?? []
             ).join("\n")}
             onChange={(event) =>
               onChange({
                 ...content,
                 highlights:
-                  event.target
-                    .value
+                  event.target.value
                     .split("\n")
                     .map(
                       (item) =>
@@ -134,36 +140,39 @@ export default function ProductContentSection({
               })
             }
             rows={4}
-            placeholder={"Hand embroidery\nSoft lining\nFestive silhouette"}
-            className="w-full rounded-xl border border-[#d8d1ca] px-3 py-3 text-sm outline-none focus:border-[#d98791]"
+            placeholder={
+              "Hand embroidery\nSoft lining\nFestive silhouette"
+            }
+            className={`${inputClassName} resize-y py-3 leading-6`}
           />
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* STYLING NOTES */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Styling Notes
           </span>
 
           <textarea
             value={
-              content.stylingNotes ??
-              ""
+              content.stylingNotes ?? ""
             }
             onChange={(event) =>
               onChange({
                 ...content,
                 stylingNotes:
-                  event.target
-                    .value,
+                  event.target.value,
               })
             }
             rows={3}
-            className="w-full rounded-xl border border-[#d8d1ca] px-3 py-3 text-sm outline-none focus:border-[#d98791]"
+            placeholder="Add styling or outfit pairing suggestions..."
+            className={`${inputClassName} resize-y py-3 leading-6`}
           />
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* MATERIALS & CARE */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Materials & Care
           </span>
 
@@ -181,12 +190,12 @@ export default function ProductContentSection({
               onChange({
                 ...content,
                 materialsAndCare:
-                  event.target
-                    .value,
+                  event.target.value,
               })
             }
             rows={4}
-            className="w-full rounded-xl border border-[#d8d1ca] px-3 py-3 text-sm outline-none focus:border-[#d98791]"
+            placeholder="Fabric details, washing instructions, ironing and care information..."
+            className={`${inputClassName} resize-y py-3 leading-6`}
           />
         </label>
       </div>

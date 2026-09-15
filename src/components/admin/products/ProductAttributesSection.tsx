@@ -39,60 +39,70 @@ const fields: Array<
   ],
 ];
 
+const inputClassName =
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
+
+const labelClassName =
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#292c2c]";
+
 export default function ProductAttributesSection({
   attributes,
   onChange,
 }: ProductAttributesSectionProps) {
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <h2 className="text-base font-semibold text-[#171717]">
-        Attributes
-      </h2>
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="min-w-0">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
+          Attributes
+        </h2>
 
-      <p className="mt-1 text-sm text-[#6f706f]">
-        Structured product specifications.
-      </p>
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
+          Structured product specifications.
+        </p>
+      </div>
 
-      <div className="mt-5 grid gap-4 md:grid-cols-2">
+      {/* ATTRIBUTE FIELDS */}
+      <div className="mt-5 grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
         {fields.map(
           ([key, label]) => (
-            <label key={String(key)}>
-              <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+            <label
+              key={String(key)}
+              className="block min-w-0"
+            >
+              <span className={labelClassName}>
                 {label}
               </span>
 
               <input
                 value={String(
-                  attributes[key] ??
-                    "",
+                  attributes[key] ?? "",
                 )}
-                onChange={(
-                  event,
-                ) =>
+                onChange={(event) =>
                   onChange({
                     ...attributes,
                     [key]:
-                      event.target
-                        .value,
+                      event.target.value,
                   })
                 }
-                className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+                className={inputClassName}
               />
             </label>
           ),
         )}
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+      {/* OCCASION + CARE */}
+      <div className="mt-4 grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
+        {/* OCCASION */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Occasion
           </span>
 
           <input
             value={(
-              attributes.occasion ??
-              []
+              attributes.occasion ?? []
             ).join(", ")}
             onChange={(event) =>
               onChange({
@@ -104,18 +114,17 @@ export default function ProductAttributesSection({
                       (item) =>
                         item.trim(),
                     )
-                    .filter(
-                      Boolean,
-                    ),
+                    .filter(Boolean),
               })
             }
             placeholder="Festive, Wedding"
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+            className={inputClassName}
           />
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* CARE INSTRUCTIONS */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Care Instructions
           </span>
 
@@ -134,13 +143,12 @@ export default function ProductAttributesSection({
                       (item) =>
                         item.trim(),
                     )
-                    .filter(
-                      Boolean,
-                    ),
+                    .filter(Boolean),
               })
             }
             rows={3}
-            className="w-full rounded-xl border border-[#d8d1ca] px-3 py-3 text-sm outline-none focus:border-[#d98791]"
+            placeholder="Add care instructions..."
+            className="box-border min-h-[92px] min-w-0 w-full max-w-full resize-y rounded-xl border border-[#d8d1ca] bg-white px-3 py-3 text-sm leading-5 text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
           />
         </label>
       </div>

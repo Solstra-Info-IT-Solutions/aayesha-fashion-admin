@@ -30,14 +30,14 @@ export default function VariantsTable({
 }: VariantsTableProps) {
   if (loading) {
     return (
-      <div className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
+      <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
         <div className="space-y-3">
           {Array.from({
             length: 6,
           }).map((_, index) => (
             <div
               key={index}
-              className="h-14 animate-pulse rounded-xl bg-[#f5f1ec]"
+              className="h-12 animate-pulse rounded-xl bg-[#f5f1ec]"
             />
           ))}
         </div>
@@ -46,49 +46,51 @@ export default function VariantsTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white shadow-sm">
-      <div className="overflow-x-auto">
-        <table className="min-w-[1050px] w-full">
+    <div className="min-w-0 max-w-full overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white shadow-sm">
+      <div className="min-w-0 max-w-full overflow-x-auto">
+        <table className="w-full min-w-[980px] border-collapse">
+          {/* HEADER */}
           <thead>
             <tr className="border-b border-[#e7e2dd] bg-[#fcfbf9]">
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-left text-[11px] font-semibold uppercase tracking-wide text-[#969696] sm:px-5">
                 SKU
               </th>
 
-              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-left text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Color
               </th>
 
-              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-left text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Size
               </th>
 
-              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-right text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 MRP
               </th>
 
-              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-right text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Selling Price
               </th>
 
-              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-right text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Stock
               </th>
 
-              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-right text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Available
               </th>
 
-              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-left text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Status
               </th>
 
-              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#969696]">
+              <th className="whitespace-nowrap px-4 py-3.5 text-right text-[11px] font-semibold uppercase tracking-wide text-[#969696]">
                 Actions
               </th>
             </tr>
           </thead>
 
+          {/* BODY */}
           <tbody>
             {variants.map((variant) => {
               const available =
@@ -103,14 +105,15 @@ export default function VariantsTable({
                   key={variant.id}
                   className="border-b border-[#f0ece8] last:border-b-0 hover:bg-[#fcfbf9]"
                 >
-                  <td className="px-5 py-4">
-                    <div>
-                      <p className="text-sm font-semibold text-[#171717]">
+                  {/* SKU */}
+                  <td className="max-w-[180px] px-4 py-3.5 sm:px-5">
+                    <div className="min-w-0">
+                      <p className="break-all text-sm font-semibold leading-5 text-[#171717]">
                         {variant.sku}
                       </p>
 
                       {variant.barcode && (
-                        <p className="mt-1 text-xs text-[#969696]">
+                        <p className="mt-1 break-all text-[11px] leading-4 text-[#969696]">
                           Barcode:{" "}
                           {variant.barcode}
                         </p>
@@ -118,8 +121,9 @@ export default function VariantsTable({
                     </div>
                   </td>
 
-                  <td className="px-4 py-4">
-                    <div className="flex items-center gap-2">
+                  {/* COLOR */}
+                  <td className="px-4 py-3.5">
+                    <div className="flex min-w-[150px] items-center gap-2.5">
                       <span
                         className="h-7 w-7 shrink-0 rounded-full border border-[#d8d1ca]"
                         style={{
@@ -129,34 +133,27 @@ export default function VariantsTable({
                         }}
                       />
 
-                      <div>
-                        <p className="text-sm text-[#292c2c]">
-                          {
-                            variant.color
-                              .name
-                          }
+                      <div className="min-w-0">
+                        <p className="break-words text-sm leading-5 text-[#292c2c]">
+                          {variant.color.name}
                         </p>
 
-                        <p className="text-xs text-[#969696]">
-                          {
-                            variant.color
-                              .slug
-                          }
+                        <p className="mt-0.5 break-all text-[11px] leading-4 text-[#969696]">
+                          {variant.color.slug}
                         </p>
                       </div>
                     </div>
                   </td>
 
-                  <td className="px-4 py-4">
-                    <span className="rounded-lg bg-[#f5f1ec] px-2.5 py-1.5 text-sm font-medium text-[#292c2c]">
-                      {
-                        variant.size
-                          .label
-                      }
+                  {/* SIZE */}
+                  <td className="px-4 py-3.5">
+                    <span className="inline-flex whitespace-nowrap rounded-lg bg-[#f5f1ec] px-2.5 py-1.5 text-xs font-medium text-[#292c2c]">
+                      {variant.size.label}
                     </span>
                   </td>
 
-                  <td className="px-4 py-4 text-right text-sm text-[#6f706f]">
+                  {/* MRP */}
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right text-sm text-[#6f706f]">
                     ₹
                     {new Intl.NumberFormat(
                       "en-IN",
@@ -165,7 +162,8 @@ export default function VariantsTable({
                     )}
                   </td>
 
-                  <td className="px-4 py-4 text-right text-sm font-semibold text-[#171717]">
+                  {/* SELLING PRICE */}
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right text-sm font-semibold text-[#171717]">
                     ₹
                     {new Intl.NumberFormat(
                       "en-IN",
@@ -175,52 +173,56 @@ export default function VariantsTable({
                     )}
                   </td>
 
-                  <td className="px-4 py-4 text-right text-sm text-[#292c2c]">
-                    {
-                      variant
-                        .inventory
-                        .stock
-                    }
+                  {/* STOCK */}
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right text-sm text-[#292c2c]">
+                    {variant.inventory.stock}
                   </td>
 
-                  <td className="px-4 py-4 text-right text-sm font-semibold text-[#292c2c]">
+                  {/* AVAILABLE */}
+                  <td className="whitespace-nowrap px-4 py-3.5 text-right text-sm font-semibold text-[#292c2c]">
                     {available}
                   </td>
 
-                  <td className="px-4 py-4">
-                    <VariantStatusBadge
-                      status={
-                        variant.status
-                      }
-                    />
+                  {/* STATUS */}
+                  <td className="px-4 py-3.5">
+                    <div className="whitespace-nowrap">
+                      <VariantStatusBadge
+                        status={
+                          variant.status
+                        }
+                      />
+                    </div>
                   </td>
 
-                  <td className="px-4 py-4">
-                    <div className="flex justify-end gap-1">
+                  {/* ACTIONS */}
+                  <td className="px-4 py-3.5">
+                    <div className="flex justify-end gap-1.5">
                       <button
                         type="button"
                         title="Edit variant"
+                        aria-label="Edit variant"
                         onClick={() =>
                           onEdit(
                             variant,
                           )
                         }
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e7e2dd] text-[#6f706f] transition hover:border-[#d98791] hover:text-[#d98791]"
+                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e7e2dd] bg-white text-[#6f706f] transition hover:border-[#d98791] hover:bg-[#fffafa] hover:text-[#d98791]"
                       >
-                        <Edit3 size={16} />
+                        <Edit3 size={15} />
                       </button>
 
                       <button
                         type="button"
                         title="Delete variant"
+                        aria-label="Delete variant"
                         onClick={() =>
                           onDelete(
                             variant,
                           )
                         }
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e7e2dd] text-[#6f706f] transition hover:border-red-300 hover:text-red-600"
+                        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e7e2dd] bg-white text-[#6f706f] transition hover:border-red-300 hover:bg-[#fffafa] hover:text-red-600"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={15} />
                       </button>
                     </div>
                   </td>

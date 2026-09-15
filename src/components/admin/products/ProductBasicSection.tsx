@@ -57,6 +57,15 @@ const categories: Array<
   ],
 ];
 
+const inputClassName =
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
+
+const selectClassName =
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
+
+const labelClassName =
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#292c2c]";
+
 export default function ProductBasicSection({
   name,
   slug,
@@ -67,21 +76,24 @@ export default function ProductBasicSection({
   onChange,
 }: ProductBasicSectionProps) {
   return (
-    <section className="rounded-2xl border border-[#e7e2dd] bg-white p-5">
-      <div>
-        <h2 className="text-base font-semibold text-[#171717]">
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+      {/* HEADER */}
+      <div className="min-w-0">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
           Product Basics
         </h2>
 
-        <p className="mt-1 text-sm text-[#6f706f]">
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
           Core product identity and
           catalog information.
         </p>
       </div>
 
-      <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+      {/* FORM */}
+      <div className="mt-5 grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
+        {/* PRODUCT NAME */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Product Name
           </span>
 
@@ -89,17 +101,17 @@ export default function ProductBasicSection({
             value={name}
             onChange={(event) =>
               onChange({
-                name: event.target
-                  .value,
+                name: event.target.value,
               })
             }
             placeholder="Rose Garden Anarkali"
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+            className={inputClassName}
           />
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* SLUG */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Slug
           </span>
 
@@ -107,8 +119,7 @@ export default function ProductBasicSection({
             value={slug}
             onChange={(event) =>
               onChange({
-                slug: event.target
-                  .value
+                slug: event.target.value
                   .toLowerCase()
                   .replace(
                     /[^a-z0-9-]/g,
@@ -121,12 +132,13 @@ export default function ProductBasicSection({
               })
             }
             placeholder="rose-garden-anarkali"
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]"
+            className={`${inputClassName} overflow-hidden text-ellipsis`}
           />
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* PRODUCT TYPE */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Product Type
           </span>
 
@@ -139,7 +151,7 @@ export default function ProductBasicSection({
                     .value as ProductType,
               })
             }
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
+            className={selectClassName}
           >
             {productTypes.map(
               ([value, label]) => (
@@ -154,8 +166,9 @@ export default function ProductBasicSection({
           </select>
         </label>
 
-        <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* CATEGORY */}
+        <label className="block min-w-0">
+          <span className={labelClassName}>
             Category
           </span>
 
@@ -168,7 +181,7 @@ export default function ProductBasicSection({
                     .value as ProductCategory,
               })
             }
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
+            className={selectClassName}
           >
             {categories.map(
               ([value, label]) => (
@@ -183,8 +196,9 @@ export default function ProductBasicSection({
           </select>
         </label>
 
-        <label className="md:col-span-2">
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* SUBCATEGORY */}
+        <label className="block min-w-0 md:col-span-2">
+          <span className={labelClassName}>
             Subcategory
           </span>
 
@@ -193,17 +207,17 @@ export default function ProductBasicSection({
             onChange={(event) =>
               onChange({
                 subcategory:
-                  event.target
-                    .value,
+                  event.target.value,
               })
             }
             placeholder="Optional"
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+            className={inputClassName}
           />
         </label>
 
-        <label className="md:col-span-2">
-          <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+        {/* TAGS */}
+        <label className="block min-w-0 md:col-span-2">
+          <span className={labelClassName}>
             Tags
           </span>
 
@@ -211,21 +225,20 @@ export default function ProductBasicSection({
             value={tags.join(", ")}
             onChange={(event) =>
               onChange({
-                tags:
-                  event.target.value
-                    .split(",")
-                    .map(
-                      (item) =>
-                        item.trim(),
-                    )
-                    .filter(Boolean),
+                tags: event.target.value
+                  .split(",")
+                  .map(
+                    (item) =>
+                      item.trim(),
+                  )
+                  .filter(Boolean),
               })
             }
             placeholder="anarkali, festive, embroidered"
-            className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
+            className={inputClassName}
           />
 
-          <p className="mt-1.5 text-xs text-[#969696]">
+          <p className="mt-1.5 max-w-full break-words text-xs leading-5 text-[#969696]">
             Separate tags using commas.
           </p>
         </label>
