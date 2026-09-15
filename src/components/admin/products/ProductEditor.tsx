@@ -86,6 +86,7 @@ export default function ProductEditor({
     moveToDraft,
     archive,
     unpublish,
+    deleteProduct
   } = useProductEditor({
     productId,
   });
@@ -124,6 +125,35 @@ export default function ProductEditor({
     authLoading,
     isAuthenticated,
   ]);
+
+
+  const handleDeleteProduct = async () => {
+  if (!isEdit || !productId) {
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Are you sure you want to permanently delete this product? This action cannot be undone.",
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  setFormError(null);
+
+  try {
+    await deleteProduct();
+
+    router.replace("/admin/products");
+  } catch (reason) {
+    setFormError(
+      reason instanceof Error
+        ? reason.message
+        : "Unable to delete product.",
+    );
+  }
+};
 
   /*
    * =========================================================
@@ -573,6 +603,9 @@ export default function ProductEditor({
                   }
                   onUnpublish={
                     unpublish
+                  }
+                  onDelete={
+                    handleDeleteProduct
                   }
                 />
               </>

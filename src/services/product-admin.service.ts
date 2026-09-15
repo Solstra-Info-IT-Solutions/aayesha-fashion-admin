@@ -443,6 +443,25 @@ export async function unpublishProduct(
   );
 }
 
+
+export async function deleteAdminProduct(
+  productId: string,
+  accessToken?: string | null,
+) {
+  return apiDelete<{
+    success: true;
+    data: {
+      productId: string;
+      deleted: boolean;
+    };
+  }>(
+    `/admin/products/${encodeURIComponent(
+      productId,
+    )}`,
+    accessToken,
+  );
+}
+
 /*
  * -------------------------------------------------------
  * VARIANTS

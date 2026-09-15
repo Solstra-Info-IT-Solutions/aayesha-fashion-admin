@@ -29,6 +29,7 @@ import {
   updateAdminProduct,
   updateProductMedia,
   updateProductVariant,
+  deleteAdminProduct
 } from "@/services/product-admin.service";
 
 import type {
@@ -845,27 +846,49 @@ export function useProductEditor({
       }
     };
 
+    const deleteProduct =
+  async () => {
+    if (
+      !productId ||
+      !accessToken
+    ) {
+      return;
+    }
+
+    setActionLoading(true);
+
+    try {
+      await deleteAdminProduct(
+        productId,
+        accessToken,
+      );
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   return {
-    product,
-    setProduct,
-    updateProduct,
-    loading,
-    saving,
-    actionLoading,
-    error,
-    refresh,
-    create,
-    saveBasic,
-    saveMedia,
-    removeMedia,
-    saveSeo,
-    saveMerchandising,
-    createVariant,
-    updateVariant,
-    removeVariant,
-    publish,
-    moveToDraft,
-    archive,
-    unpublish,
+  product,
+  setProduct,
+  updateProduct,
+  loading,
+  saving,
+  actionLoading,
+  error,
+  refresh,
+  create,
+  saveBasic,
+  saveMedia,
+  removeMedia,
+  saveSeo,
+  saveMerchandising,
+  createVariant,
+  updateVariant,
+  removeVariant,
+  publish,
+  moveToDraft,
+  archive,
+  unpublish,
+  deleteProduct,
   };
 }

@@ -5,6 +5,7 @@ import {
   Archive,
   EyeOff,
   Globe,
+  Trash2,
 } from "lucide-react";
 
 import type {
@@ -18,6 +19,7 @@ interface ProductPublishSectionProps {
   onDraft: () => Promise<void>;
   onArchive: () => Promise<void>;
   onUnpublish: () => Promise<void>;
+  onDelete: () => Promise<void>;
 }
 
 const buttonBaseClass =
@@ -30,11 +32,17 @@ export default function ProductPublishSection({
   onDraft,
   onArchive,
   onUnpublish,
+  onDelete,
 }: ProductPublishSectionProps) {
   const [
     action,
     setAction,
   ] = useState<string | null>(null);
+
+  const [
+    showDeleteConfirm,
+    setShowDeleteConfirm,
+  ] = useState(false);
 
   const run = async (
     key: string,
@@ -46,6 +54,17 @@ export default function ProductPublishSection({
       await callback();
     } finally {
       setAction(null);
+    }
+  };
+
+  const handleDelete = async () => {
+    setAction("delete");
+
+    try {
+      await onDelete();
+    } finally {
+      setAction(null);
+      setShowDeleteConfirm(false);
     }
   };
 
@@ -101,7 +120,10 @@ export default function ProductPublishSection({
           }
           className={`${buttonBaseClass} bg-[#171717] text-white hover:opacity-90`}
         >
-          <Globe size={14} className="shrink-0" />
+          <Globe
+            size={14}
+            className="shrink-0"
+          />
 
           <span className="min-w-0 truncate">
             {action === "publish"
@@ -152,7 +174,9 @@ export default function ProductPublishSection({
             />
 
             <span className="min-w-0 truncate">
-              Unpublish
+              {action === "unpublish"
+                ? "Unpublishing..."
+                : "Unpublish"}
             </span>
           </button>
         )}
@@ -178,11 +202,82 @@ export default function ProductPublishSection({
             />
 
             <span className="min-w-0 truncate">
-              Archive
+              {action === "archive"
+                ? "Archiving..."
+                : "Archive"}
             </span>
           </button>
         )}
+
+        {/* DELETE */}
+        <button
+          type="button"
+          disabled={
+            saving || action !== null
+          }
+          onClick={() =>
+            setShowDeleteConfirm(true)
+          }
+          className={`${buttonBaseClass} mt-2 border border-[#c94b4b] bg-[#fff5f5] text-[#a33a3a] hover:bg-[#ffeaea]`}
+        >
+          <Trash2
+            size={14}
+            className="shrink-0"
+          />
+
+          <span className="min-w-0 truncate">
+            Delete Product
+          </span>
+        </button>
       </div>
+
+      {/* DELETE CONFIRMATION */}
+      {showDeleteConfirm && (
+        <div className="mt-4 min-w-0 overflow-hidden rounded-xl border border-[#efcaca] bg-[#fff7f7] p-3.5">
+          <div className="min-w-0">
+            <p className="break-words text-sm font-semibold leading-5 text-[#8f2f2f]">
+              Delete this product?
+            </p>
+
+            <p className="mt-1.5 break-words text-xs leading-5 text-[#6f706f]">
+              This action permanently deletes the
+              product and cannot be undone.
+            </p>
+          </div>
+
+          <div className="mt-3 grid min-w-0 grid-cols-2 gap-2">
+            <button
+              type="button"
+              disabled={
+                saving ||
+                action !== null
+              }
+              onClick={() =>
+                setShowDeleteConfirm(false)
+              }
+              className="min-w-0 rounded-xl border border-[#d8d1ca] bg-white px-3 py-2 text-xs font-medium text-[#292c2c] transition hover:bg-[#f8f6f3] disabled:opacity-50"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="button"
+              disabled={
+                saving ||
+                action !== null
+              }
+              onClick={() =>
+                void handleDelete()
+              }
+              className="min-w-0 rounded-xl bg-[#a33a3a] px-3 py-2 text-xs font-medium text-white transition hover:bg-[#8f2f2f] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {action === "delete"
+                ? "Deleting..."
+                : "Yes, Delete"}
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
