@@ -151,6 +151,10 @@ export function BrandStorySectionEditor({
       const result = await uploadImage(
         accessToken,
         file,
+        {
+      resource: "homepage",
+      folder: "campaigns",
+    }
       );
 
       setForm((current) => ({

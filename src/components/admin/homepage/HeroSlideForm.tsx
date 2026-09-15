@@ -60,7 +60,7 @@ export function HeroSlideForm({
   function updateField<K extends keyof HomepageHeroSlide>(
     field: K,
     value: HomepageHeroSlide[K],
-  ) {
+  ): void {
     setForm((current) => ({
       ...current,
       [field]: value,
@@ -120,13 +120,15 @@ export function HeroSlideForm({
     file: File,
     type: "desktop" | "mobile",
   ): Promise<void> {
+    const field =
+      type === "desktop"
+        ? "image"
+        : "mobileImage";
+
     if (!accessToken) {
       setErrors((current) => ({
         ...current,
-        [type === "desktop"
-          ? "image"
-          : "mobileImage"]:
-          "Authentication required.",
+        [field]: "Authentication required.",
       }));
 
       return;
@@ -141,9 +143,7 @@ export function HeroSlideForm({
     if (!allowedTypes.includes(file.type)) {
       setErrors((current) => ({
         ...current,
-        [type === "desktop"
-          ? "image"
-          : "mobileImage"]:
+        [field]:
           "Only JPEG, PNG, and WebP images are allowed.",
       }));
 
@@ -153,34 +153,54 @@ export function HeroSlideForm({
     if (file.size > 5 * 1024 * 1024) {
       setErrors((current) => ({
         ...current,
-        [type === "desktop"
-          ? "image"
-          : "mobileImage"]:
+        [field]:
           "Image size must be 5MB or less.",
       }));
 
       return;
     }
 
+    /*
+     * A new hero slide needs an ID before
+     * its images can be uploaded.
+     *
+     * Existing slides keep their existing ID.
+     */
+    const slideId =
+      form.id.trim() || generateSlideId();
+
+    /*
+     * Store the generated ID immediately.
+     * This ensures desktop and mobile uploads
+     * use the same slide ID.
+     */
+    if (!form.id.trim()) {
+      setForm((current) => ({
+        ...current,
+        id: slideId,
+      }));
+    }
+
     setUploading(type);
 
     setErrors((current) => ({
       ...current,
-      [type === "desktop"
-        ? "image"
-        : "mobileImage"]: "",
+      [field]: "",
     }));
 
     try {
       const result = await uploadImage(
         accessToken,
         file,
+        {
+          resource: "homepage",
+          resourceId: slideId,
+          folder: type,
+        },
       );
 
       updateField(
-        type === "desktop"
-          ? "image"
-          : "mobileImage",
+        field,
         result.url,
       );
     } catch (error) {
@@ -191,9 +211,7 @@ export function HeroSlideForm({
 
       setErrors((current) => ({
         ...current,
-        [type === "desktop"
-          ? "image"
-          : "mobileImage"]:
+        [field]:
           error instanceof Error
             ? error.message
             : "Failed to upload image.",
@@ -213,14 +231,17 @@ export function HeroSlideForm({
       return;
     }
 
-    await handleImageUpload(file, type);
+    await handleImageUpload(
+      file,
+      type,
+    );
 
     event.target.value = "";
   }
 
   function handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
-  ) {
+  ): void {
     event.preventDefault();
 
     if (!validate()) {
@@ -229,15 +250,20 @@ export function HeroSlideForm({
 
     const slide: HomepageHeroSlide = {
       ...form,
-      id: form.id.trim() || generateSlideId(),
+      id:
+        form.id.trim() ||
+        generateSlideId(),
       eyebrow: form.eyebrow.trim(),
       title: form.title.trim(),
       subtitle: form.subtitle.trim(),
-      description: form.description.trim(),
+      description:
+        form.description.trim(),
       image: form.image.trim(),
-      mobileImage: form.mobileImage.trim(),
+      mobileImage:
+        form.mobileImage.trim(),
       href: form.href.trim(),
-      buttonLabel: form.buttonLabel.trim(),
+      buttonLabel:
+        form.buttonLabel.trim(),
     };
 
     onSubmit(slide);
@@ -292,7 +318,10 @@ export function HeroSlideForm({
           value={form.eyebrow}
           placeholder="New Season"
           onChange={(value) =>
-            updateField("eyebrow", value)
+            updateField(
+              "eyebrow",
+              value,
+            )
           }
         />
 
@@ -302,7 +331,10 @@ export function HeroSlideForm({
           error={errors.title}
           placeholder="Timeless Elegance"
           onChange={(value) =>
-            updateField("title", value)
+            updateField(
+              "title",
+              value,
+            )
           }
         />
 
@@ -311,7 +343,10 @@ export function HeroSlideForm({
           value={form.subtitle}
           placeholder="Modern Indian Luxury"
           onChange={(value) =>
-            updateField("subtitle", value)
+            updateField(
+              "subtitle",
+              value,
+            )
           }
         />
 
@@ -321,7 +356,10 @@ export function HeroSlideForm({
             value={form.description}
             placeholder="Modern designs rooted in tradition."
             onChange={(value) =>
-              updateField("description", value)
+              updateField(
+                "description",
+                value,
+              )
             }
           />
         </div>
@@ -330,7 +368,9 @@ export function HeroSlideForm({
           label="Desktop Image"
           value={form.image}
           error={errors.image}
-          uploading={uploading === "desktop"}
+          uploading={
+            uploading === "desktop"
+          }
           inputRef={desktopInputRef}
           onUpload={() =>
             desktopInputRef.current?.click()
@@ -347,7 +387,9 @@ export function HeroSlideForm({
           label="Mobile Image"
           value={form.mobileImage}
           error={errors.mobileImage}
-          uploading={uploading === "mobile"}
+          uploading={
+            uploading === "mobile"
+          }
           inputRef={mobileInputRef}
           onUpload={() =>
             mobileInputRef.current?.click()
@@ -366,7 +408,10 @@ export function HeroSlideForm({
           error={errors.buttonLabel}
           placeholder="Shop Collection"
           onChange={(value) =>
-            updateField("buttonLabel", value)
+            updateField(
+              "buttonLabel",
+              value,
+            )
           }
         />
 
@@ -376,19 +421,26 @@ export function HeroSlideForm({
           error={errors.href}
           placeholder="/collections/new-arrivals"
           onChange={(value) =>
-            updateField("href", value)
+            updateField(
+              "href",
+              value,
+            )
           }
         />
 
         <Field
           label="Start Date"
           type="datetime-local"
-          value={toDateTimeLocal(form.startsAt)}
+          value={toDateTimeLocal(
+            form.startsAt,
+          )}
           onChange={(value) =>
             updateField(
               "startsAt",
               value
-                ? new Date(value).toISOString()
+                ? new Date(
+                    value,
+                  ).toISOString()
                 : null,
             )
           }
@@ -397,13 +449,17 @@ export function HeroSlideForm({
         <Field
           label="End Date"
           type="datetime-local"
-          value={toDateTimeLocal(form.endsAt)}
+          value={toDateTimeLocal(
+            form.endsAt,
+          )}
           error={errors.endsAt}
           onChange={(value) =>
             updateField(
               "endsAt",
               value
-                ? new Date(value).toISOString()
+                ? new Date(
+                    value,
+                  ).toISOString()
                 : null,
             )
           }
@@ -667,15 +723,19 @@ function toDateTimeLocal(
   }
 
   const year = date.getFullYear();
+
   const month = String(
     date.getMonth() + 1,
   ).padStart(2, "0");
+
   const day = String(
     date.getDate(),
   ).padStart(2, "0");
+
   const hours = String(
     date.getHours(),
   ).padStart(2, "0");
+
   const minutes = String(
     date.getMinutes(),
   ).padStart(2, "0");

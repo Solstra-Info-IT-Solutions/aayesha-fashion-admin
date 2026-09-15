@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
+
 import {
+  Image as ImageIcon,
   Loader2,
   X,
 } from "lucide-react";
@@ -11,6 +14,12 @@ import type {
   CatalogFormState,
   CatalogResource,
 } from "@/types/catalog";
+
+import {
+  ImageSelectorModal,
+} from "@/components/media/ImageSelectorModal";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import type { ListedImage } from "@/services/upload.service";
 
 type Option = {
   value: string;
@@ -218,6 +227,82 @@ function ActiveField({
 }
 
 /* =========================================================
+   IMAGE FIELD
+========================================================= */
+
+function ImageField({
+  label,
+  value,
+  onChange,
+  onSelect,
+  disabled,
+  helperText,
+  selectTitle = "Select from media library",
+}: {
+  label: string;
+  value: string;
+  onChange: (
+    value: string,
+  ) => void;
+  onSelect: () => void;
+  disabled: boolean;
+  helperText?: string;
+  selectTitle?: string;
+}) {
+  return (
+    <div>
+      <label className="mb-2 block text-sm font-medium text-neutral-800">
+        {label}
+      </label>
+
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={value}
+          onChange={(event) =>
+            onChange(
+              event.target.value,
+            )
+          }
+          placeholder="https://..."
+          className="min-w-0 flex-1 rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        />
+
+        <button
+          type="button"
+          onClick={onSelect}
+          disabled={disabled}
+          title={selectTitle}
+          className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <ImageIcon className="h-4 w-4" />
+
+          Select
+        </button>
+      </div>
+
+      {helperText && (
+        <p className="mt-1.5 text-xs text-neutral-400">
+          {helperText}
+        </p>
+      )}
+
+      {value && (
+        <div className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50">
+          <div className="aspect-[16/7] w-full">
+            <img
+              src={value}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* =========================================================
    MODAL
 ========================================================= */
 
@@ -233,10 +318,76 @@ export default function CatalogFormModal({
   onSubmit,
   onClose,
 }: Props) {
+  const { accessToken } = useAdminAuth();
+
+  const [imageSelector, setImageSelector] =
+    useState<{
+      open: boolean;
+      field: "image" | "bannerImage";
+      folder: "images" | "banners";
+    }>({
+      open: false,
+      field: "image",
+      folder: "images",
+    });
+
+  const resourceId = getString(
+    form,
+    "id",
+  );
+
+  /* =======================================================
+     IMAGE SELECTOR
+  ======================================================= */
+
+  function openImageSelector(
+    field: "image" | "bannerImage",
+    folder: "images" | "banners",
+  ): void {
+    if (!isEditing || !resourceId) {
+      return;
+    }
+
+    setImageSelector({
+      open: true,
+      field,
+      folder,
+    });
+  }
+
+  function handleImageSelected(
+    image: ListedImage,
+  ): void {
+    onChange(
+      imageSelector.field,
+      image.url,
+    );
+
+    setImageSelector((current) => ({
+      ...current,
+      open: false,
+    }));
+  }
+
+  function closeImageSelector(): void {
+    setImageSelector((current) => ({
+      ...current,
+      open: false,
+    }));
+  }
+
+  const canSelectImages =
+    isEditing &&
+    Boolean(resourceId) &&
+    Boolean(accessToken);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
       <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-        {/* HEADER */}
+        {/* =================================================
+            HEADER
+        ================================================= */}
+
         <div className="flex items-start justify-between border-b border-neutral-200 px-6 py-5">
           <div>
             <h2 className="text-lg font-semibold text-neutral-950">
@@ -261,7 +412,10 @@ export default function CatalogFormModal({
           </button>
         </div>
 
-        {/* FORM */}
+        {/* =================================================
+            FORM
+        ================================================= */}
+
         <form
           onSubmit={onSubmit}
           className="overflow-y-auto p-6"
@@ -276,8 +430,7 @@ export default function CatalogFormModal({
               CATEGORIES
           ================================================= */}
 
-          {resource ===
-            "categories" && (
+          {resource === "categories" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Input
@@ -364,8 +517,8 @@ export default function CatalogFormModal({
                 />
               </div>
 
-              <Input
-                label="Image URL"
+              <ImageField
+                label="Category Image"
                 value={getString(
                   form,
                   "image",
@@ -376,7 +529,26 @@ export default function CatalogFormModal({
                     value,
                   )
                 }
-                placeholder="https://..."
+                onSelect={() =>
+                  openImageSelector(
+                    "image",
+                    "images",
+                  )
+                }
+                disabled={
+                  !canSelectImages ||
+                  saving
+                }
+                helperText={
+                  !isEditing
+                    ? "Save the category first to select an image from its media library."
+                    : undefined
+                }
+                selectTitle={
+                  !isEditing
+                    ? "Save the category first"
+                    : "Select from media library"
+                }
               />
 
               <div className="border-t border-neutral-200 pt-5">
@@ -434,8 +606,7 @@ export default function CatalogFormModal({
               COLLECTIONS
           ================================================= */}
 
-          {resource ===
-            "collections" && (
+          {resource === "collections" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Input
@@ -483,9 +654,9 @@ export default function CatalogFormModal({
                 }
               />
 
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <Input
-                  label="Image URL"
+              <div className="space-y-5">
+                <ImageField
+                  label="Collection Image"
                   value={getString(
                     form,
                     "image",
@@ -496,10 +667,30 @@ export default function CatalogFormModal({
                       value,
                     )
                   }
+                  onSelect={() =>
+                    openImageSelector(
+                      "image",
+                      "images",
+                    )
+                  }
+                  disabled={
+                    !canSelectImages ||
+                    saving
+                  }
+                  helperText={
+                    !isEditing
+                      ? "Save the collection first to select an image from its media library."
+                      : undefined
+                  }
+                  selectTitle={
+                    !isEditing
+                      ? "Save the collection first"
+                      : "Select from media library"
+                  }
                 />
 
-                <Input
-                  label="Banner Image URL"
+                <ImageField
+                  label="Banner Image"
                   value={getString(
                     form,
                     "bannerImage",
@@ -509,6 +700,26 @@ export default function CatalogFormModal({
                       "bannerImage",
                       value,
                     )
+                  }
+                  onSelect={() =>
+                    openImageSelector(
+                      "bannerImage",
+                      "banners",
+                    )
+                  }
+                  disabled={
+                    !canSelectImages ||
+                    saving
+                  }
+                  helperText={
+                    !isEditing
+                      ? "Save the collection first to select a banner from its media library."
+                      : undefined
+                  }
+                  selectTitle={
+                    !isEditing
+                      ? "Save the collection first"
+                      : "Select banner from media library"
                   }
                 />
               </div>
@@ -711,8 +922,7 @@ export default function CatalogFormModal({
               BADGES
           ================================================= */}
 
-          {resource ===
-            "badges" && (
+          {resource === "badges" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Input
@@ -832,8 +1042,7 @@ export default function CatalogFormModal({
               ATTRIBUTES
           ================================================= */}
 
-          {resource ===
-            "attributes" && (
+          {resource === "attributes" && (
             <div className="space-y-5">
               <Input
                 label="Key"
@@ -1021,8 +1230,7 @@ export default function CatalogFormModal({
               COLORS
           ================================================= */}
 
-          {resource ===
-            "colors" && (
+          {resource === "colors" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Input
@@ -1145,7 +1353,10 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* FOOTER */}
+          {/* =================================================
+              FOOTER
+          ================================================= */}
+
           <div className="mt-6 flex justify-end gap-3 border-t border-neutral-200 pt-5">
             <button
               type="button"
@@ -1174,6 +1385,36 @@ export default function CatalogFormModal({
           </div>
         </form>
       </div>
+
+      {/* =====================================================
+          IMAGE SELECTOR MODAL
+      ===================================================== */}
+
+      <ImageSelectorModal
+        open={imageSelector.open}
+        accessToken={accessToken}
+        resource={
+          resource === "categories"
+            ? "category"
+            : "collection"
+        }
+        resourceId={resourceId}
+        folder={imageSelector.folder}
+        selectedUrl={getString(
+          form,
+          imageSelector.field,
+        )}
+        title={
+          imageSelector.folder ===
+          "banners"
+            ? "Select Collection Banner"
+            : resource === "categories"
+              ? "Select Category Image"
+              : "Select Collection Image"
+        }
+        onSelect={handleImageSelected}
+        onClose={closeImageSelector}
+      />
     </div>
   );
 }
