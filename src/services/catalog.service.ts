@@ -2,6 +2,7 @@ import {
   apiGet,
   apiPost,
   apiPatch,
+  apiDelete,
 } from "@/lib/api";
 
 import type {
@@ -30,6 +31,13 @@ export type CatalogListParams = {
   search?: string;
   isActive?: CatalogStatusFilter;
   sort?: CatalogSort;
+};
+
+type CatalogDeleteResponse = {
+  success: true;
+  data: {
+    id: string;
+  };
 };
 
 function buildQuery(
@@ -440,6 +448,125 @@ export async function updateColor(
     }>(
       `/admin/catalog/colors/${id}`,
       input,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE CATEGORIES
+========================================================= */
+
+export async function deleteCategory(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/categories/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE COLLECTIONS
+========================================================= */
+
+export async function deleteCollection(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/collections/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE TAGS
+========================================================= */
+
+export async function deleteTag(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/tags/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE BADGES
+========================================================= */
+
+export async function deleteBadge(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/badges/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE ATTRIBUTES
+========================================================= */
+
+export async function deleteAttribute(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/attributes/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE SIZES
+========================================================= */
+
+export async function deleteSize(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/sizes/${id}`,
+      accessToken,
+    );
+
+  return response.data;
+}
+
+/* =========================================================
+   DELETE COLORS
+========================================================= */
+
+export async function deleteColor(
+  id: string,
+  accessToken: string,
+) {
+  const response =
+    await apiDelete<CatalogDeleteResponse>(
+      `/admin/catalog/colors/${id}`,
       accessToken,
     );
 

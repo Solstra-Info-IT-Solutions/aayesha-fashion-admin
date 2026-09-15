@@ -6,10 +6,6 @@ import {
 } from "react";
 
 import {
-  ChevronDown,
-} from "lucide-react";
-
-import {
   useAdminAuth,
 } from "@/hooks/useAdminAuth";
 
@@ -37,7 +33,18 @@ import {
   updateColor,
   updateSize,
   updateTag,
+  deleteAttribute,
+  deleteBadge,
+  deleteCategory,
+  deleteCollection,
+  deleteColor,
+  deleteSize,
+  deleteTag,
 } from "@/services/catalog.service";
+
+import {
+  uploadImage,
+} from "@/services/upload.service";
 
 import type {
   AttributeMaster,
@@ -63,6 +70,10 @@ import CatalogTable from "./CatalogTable";
 import CatalogPagination from "./CatalogPagination";
 import CatalogEmptyState from "./CatalogEmptyState";
 import CatalogFormModal from "./CatalogFormModal";
+
+/* =========================================================
+   RESOURCE CONFIG
+========================================================= */
 
 const RESOURCE_CONFIG: Record<
   CatalogResource,
@@ -145,6 +156,10 @@ function slugify(
       "-",
     );
 }
+
+/* =========================================================
+   EMPTY FORM
+========================================================= */
 
 function createEmptyForm(
   resource: CatalogResource,
@@ -245,21 +260,27 @@ export default function CatalogResourcePage({
     accessToken,
   } = useAdminAuth();
 
+  /* =======================================================
+     LIST STATE
+  ======================================================= */
+
   const [page, setPage] =
     useState(1);
 
-  const [searchInput, setSearchInput] =
-    useState("");
+  const [
+    searchInput,
+    setSearchInput,
+  ] = useState("");
 
   const [search, setSearch] =
     useState("");
 
-  const [isActive, setIsActive] =
-    useState<
-      "all" |
-      "true" |
-      "false"
-    >("all");
+  const [
+    isActive,
+    setIsActive,
+  ] = useState<
+    "all" | "true" | "false"
+  >("all");
 
   const [sort, setSort] =
     useState<
@@ -284,20 +305,25 @@ export default function CatalogResourcePage({
     sort,
   });
 
+  /* =======================================================
+     CATEGORY DATA
+  ======================================================= */
+
   const categories =
     useMemo(
       () =>
-        resource ===
-        "categories"
-          ? (
-              items as Category[]
-            )
+        resource === "categories"
+          ? (items as Category[])
           : [],
       [
         items,
         resource,
       ],
     );
+
+  /* =======================================================
+     MODAL STATE
+  ======================================================= */
 
   const [
     modalOpen,
@@ -328,18 +354,38 @@ export default function CatalogResourcePage({
     setFormError,
   ] = useState("");
 
+  const [
+  deleting,
+  setDeleting,
+] = useState(false);
+
+  /* =======================================================
+     PENDING IMAGE FILES
+  ======================================================= */
+
+  const [
+    pendingImageFile,
+    setPendingImageFile,
+  ] = useState<File | null>(null);
+
+  const [
+    pendingBannerFile,
+    setPendingBannerFile,
+  ] = useState<File | null>(null);
+
   /* =======================================================
      CREATE
   ======================================================= */
 
-  function openCreate() {
+  function openCreate(): void {
     setEditingItem(null);
 
     setForm(
-      createEmptyForm(
-        resource,
-      ),
+      createEmptyForm(resource),
     );
+
+    setPendingImageFile(null);
+    setPendingBannerFile(null);
 
     setFormError("");
     setModalOpen(true);
@@ -351,73 +397,68 @@ export default function CatalogResourcePage({
 
   function openEdit(
     item: CatalogItem,
-  ) {
+  ): void {
     setEditingItem(item);
+
+    setPendingImageFile(null);
+    setPendingBannerFile(null);
+
     setFormError("");
 
     switch (resource) {
+      /* =====================================================
+         CATEGORIES
+      ===================================================== */
+
       case "categories": {
         const category =
           item as Category;
 
         setForm({
-          id:
-            category._id,
-          name:
-            category.name,
-          slug:
-            category.slug,
+          id: category._id,
+          name: category.name,
+          slug: category.slug,
           description:
-            category.description ??
-            "",
+            category.description ?? "",
           image:
-            category.image ??
-            "",
+            category.image ?? "",
           parentId:
-            category.parentId ??
-            "",
-          sortOrder:
-            String(
-              category.sortOrder ??
-                0,
-            ),
+            category.parentId ?? "",
+          sortOrder: String(
+            category.sortOrder ?? 0,
+          ),
           isActive:
             category.isActive,
           seoTitle:
-            category.seoTitle ??
-            "",
+            category.seoTitle ?? "",
           seoDescription:
-            category.seoDescription ??
-            "",
+            category.seoDescription ?? "",
         });
 
         break;
       }
+
+      /* =====================================================
+         COLLECTIONS
+      ===================================================== */
 
       case "collections": {
         const collection =
           item as Collection;
 
         setForm({
-          id:collection._id,
-          name:
-            collection.name,
-          slug:
-            collection.slug,
+          id: collection._id,
+          name: collection.name,
+          slug: collection.slug,
           description:
-            collection.description ??
-            "",
+            collection.description ?? "",
           image:
-            collection.image ??
-            "",
+            collection.image ?? "",
           bannerImage:
-            collection.bannerImage ??
-            "",
-          sortOrder:
-            String(
-              collection.sortOrder ??
-                0,
-            ),
+            collection.bannerImage ?? "",
+          sortOrder: String(
+            collection.sortOrder ?? 0,
+          ),
           isFeatured:
             collection.isFeatured,
           isActive:
@@ -437,28 +478,28 @@ export default function CatalogResourcePage({
                 )
               : "",
           seoTitle:
-            collection.seoTitle ??
-            "",
+            collection.seoTitle ?? "",
           seoDescription:
-            collection.seoDescription ??
-            "",
+            collection.seoDescription ?? "",
         });
 
         break;
       }
+
+      /* =====================================================
+         TAGS
+      ===================================================== */
 
       case "tags": {
         const tag =
           item as Tag;
 
         setForm({
-          name:
-            tag.name,
-          slug:
-            tag.slug,
+          id: tag._id,
+          name: tag.name,
+          slug: tag.slug,
           description:
-            tag.description ??
-            "",
+            tag.description ?? "",
           isActive:
             tag.isActive,
         });
@@ -466,24 +507,23 @@ export default function CatalogResourcePage({
         break;
       }
 
+      /* =====================================================
+         BADGES
+      ===================================================== */
+
       case "badges": {
         const badge =
           item as Badge;
 
         setForm({
-          name:
-            badge.name,
-          slug:
-            badge.slug,
-          label:
-            badge.label,
-          tone:
-            badge.tone,
-          sortOrder:
-            String(
-              badge.sortOrder ??
-                0,
-            ),
+          id: badge._id,
+          name: badge.name,
+          slug: badge.slug,
+          label: badge.label,
+          tone: badge.tone,
+          sortOrder: String(
+            badge.sortOrder ?? 0,
+          ),
           isActive:
             badge.isActive,
         });
@@ -491,26 +531,26 @@ export default function CatalogResourcePage({
         break;
       }
 
+      /* =====================================================
+         ATTRIBUTES
+      ===================================================== */
+
       case "attributes": {
         const attribute =
           item as AttributeMaster;
 
         setForm({
-          key:
-            attribute.key,
-          label:
-            attribute.label,
-          type:
-            attribute.type,
+          id: attribute._id,
+          key: attribute.key,
+          label: attribute.label,
+          type: attribute.type,
           options:
             attribute.options.join(
               ", ",
             ),
-          sortOrder:
-            String(
-              attribute.sortOrder ??
-                0,
-            ),
+          sortOrder: String(
+            attribute.sortOrder ?? 0,
+          ),
           isActive:
             attribute.isActive,
         });
@@ -518,20 +558,21 @@ export default function CatalogResourcePage({
         break;
       }
 
+      /* =====================================================
+         SIZES
+      ===================================================== */
+
       case "sizes": {
         const size =
           item as SizeMaster;
 
         setForm({
-          code:
-            size.code,
-          label:
-            size.label,
-          sortOrder:
-            String(
-              size.sortOrder ??
-                0,
-            ),
+          id: size._id,
+          code: size.code,
+          label: size.label,
+          sortOrder: String(
+            size.sortOrder ?? 0,
+          ),
           isActive:
             size.isActive,
         });
@@ -539,25 +580,24 @@ export default function CatalogResourcePage({
         break;
       }
 
+      /* =====================================================
+         COLORS
+      ===================================================== */
+
       case "colors": {
         const color =
           item as ColorMaster;
 
         setForm({
-          name:
-            color.name,
-          slug:
-            color.slug,
-          hex:
-            color.hex ?? "",
+          id: color._id,
+          name: color.name,
+          slug: color.slug,
+          hex: color.hex ?? "",
           swatchImage:
-            color.swatchImage ??
-            "",
-          sortOrder:
-            String(
-              color.sortOrder ??
-                0,
-            ),
+            color.swatchImage ?? "",
+          sortOrder: String(
+            color.sortOrder ?? 0,
+          ),
           isActive:
             color.isActive,
         });
@@ -573,7 +613,7 @@ export default function CatalogResourcePage({
      CLOSE
   ======================================================= */
 
-  function closeModal() {
+  function closeModal(): void {
     if (saving) {
       return;
     }
@@ -581,10 +621,11 @@ export default function CatalogResourcePage({
     setModalOpen(false);
     setEditingItem(null);
 
+    setPendingImageFile(null);
+    setPendingBannerFile(null);
+
     setForm(
-      createEmptyForm(
-        resource,
-      ),
+      createEmptyForm(resource),
     );
 
     setFormError("");
@@ -599,7 +640,7 @@ export default function CatalogResourcePage({
     value:
       | string
       | boolean,
-  ) {
+  ): void {
     setForm(
       (
         current: CatalogFormState,
@@ -611,12 +652,138 @@ export default function CatalogResourcePage({
   }
 
   /* =======================================================
+     PENDING IMAGE CHANGE
+  ======================================================= */
+
+  function handlePendingImageChange(
+    field:
+      | "image"
+      | "bannerImage",
+    file: File | null,
+  ): void {
+    if (field === "image") {
+      setPendingImageFile(file);
+      return;
+    }
+
+    setPendingBannerFile(file);
+  }
+
+
+  /* =======================================================
+   DELETE
+======================================================= */
+
+async function handleDelete(
+  item: CatalogItem,
+): Promise<void> {
+  if (!accessToken) {
+    setFormError(
+      "Authentication is required.",
+    );
+
+    return;
+  }
+
+  const itemName =
+    "name" in item &&
+    typeof item.name === "string"
+      ? item.name
+      : "label" in item &&
+          typeof item.label === "string"
+        ? item.label
+        : "code" in item &&
+            typeof item.code === "string"
+          ? item.code
+          : "this item";
+
+  const confirmed =
+    window.confirm(
+      `Are you sure you want to delete "${itemName}"?\n\nThis action cannot be undone.`,
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  setDeleting(true);
+
+  try {
+    switch (resource) {
+      case "categories":
+        await deleteCategory(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "collections":
+        await deleteCollection(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "tags":
+        await deleteTag(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "badges":
+        await deleteBadge(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "attributes":
+        await deleteAttribute(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "sizes":
+        await deleteSize(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      case "colors":
+        await deleteColor(
+          item._id,
+          accessToken,
+        );
+        break;
+
+      default:
+        throw new Error(
+          "Unsupported catalog resource.",
+        );
+    }
+
+    await refresh();
+  } catch (err) {
+    setFormError(
+      err instanceof Error
+        ? err.message
+        : "Unable to delete item.",
+    );
+  } finally {
+    setDeleting(false);
+  }
+}
+
+  /* =======================================================
      SUBMIT
   ======================================================= */
 
   async function handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
-  ) {
+  ): Promise<void> {
     event.preventDefault();
 
     if (!accessToken) {
@@ -639,8 +806,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "categories"
+        resource === "categories"
       ) {
         const name =
           String(
@@ -665,29 +831,32 @@ export default function CatalogResourcePage({
           );
         }
 
-        const payload: CreateCategoryInput =
-          {
+        /*
+         * EDIT
+         *
+         * Existing category:
+         * Image is selected through ImageSelectorModal.
+         */
+        if (id) {
+          const payload:
+            CreateCategoryInput = {
             name,
             slug,
             description:
               String(
-                form.description ??
-                  "",
+                form.description ?? "",
               ).trim(),
             image:
               String(
-                form.image ??
-                  "",
+                form.image ?? "",
               ).trim(),
             parentId:
               String(
-                form.parentId ??
-                  "",
+                form.parentId ?? "",
               ) || null,
             sortOrder:
               Number(
-                form.sortOrder ??
-                  0,
+                form.sortOrder ?? 0,
               ) || 0,
             isActive:
               Boolean(
@@ -695,27 +864,89 @@ export default function CatalogResourcePage({
               ),
             seoTitle:
               String(
-                form.seoTitle ??
-                  "",
+                form.seoTitle ?? "",
               ).trim(),
             seoDescription:
               String(
-                form.seoDescription ??
-                  "",
+                form.seoDescription ?? "",
               ).trim(),
           };
 
-        if (id) {
           await updateCategory(
             id,
             payload,
             accessToken,
           );
-        } else {
-          await createCategory(
-            payload,
-            accessToken,
-          );
+        }
+
+        /*
+         * CREATE
+         *
+         * 1. Create category without local file URL.
+         * 2. Get generated category ID.
+         * 3. Upload image to:
+         *    categories/{categoryId}/images
+         * 4. Save returned Cloudinary URL.
+         */
+        else {
+          const createdCategory =
+            await createCategory(
+              {
+                name,
+                slug,
+                description:
+                  String(
+                    form.description ?? "",
+                  ).trim(),
+                image: "",
+                parentId:
+                  String(
+                    form.parentId ?? "",
+                  ) || null,
+                sortOrder:
+                  Number(
+                    form.sortOrder ?? 0,
+                  ) || 0,
+                isActive:
+                  Boolean(
+                    form.isActive,
+                  ),
+                seoTitle:
+                  String(
+                    form.seoTitle ?? "",
+                  ).trim(),
+                seoDescription:
+                  String(
+                    form.seoDescription ?? "",
+                  ).trim(),
+              },
+              accessToken,
+            );
+
+          if (pendingImageFile) {
+            const uploadedImage =
+              await uploadImage(
+                accessToken,
+                pendingImageFile,
+                {
+                  resource:
+                    "category",
+                  resourceId:
+                    createdCategory._id,
+                  folder:
+                    "images",
+                },
+              );
+
+            await updateCategory(
+              createdCategory._id,
+              {
+                image:
+                  uploadedImage.url,
+              },
+              accessToken,
+            );
+          }
         }
       }
 
@@ -724,8 +955,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "collections"
+        resource === "collections"
       ) {
         const name =
           String(
@@ -752,39 +982,37 @@ export default function CatalogResourcePage({
 
         const startsAt =
           String(
-            form.startsAt ??
-              "",
+            form.startsAt ?? "",
           ).trim();
 
         const endsAt =
           String(
-            form.endsAt ??
-              "",
+            form.endsAt ?? "",
           ).trim();
 
-        const payload: CreateCollectionInput =
-          {
+        /*
+         * EDIT
+         */
+        if (id) {
+          const payload:
+            CreateCollectionInput = {
             name,
             slug,
             description:
               String(
-                form.description ??
-                  "",
+                form.description ?? "",
               ).trim(),
             image:
               String(
-                form.image ??
-                  "",
+                form.image ?? "",
               ).trim(),
             bannerImage:
               String(
-                form.bannerImage ??
-                  "",
+                form.bannerImage ?? "",
               ).trim(),
             sortOrder:
               Number(
-                form.sortOrder ??
-                  0,
+                form.sortOrder ?? 0,
               ) || 0,
             isFeatured:
               Boolean(
@@ -806,27 +1034,156 @@ export default function CatalogResourcePage({
               : null,
             seoTitle:
               String(
-                form.seoTitle ??
-                  "",
+                form.seoTitle ?? "",
               ).trim(),
             seoDescription:
               String(
-                form.seoDescription ??
-                  "",
+                form.seoDescription ?? "",
               ).trim(),
           };
 
-        if (id) {
           await updateCollection(
             id,
             payload,
             accessToken,
           );
-        } else {
-          await createCollection(
-            payload,
-            accessToken,
-          );
+        }
+
+        /*
+         * CREATE
+         *
+         * 1. Create collection.
+         * 2. Get collection ID.
+         * 3. Upload image.
+         * 4. Upload banner.
+         * 5. Save URLs.
+         */
+        else {
+          const createdCollection =
+            await createCollection(
+              {
+                name,
+                slug,
+                description:
+                  String(
+                    form.description ?? "",
+                  ).trim(),
+                image: "",
+                bannerImage: "",
+                sortOrder:
+                  Number(
+                    form.sortOrder ?? 0,
+                  ) || 0,
+                isFeatured:
+                  Boolean(
+                    form.isFeatured,
+                  ),
+                isActive:
+                  Boolean(
+                    form.isActive,
+                  ),
+                startsAt: startsAt
+                  ? new Date(
+                      startsAt,
+                    ).toISOString()
+                  : null,
+                endsAt: endsAt
+                  ? new Date(
+                      endsAt,
+                    ).toISOString()
+                  : null,
+                seoTitle:
+                  String(
+                    form.seoTitle ?? "",
+                  ).trim(),
+                seoDescription:
+                  String(
+                    form.seoDescription ?? "",
+                  ).trim(),
+              },
+              accessToken,
+            );
+
+          const collectionId =
+            createdCollection._id;
+
+          let imageUrl = "";
+          let bannerImageUrl = "";
+
+          /* ===============================================
+             COLLECTION IMAGE
+          =============================================== */
+
+          if (pendingImageFile) {
+            const uploadedImage =
+              await uploadImage(
+                accessToken,
+                pendingImageFile,
+                {
+                  resource:
+                    "collection",
+                  resourceId:
+                    collectionId,
+                  folder:
+                    "images",
+                },
+              );
+
+            imageUrl =
+              uploadedImage.url;
+          }
+
+          /* ===============================================
+             COLLECTION BANNER
+          =============================================== */
+
+          if (pendingBannerFile) {
+            const uploadedBanner =
+              await uploadImage(
+                accessToken,
+                pendingBannerFile,
+                {
+                  resource:
+                    "collection",
+                  resourceId:
+                    collectionId,
+                  folder:
+                    "banners",
+                },
+              );
+
+            bannerImageUrl =
+              uploadedBanner.url;
+          }
+
+          /* ===============================================
+             UPDATE URLS
+          =============================================== */
+
+          if (
+            imageUrl ||
+            bannerImageUrl
+          ) {
+            await updateCollection(
+              collectionId,
+              {
+                ...(imageUrl
+                  ? {
+                      image:
+                        imageUrl,
+                    }
+                  : {}),
+
+                ...(bannerImageUrl
+                  ? {
+                      bannerImage:
+                        bannerImageUrl,
+                    }
+                  : {}),
+              },
+              accessToken,
+            );
+          }
         }
       }
 
@@ -835,8 +1192,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "tags"
+        resource === "tags"
       ) {
         const name =
           String(
@@ -861,20 +1217,19 @@ export default function CatalogResourcePage({
           );
         }
 
-        const payload: CreateTagInput =
-          {
-            name,
-            slug,
-            description:
-              String(
-                form.description ??
-                  "",
-              ).trim(),
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-          };
+        const payload:
+          CreateTagInput = {
+          name,
+          slug,
+          description:
+            String(
+              form.description ?? "",
+            ).trim(),
+          isActive:
+            Boolean(
+              form.isActive,
+            ),
+        };
 
         if (id) {
           await updateTag(
@@ -895,8 +1250,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "badges"
+        resource === "badges"
       ) {
         const name =
           String(
@@ -932,23 +1286,22 @@ export default function CatalogResourcePage({
           );
         }
 
-        const payload: CreateBadgeInput =
-          {
-            name,
-            slug,
-            label,
-            tone:
-              form.tone as CreateBadgeInput["tone"],
-            sortOrder:
-              Number(
-                form.sortOrder ??
-                  0,
-              ) || 0,
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-          };
+        const payload:
+          CreateBadgeInput = {
+          name,
+          slug,
+          label,
+          tone:
+            form.tone as CreateBadgeInput["tone"],
+          sortOrder:
+            Number(
+              form.sortOrder ?? 0,
+            ) || 0,
+          isActive:
+            Boolean(
+              form.isActive,
+            ),
+        };
 
         if (id) {
           await updateBadge(
@@ -969,8 +1322,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "attributes"
+        resource === "attributes"
       ) {
         const key =
           String(
@@ -1002,30 +1354,27 @@ export default function CatalogResourcePage({
           )
             .split(",")
             .map(
-              (
-                value,
-              ) =>
+              (value) =>
                 value.trim(),
             )
             .filter(Boolean);
 
-        const payload: CreateAttributeInput =
-          {
-            key,
-            label,
-            type:
-              form.type as CreateAttributeInput["type"],
-            options,
-            sortOrder:
-              Number(
-                form.sortOrder ??
-                  0,
-              ) || 0,
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-          };
+        const payload:
+          CreateAttributeInput = {
+          key,
+          label,
+          type:
+            form.type as CreateAttributeInput["type"],
+          options,
+          sortOrder:
+            Number(
+              form.sortOrder ?? 0,
+            ) || 0,
+          isActive:
+            Boolean(
+              form.isActive,
+            ),
+        };
 
         if (id) {
           await updateAttribute(
@@ -1046,8 +1395,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "sizes"
+        resource === "sizes"
       ) {
         const code =
           String(
@@ -1073,20 +1421,19 @@ export default function CatalogResourcePage({
           );
         }
 
-        const payload: CreateSizeInput =
-          {
-            code,
-            label,
-            sortOrder:
-              Number(
-                form.sortOrder ??
-                  0,
-              ) || 0,
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-          };
+        const payload:
+          CreateSizeInput = {
+          code,
+          label,
+          sortOrder:
+            Number(
+              form.sortOrder ?? 0,
+            ) || 0,
+          isActive:
+            Boolean(
+              form.isActive,
+            ),
+        };
 
         if (id) {
           await updateSize(
@@ -1107,8 +1454,7 @@ export default function CatalogResourcePage({
       =================================================== */
 
       if (
-        resource ===
-        "colors"
+        resource === "colors"
       ) {
         const name =
           String(
@@ -1138,26 +1484,24 @@ export default function CatalogResourcePage({
             form.hex ?? "",
           ).trim();
 
-        const payload: CreateColorInput =
-          {
-            name,
-            slug,
-            hex: hex || null,
-            swatchImage:
-              String(
-                form.swatchImage ??
-                  "",
-              ).trim(),
-            sortOrder:
-              Number(
-                form.sortOrder ??
-                  0,
-              ) || 0,
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-          };
+        const payload:
+          CreateColorInput = {
+          name,
+          slug,
+          hex: hex || null,
+          swatchImage:
+            String(
+              form.swatchImage ?? "",
+            ).trim(),
+          sortOrder:
+            Number(
+              form.sortOrder ?? 0,
+            ) || 0,
+          isActive:
+            Boolean(
+              form.isActive,
+            ),
+        };
 
         if (id) {
           await updateColor(
@@ -1172,6 +1516,13 @@ export default function CatalogResourcePage({
           );
         }
       }
+
+      /* ===================================================
+         SUCCESS
+      =================================================== */
+
+      setPendingImageFile(null);
+      setPendingBannerFile(null);
 
       closeModal();
 
@@ -1191,7 +1542,7 @@ export default function CatalogResourcePage({
      SEARCH
   ======================================================= */
 
-  function applySearch() {
+  function applySearch(): void {
     setPage(1);
 
     setSearch(
@@ -1199,7 +1550,7 @@ export default function CatalogResourcePage({
     );
   }
 
-  function clearSearch() {
+  function clearSearch(): void {
     setSearchInput("");
     setSearch("");
     setPage(1);
@@ -1225,42 +1576,34 @@ export default function CatalogResourcePage({
         }),
       );
 
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <div className="space-y-6">
       <CatalogHeader
-        title={
-          config.title
-        }
+        title={config.title}
         description={
           config.description
         }
         addLabel={
           config.addLabel
         }
-        loading={
-          loading
-        }
+        loading={loading}
         onRefresh={() =>
           void refresh()
         }
-        onAdd={
-          openCreate
-        }
+        onAdd={openCreate}
       />
 
       <CatalogToolbar
         searchInput={
           searchInput
         }
-        search={
-          search
-        }
-        isActive={
-          isActive
-        }
-        sort={
-          sort
-        }
+        search={search}
+        isActive={isActive}
+        sort={sort}
         onSearchInputChange={
           setSearchInput
         }
@@ -1274,23 +1617,19 @@ export default function CatalogResourcePage({
           value,
         ) => {
           setPage(1);
-          setIsActive(
-            value,
-          );
+          setIsActive(value);
         }}
         onSortChange={(
           value,
         ) => {
           setPage(1);
-          setSort(
-            value,
-          );
+          setSort(value);
         }}
       />
 
-      {error && (
+      {(error || formError) && (
         <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-          {error}
+          {error || formError}
         </div>
       )}
 
@@ -1301,15 +1640,10 @@ export default function CatalogResourcePage({
             resource={
               resource
             }
-            items={
-              items
-            }
-            loading={
-              loading
-            }
-            onEdit={
-              openEdit
-            }
+            items={items}
+            loading={loading}
+            onEdit={openEdit}
+            onDelete={handleDelete}
           />
         ) : (
           <CatalogEmptyState
@@ -1325,8 +1659,7 @@ export default function CatalogResourcePage({
         )}
 
         {!loading &&
-          items.length >
-            0 && (
+          items.length > 0 && (
             <CatalogPagination
               page={
                 pagination.page
@@ -1337,9 +1670,7 @@ export default function CatalogResourcePage({
               total={
                 pagination.total
               }
-              loading={
-                loading
-              }
+              loading={loading}
               onPrevious={() =>
                 setPage(
                   (
@@ -1347,8 +1678,7 @@ export default function CatalogResourcePage({
                   ) =>
                     Math.max(
                       1,
-                      current -
-                        1,
+                      current - 1,
                     ),
                 )
               }
@@ -1357,8 +1687,7 @@ export default function CatalogResourcePage({
                   (
                     current,
                   ) =>
-                    current +
-                    1,
+                    current + 1,
                 )
               }
             />
@@ -1378,15 +1707,9 @@ export default function CatalogResourcePage({
                 )}`
               : config.addLabel
           }
-          form={
-            form
-          }
-          saving={
-            saving
-          }
-          error={
-            formError
-          }
+          form={form}
+          saving={saving}
+          error={formError}
           categoryOptions={
             parentOptions
           }
@@ -1397,6 +1720,9 @@ export default function CatalogResourcePage({
           }
           onChange={
             updateField
+          }
+          onPendingImageChange={
+            handlePendingImageChange
           }
           onSubmit={
             handleSubmit

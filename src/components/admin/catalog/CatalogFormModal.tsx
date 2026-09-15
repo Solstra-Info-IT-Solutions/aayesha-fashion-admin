@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import {
   Image as ImageIcon,
   Loader2,
+  Upload,
   X,
 } from "lucide-react";
 
@@ -18,8 +22,14 @@ import type {
 import {
   ImageSelectorModal,
 } from "@/components/media/ImageSelectorModal";
-import { useAdminAuth } from "@/hooks/useAdminAuth";
-import type { ListedImage } from "@/services/upload.service";
+
+import {
+  useAdminAuth,
+} from "@/hooks/useAdminAuth";
+
+import type {
+  ListedImage,
+} from "@/services/upload.service";
 
 type Option = {
   value: string;
@@ -34,19 +44,23 @@ type Props = {
   error: string;
   categoryOptions?: Option[];
   isEditing: boolean;
+
   onChange: (
     key: string,
     value: string | boolean,
   ) => void;
+
+  onPendingImageChange: (
+    field: "image" | "bannerImage",
+    file: File | null,
+  ) => void;
+
   onSubmit: (
     event: React.FormEvent<HTMLFormElement>,
   ) => void;
+
   onClose: () => void;
 };
-
-/* =========================================================
-   FIELD HELPERS
-========================================================= */
 
 function getString(
   form: CatalogFormState,
@@ -66,10 +80,6 @@ function getBoolean(
   return form[key] === true;
 }
 
-/* =========================================================
-   INPUT
-========================================================= */
-
 function Input({
   label,
   value,
@@ -79,9 +89,7 @@ function Input({
 }: {
   label: string;
   value: string;
-  onChange: (
-    value: string,
-  ) => void;
+  onChange: (value: string) => void;
   placeholder?: string;
   type?: string;
 }) {
@@ -96,19 +104,13 @@ function Input({
         value={value}
         placeholder={placeholder}
         onChange={(event) =>
-          onChange(
-            event.target.value,
-          )
+          onChange(event.target.value)
         }
         className="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       />
     </div>
   );
 }
-
-/* =========================================================
-   TEXTAREA
-========================================================= */
 
 function TextArea({
   label,
@@ -118,9 +120,7 @@ function TextArea({
 }: {
   label: string;
   value: string;
-  onChange: (
-    value: string,
-  ) => void;
+  onChange: (value: string) => void;
   placeholder?: string;
 }) {
   return (
@@ -134,19 +134,13 @@ function TextArea({
         value={value}
         placeholder={placeholder}
         onChange={(event) =>
-          onChange(
-            event.target.value,
-          )
+          onChange(event.target.value)
         }
         className="w-full resize-y rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       />
     </div>
   );
 }
-
-/* =========================================================
-   SELECT
-========================================================= */
 
 function Select({
   label,
@@ -157,9 +151,7 @@ function Select({
   label: string;
   value: string;
   options: Option[];
-  onChange: (
-    value: string,
-  ) => void;
+  onChange: (value: string) => void;
 }) {
   return (
     <div>
@@ -170,30 +162,22 @@ function Select({
       <select
         value={value}
         onChange={(event) =>
-          onChange(
-            event.target.value,
-          )
+          onChange(event.target.value)
         }
         className="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       >
-        {options.map(
-          (option) => (
-            <option
-              key={option.value}
-              value={option.value}
-            >
-              {option.label}
-            </option>
-          ),
-        )}
+        {options.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+          >
+            {option.label}
+          </option>
+        ))}
       </select>
     </div>
   );
 }
-
-/* =========================================================
-   ACTIVE FIELD
-========================================================= */
 
 function ActiveField({
   value,
@@ -201,9 +185,7 @@ function ActiveField({
   label = "Active",
 }: {
   value: boolean;
-  onChange: (
-    value: boolean,
-  ) => void;
+  onChange: (value: boolean) => void;
   label?: string;
 }) {
   return (
@@ -212,9 +194,7 @@ function ActiveField({
         type="checkbox"
         checked={value}
         onChange={(event) =>
-          onChange(
-            event.target.checked,
-          )
+          onChange(event.target.checked)
         }
         className="h-4 w-4 rounded border-neutral-300"
       />
@@ -226,29 +206,107 @@ function ActiveField({
   );
 }
 
-/* =========================================================
-   IMAGE FIELD
-========================================================= */
-
 function ImageField({
   label,
   value,
   onChange,
   onSelect,
+  onPendingImageChange,
   disabled,
+  isEditing,
   helperText,
   selectTitle = "Select from media library",
 }: {
   label: string;
   value: string;
-  onChange: (
-    value: string,
-  ) => void;
+  onChange: (value: string) => void;
   onSelect: () => void;
+  onPendingImageChange: (
+    file: File | null,
+  ) => void;
   disabled: boolean;
+  isEditing: boolean;
   helperText?: string;
   selectTitle?: string;
 }) {
+  const [
+    pendingFile,
+    setPendingFile,
+  ] = useState<File | null>(null);
+
+  const [
+    previewUrl,
+    setPreviewUrl,
+  ] = useState("");
+
+  function handleFileChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void {
+    const file =
+      event.target.files?.[0];
+
+    event.target.value = "";
+
+    if (!file) {
+      return;
+    }
+
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+    ];
+
+    if (
+      !allowedTypes.includes(file.type)
+    ) {
+      window.alert(
+        "Only JPEG, PNG, and WebP images are allowed.",
+      );
+
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      window.alert(
+        "Image size must be 5 MB or less.",
+      );
+
+      return;
+    }
+
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+
+    const nextPreviewUrl =
+      URL.createObjectURL(file);
+
+    setPendingFile(file);
+    setPreviewUrl(nextPreviewUrl);
+
+    onPendingImageChange(file);
+  }
+
+  function removePendingImage(): void {
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+
+    setPendingFile(null);
+    setPreviewUrl("");
+
+    onPendingImageChange(null);
+  }
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
+
   return (
     <div>
       <label className="mb-2 block text-sm font-medium text-neutral-800">
@@ -260,25 +318,44 @@ function ImageField({
           type="text"
           value={value}
           onChange={(event) =>
-            onChange(
-              event.target.value,
-            )
+            onChange(event.target.value)
           }
           placeholder="https://..."
           className="min-w-0 flex-1 rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
         />
 
-        <button
-          type="button"
-          onClick={onSelect}
-          disabled={disabled}
-          title={selectTitle}
-          className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <ImageIcon className="h-4 w-4" />
+        {isEditing ? (
+          <button
+            type="button"
+            onClick={onSelect}
+            disabled={disabled}
+            title={selectTitle}
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <ImageIcon className="h-4 w-4" />
+            Select
+          </button>
+        ) : (
+          <label
+            className={[
+              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-white",
+              disabled
+                ? "pointer-events-none cursor-not-allowed opacity-50"
+                : "",
+            ].join(" ")}
+          >
+            <Upload className="h-4 w-4" />
+            Choose Image
 
-          Select
-        </button>
+            <input
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={handleFileChange}
+              disabled={disabled}
+              className="hidden"
+            />
+          </label>
+        )}
       </div>
 
       {helperText && (
@@ -287,7 +364,34 @@ function ImageField({
         </p>
       )}
 
-      {value && (
+      {pendingFile && previewUrl && (
+        <div className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50">
+          <div className="aspect-[16/7] w-full">
+            <img
+              src={previewUrl}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <div className="flex items-center justify-between border-t border-neutral-200 px-3 py-2">
+            <p className="min-w-0 truncate text-xs text-neutral-600">
+              {pendingFile.name}
+            </p>
+
+            <button
+              type="button"
+              onClick={removePendingImage}
+              disabled={disabled}
+              className="ml-3 shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-rose-600 transition hover:bg-rose-50 disabled:opacity-50"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!pendingFile && value && (
         <div className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50">
           <div className="aspect-[16/7] w-full">
             <img
@@ -302,10 +406,6 @@ function ImageField({
   );
 }
 
-/* =========================================================
-   MODAL
-========================================================= */
-
 export default function CatalogFormModal({
   resource,
   title,
@@ -315,30 +415,28 @@ export default function CatalogFormModal({
   categoryOptions = [],
   isEditing,
   onChange,
+  onPendingImageChange,
   onSubmit,
   onClose,
 }: Props) {
-  const { accessToken } = useAdminAuth();
+  const { accessToken } =
+    useAdminAuth();
 
-  const [imageSelector, setImageSelector] =
-    useState<{
-      open: boolean;
-      field: "image" | "bannerImage";
-      folder: "images" | "banners";
-    }>({
-      open: false,
-      field: "image",
-      folder: "images",
-    });
+  const [
+    imageSelector,
+    setImageSelector,
+  ] = useState<{
+    open: boolean;
+    field: "image" | "bannerImage";
+    folder: "images" | "banners";
+  }>({
+    open: false,
+    field: "image",
+    folder: "images",
+  });
 
-  const resourceId = getString(
-    form,
-    "id",
-  );
-
-  /* =======================================================
-     IMAGE SELECTOR
-  ======================================================= */
+  const resourceId =
+    getString(form, "id");
 
   function openImageSelector(
     field: "image" | "bannerImage",
@@ -363,17 +461,21 @@ export default function CatalogFormModal({
       image.url,
     );
 
-    setImageSelector((current) => ({
-      ...current,
-      open: false,
-    }));
+    setImageSelector(
+      (current) => ({
+        ...current,
+        open: false,
+      }),
+    );
   }
 
   function closeImageSelector(): void {
-    setImageSelector((current) => ({
-      ...current,
-      open: false,
-    }));
+    setImageSelector(
+      (current) => ({
+        ...current,
+        open: false,
+      }),
+    );
   }
 
   const canSelectImages =
@@ -384,10 +486,6 @@ export default function CatalogFormModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
       <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-        {/* =================================================
-            HEADER
-        ================================================= */}
-
         <div className="flex items-start justify-between border-b border-neutral-200 px-6 py-5">
           <div>
             <h2 className="text-lg font-semibold text-neutral-950">
@@ -412,10 +510,6 @@ export default function CatalogFormModal({
           </button>
         </div>
 
-        {/* =================================================
-            FORM
-        ================================================= */}
-
         <form
           onSubmit={onSubmit}
           className="overflow-y-auto p-6"
@@ -426,34 +520,21 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* =================================================
-              CATEGORIES
-          ================================================= */}
-
           {resource === "categories" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Input
                   label="Name"
-                  value={getString(
-                    form,
-                    "name",
-                  )}
+                  value={getString(form, "name")}
                   onChange={(value) =>
-                    onChange(
-                      "name",
-                      value,
-                    )
+                    onChange("name", value)
                   }
                   placeholder="Sarees"
                 />
 
                 <Input
                   label="Slug"
-                  value={getString(
-                    form,
-                    "slug",
-                  )}
+                  value={getString(form, "slug")}
                   onChange={(value) =>
                     onChange(
                       "slug",
@@ -488,8 +569,7 @@ export default function CatalogFormModal({
                   options={[
                     {
                       value: "",
-                      label:
-                        "No Parent",
+                      label: "No Parent",
                     },
                     ...categoryOptions,
                   ]}
@@ -524,10 +604,7 @@ export default function CatalogFormModal({
                   "image",
                 )}
                 onChange={(value) =>
-                  onChange(
-                    "image",
-                    value,
-                  )
+                  onChange("image", value)
                 }
                 onSelect={() =>
                   openImageSelector(
@@ -535,19 +612,18 @@ export default function CatalogFormModal({
                     "images",
                   )
                 }
-                disabled={
-                  !canSelectImages ||
-                  saving
+                onPendingImageChange={(file) =>
+                  onPendingImageChange(
+                    "image",
+                    file,
+                  )
                 }
+                disabled={saving}
+                isEditing={isEditing}
                 helperText={
-                  !isEditing
-                    ? "Save the category first to select an image from its media library."
-                    : undefined
-                }
-                selectTitle={
-                  !isEditing
-                    ? "Save the category first"
-                    : "Select from media library"
+                  isEditing
+                    ? "Select an existing image from the category media library."
+                    : "Choose an image. It will be uploaded after the category is created."
                 }
               />
 
@@ -602,10 +678,6 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* =================================================
-              COLLECTIONS
-          ================================================= */}
-
           {resource === "collections" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -616,10 +688,7 @@ export default function CatalogFormModal({
                     "name",
                   )}
                   onChange={(value) =>
-                    onChange(
-                      "name",
-                      value,
-                    )
+                    onChange("name", value)
                   }
                   placeholder="Festive Edit"
                 />
@@ -662,10 +731,7 @@ export default function CatalogFormModal({
                     "image",
                   )}
                   onChange={(value) =>
-                    onChange(
-                      "image",
-                      value,
-                    )
+                    onChange("image", value)
                   }
                   onSelect={() =>
                     openImageSelector(
@@ -673,24 +739,23 @@ export default function CatalogFormModal({
                       "images",
                     )
                   }
-                  disabled={
-                    !canSelectImages ||
-                    saving
+                  onPendingImageChange={(file) =>
+                    onPendingImageChange(
+                      "image",
+                      file,
+                    )
                   }
+                  disabled={saving}
+                  isEditing={isEditing}
                   helperText={
-                    !isEditing
-                      ? "Save the collection first to select an image from its media library."
-                      : undefined
-                  }
-                  selectTitle={
-                    !isEditing
-                      ? "Save the collection first"
-                      : "Select from media library"
+                    isEditing
+                      ? "Select an existing image from the collection media library."
+                      : "Choose an image. It will be uploaded after the collection is created."
                   }
                 />
 
                 <ImageField
-                  label="Banner Image"
+                  label="Collection Banner"
                   value={getString(
                     form,
                     "bannerImage",
@@ -707,20 +772,20 @@ export default function CatalogFormModal({
                       "banners",
                     )
                   }
-                  disabled={
-                    !canSelectImages ||
-                    saving
+                  onPendingImageChange={(file) =>
+                    onPendingImageChange(
+                      "bannerImage",
+                      file,
+                    )
                   }
+                  disabled={saving}
+                  isEditing={isEditing}
                   helperText={
-                    !isEditing
-                      ? "Save the collection first to select a banner from its media library."
-                      : undefined
+                    isEditing
+                      ? "Select an existing banner from the collection media library."
+                      : "Choose a banner. It will be uploaded after the collection is created."
                   }
-                  selectTitle={
-                    !isEditing
-                      ? "Save the collection first"
-                      : "Select banner from media library"
-                  }
+                  selectTitle="Select from collection banner library"
                 />
               </div>
 
@@ -763,8 +828,7 @@ export default function CatalogFormModal({
                   onChange={(value) =>
                     onChange(
                       "isFeatured",
-                      value ===
-                        "true",
+                      value === "true",
                     )
                   }
                 />
@@ -853,10 +917,6 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* =================================================
-              TAGS
-          ================================================= */}
-
           {resource === "tags" && (
             <div className="space-y-5">
               <Input
@@ -866,10 +926,7 @@ export default function CatalogFormModal({
                   "name",
                 )}
                 onChange={(value) =>
-                  onChange(
-                    "name",
-                    value,
-                  )
+                  onChange("name", value)
                 }
                 placeholder="New Arrival"
               />
@@ -918,10 +975,6 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* =================================================
-              BADGES
-          ================================================= */}
-
           {resource === "badges" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -932,10 +985,7 @@ export default function CatalogFormModal({
                     "name",
                   )}
                   onChange={(value) =>
-                    onChange(
-                      "name",
-                      value,
-                    )
+                    onChange("name", value)
                   }
                   placeholder="Bestseller"
                 />
@@ -963,10 +1013,7 @@ export default function CatalogFormModal({
                   "label",
                 )}
                 onChange={(value) =>
-                  onChange(
-                    "label",
-                    value,
-                  )
+                  onChange("label", value)
                 }
                 placeholder="Bestseller"
               />
@@ -985,20 +1032,12 @@ export default function CatalogFormModal({
                     "success",
                     "warning",
                     "danger",
-                  ].map(
-                    (tone) => ({
-                      value: tone,
-                      label:
-                        tone
-                          .charAt(
-                            0,
-                          )
-                          .toUpperCase() +
-                        tone.slice(
-                          1,
-                        ),
-                    }),
-                  )}
+                  ].map((tone) => ({
+                    value: tone,
+                    label:
+                      tone.charAt(0).toUpperCase() +
+                      tone.slice(1),
+                  }))}
                   onChange={(value) =>
                     onChange(
                       "tone",
@@ -1037,10 +1076,6 @@ export default function CatalogFormModal({
               />
             </div>
           )}
-
-          {/* =================================================
-              ATTRIBUTES
-          ================================================= */}
 
           {resource === "attributes" && (
             <div className="space-y-5">
@@ -1091,22 +1126,16 @@ export default function CatalogFormModal({
                   "boolean",
                   "single_select",
                   "multi_select",
-                ].map(
-                  (type) => ({
-                    value: type,
-                    label:
-                      type
-                        .replace(
-                          /_/g,
-                          " ",
-                        )
-                        .replace(
-                          /\b\w/g,
-                          (char) =>
-                            char.toUpperCase(),
-                        ),
-                  }),
-                )}
+                ].map((type) => ({
+                  value: type,
+                  label: type
+                    .replace(/_/g, " ")
+                    .replace(
+                      /\b\w/g,
+                      (char) =>
+                        char.toUpperCase(),
+                    ),
+                }))}
                 onChange={(value) =>
                   onChange(
                     "type",
@@ -1159,10 +1188,6 @@ export default function CatalogFormModal({
               />
             </div>
           )}
-
-          {/* =================================================
-              SIZES
-          ================================================= */}
 
           {resource === "sizes" && (
             <div className="space-y-5">
@@ -1226,10 +1251,6 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          {/* =================================================
-              COLORS
-          ================================================= */}
-
           {resource === "colors" && (
             <div className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -1240,10 +1261,7 @@ export default function CatalogFormModal({
                     "name",
                   )}
                   onChange={(value) =>
-                    onChange(
-                      "name",
-                      value,
-                    )
+                    onChange("name", value)
                   }
                   placeholder="Rose"
                 />
@@ -1272,10 +1290,7 @@ export default function CatalogFormModal({
                     "hex",
                   )}
                   onChange={(value) =>
-                    onChange(
-                      "hex",
-                      value,
-                    )
+                    onChange("hex", value)
                   }
                   placeholder="#EFA7AE"
                 />
@@ -1318,8 +1333,7 @@ export default function CatalogFormModal({
                       getString(
                         form,
                         "hex",
-                      ) ||
-                      "#ffffff",
+                      ) || "#ffffff",
                   }}
                 />
 
@@ -1332,8 +1346,7 @@ export default function CatalogFormModal({
                     {getString(
                       form,
                       "hex",
-                    ) ||
-                      "No hex value"}
+                    ) || "No hex value"}
                   </p>
                 </div>
               </div>
@@ -1352,10 +1365,6 @@ export default function CatalogFormModal({
               />
             </div>
           )}
-
-          {/* =================================================
-              FOOTER
-          ================================================= */}
 
           <div className="mt-6 flex justify-end gap-3 border-t border-neutral-200 pt-5">
             <button
@@ -1386,10 +1395,6 @@ export default function CatalogFormModal({
         </form>
       </div>
 
-      {/* =====================================================
-          IMAGE SELECTOR MODAL
-      ===================================================== */}
-
       <ImageSelectorModal
         open={imageSelector.open}
         accessToken={accessToken}
@@ -1405,8 +1410,7 @@ export default function CatalogFormModal({
           imageSelector.field,
         )}
         title={
-          imageSelector.folder ===
-          "banners"
+          imageSelector.folder === "banners"
             ? "Select Collection Banner"
             : resource === "categories"
               ? "Select Category Image"

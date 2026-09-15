@@ -3,6 +3,7 @@
 import {
   Loader2,
   Pencil,
+  Trash2,
 } from "lucide-react";
 
 import type {
@@ -25,6 +26,9 @@ type Props = {
   onEdit: (
     item: CatalogItem,
   ) => void;
+  onDelete: (
+    item: CatalogItem
+    ) => void;
 };
 
 function getName(
@@ -198,6 +202,7 @@ export default function CatalogTable({
   items,
   loading,
   onEdit,
+  onDelete
 }: Props) {
   const columnCount =
     getColumnCount(resource);
@@ -296,19 +301,30 @@ export default function CatalogTable({
                     </td>
 
                     <td className="px-5 py-4 text-right">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          onEdit(
-                            item,
-                          )
-                        }
-                        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-950"
-                      >
-                        <Pencil className="h-3.5 w-3.5" />
-                        Edit
-                      </button>
-                    </td>
+  <div className="inline-flex items-center gap-1">
+    <button
+      type="button"
+      onClick={() =>
+        onEdit(item)
+      }
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-950"
+    >
+      <Pencil className="h-3.5 w-3.5" />
+      Edit
+    </button>
+
+    <button
+      type="button"
+      onClick={() =>
+        onDelete(item)
+      }
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 hover:text-red-700"
+    >
+      <Trash2 className="h-3.5 w-3.5" />
+      Delete
+    </button>
+  </div>
+</td>
                   </tr>
                 ),
               )
