@@ -63,6 +63,22 @@ interface ListImagesApiResponse {
   };
 }
 
+interface DeleteImageApiResponse {
+  success: boolean;
+  data?: {
+    publicId: string;
+  };
+  error?: {
+    code?: string;
+    message?: string;
+    details?: unknown;
+  };
+}
+
+/* =========================================================
+   UPLOAD IMAGE
+========================================================= */
+
 export async function uploadImage(
   accessToken: string,
   file: File,
@@ -107,6 +123,10 @@ export async function uploadImage(
   return response.data;
 }
 
+/* =========================================================
+   LIST IMAGES
+========================================================= */
+
 export async function listImages(
   accessToken: string,
   options: UploadImageOptions,
@@ -147,4 +167,59 @@ export async function listImages(
   }
 
   return response.data.images;
+}
+
+/* =========================================================
+   DELETE IMAGE
+========================================================= */
+
+export async function deleteImage(
+  accessToken: string,
+  options: {
+    publicId: string;
+    resource: UploadResource;
+    resourceId?: string;
+    folder: UploadFolder;
+  },
+): Promise<void> {
+  const params =
+    new URLSearchParams();
+
+  params.set(
+    "publicId",
+    options.publicId,
+  );
+
+  params.set(
+    "resource",
+    options.resource,
+  );
+
+  params.set(
+    "folder",
+    options.folder,
+  );
+
+  if (options.resourceId) {
+    params.set(
+      "resourceId",
+      options.resourceId,
+    );
+  }
+
+  const response =
+    await apiFetch<DeleteImageApiResponse>(
+      `/admin/uploads?${params.toString()}`,
+      {
+        method: "DELETE",
+        accessToken,
+      },
+    );
+
+  if (!response.success) {
+    throw new Error(
+      response.error?.message ||
+        "Failed to delete image.",
+    );
+  }
 }
