@@ -4,12 +4,14 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import {
   ChevronDown,
   Loader2,
   Plus,
   RefreshCw,
   Search,
+  Star,
 } from "lucide-react";
 
 import {
@@ -34,6 +36,10 @@ import type {
 
 const LIMIT = 20;
 
+/* =========================================================
+   HELPERS
+========================================================= */
+
 function slugify(value: string) {
   return value
     .trim()
@@ -43,6 +49,10 @@ function slugify(value: string) {
     .replace(/-+/g, "-");
 }
 
+/* =========================================================
+   FORM STATE
+========================================================= */
+
 type FormState = {
   name: string;
   slug: string;
@@ -51,6 +61,7 @@ type FormState = {
   parentId: string;
   sortOrder: string;
   isActive: boolean;
+  isFeatured: boolean;
   seoTitle: string;
   seoDescription: string;
 };
@@ -63,9 +74,14 @@ const emptyForm: FormState = {
   parentId: "",
   sortOrder: "0",
   isActive: true,
+  isFeatured: false,
   seoTitle: "",
   seoDescription: "",
 };
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
 
 function StatusBadge({
   active,
@@ -85,6 +101,31 @@ function StatusBadge({
     </span>
   );
 }
+
+/* =========================================================
+   FEATURED BADGE
+========================================================= */
+
+function FeaturedBadge({
+  featured,
+}: {
+  featured: boolean;
+}) {
+  if (!featured) {
+    return null;
+  }
+
+  return (
+    <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-700">
+      <Star className="h-3 w-3 fill-current" />
+      Featured
+    </span>
+  );
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
 
 export function CategoriesPage() {
   const {
@@ -160,12 +201,22 @@ export function CategoriesPage() {
     emptyForm,
   );
 
+  /* =======================================================
+     CREATE
+  ======================================================= */
+
   function openCreate() {
     setEditingCategory(null);
-    setForm(emptyForm);
+    setForm({
+      ...emptyForm,
+    });
     setFormError("");
     setModalOpen(true);
   }
+
+  /* =======================================================
+     EDIT
+  ======================================================= */
 
   function openEdit(
     category: Category,
@@ -185,6 +236,8 @@ export function CategoriesPage() {
       ),
       isActive:
         category.isActive,
+      isFeatured:
+        category.isFeatured ?? false,
       seoTitle:
         category.seoTitle ?? "",
       seoDescription:
@@ -195,14 +248,24 @@ export function CategoriesPage() {
     setModalOpen(true);
   }
 
+  /* =======================================================
+     CLOSE MODAL
+  ======================================================= */
+
   function closeModal() {
     if (saving) return;
 
     setModalOpen(false);
     setEditingCategory(null);
-    setForm(emptyForm);
+    setForm({
+      ...emptyForm,
+    });
     setFormError("");
   }
+
+  /* =======================================================
+     UPDATE FORM FIELD
+  ======================================================= */
 
   function updateField(
     field: keyof FormState,
@@ -214,6 +277,10 @@ export function CategoriesPage() {
     }));
   }
 
+  /* =======================================================
+     SUBMIT
+  ======================================================= */
+
   async function handleSubmit(
     event: React.FormEvent<HTMLFormElement>,
   ) {
@@ -223,6 +290,7 @@ export function CategoriesPage() {
       setFormError(
         "Authentication is required.",
       );
+
       return;
     }
 
@@ -237,6 +305,7 @@ export function CategoriesPage() {
       setFormError(
         "Category name is required.",
       );
+
       return;
     }
 
@@ -244,8 +313,13 @@ export function CategoriesPage() {
       setFormError(
         "Category slug is required.",
       );
+
       return;
     }
+
+    /* =====================================================
+       API PAYLOAD
+    ===================================================== */
 
     const payload: CreateCategoryInput =
       {
@@ -261,6 +335,8 @@ export function CategoriesPage() {
           Number(form.sortOrder) || 0,
         isActive:
           form.isActive,
+        isFeatured:
+          form.isFeatured,
         seoTitle:
           form.seoTitle.trim(),
         seoDescription:
@@ -271,6 +347,10 @@ export function CategoriesPage() {
     setFormError("");
 
     try {
+      /* ===================================================
+         UPDATE
+      =================================================== */
+
       if (editingCategory) {
         await apiPatch(
           `/admin/catalog/categories/${editingCategory._id}`,
@@ -278,6 +358,10 @@ export function CategoriesPage() {
           accessToken,
         );
       } else {
+        /* ================================================
+           CREATE
+        ================================================ */
+
         await apiPost(
           "/admin/catalog/categories",
           payload,
@@ -286,6 +370,7 @@ export function CategoriesPage() {
       }
 
       closeModal();
+
       await refresh();
     } catch (err) {
       setFormError(
@@ -298,8 +383,13 @@ export function CategoriesPage() {
     }
   }
 
+  /* =======================================================
+     SEARCH
+  ======================================================= */
+
   function handleSearch() {
     setPage(1);
+
     setSearch(
       searchInput.trim(),
     );
@@ -311,6 +401,10 @@ export function CategoriesPage() {
     setPage(1);
   }
 
+  /* =======================================================
+     PARENT OPTIONS
+  ======================================================= */
+
   const parentOptions =
     categories.filter(
       (category) =>
@@ -318,9 +412,16 @@ export function CategoriesPage() {
         editingCategory?._id,
     );
 
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-sm text-neutral-500">
@@ -339,7 +440,9 @@ export function CategoriesPage() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => void refresh()}
+            onClick={() =>
+              void refresh()
+            }
             disabled={loading}
             className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
@@ -351,6 +454,7 @@ export function CategoriesPage() {
                   : "",
               ].join(" ")}
             />
+
             Refresh
           </button>
 
@@ -360,12 +464,16 @@ export function CategoriesPage() {
             className="inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
           >
             <Plus className="h-4 w-4" />
+
             Add Category
           </button>
         </div>
       </div>
 
-      {/* Toolbar */}
+      {/* =====================================================
+          TOOLBAR
+      ===================================================== */}
+
       <div className="rounded-2xl border border-neutral-200 bg-white p-4">
         <div className="flex flex-col gap-3 lg:flex-row">
           <div className="flex min-w-0 flex-1 gap-2">
@@ -421,6 +529,7 @@ export function CategoriesPage() {
                 value={isActive}
                 onChange={(event) => {
                   setPage(1);
+
                   setIsActive(
                     event.target
                       .value as CatalogStatusFilter,
@@ -431,9 +540,11 @@ export function CategoriesPage() {
                 <option value="all">
                   All Status
                 </option>
+
                 <option value="true">
                   Active
                 </option>
+
                 <option value="false">
                   Inactive
                 </option>
@@ -451,6 +562,7 @@ export function CategoriesPage() {
                 value={sort}
                 onChange={(event) => {
                   setPage(1);
+
                   setSort(
                     event.target
                       .value as CatalogSort,
@@ -461,12 +573,15 @@ export function CategoriesPage() {
                 <option value="sort_order">
                   Sort Order
                 </option>
+
                 <option value="name">
                   Name
                 </option>
+
                 <option value="newest">
                   Newest
                 </option>
+
                 <option value="oldest">
                   Oldest
                 </option>
@@ -478,14 +593,20 @@ export function CategoriesPage() {
         </div>
       </div>
 
-      {/* Error */}
+      {/* =====================================================
+          ERROR
+      ===================================================== */}
+
       {error && (
         <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </div>
       )}
 
-      {/* Table */}
+      {/* =====================================================
+          TABLE
+      ===================================================== */}
+
       <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left">
@@ -526,6 +647,7 @@ export function CategoriesPage() {
                   >
                     <div className="inline-flex items-center gap-2 text-sm text-neutral-500">
                       <Loader2 className="h-4 w-4 animate-spin" />
+
                       Loading categories...
                     </div>
                   </td>
@@ -552,6 +674,7 @@ export function CategoriesPage() {
                       className="mt-4 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-medium text-white hover:bg-neutral-800"
                     >
                       <Plus className="h-4 w-4" />
+
                       Add Category
                     </button>
                   </td>
@@ -573,6 +696,8 @@ export function CategoriesPage() {
                         }
                         className="transition hover:bg-neutral-50/60"
                       >
+                        {/* Category */}
+
                         <td className="px-5 py-4">
                           <div>
                             <p className="text-sm font-semibold text-neutral-900">
@@ -588,23 +713,40 @@ export function CategoriesPage() {
                                 }
                               </p>
                             )}
+
+                            <FeaturedBadge
+                              featured={
+                                category.isFeatured ??
+                                false
+                              }
+                            />
                           </div>
                         </td>
 
+                        {/* Slug */}
+
                         <td className="px-5 py-4 text-sm text-neutral-600">
-                          {category.slug}
+                          {
+                            category.slug
+                          }
                         </td>
+
+                        {/* Parent */}
 
                         <td className="px-5 py-4 text-sm text-neutral-600">
                           {parent?.name ||
                             "—"}
                         </td>
 
+                        {/* Sort */}
+
                         <td className="px-5 py-4 text-sm text-neutral-600">
                           {
                             category.sortOrder
                           }
                         </td>
+
+                        {/* Status */}
 
                         <td className="px-5 py-4">
                           <StatusBadge
@@ -613,6 +755,8 @@ export function CategoriesPage() {
                             }
                           />
                         </td>
+
+                        {/* Action */}
 
                         <td className="px-5 py-4 text-right">
                           <button
@@ -636,7 +780,10 @@ export function CategoriesPage() {
           </table>
         </div>
 
-        {/* Pagination */}
+        {/* ===================================================
+            PAGINATION
+        =================================================== */}
+
         <div className="flex flex-col gap-3 border-t border-neutral-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-neutral-500">
             {pagination.total === 0
@@ -707,10 +854,15 @@ export function CategoriesPage() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* =====================================================
+          MODAL
+      ===================================================== */}
+
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
           <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-xl">
+            {/* Modal Header */}
+
             <div className="border-b border-neutral-200 px-6 py-5">
               <h2 className="text-lg font-semibold text-neutral-950">
                 {editingCategory
@@ -723,17 +875,27 @@ export function CategoriesPage() {
               </p>
             </div>
 
+            {/* Form */}
+
             <form
               onSubmit={handleSubmit}
               className="space-y-6 p-6"
             >
+              {/* Form Error */}
+
               {formError && (
                 <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
                   {formError}
                 </div>
               )}
 
+              {/* =================================================
+                  BASIC
+              ================================================= */}
+
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                {/* Name */}
+
                 <div>
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
                     Name *
@@ -767,6 +929,8 @@ export function CategoriesPage() {
                   />
                 </div>
 
+                {/* Slug */}
+
                 <div>
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
                     Slug *
@@ -786,6 +950,8 @@ export function CategoriesPage() {
                     className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
                   />
                 </div>
+
+                {/* Description */}
 
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
@@ -808,6 +974,8 @@ export function CategoriesPage() {
                     className="w-full resize-y rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
                   />
                 </div>
+
+                {/* Parent */}
 
                 <div>
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
@@ -850,6 +1018,8 @@ export function CategoriesPage() {
                   </select>
                 </div>
 
+                {/* Sort Order */}
+
                 <div>
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
                     Sort Order
@@ -871,6 +1041,8 @@ export function CategoriesPage() {
                   />
                 </div>
 
+                {/* Image */}
+
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-neutral-800">
                     Image URL
@@ -891,13 +1063,18 @@ export function CategoriesPage() {
                 </div>
               </div>
 
-              {/* SEO */}
+              {/* =================================================
+                  SEO
+              ================================================= */}
+
               <div className="border-t border-neutral-200 pt-6">
                 <h3 className="text-sm font-semibold text-neutral-900">
                   SEO
                 </h3>
 
                 <div className="mt-4 space-y-4">
+                  {/* SEO Title */}
+
                   <div>
                     <label className="mb-2 block text-sm font-medium text-neutral-800">
                       SEO Title
@@ -916,9 +1093,12 @@ export function CategoriesPage() {
                             .value,
                         )
                       }
+                      placeholder="SEO Title"
                       className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
                     />
                   </div>
+
+                  {/* SEO Description */}
 
                   <div>
                     <label className="mb-2 block text-sm font-medium text-neutral-800">
@@ -939,35 +1119,93 @@ export function CategoriesPage() {
                         )
                       }
                       rows={3}
+                      placeholder="SEO Description"
                       className="w-full resize-y rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Status */}
-              <label className="flex items-center gap-3 rounded-xl border border-neutral-200 px-4 py-3">
-                <input
-                  type="checkbox"
-                  checked={
-                    form.isActive
-                  }
-                  onChange={(event) =>
-                    updateField(
-                      "isActive",
-                      event.target
-                        .checked,
-                    )
-                  }
-                  className="h-4 w-4 rounded border-neutral-300"
-                />
+              {/* =================================================
+                  VISIBILITY
+              ================================================= */}
 
-                <span className="text-sm font-medium text-neutral-800">
-                  Category is active
-                </span>
-              </label>
+              <div className="border-t border-neutral-200 pt-6">
+                <h3 className="text-sm font-semibold text-neutral-900">
+                  Visibility
+                </h3>
 
-              {/* Actions */}
+                <div className="mt-4 space-y-3">
+                  {/* Active */}
+
+                  <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 transition hover:border-neutral-300">
+                    <input
+                      type="checkbox"
+                      checked={
+                        form.isActive
+                      }
+                      onChange={(event) =>
+                        updateField(
+                          "isActive",
+                          event.target
+                            .checked,
+                        )
+                      }
+                      className="h-4 w-4 rounded border-neutral-300"
+                    />
+
+                    <div>
+                      <p className="text-sm font-medium text-neutral-800">
+                        Category is active
+                      </p>
+
+                      <p className="mt-0.5 text-xs text-neutral-500">
+                        Active categories can
+                        be displayed on the
+                        storefront.
+                      </p>
+                    </div>
+                  </label>
+
+                  {/* Featured */}
+
+                  <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-3 transition hover:border-neutral-300">
+                    <input
+                      type="checkbox"
+                      checked={
+                        form.isFeatured
+                      }
+                      onChange={(event) =>
+                        updateField(
+                          "isFeatured",
+                          event.target
+                            .checked,
+                        )
+                      }
+                      className="h-4 w-4 rounded border-neutral-300"
+                    />
+
+                    <div className="min-w-0">
+                      <p className="flex items-center gap-2 text-sm font-medium text-neutral-800">
+                        <Star className="h-4 w-4 text-amber-500" />
+
+                        Featured on Homepage
+                      </p>
+
+                      <p className="mt-0.5 text-xs text-neutral-500">
+                        Show this category in
+                        the Featured Collections
+                        section on the homepage.
+                      </p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              {/* =================================================
+                  ACTIONS
+              ================================================= */}
+
               <div className="flex justify-end gap-3 border-t border-neutral-200 pt-5">
                 <button
                   type="button"
