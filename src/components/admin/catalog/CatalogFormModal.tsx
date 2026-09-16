@@ -663,18 +663,38 @@ export default function CatalogFormModal({
                 </div>
               </div>
 
-              <ActiveField
-                value={getBoolean(
-                  form,
-                  "isActive",
-                )}
-                onChange={(value) =>
-                  onChange(
-                    "isActive",
-                    value,
-                  )
-                }
-              />
+              <div className="space-y-3">
+  <ActiveField
+    value={getBoolean(
+      form,
+      "isActive",
+    )}
+    onChange={(value) =>
+      onChange(
+        "isActive",
+        value,
+      )
+    }
+  />
+
+  <ActiveField
+    value={getBoolean(
+      form,
+      "isFeatured",
+    )}
+    onChange={(value) =>
+      onChange(
+        "isFeatured",
+        value,
+      )
+    }
+    label="Featured on Homepage"
+  />
+
+  <p className="ml-1 text-xs text-neutral-500">
+    Show this category in the Featured Categories section on the homepage.
+  </p>
+</div>
             </div>
           )}
 

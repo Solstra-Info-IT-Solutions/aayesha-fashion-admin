@@ -166,17 +166,18 @@ function createEmptyForm(
 ): CatalogFormState {
   switch (resource) {
     case "categories":
-      return {
-        name: "",
-        slug: "",
-        description: "",
-        image: "",
-        parentId: "",
-        sortOrder: "0",
-        isActive: true,
-        seoTitle: "",
-        seoDescription: "",
-      };
+  return {
+    name: "",
+    slug: "",
+    description: "",
+    image: "",
+    parentId: "",
+    sortOrder: "0",
+    isActive: true,
+    isFeatured: false,
+    seoTitle: "",
+    seoDescription: "",
+  };
 
     case "collections":
       return {
@@ -415,25 +416,27 @@ export default function CatalogResourcePage({
           item as Category;
 
         setForm({
-          id: category._id,
-          name: category.name,
-          slug: category.slug,
-          description:
-            category.description ?? "",
-          image:
-            category.image ?? "",
-          parentId:
-            category.parentId ?? "",
-          sortOrder: String(
-            category.sortOrder ?? 0,
-          ),
-          isActive:
-            category.isActive,
-          seoTitle:
-            category.seoTitle ?? "",
-          seoDescription:
-            category.seoDescription ?? "",
-        });
+  id: category._id,
+  name: category.name,
+  slug: category.slug,
+  description:
+    category.description ?? "",
+  image:
+    category.image ?? "",
+  parentId:
+    category.parentId ?? "",
+  sortOrder: String(
+    category.sortOrder ?? 0,
+  ),
+  isActive:
+    category.isActive,
+  isFeatured:
+    category.isFeatured ?? false,
+  seoTitle:
+    category.seoTitle ?? "",
+  seoDescription:
+    category.seoDescription ?? "",
+});
 
         break;
       }
@@ -839,38 +842,49 @@ async function handleDelete(
          */
         if (id) {
           const payload:
-            CreateCategoryInput = {
-            name,
-            slug,
-            description:
-              String(
-                form.description ?? "",
-              ).trim(),
-            image:
-              String(
-                form.image ?? "",
-              ).trim(),
-            parentId:
-              String(
-                form.parentId ?? "",
-              ) || null,
-            sortOrder:
-              Number(
-                form.sortOrder ?? 0,
-              ) || 0,
-            isActive:
-              Boolean(
-                form.isActive,
-              ),
-            seoTitle:
-              String(
-                form.seoTitle ?? "",
-              ).trim(),
-            seoDescription:
-              String(
-                form.seoDescription ?? "",
-              ).trim(),
-          };
+  CreateCategoryInput = {
+  name,
+  slug,
+  description:
+    String(
+      form.description ?? "",
+    ).trim(),
+
+  image:
+    String(
+      form.image ?? "",
+    ).trim(),
+
+  parentId:
+    String(
+      form.parentId ?? "",
+    ) || null,
+
+  sortOrder:
+    Number(
+      form.sortOrder ?? 0,
+    ) || 0,
+
+  isActive:
+    Boolean(
+      form.isActive,
+    ),
+
+  isFeatured:
+    Boolean(
+      form.isFeatured,
+    ),
+
+  seoTitle:
+    String(
+      form.seoTitle ?? "",
+    ).trim(),
+
+  seoDescription:
+    String(
+      form.seoDescription ?? "",
+    ).trim(),
+};
 
           await updateCategory(
             id,
@@ -890,38 +904,50 @@ async function handleDelete(
          */
         else {
           const createdCategory =
-            await createCategory(
-              {
-                name,
-                slug,
-                description:
-                  String(
-                    form.description ?? "",
-                  ).trim(),
-                image: "",
-                parentId:
-                  String(
-                    form.parentId ?? "",
-                  ) || null,
-                sortOrder:
-                  Number(
-                    form.sortOrder ?? 0,
-                  ) || 0,
-                isActive:
-                  Boolean(
-                    form.isActive,
-                  ),
-                seoTitle:
-                  String(
-                    form.seoTitle ?? "",
-                  ).trim(),
-                seoDescription:
-                  String(
-                    form.seoDescription ?? "",
-                  ).trim(),
-              },
-              accessToken,
-            );
+  await createCategory(
+    {
+      name,
+      slug,
+
+      description:
+        String(
+          form.description ?? "",
+        ).trim(),
+
+      image: "",
+
+      parentId:
+        String(
+          form.parentId ?? "",
+        ) || null,
+
+      sortOrder:
+        Number(
+          form.sortOrder ?? 0,
+        ) || 0,
+
+      isActive:
+        Boolean(
+          form.isActive,
+        ),
+
+      isFeatured:
+        Boolean(
+          form.isFeatured,
+        ),
+
+      seoTitle:
+        String(
+          form.seoTitle ?? "",
+        ).trim(),
+
+      seoDescription:
+        String(
+          form.seoDescription ?? "",
+        ).trim(),
+    },
+    accessToken,
+  );
 
           if (pendingImageFile) {
             const uploadedImage =
