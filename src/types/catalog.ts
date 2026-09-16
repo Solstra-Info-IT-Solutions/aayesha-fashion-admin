@@ -54,7 +54,13 @@ export type Category = {
   image: string;
   parentId: string | null;
   sortOrder: number;
+
+  /* Category visibility */
   isActive: boolean;
+
+  /* Homepage featured category */
+  isFeatured: boolean;
+
   seoTitle: string;
   seoDescription: string;
   createdAt: string;
@@ -185,7 +191,13 @@ export type CreateCategoryInput = {
   image?: string;
   parentId?: string | null;
   sortOrder?: number;
+
+  /* Category visibility */
   isActive?: boolean;
+
+  /* Show category on homepage Featured Collections */
+  isFeatured?: boolean;
+
   seoTitle?: string;
   seoDescription?: string;
 };
