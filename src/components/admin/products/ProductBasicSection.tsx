@@ -150,8 +150,8 @@ export default function ProductBasicSection({
 
             {categories.map((category) => (
               <option
-                key={category._id}
-                value={category._id}
+                key={category.id}
+                value={category.id}
               >
                 {category.name}
               </option>
