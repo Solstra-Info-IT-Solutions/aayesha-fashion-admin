@@ -25,7 +25,6 @@ export type PaymentMethod =
 
 export type OrderItem = {
   productId: string;
-  variantId: string;
   productName?: string;
   sku?: string;
   quantity: number;

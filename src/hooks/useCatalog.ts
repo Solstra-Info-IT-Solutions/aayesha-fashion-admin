@@ -110,6 +110,18 @@ export function useCatalog({
         return;
       }
 
+      if (
+      !isInitialized ||
+      !isAuthenticated ||
+      !accessToken
+    ) {
+      console.log("CATALOG API BLOCKED");
+      setLoading(false);
+      return;
+    }
+
+    console.log("CALLING CATEGORY API");
+
       setLoading(true);
       setError("");
 

@@ -25,14 +25,6 @@ export const permissionMap =
       "viewer",
     ],
 
-    inventory: [
-      "super_admin",
-      "admin",
-      "inventory_manager",
-      "product_manager",
-      "viewer",
-    ],
-
     customers: [
       "super_admin",
       "admin",

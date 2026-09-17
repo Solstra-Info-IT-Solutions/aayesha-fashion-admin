@@ -29,7 +29,7 @@ export default function ProductHeader({
 
         <p className="mt-1 text-sm text-[#6f706f]">
           Manage products, content,
-          pricing, variants and publishing.
+          pricing and publishing.
         </p>
       </div>
 

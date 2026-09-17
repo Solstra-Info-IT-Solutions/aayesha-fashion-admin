@@ -30,7 +30,7 @@ export function OrderItemsCard({
 
             return (
               <div
-                key={`${item.variantId}-${index}`}
+                key={`${item.productId}-${index}`}
                 className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div>

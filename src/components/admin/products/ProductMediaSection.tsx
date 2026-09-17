@@ -1,20 +1,12 @@
 "use client";
 
-import {
-  useState,
-} from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 
-import {
-  Pencil,
-  Plus,
-  Trash2,
-} from "lucide-react";
+import { Pencil, Plus, Trash2 } from "lucide-react";
 
-import type {
-  ProductMedia,
-} from "@/types/product";
+import type { ProductMedia } from "@/types/product";
 
 import MediaFormModal from "./MediaFormModal";
 
@@ -22,12 +14,8 @@ interface ProductMediaSectionProps {
   productId: string;
   media: ProductMedia[];
   saving?: boolean;
-  onSaveMedia: (
-    media: ProductMedia,
-  ) => Promise<void>;
-  onDeleteMedia: (
-    mediaId: string,
-  ) => Promise<void>;
+  onSaveMedia: (media: ProductMedia) => Promise<void>;
+  onDeleteMedia: (mediaId: string) => Promise<void>;
 }
 
 const buttonBaseClass =
@@ -40,18 +28,10 @@ export default function ProductMediaSection({
   onSaveMedia,
   onDeleteMedia,
 }: ProductMediaSectionProps) {
-  const [
-    modalOpen,
-    setModalOpen,
-  ] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const [
-    editingMedia,
-    setEditingMedia,
-  ] =
-    useState<ProductMedia | null>(
-      null,
-    );
+  const [editingMedia, setEditingMedia] =
+    useState<ProductMedia | null>(null);
 
   return (
     <>
@@ -64,8 +44,7 @@ export default function ProductMediaSection({
             </h2>
 
             <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
-              Product imagery and supporting
-              media.
+              Product imagery and supporting media.
             </p>
           </div>
 
@@ -87,10 +66,7 @@ export default function ProductMediaSection({
         {media.length === 0 ? (
           <div className="mt-6 rounded-2xl border border-dashed border-[#d8d1ca] bg-[#fcfbf9] px-5 py-12 text-center">
             <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#f5f1ec]">
-              <Plus
-                size={18}
-                className="text-[#969696]"
-              />
+              <Plus size={18} className="text-[#969696]" />
             </div>
 
             <p className="mt-3 break-words text-sm font-medium text-[#292c2c]">
@@ -98,107 +74,82 @@ export default function ProductMediaSection({
             </p>
 
             <p className="mx-auto mt-1.5 max-w-md break-words text-xs leading-5 text-[#969696]">
-              Upload product images, videos and
-              gallery assets.
+              Upload product images, videos and gallery assets.
             </p>
           </div>
         ) : (
           <div className="mt-6 grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {media.map(
-              (item) => (
-                <div
-                  key={item.id}
-                  className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white shadow-sm transition-shadow hover:shadow-md"
-                >
-                  {/* IMAGE */}
-                  <div className="relative aspect-[4/5] bg-[#f8f6f3]">
-                    {item.type ===
-                      "image" &&
-                    item.src ? (
-                      <Image
-                        src={item.src}
-                        alt={
-                          item.alt ??
-                          "Product media"
-                        }
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center px-4 text-center text-xs capitalize text-[#969696]">
-                        {item.type}
-                      </div>
-                    )}
+            {media.map((item) => (
+              <div
+                key={item.id}
+                className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                {/* MEDIA PREVIEW */}
+                <div className="relative aspect-[4/5] bg-[#f8f6f3]">
+                  {item.type === "image" && item.src ? (
+                    <Image
+                      src={item.src}
+                      alt={item.alt ?? "Product media"}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center px-4 text-center text-xs capitalize text-[#969696]">
+                      {item.type}
+                    </div>
+                  )}
 
-                    {/* PRIMARY BADGE */}
-                    {item.isPrimary && (
-                      <span className="absolute left-3 top-3 rounded-full bg-[#171717] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
-                        Primary
-                      </span>
+                  {/* PRIMARY BADGE */}
+                  {item.isPrimary && (
+                    <span className="absolute left-3 top-3 rounded-full bg-[#171717] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
+                      Primary
+                    </span>
+                  )}
+                </div>
+
+                {/* CARD DETAILS */}
+                <div className="min-w-0 p-3.5">
+                  <div className="min-w-0">
+                    <p className="break-words text-sm font-medium leading-5 text-[#292c2c]">
+                      {item.type === "image" ? "Image" : "Video"}
+                    </p>
+
+                    {item.alt && (
+                      <p className="mt-1 break-words text-xs leading-5 text-[#969696]">
+                        {item.alt}
+                      </p>
                     )}
                   </div>
 
-                  {/* CARD DETAILS */}
-                  <div className="min-w-0 p-3.5">
-                    <div className="min-w-0">
-                      <p className="break-words text-sm font-medium leading-5 text-[#292c2c]">
-                        {item.imageType ??
-                          item.type}
-                      </p>
+                  {/* ACTIONS */}
+                  <div className="mt-4 flex min-w-0 gap-2">
+                    <button
+                      type="button"
+                      disabled={saving}
+                      onClick={() => {
+                        setEditingMedia(item);
+                        setModalOpen(true);
+                      }}
+                      className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d8d1ca] bg-white px-3 text-xs font-medium text-[#292c2c] hover:bg-[#f8f6f3]`}
+                    >
+                      <Pencil size={13} />
+                      <span>Edit</span>
+                    </button>
 
-                      {item.alt && (
-                        <p className="mt-1 break-words text-xs leading-5 text-[#969696]">
-                          {item.alt}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* ACTIONS */}
-                    <div className="mt-4 flex min-w-0 gap-2">
-                      <button
-                        type="button"
-                        disabled={saving}
-                        onClick={() => {
-                          setEditingMedia(
-                            item,
-                          );
-                          setModalOpen(
-                            true,
-                          );
-                        }}
-                        className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d8d1ca] bg-white px-3 text-xs font-medium text-[#292c2c] hover:bg-[#f8f6f3]`}
-                      >
-                        <Pencil
-                          size={13}
-                        />
-                        <span>
-                          Edit
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        disabled={
-                          saving
-                        }
-                        onClick={() =>
-                          void onDeleteMedia(
-                            item.id,
-                          )
-                        }
-                        className={`${buttonBaseClass} h-9 w-10 shrink-0 rounded-xl border border-[#efd2d2] bg-white text-[#a33a3a] hover:bg-[#fff5f5]`}
-                        aria-label="Delete media"
-                      >
-                        <Trash2
-                          size={13}
-                        />
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      disabled={saving}
+                      onClick={() => void onDeleteMedia(item.id)}
+                      className={`${buttonBaseClass} h-9 w-10 shrink-0 rounded-xl border border-[#efd2d2] bg-white text-[#a33a3a] hover:bg-[#fff5f5]`}
+                      aria-label="Delete media"
+                    >
+                      <Trash2 size={13} />
+                    </button>
                   </div>
                 </div>
-              ),
-            )}
+              </div>
+            ))}
           </div>
         )}
       </section>

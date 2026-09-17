@@ -16,7 +16,6 @@ import {
   Settings,
   ShoppingBag,
   Users,
-  Warehouse,
 } from "lucide-react";
 
 import { SidebarNavItem } from "./SidebarNavItem";
@@ -39,11 +38,6 @@ const sections = [
         href: "/admin/products",
         label: "Products",
         icon: ShoppingBag,
-      },
-      {
-        href: "/admin/inventory",
-        label: "Inventory",
-        icon: Warehouse,
       },
       {
         href: "/admin/customers",

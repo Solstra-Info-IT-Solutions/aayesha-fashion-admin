@@ -1,29 +1,25 @@
 import type {
   Product,
-  ProductAttributes,
   ProductContent,
-  ProductFAQ,
   ProductMedia,
   ProductMerchandising,
-  ProductPricing,
   ProductSEO,
-  ProductVariant,
+  ProductPricing,
+  ProductInventory,
 } from "@/types/product";
 
 export type {
   Product,
-  ProductAttributes,
   ProductContent,
-  ProductFAQ,
   ProductMedia,
   ProductMerchandising,
-  ProductPricing,
   ProductSEO,
-  ProductVariant,
+  ProductPricing,
+  ProductInventory,
 };
 
 /* =========================================================
-   PRODUCT ENUMS
+   PRODUCT STATUS
 ========================================================= */
 
 export type ProductStatus =
@@ -32,63 +28,17 @@ export type ProductStatus =
   | "archived"
   | "discontinued";
 
-export type ProductType =
-  | "anarkali"
-  | "kurta"
-  | "kurta-set"
-  | "suit-set"
-  | "lehenga"
-  | "saree"
-  | "dress"
-  | "top"
-  | "bottom"
-  | "co-ord"
-  | "jacket"
-  | "dupatta"
-  | "other";
-
-export type ProductCategory =
-  | "festive"
-  | "ethnic"
-  | "contemporary"
-  | "new-arrival";
+/* =========================================================
+   PRODUCT SORT
+========================================================= */
 
 export type ProductSort =
   | "relevance"
   | "newest"
   | "price-low"
   | "price-high"
-  | "rating"
   | "best-selling"
   | "featured";
-
-/* =========================================================
-   SIZE CHART
-========================================================= */
-
-export type SizeChartUnit =
-  | "inch"
-  | "cm";
-
-export type SizeMeasurement = {
-  size: string;
-  bust?: number | string;
-  waist?: number | string;
-  hip?: number | string;
-  shoulder?: number | string;
-  armhole?: number | string;
-  sleeveLength?: number | string;
-  garmentLength?: number | string;
-  bottomLength?: number | string;
-  inseam?: number | string;
-  rise?: number | string;
-};
-
-export type SizeChart = {
-  unit: SizeChartUnit;
-  measurements: SizeMeasurement[];
-  fitNote?: string;
-};
 
 /* =========================================================
    PRODUCT LIST
@@ -102,17 +52,7 @@ export type ProductListParams = {
 
   status?: ProductStatus;
 
-  category?: ProductCategory;
-
-  productType?: ProductType;
-
-  collection?: string;
-
-  color?: string;
-
-  size?: string;
-
-  badge?: string;
+  categoryId?: string;
 
   minPrice?: number;
 
@@ -166,67 +106,46 @@ export type ProductResponse = {
 export type ProductCreateInput = {
   id: string;
 
-  slug: string;
+  slug?: string;
 
   name: string;
 
-  productType: ProductType;
+  categoryId: string;
 
-  category: ProductCategory;
+  pricing: ProductPricing;
 
-  subcategory?: string;
-
-  collectionIds?: string[];
-
-  tags: string[];
+  inventory: ProductInventory;
 
   content: ProductContent;
 
-  attributes: ProductAttributes;
+  media?: ProductMedia[];
 
-  media: ProductMedia[];
-
-  sizeChart?: SizeChart;
-
-  variants: ProductVariant[];
-
-  faqs?: ProductFAQ[];
-
-  merchandising: ProductMerchandising;
+  merchandising?: ProductMerchandising;
 
   seo?: ProductSEO;
 
-  status: ProductStatus;
+  status?: ProductStatus;
+
+  publishedAt?: string;
 };
 
 /* =========================================================
    PRODUCT UPDATE
 ========================================================= */
 
-/*
- * These fields are intentionally excluded from the
- * general product update endpoint because the backend
- * handles them through dedicated permission-specific
- * endpoints:
- *
- * - status
- * - media
- * - variants
- * - merchandising
- * - seo
- */
+export type ProductUpdateInput = {
+  name?: string;
 
-export type ProductUpdateInput = Partial<
-  Omit<
-    ProductCreateInput,
-    | "id"
-    | "status"
-    | "media"
-    | "variants"
-    | "merchandising"
-    | "seo"
-  >
->;
+  slug?: string;
+
+  categoryId?: string;
+
+  pricing?: ProductPricing;
+
+  inventory?: ProductInventory;
+
+  content?: ProductContent;
+};
 
 /* =========================================================
    SEO
@@ -246,8 +165,10 @@ export type ProductSeoInput = {
 
 export type ProductSeoResponse = {
   success: true;
+
   data: {
     productId: string;
+
     seo: ProductSEO | null;
   };
 };
@@ -279,8 +200,10 @@ export type ProductMerchandisingInput = {
 
 export type ProductMerchandisingResponse = {
   success: true;
+
   data: {
     productId: string;
+
     merchandising: ProductMerchandising;
   };
 };
@@ -300,9 +223,12 @@ export type PublishProductInput = {
 
 export type PublishProductResponse = {
   success: true;
+
   data: {
     productId: string;
+
     status: ProductStatus;
+
     publishedAt: string | null;
   };
 };
@@ -316,37 +242,21 @@ export type ProductMediaInput =
 
 export type ProductMediaResponse = {
   success: true;
+
   data: {
     productId: string;
+
     media: ProductMedia;
   };
 };
 
 export type ProductMediaListResponse = {
   success: true;
+
   data: {
     productId: string;
+
     media: ProductMedia[];
-  };
-};
-
-/* =========================================================
-   VARIANTS
-========================================================= */
-
-export type ProductVariantsResponse = {
-  success: true;
-  data: {
-    productId: string;
-    variants: ProductVariant[];
-  };
-};
-
-export type ProductVariantResponse = {
-  success: true;
-  data: {
-    productId: string;
-    variant: ProductVariant;
   };
 };
 
@@ -356,9 +266,12 @@ export type ProductVariantResponse = {
 
 export type ArchiveProductResponse = {
   success: true;
+
   data: {
     productId: string;
+
     status: "archived";
+
     archived: true;
   };
 };
@@ -369,9 +282,26 @@ export type ArchiveProductResponse = {
 
 export type UnpublishProductResponse = {
   success: true;
+
   data: {
     productId: string;
+
     status: "draft";
+
     unpublished: true;
+  };
+};
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+export type DeleteProductResponse = {
+  success: true;
+
+  data: {
+    productId: string;
+
+    deleted: true;
   };
 };

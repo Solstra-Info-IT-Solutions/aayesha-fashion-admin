@@ -7,7 +7,6 @@ export type AdminRole =
   | "admin"
   | "order_manager"
   | "product_manager"
-  | "inventory_manager"
   | "customer_support"
   | "marketing_manager"
   | "content_manager"

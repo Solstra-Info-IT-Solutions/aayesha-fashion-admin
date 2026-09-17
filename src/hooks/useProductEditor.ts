@@ -14,22 +14,18 @@ import {
   addProductMedia,
   archiveProduct,
   createAdminProduct,
-  createProductVariant,
+  deleteAdminProduct,
   deleteProductMedia,
-  deleteProductVariant,
   getAdminProduct,
   getProductMedia,
   getProductMerchandising,
   getProductSeo,
-  getProductVariants,
   publishProduct,
   saveProductMerchandising,
   saveProductSeo,
   unpublishProduct,
   updateAdminProduct,
   updateProductMedia,
-  updateProductVariant,
-  deleteAdminProduct
 } from "@/services/product-admin.service";
 
 import type {
@@ -41,65 +37,71 @@ import type {
   ProductUpdateInput,
 } from "@/types/admin-product";
 
-import type {
-  ProductVariant,
-} from "@/types/product";
+/* =========================================================
+   PROPS
+========================================================= */
 
 interface UseProductEditorProps {
   productId?: string;
 }
 
+/* =========================================================
+   EMPTY PRODUCT
+========================================================= */
+
 function createEmptyProduct(): Product {
+  const now =
+    new Date().toISOString();
+
   return {
     id: "",
+
     slug: "",
+
     name: "",
-    productType: "anarkali",
-    category: "ethnic",
-    tags: [],
+
+    categoryId: "",
+
+    pricing: {
+      mrp: 0,
+      sellingPrice: 0,
+      currency: "INR",
+    },
+
+    inventory: {
+      stock: 0,
+      reserved: 0,
+      lowStockThreshold: 2,
+    },
+
     content: {
       description: "",
-      descriptionFormat:
-        "plain",
-      highlights: [],
-      stylingNotes: "",
-      fitNote: "",
-      materialsAndCare:
-        "",
-      shippingContent:
-        "",
-      returnContent: "",
+      descriptionFormat: "rich",
     },
-    attributes: {
-      fabric: "",
-      composition: "",
-      fit: "",
-      occasion: [],
-      pattern: "",
-      work: "",
-      neckline: "",
-      sleeve: "",
-      silhouette: "",
-      length: "",
-      lining: "",
-      transparency: "",
-      careInstructions: [],
-    },
+
     media: [],
-    variants: [],
+
     merchandising: {
       isNew: false,
       isFeatured: false,
       isBestSeller: false,
       badges: [],
     },
+
     status: "draft",
-    createdAt:
-      new Date().toISOString(),
-    updatedAt:
-      new Date().toISOString(),
-  } as Product;
+
+    publishedAt:
+      undefined,
+
+    createdAt: now,
+
+    updatedAt: now,
+  };
 }
+
+/* =========================================================
+   HOOK
+========================================================= */
 
 export function useProductEditor({
   productId,
@@ -113,106 +115,139 @@ export function useProductEditor({
   const isEdit =
     Boolean(productId);
 
-  const [product, setProduct] =
-    useState<Product>(
-      createEmptyProduct(),
-    );
+  /* =======================================================
+     STATE
+  ======================================================= */
 
-  const [loading, setLoading] =
-    useState(isEdit);
+  const [
+    product,
+    setProduct,
+  ] = useState<Product>(
+    createEmptyProduct(),
+  );
 
-  const [saving, setSaving] =
-    useState(false);
+  const [
+    loading,
+    setLoading,
+  ] = useState(isEdit);
+
+  const [
+    saving,
+    setSaving,
+  ] = useState(false);
 
   const [
     actionLoading,
     setActionLoading,
   ] = useState(false);
 
-  const [error, setError] =
-    useState<string | null>(
-      null,
-    );
+  const [
+    error,
+    setError,
+  ] = useState<string | null>(
+    null,
+  );
+
+  /* =======================================================
+     REFRESH PRODUCT
+  ======================================================= */
 
   const refresh =
-    useCallback(async () => {
-      if (
-        !productId ||
-        !accessToken ||
-        !isAuthenticated ||
-        !isInitialized
-      ) {
-        return;
-      }
+    useCallback(
+      async () => {
+        if (
+          !productId ||
+          !accessToken ||
+          !isAuthenticated ||
+          !isInitialized
+        ) {
+          return;
+        }
 
-      setLoading(true);
-      setError(null);
+        setLoading(true);
+        setError(null);
 
-      try {
-        const [
-          productData,
-          mediaData,
-          seoData,
-          merchandisingData,
-          variantsData,
-        ] =
-          await Promise.all([
-            getAdminProduct(
-              productId,
-              accessToken,
-            ),
-            getProductMedia(
-              productId,
-              accessToken,
-            ),
-            getProductSeo(
-              productId,
-              accessToken,
-            ),
-            getProductMerchandising(
-              productId,
-              accessToken,
-            ),
-            getProductVariants(
-              productId,
-              accessToken,
-            ),
-          ]);
+        try {
+          /*
+           * Product, media, SEO and
+           * merchandising are separate
+           * admin resources.
+           *
+           * There is NO variant request.
+           */
+          const [
+            productData,
+            mediaData,
+            seoData,
+            merchandisingData,
+          ] =
+            await Promise.all([
+              getAdminProduct(
+                productId,
+                accessToken,
+              ),
 
-        setProduct({
-          ...productData,
-          media:
-            mediaData.media,
-          variants:
-            variantsData.variants,
-          seo:
-            seoData.seo ??
-            undefined,
-          merchandising:
-            merchandisingData.merchandising,
-        });
-      } catch (reason) {
-        setError(
-          reason instanceof Error
-            ? reason.message
-            : "Unable to load product.",
-        );
-      } finally {
-        setLoading(false);
-      }
-    }, [
-      accessToken,
-      isAuthenticated,
-      isInitialized,
-      productId,
-    ]);
+              getProductMedia(
+                productId,
+                accessToken,
+              ),
+
+              getProductSeo(
+                productId,
+                accessToken,
+              ),
+
+              getProductMerchandising(
+                productId,
+                accessToken,
+              ),
+            ]);
+
+          setProduct({
+            ...productData,
+
+            media:
+              mediaData.media,
+
+            seo:
+              seoData.seo ??
+              undefined,
+
+            merchandising:
+              merchandisingData.merchandising,
+          });
+        } catch (reason) {
+          setError(
+            reason instanceof Error
+              ? reason.message
+              : "Unable to load product.",
+          );
+        } finally {
+          setLoading(false);
+        }
+      },
+      [
+        accessToken,
+        isAuthenticated,
+        isInitialized,
+        productId,
+      ],
+    );
+
+  /* =======================================================
+     INITIAL LOAD
+  ======================================================= */
 
   useEffect(() => {
     if (!isEdit) {
       setProduct(
         createEmptyProduct(),
       );
+
       setLoading(false);
+
+      setError(null);
+
       return;
     }
 
@@ -221,6 +256,10 @@ export function useProductEditor({
     isEdit,
     refresh,
   ]);
+
+  /* =======================================================
+     UPDATE LOCAL PRODUCT
+  ======================================================= */
 
   const updateProduct = <
     K extends keyof Product,
@@ -236,6 +275,10 @@ export function useProductEditor({
     );
   };
 
+  /* =======================================================
+     CREATE PRODUCT
+  ======================================================= */
+
   const create =
     async () => {
       if (!accessToken) {
@@ -244,99 +287,238 @@ export function useProductEditor({
         );
       }
 
+      const name =
+        product.name.trim();
+
       if (
-        product.name.trim().length <
-        2
+        name.length < 2
       ) {
         throw new Error(
           "Product name must contain at least 2 characters.",
         );
       }
 
-      if (
-        !product.slug.trim()
-      ) {
+      const categoryId =
+        product.categoryId.trim();
+
+      if (!categoryId) {
         throw new Error(
-          "Product slug is required.",
+          "Product category is required.",
         );
       }
 
-      const payload: ProductCreateInput =
-        {
-          id:
-            crypto.randomUUID(),
+      const mrp =
+        Number(
+          product.pricing.mrp,
+        );
 
-          slug:
-            product.slug.trim(),
+      const sellingPrice =
+        Number(
+          product.pricing
+            .sellingPrice,
+        );
 
-          name:
-            product.name.trim(),
+      if (
+        !Number.isFinite(mrp) ||
+        mrp < 0
+      ) {
+        throw new Error(
+          "Please enter a valid MRP.",
+        );
+      }
 
-          productType:
-            product.productType,
+      if (
+        !Number.isFinite(
+          sellingPrice,
+        ) ||
+        sellingPrice < 0
+      ) {
+        throw new Error(
+          "Please enter a valid selling price.",
+        );
+      }
 
-          category:
-            product.category,
+      if (
+        sellingPrice > mrp
+      ) {
+        throw new Error(
+          "Sale price cannot be greater than MRP.",
+        );
+      }
 
-          ...(product.subcategory?.trim()
+      const stock =
+        Math.floor(
+          Number(
+            product.inventory
+              .stock,
+          ),
+        );
+
+      if (
+        !Number.isFinite(stock) ||
+        stock < 0
+      ) {
+        throw new Error(
+          "Please enter a valid stock quantity.",
+        );
+      }
+
+      /*
+       * Slug is generated from the
+       * product name.
+       *
+       * This keeps product creation
+       * simple for the shopkeeper.
+       */
+      const generatedSlug =
+        name
+          .toLowerCase()
+          .trim()
+          .replace(
+            /[^a-z0-9]+/g,
+            "-",
+          )
+          .replace(
+            /^-+|-+$/g,
+            "",
+          );
+
+      if (
+        !generatedSlug
+      ) {
+        throw new Error(
+          "Unable to generate a product slug from the product name.",
+        );
+      }
+
+      const payload:
+        ProductCreateInput = {
+        id:
+          crypto.randomUUID(),
+
+        slug:
+          generatedSlug,
+
+        name,
+
+        categoryId,
+
+        pricing: {
+          mrp,
+
+          sellingPrice,
+
+          currency: "INR",
+        },
+
+        inventory: {
+          stock,
+
+          reserved:
+            Math.max(
+              0,
+              Math.floor(
+                Number(
+                  product
+                    .inventory
+                    .reserved,
+                ),
+              ),
+            ),
+
+          lowStockThreshold:
+            Math.max(
+              0,
+              Math.floor(
+                Number(
+                  product
+                    .inventory
+                    .lowStockThreshold,
+                ),
+              ),
+            ),
+        },
+
+        content: {
+          description:
+            product.content
+              .description,
+
+          descriptionFormat:
+            product.content
+              .descriptionFormat,
+
+          ...(product.content
+            .richContent
             ? {
-                subcategory:
-                  product.subcategory.trim(),
+                richContent:
+                  product.content
+                    .richContent,
               }
             : {}),
+        },
 
-          ...(product.collectionIds?.length
+        /*
+         * Media is normally added
+         * after the product receives
+         * its ID.
+         */
+        media: [],
+
+        merchandising: {
+          isNew:
+            product
+              .merchandising
+              .isNew,
+
+          isFeatured:
+            product
+              .merchandising
+              .isFeatured,
+
+          isBestSeller:
+            product
+              .merchandising
+              .isBestSeller,
+
+          badges:
+            product
+              .merchandising
+              .badges,
+
+          ...(product
+            .merchandising
+            .ranking !==
+          undefined
             ? {
-                collectionIds:
-                  product.collectionIds,
+                ranking:
+                  product
+                    .merchandising
+                    .ranking,
               }
             : {}),
+        },
 
-          tags:
-            product.tags,
+        ...(product.seo
+          ? {
+              seo:
+                product.seo,
+            }
+          : {}),
 
-          content:
-            product.content,
-
-          attributes:
-            product.attributes,
-
-          media:
-            product.media ?? [],
-
-          ...(product.sizeChart
-            ? {
-                sizeChart:
-                  product.sizeChart,
-              }
-            : {}),
-
-          variants:
-            product.variants ??
-            [],
-
-          ...(product.faqs
-            ? {
-                faqs:
-                  product.faqs,
-              }
-            : {}),
-
-          merchandising:
-            product.merchandising,
-
-          ...(product.seo
-            ? {
-                seo:
-                  product.seo,
-              }
-            : {}),
-
-          status:
-            "draft",
-        };
+        /*
+         * Always create as draft.
+         *
+         * The product can be published
+         * later after media is added.
+         */
+        status:
+          "draft",
+      };
 
       setSaving(true);
+
+      setError(null);
 
       try {
         const created =
@@ -350,10 +532,22 @@ export function useProductEditor({
         );
 
         return created;
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to create product.",
+        );
+
+        throw reason;
       } finally {
         setSaving(false);
       }
     };
+
+  /* =======================================================
+     SAVE BASIC PRODUCT INFORMATION
+  ======================================================= */
 
   const saveBasic =
     async () => {
@@ -364,53 +558,119 @@ export function useProductEditor({
         return;
       }
 
-      const payload: ProductUpdateInput =
-        {
-          name:
-            product.name.trim(),
+      const name =
+        product.name.trim();
 
-          slug:
-            product.slug.trim(),
+      const slug =
+        product.slug.trim();
 
-          productType:
-            product.productType,
+      const categoryId =
+        product.categoryId.trim();
 
-          category:
-            product.category,
+      if (
+        name.length < 2
+      ) {
+        throw new Error(
+          "Product name must contain at least 2 characters.",
+        );
+      }
 
-          ...(product.subcategory !==
-          undefined
+      if (!slug) {
+        throw new Error(
+          "Product slug is required.",
+        );
+      }
+
+      if (!categoryId) {
+        throw new Error(
+          "Product category is required.",
+        );
+      }
+
+      const payload:
+        ProductUpdateInput = {
+        name,
+
+        slug,
+
+        categoryId,
+
+        pricing: {
+          mrp:
+            Number(
+              product.pricing.mrp,
+            ),
+
+          sellingPrice:
+            Number(
+              product.pricing
+                .sellingPrice,
+            ),
+
+          currency: "INR",
+        },
+
+        inventory: {
+          stock:
+            Math.max(
+              0,
+              Math.floor(
+                Number(
+                  product
+                    .inventory
+                    .stock,
+                ),
+              ),
+            ),
+
+          reserved:
+            Math.max(
+              0,
+              Math.floor(
+                Number(
+                  product
+                    .inventory
+                    .reserved,
+                ),
+              ),
+            ),
+
+          lowStockThreshold:
+            Math.max(
+              0,
+              Math.floor(
+                Number(
+                  product
+                    .inventory
+                    .lowStockThreshold,
+                ),
+              ),
+            ),
+        },
+
+        content: {
+          description:
+            product.content
+              .description,
+
+          descriptionFormat:
+            product.content
+              .descriptionFormat,
+
+          ...(product.content
+            .richContent
             ? {
-                subcategory:
-                  product.subcategory,
+                richContent:
+                  product.content
+                    .richContent,
               }
             : {}),
-
-          tags:
-            product.tags,
-
-          content:
-            product.content,
-
-          attributes:
-            product.attributes,
-
-          ...(product.collectionIds
-            ? {
-                collectionIds:
-                  product.collectionIds,
-              }
-            : {}),
-
-          ...(product.sizeChart
-            ? {
-                sizeChart:
-                  product.sizeChart,
-              }
-            : {}),
-        };
+        },
+      };
 
       setSaving(true);
+
+      setError(null);
 
       try {
         const updated =
@@ -428,10 +688,22 @@ export function useProductEditor({
         );
 
         return updated;
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to save product.",
+        );
+
+        throw reason;
       } finally {
         setSaving(false);
       }
     };
+
+  /* =======================================================
+     SAVE MEDIA
+  ======================================================= */
 
   const saveMedia =
     async (
@@ -445,6 +717,8 @@ export function useProductEditor({
       }
 
       setActionLoading(true);
+
+      setError(null);
 
       try {
         const exists =
@@ -478,14 +752,27 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             media:
               result.media,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to save media.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     REMOVE MEDIA
+  ======================================================= */
 
   const removeMedia =
     async (
@@ -500,6 +787,8 @@ export function useProductEditor({
 
       setActionLoading(true);
 
+      setError(null);
+
       try {
         await deleteProductMedia(
           productId,
@@ -510,6 +799,7 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             media:
               current.media.filter(
                 (item) =>
@@ -518,10 +808,22 @@ export function useProductEditor({
               ),
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to delete media.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     SAVE SEO
+  ======================================================= */
 
   const saveSeo =
     async (
@@ -536,6 +838,8 @@ export function useProductEditor({
 
       setActionLoading(true);
 
+      setError(null);
+
       try {
         const result =
           await saveProductSeo(
@@ -547,14 +851,27 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             seo:
               result.seo,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to save SEO.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     SAVE MERCHANDISING
+  ======================================================= */
 
   const saveMerchandising =
     async (
@@ -569,6 +886,8 @@ export function useProductEditor({
 
       setActionLoading(true);
 
+      setError(null);
+
       try {
         const result =
           await saveProductMerchandising(
@@ -580,138 +899,27 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             merchandising:
               result.merchandising,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to save merchandising.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
 
-  const createVariant =
-    async (
-      variant: ProductVariant,
-    ) => {
-      if (
-        !productId ||
-        !accessToken
-      ) {
-        return;
-      }
-
-      setActionLoading(true);
-
-      try {
-        await createProductVariant(
-          productId,
-          variant,
-          accessToken,
-        );
-
-        const result =
-          await getProductVariants(
-            productId,
-            accessToken,
-          );
-
-        setProduct(
-          (current) => ({
-            ...current,
-            variants:
-              result.variants,
-          }),
-        );
-      } finally {
-        setActionLoading(false);
-      }
-    };
-
-  const updateVariant =
-    async (
-      variantId: string,
-      input: Partial<ProductVariant>,
-    ) => {
-      if (
-        !productId ||
-        !accessToken
-      ) {
-        return;
-      }
-
-      setActionLoading(true);
-
-      try {
-        await updateProductVariant(
-          productId,
-          variantId,
-          input,
-          accessToken,
-        );
-
-        const result =
-          await getProductVariants(
-            productId,
-            accessToken,
-          );
-
-        setProduct(
-          (current) => ({
-            ...current,
-            variants:
-              result.variants,
-          }),
-        );
-      } finally {
-        setActionLoading(false);
-      }
-    };
-
-  const removeVariant =
-    async (
-      variantId: string,
-    ) => {
-      if (
-        !productId ||
-        !accessToken
-      ) {
-        return;
-      }
-
-      if (
-        product.variants
-          .length <= 1
-      ) {
-        window.alert(
-          "A product must retain at least one variant.",
-        );
-        return;
-      }
-
-      setActionLoading(true);
-
-      try {
-        await deleteProductVariant(
-          productId,
-          variantId,
-          accessToken,
-        );
-
-        setProduct(
-          (current) => ({
-            ...current,
-            variants:
-              current.variants.filter(
-                (variant) =>
-                  variant.id !==
-                  variantId,
-              ),
-          }),
-        );
-      } finally {
-        setActionLoading(false);
-      }
-    };
+  /* =======================================================
+     PUBLISH
+  ======================================================= */
 
   const publish =
     async () => {
@@ -722,7 +930,22 @@ export function useProductEditor({
         return;
       }
 
+      /*
+       * Publishing requires at least
+       * one media item.
+       */
+      if (
+        product.media.length ===
+        0
+      ) {
+        throw new Error(
+          "Add at least one image or video before publishing the product.",
+        );
+      }
+
       setActionLoading(true);
+
+      setError(null);
 
       try {
         const result =
@@ -738,17 +961,31 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             status:
               result.status,
+
             publishedAt:
               result.publishedAt ??
               undefined,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to publish product.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     MOVE TO DRAFT
+  ======================================================= */
 
   const moveToDraft =
     async () => {
@@ -760,6 +997,8 @@ export function useProductEditor({
       }
 
       setActionLoading(true);
+
+      setError(null);
 
       try {
         const result =
@@ -775,16 +1014,30 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             status:
               result.status,
+
             publishedAt:
               undefined,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to move product to draft.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     ARCHIVE
+  ======================================================= */
 
   const archive =
     async () => {
@@ -797,6 +1050,8 @@ export function useProductEditor({
 
       setActionLoading(true);
 
+      setError(null);
+
       try {
         await archiveProduct(
           productId,
@@ -806,14 +1061,27 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             status:
               "archived",
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to archive product.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
+
+  /* =======================================================
+     UNPUBLISH
+  ======================================================= */
 
   const unpublish =
     async () => {
@@ -826,6 +1094,8 @@ export function useProductEditor({
 
       setActionLoading(true);
 
+      setError(null);
+
       try {
         await unpublishProduct(
           productId,
@@ -835,60 +1105,103 @@ export function useProductEditor({
         setProduct(
           (current) => ({
             ...current,
+
             status:
               "draft",
+
             publishedAt:
               undefined,
           }),
         );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to unpublish product.",
+        );
+
+        throw reason;
       } finally {
         setActionLoading(false);
       }
     };
 
-    const deleteProduct =
-  async () => {
-    if (
-      !productId ||
-      !accessToken
-    ) {
-      return;
-    }
+  /* =======================================================
+     DELETE PRODUCT
+  ======================================================= */
 
-    setActionLoading(true);
+  const deleteProduct =
+    async () => {
+      if (
+        !productId ||
+        !accessToken
+      ) {
+        return;
+      }
 
-    try {
-      await deleteAdminProduct(
-        productId,
-        accessToken,
-      );
-    } finally {
-      setActionLoading(false);
-    }
-  };
+      setActionLoading(true);
+
+      setError(null);
+
+      try {
+        await deleteAdminProduct(
+          productId,
+          accessToken,
+        );
+      } catch (reason) {
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to delete product.",
+        );
+
+        throw reason;
+      } finally {
+        setActionLoading(false);
+      }
+    };
+
+  /* =======================================================
+     RETURN API
+  ======================================================= */
 
   return {
-  product,
-  setProduct,
-  updateProduct,
-  loading,
-  saving,
-  actionLoading,
-  error,
-  refresh,
-  create,
-  saveBasic,
-  saveMedia,
-  removeMedia,
-  saveSeo,
-  saveMerchandising,
-  createVariant,
-  updateVariant,
-  removeVariant,
-  publish,
-  moveToDraft,
-  archive,
-  unpublish,
-  deleteProduct,
+    product,
+
+    setProduct,
+
+    updateProduct,
+
+    loading,
+
+    saving,
+
+    actionLoading,
+
+    error,
+
+    refresh,
+
+    create,
+
+    saveBasic,
+
+    saveMedia,
+
+    removeMedia,
+
+    saveSeo,
+
+    saveMerchandising,
+
+    publish,
+
+    moveToDraft,
+
+    archive,
+
+    unpublish,
+
+    deleteProduct,
   };
 }

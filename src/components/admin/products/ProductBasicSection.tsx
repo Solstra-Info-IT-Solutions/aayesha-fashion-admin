@@ -1,80 +1,98 @@
 "use client";
 
-import type {
-  ProductCategory,
-  ProductType,
-} from "@/types/admin-product";
+import { useEffect, useState } from "react";
+
+import { getCategories } from "@/services/catalog.service";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+
+import type { Category } from "@/types/catalog";
 
 interface ProductBasicSectionProps {
   name: string;
-  slug: string;
-  productType: ProductType;
-  category: ProductCategory;
-  subcategory: string;
-  tags: string[];
-  onChange: (
-    values: {
-      name?: string;
-      slug?: string;
-      productType?: ProductType;
-      category?: ProductCategory;
-      subcategory?: string;
-      tags?: string[];
-    },
-  ) => void;
+  categoryId: string;
+  onChange: (values: {
+    name?: string;
+    categoryId?: string;
+  }) => void;
 }
-
-const productTypes: Array<
-  [ProductType, string]
-> = [
-  ["anarkali", "Anarkali"],
-  ["kurta", "Kurta"],
-  ["kurta-set", "Kurta Set"],
-  ["suit-set", "Suit Set"],
-  ["lehenga", "Lehenga"],
-  ["saree", "Saree"],
-  ["dress", "Dress"],
-  ["top", "Top"],
-  ["bottom", "Bottom"],
-  ["co-ord", "Co-ord"],
-  ["jacket", "Jacket"],
-  ["dupatta", "Dupatta"],
-  ["other", "Other"],
-];
-
-const categories: Array<
-  [ProductCategory, string]
-> = [
-  ["festive", "Festive"],
-  ["ethnic", "Ethnic"],
-  [
-    "contemporary",
-    "Contemporary",
-  ],
-  [
-    "new-arrival",
-    "New Arrival",
-  ],
-];
 
 const inputClassName =
   "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
 
 const selectClassName =
-  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6]";
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none transition focus:border-[#d98791] focus:ring-2 focus:ring-[#f9e4e6] disabled:cursor-not-allowed disabled:bg-[#f8f6f3] disabled:text-[#969696]";
 
 const labelClassName =
   "mb-1.5 block break-words text-sm font-medium leading-5 text-[#292c2c]";
 
 export default function ProductBasicSection({
   name,
-  slug,
-  productType,
-  category,
-  subcategory,
-  tags,
+  categoryId,
   onChange,
 }: ProductBasicSectionProps) {
+  const { accessToken } = useAdminAuth();
+
+  const [categories, setCategories] =
+    useState<Category[]>([]);
+
+  const [loadingCategories, setLoadingCategories] =
+    useState(true);
+
+  const [categoryError, setCategoryError] =
+    useState<string | null>(null);
+
+  useEffect(() => {
+    if (!accessToken) {
+      setLoadingCategories(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    const loadCategories = async () => {
+      setLoadingCategories(true);
+      setCategoryError(null);
+
+      try {
+        const response = await getCategories(
+          accessToken,
+          {
+            page: 1,
+            limit: 100,
+            isActive: "true",
+            sort: "sort_order",
+          },
+        );
+
+        if (cancelled) {
+          return;
+        }
+
+        setCategories(response.items);
+      } catch (error) {
+        if (cancelled) {
+          return;
+        }
+
+        setCategoryError(
+          error instanceof Error
+            ? error.message
+            : "Unable to load categories.",
+        );
+      } finally {
+        if (!cancelled) {
+          setLoadingCategories(false);
+        }
+      }
+    };
+
+    void loadCategories();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [accessToken]);
+
   return (
     <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
       {/* HEADER */}
@@ -84,15 +102,14 @@ export default function ProductBasicSection({
         </h2>
 
         <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
-          Core product identity and
-          catalog information.
+          Add the basic information for this product.
         </p>
       </div>
 
       {/* FORM */}
       <div className="mt-5 grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
         {/* PRODUCT NAME */}
-        <label className="block min-w-0">
+        <label className="block min-w-0 md:col-span-2">
           <span className={labelClassName}>
             Product Name
           </span>
@@ -104,143 +121,57 @@ export default function ProductBasicSection({
                 name: event.target.value,
               })
             }
-            placeholder="Rose Garden Anarkali"
+            placeholder="Readymade Cotton Suit"
             className={inputClassName}
           />
-        </label>
-
-        {/* SLUG */}
-        <label className="block min-w-0">
-          <span className={labelClassName}>
-            Slug
-          </span>
-
-          <input
-            value={slug}
-            onChange={(event) =>
-              onChange({
-                slug: event.target.value
-                  .toLowerCase()
-                  .replace(
-                    /[^a-z0-9-]/g,
-                    "-",
-                  )
-                  .replace(
-                    /-+/g,
-                    "-",
-                  ),
-              })
-            }
-            placeholder="rose-garden-anarkali"
-            className={`${inputClassName} overflow-hidden text-ellipsis`}
-          />
-        </label>
-
-        {/* PRODUCT TYPE */}
-        <label className="block min-w-0">
-          <span className={labelClassName}>
-            Product Type
-          </span>
-
-          <select
-            value={productType}
-            onChange={(event) =>
-              onChange({
-                productType:
-                  event.target
-                    .value as ProductType,
-              })
-            }
-            className={selectClassName}
-          >
-            {productTypes.map(
-              ([value, label]) => (
-                <option
-                  key={value}
-                  value={value}
-                >
-                  {label}
-                </option>
-              ),
-            )}
-          </select>
         </label>
 
         {/* CATEGORY */}
-        <label className="block min-w-0">
+        <label className="block min-w-0 md:col-span-2">
           <span className={labelClassName}>
-            Category
+            Product Category
           </span>
 
           <select
-            value={category}
+            value={categoryId}
             onChange={(event) =>
               onChange({
-                category:
-                  event.target
-                    .value as ProductCategory,
+                categoryId: event.target.value,
               })
             }
+            disabled={loadingCategories}
             className={selectClassName}
           >
-            {categories.map(
-              ([value, label]) => (
-                <option
-                  key={value}
-                  value={value}
-                >
-                  {label}
-                </option>
-              ),
-            )}
+            <option value="">
+              {loadingCategories
+                ? "Loading categories..."
+                : "Select Product Category"}
+            </option>
+
+            {categories.map((category) => (
+              <option
+                key={category._id}
+                value={category._id}
+              >
+                {category.name}
+              </option>
+            ))}
           </select>
-        </label>
 
-        {/* SUBCATEGORY */}
-        <label className="block min-w-0 md:col-span-2">
-          <span className={labelClassName}>
-            Subcategory
-          </span>
+          {categoryError && (
+            <p className="mt-1.5 break-words text-xs leading-5 text-[#a33a3a]">
+              {categoryError}
+            </p>
+          )}
 
-          <input
-            value={subcategory}
-            onChange={(event) =>
-              onChange({
-                subcategory:
-                  event.target.value,
-              })
-            }
-            placeholder="Optional"
-            className={inputClassName}
-          />
-        </label>
-
-        {/* TAGS */}
-        <label className="block min-w-0 md:col-span-2">
-          <span className={labelClassName}>
-            Tags
-          </span>
-
-          <input
-            value={tags.join(", ")}
-            onChange={(event) =>
-              onChange({
-                tags: event.target.value
-                  .split(",")
-                  .map(
-                    (item) =>
-                      item.trim(),
-                  )
-                  .filter(Boolean),
-              })
-            }
-            placeholder="anarkali, festive, embroidered"
-            className={inputClassName}
-          />
-
-          <p className="mt-1.5 max-w-full break-words text-xs leading-5 text-[#969696]">
-            Separate tags using commas.
-          </p>
+          {!loadingCategories &&
+            !categoryError &&
+            categories.length === 0 && (
+              <p className="mt-1.5 break-words text-xs leading-5 text-[#969696]">
+                No active categories available. Create a
+                category first.
+              </p>
+            )}
         </label>
       </div>
     </section>

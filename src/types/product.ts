@@ -1,13 +1,12 @@
 /* ============================================================
    AAYESHA FASHION — PRODUCT DOMAIN TYPES
-   API / CMS / ADMIN / STOREFRONT
+   SIMPLE PRODUCT ARCHITECTURE
 ============================================================ */
 
-export const PRODUCT_CURRENCY =
-  "INR" as const;
+export const PRODUCT_CURRENCY = "INR" as const;
 
 /* ============================================================
-   ENUMS
+   STATUS
 ============================================================ */
 
 export type ProductStatus =
@@ -16,130 +15,13 @@ export type ProductStatus =
   | "archived"
   | "discontinued";
 
-export type VariantStatus =
-  | "active"
-  | "inactive"
-  | "discontinued";
-
-export type ProductType =
-  | "anarkali"
-  | "kurta"
-  | "kurta-set"
-  | "suit-set"
-  | "lehenga"
-  | "saree"
-  | "dress"
-  | "top"
-  | "bottom"
-  | "co-ord"
-  | "jacket"
-  | "dupatta"
-  | "other";
-
-export type ProductCategory =
-  | "festive"
-  | "ethnic"
-  | "contemporary"
-  | "new-arrival";
-
-export type ProductBadge =
-  | "new"
-  | "best-seller"
-  | "featured"
-  | "exclusive"
-  | "limited"
-  | "sale"
-  | "trending"
-  | "back-in-stock";
-
-export type ProductMediaType =
-  | "image"
-  | "video"
-  | "external-video"
-  | "360";
-
-export type ProductImageType =
-  | "model"
-  | "front"
-  | "back"
-  | "detail"
-  | "flat-lay"
-  | "lifestyle"
-  | "video-poster";
-
-export type ProductContentFormat =
-  | "plain"
-  | "html"
-  | "rich";
-
-export type ProductContentBlockType =
-  | "heading"
-  | "paragraph"
-  | "list"
-  | "quote"
-  | "image"
-  | "video"
-  | "divider";
-
-export type SizeChartUnit =
-  | "inch"
-  | "cm";
-
-export type ProductSort =
-  | "relevance"
-  | "newest"
-  | "price-low"
-  | "price-high"
-  | "rating"
-  | "best-selling"
-  | "featured";
-
-/* ============================================================
-   PRICING
-============================================================ */
-
-export interface ProductPricing {
-  mrp: number;
-  sellingPrice: number;
-  currency: typeof PRODUCT_CURRENCY;
-  compareAtPrice?: number;
-}
-
-/* ============================================================
-   COLOR
-============================================================ */
-
-export interface ProductColor {
-  id: string;
-  name: string;
-  slug: string;
-  hex?: string;
-  swatchImage?: string;
-}
-
-/* ============================================================
-   SIZE
-============================================================ */
-
-export interface ProductSize {
-  code: string;
-  label: string;
-  sortOrder: number;
-}
-
-/* ============================================================
-   INVENTORY
-============================================================ */
-
-export interface ProductInventory {
-  stock: number;
-  reserved: number;
-  lowStockThreshold: number;
-}
-
 /* ============================================================
    MEDIA
 ============================================================ */
+
+export type ProductMediaType =
+  | "image"
+  | "video";
 
 export interface ProductMedia {
   id: string;
@@ -162,163 +44,76 @@ export interface ProductMedia {
 
   duration?: number;
 
-  colorId?: string;
-
-  imageType?: ProductImageType;
-
   sortOrder: number;
 
-  isPrimary?: boolean;
+  isPrimary: boolean;
 }
 
 /* ============================================================
-   VARIANT
+   PRICING
 ============================================================ */
 
-export interface ProductVariant {
-  id: string;
+export interface ProductPricing {
+  mrp: number;
 
-  sku: string;
+  sellingPrice: number;
 
-  barcode?: string;
-
-  color: ProductColor;
-
-  size: ProductSize;
-
-  pricing: ProductPricing;
-
-  inventory: ProductInventory;
-
-  mediaIds?: string[];
-
-  weight?: number;
-
-  status: VariantStatus;
+  currency: typeof PRODUCT_CURRENCY;
 }
 
 /* ============================================================
-   ATTRIBUTES
+   INVENTORY
 ============================================================ */
 
-export interface ProductAttributes {
-  fabric?: string;
+export interface ProductInventory {
+  stock: number;
 
-  composition?: string;
+  reserved: number;
 
-  fit?: string;
-
-  occasion?: string[];
-
-  pattern?: string;
-
-  work?: string;
-
-  neckline?: string;
-
-  sleeve?: string;
-
-  silhouette?: string;
-
-  length?: string;
-
-  lining?: string;
-
-  transparency?: string;
-
-  careInstructions?: string[];
-}
-
-/* ============================================================
-   SIZE CHART
-============================================================ */
-
-export interface ProductSizeMeasurement {
-  size: string;
-
-  bust?: number | string;
-
-  waist?: number | string;
-
-  hip?: number | string;
-
-  shoulder?: number | string;
-
-  armhole?: number | string;
-
-  sleeveLength?: number | string;
-
-  garmentLength?: number | string;
-
-  bottomLength?: number | string;
-
-  inseam?: number | string;
-
-  rise?: number | string;
-}
-
-export interface ProductSizeChart {
-  unit: SizeChartUnit;
-
-  measurements: ProductSizeMeasurement[];
-
-  fitNote?: string;
+  lowStockThreshold: number;
 }
 
 /* ============================================================
    CONTENT
 ============================================================ */
 
-export interface ProductContentBlock {
-  type: ProductContentBlockType;
-
-  content?: string | string[];
-
-  src?: string;
-
-  alt?: string;
-
-  caption?: string;
-}
+export type ProductContentFormat =
+  | "plain"
+  | "html"
+  | "rich";
 
 export interface ProductContent {
-  description?: string;
+  description: string;
 
   descriptionFormat: ProductContentFormat;
 
-  richContent?:
-    | string
-    | ProductContentBlock[];
-
-  highlights?: string[];
-
-  stylingNotes?: string;
-
-  fitNote?: string;
-
-  materialsAndCare?:
-    | string
-    | string[];
-
-  shippingContent?: string;
-
-  returnContent?: string;
+  richContent?: string;
 }
 
 /* ============================================================
-   FAQ
+   MERCHANDISING
 ============================================================ */
 
-export interface ProductFAQ {
-  id: string;
+export type ProductBadge =
+  | "new"
+  | "best-seller"
+  | "featured"
+  | "exclusive"
+  | "limited"
+  | "sale"
+  | "trending"
+  | "back-in-stock";
 
-  question: string;
+export interface ProductMerchandising {
+  isNew: boolean;
 
-  answer: string;
+  isFeatured: boolean;
 
-  answerFormat:
-    | "plain"
-    | "html";
+  isBestSeller: boolean;
+
+  badges: ProductBadge[];
+
+  ranking?: number;
 }
 
 /* ============================================================
@@ -338,42 +133,6 @@ export interface ProductSEO {
 }
 
 /* ============================================================
-   MERCHANDISING
-============================================================ */
-
-export interface ProductMerchandising {
-  isNew: boolean;
-
-  isFeatured: boolean;
-
-  isBestSeller: boolean;
-
-  badges: ProductBadge[];
-
-  ranking?: number;
-}
-
-/* ============================================================
-   REVIEWS
-============================================================ */
-
-export interface ProductReviewBreakdown {
-  5?: number;
-  4?: number;
-  3?: number;
-  2?: number;
-  1?: number;
-}
-
-export interface ProductReviewSummary {
-  averageRating: number;
-
-  reviewCount: number;
-
-  breakdown?: ProductReviewBreakdown;
-}
-
-/* ============================================================
    PRODUCT
 ============================================================ */
 
@@ -384,29 +143,15 @@ export interface Product {
 
   name: string;
 
-  productType: ProductType;
+  categoryId: string;
 
-  category: ProductCategory;
+  pricing: ProductPricing;
 
-  subcategory?: string;
-
-  collectionIds?: string[];
-
-  tags: string[];
+  inventory: ProductInventory;
 
   content: ProductContent;
 
-  attributes: ProductAttributes;
-
   media: ProductMedia[];
-
-  sizeChart?: ProductSizeChart;
-
-  variants: ProductVariant[];
-
-  faqs?: ProductFAQ[];
-
-  reviews?: ProductReviewSummary;
 
   merchandising: ProductMerchandising;
 
@@ -422,27 +167,69 @@ export interface Product {
 }
 
 /* ============================================================
+   CREATE PRODUCT
+============================================================ */
+
+export interface CreateProductInput {
+  id: string;
+
+  slug?: string;
+
+  name: string;
+
+  categoryId: string;
+
+  pricing: ProductPricing;
+
+  inventory: ProductInventory;
+
+  content: ProductContent;
+
+  media?: ProductMedia[];
+
+  merchandising?: ProductMerchandising;
+
+  seo?: ProductSEO;
+
+  status?: ProductStatus;
+
+  publishedAt?: string;
+}
+
+/* ============================================================
+   UPDATE PRODUCT
+============================================================ */
+
+export interface UpdateProductInput {
+  name?: string;
+
+  slug?: string;
+
+  categoryId?: string;
+
+  pricing?: ProductPricing;
+
+  inventory?: ProductInventory;
+
+  content?: ProductContent;
+
+  merchandising?: ProductMerchandising;
+
+  seo?: ProductSEO;
+
+  status?: ProductStatus;
+
+  publishedAt?: string | null;
+}
+
+/* ============================================================
    FILTERS
 ============================================================ */
 
 export interface ProductFilters {
-  category?: ProductCategory[];
+  categoryId?: string;
 
-  subcategory?: string[];
-
-  productType?: ProductType[];
-
-  collectionIds?: string[];
-
-  tags?: string[];
-
-  colorIds?: string[];
-
-  sizeCodes?: string[];
-
-  badges?: ProductBadge[];
-
-  status?: ProductStatus[];
+  status?: ProductStatus;
 
   minPrice?: number;
 
@@ -463,26 +250,24 @@ export interface ProductFilters {
    HELPERS
 ============================================================ */
 
-export function getVariantAvailableStock(
-  variant: ProductVariant,
+export function getAvailableStock(
+  product: Product,
 ): number {
   return Math.max(
     0,
-    variant.inventory.stock -
-      variant.inventory.reserved,
+    product.inventory.stock -
+      product.inventory.reserved,
   );
 }
 
-export function getVariantInventoryStatus(
-  variant: ProductVariant,
+export function getInventoryStatus(
+  product: Product,
 ):
   | "in-stock"
   | "low-stock"
   | "out-of-stock" {
   const available =
-    getVariantAvailableStock(
-      variant,
-    );
+    getAvailableStock(product);
 
   if (available <= 0) {
     return "out-of-stock";
@@ -490,8 +275,7 @@ export function getVariantInventoryStatus(
 
   if (
     available <=
-    variant.inventory
-      .lowStockThreshold
+    product.inventory.lowStockThreshold
   ) {
     return "low-stock";
   }
@@ -499,13 +283,16 @@ export function getVariantInventoryStatus(
   return "in-stock";
 }
 
+/* ============================================================
+   DISCOUNT
+============================================================ */
+
 export function getDiscountPercentage(
   pricing: ProductPricing,
 ): number {
   if (
     pricing.mrp <= 0 ||
-    pricing.sellingPrice >=
-      pricing.mrp
+    pricing.sellingPrice >= pricing.mrp
   ) {
     return 0;
   }
@@ -518,93 +305,18 @@ export function getDiscountPercentage(
   );
 }
 
+/* ============================================================
+   PRODUCT PRICE HELPERS
+============================================================ */
+
 export function getProductStartingPrice(
   product: Product,
 ): number {
-  const prices =
-    product.variants
-      .filter(
-        (variant) =>
-          variant.status ===
-          "active",
-      )
-      .map(
-        (variant) =>
-          variant.pricing
-            .sellingPrice,
-      );
-
-  if (!prices.length) {
-    return 0;
-  }
-
-  return Math.min(...prices);
+  return product.pricing.sellingPrice;
 }
 
 export function getProductStartingMrp(
   product: Product,
 ): number {
-  const prices =
-    product.variants
-      .filter(
-        (variant) =>
-          variant.status ===
-          "active",
-      )
-      .map(
-        (variant) =>
-          variant.pricing.mrp,
-      );
-
-  if (!prices.length) {
-    return 0;
-  }
-
-  return Math.min(...prices);
-}
-
-export function getProductColors(
-  product: Product,
-): ProductColor[] {
-  const map =
-    new Map<
-      string,
-      ProductColor
-    >();
-
-  for (const variant of product.variants) {
-    map.set(
-      variant.color.id,
-      variant.color,
-    );
-  }
-
-  return Array.from(
-    map.values(),
-  );
-}
-
-export function getProductSizes(
-  product: Product,
-): ProductSize[] {
-  const map =
-    new Map<
-      string,
-      ProductSize
-    >();
-
-  for (const variant of product.variants) {
-    map.set(
-      variant.size.code,
-      variant.size,
-    );
-  }
-
-  return Array.from(
-    map.values(),
-  ).sort(
-    (a, b) =>
-      a.sortOrder -
-      b.sortOrder,
-  );
+  return product.pricing.mrp;
 }

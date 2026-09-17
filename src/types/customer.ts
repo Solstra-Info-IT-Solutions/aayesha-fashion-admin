@@ -119,7 +119,6 @@ export type CustomerOrder = {
 
   items?: Array<{
     productId?: string;
-    variantId?: string;
     quantity?: number;
     name?: string;
     price?: number;

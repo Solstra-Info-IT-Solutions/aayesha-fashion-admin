@@ -37,16 +37,25 @@ interface MediaFormModalProps {
   ) => Promise<void>;
 }
 
-function createId() {
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function createId(): string {
   if (
     typeof crypto !== "undefined" &&
-    typeof crypto.randomUUID === "function"
+    typeof crypto.randomUUID ===
+      "function"
   ) {
     return crypto.randomUUID();
   }
 
   return `media-${Date.now()}`;
 }
+
+/* =========================================================
+   CONSTANTS
+========================================================= */
 
 const MAX_FILE_SIZE =
   5 * 1024 * 1024;
@@ -56,6 +65,10 @@ const ALLOWED_TYPES = [
   "image/png",
   "image/webp",
 ];
+
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 export default function MediaFormModal({
   open,
@@ -86,20 +99,6 @@ export default function MediaFormModal({
     );
 
   const [
-    imageType,
-    setImageType,
-  ] = useState<
-    NonNullable<
-      ProductMedia["imageType"]
-    > | ""
-  >("");
-
-  const [
-    colorId,
-    setColorId,
-  ] = useState("");
-
-  const [
     sortOrder,
     setSortOrder,
   ] = useState("0");
@@ -126,6 +125,10 @@ export default function MediaFormModal({
     setUploadError,
   ] = useState("");
 
+  /* =======================================================
+     LOAD MEDIA
+  ======================================================= */
+
   useEffect(() => {
     if (!open) {
       return;
@@ -135,16 +138,16 @@ export default function MediaFormModal({
     setUploadError("");
 
     if (media) {
-      setSrc(media.src);
-      setAlt(media.alt ?? "");
-      setType(media.type);
-
-      setImageType(
-        media.imageType ?? "",
+      setSrc(
+        media.src ?? "",
       );
 
-      setColorId(
-        media.colorId ?? "",
+      setAlt(
+        media.alt ?? "",
+      );
+
+      setType(
+        media.type,
       );
 
       setSortOrder(
@@ -163,21 +166,34 @@ export default function MediaFormModal({
     setSrc("");
     setAlt("");
     setType("image");
-    setImageType("");
-    setColorId("");
     setSortOrder("0");
     setIsPrimary(false);
-  }, [open, media]);
+  }, [
+    open,
+    media,
+  ]);
+
+  /* =======================================================
+     CLOSED
+  ======================================================= */
 
   if (!open) {
     return null;
   }
+
+  /* =======================================================
+     FILE PICKER
+  ======================================================= */
 
   function openFilePicker(): void {
     setUploadError("");
 
     fileInputRef.current?.click();
   }
+
+  /* =======================================================
+     FILE UPLOAD
+  ======================================================= */
 
   async function handleFileChange(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -243,7 +259,8 @@ export default function MediaFormModal({
           file,
           {
             resource: "product",
-            resourceId: productId,
+            resourceId:
+              productId,
             folder: "images",
           },
         );
@@ -264,6 +281,10 @@ export default function MediaFormModal({
     }
   }
 
+  /* =======================================================
+     SAVE
+  ======================================================= */
+
   async function save(): Promise<void> {
     if (!src.trim()) {
       setUploadError(
@@ -273,6 +294,12 @@ export default function MediaFormModal({
       return;
     }
 
+    const normalizedSortOrder =
+      Math.max(
+        0,
+        Number(sortOrder) || 0,
+      );
+
     await onSave({
       id:
         media?.id ??
@@ -280,40 +307,35 @@ export default function MediaFormModal({
 
       type,
 
-      src: src.trim(),
+      src:
+        src.trim(),
 
       ...(alt.trim()
         ? {
-            alt: alt.trim(),
+            alt:
+              alt.trim(),
           }
         : {}),
 
-      ...(imageType
-        ? {
-            imageType,
-          }
-        : {}),
-
-      ...(colorId.trim()
-        ? {
-            colorId:
-              colorId.trim(),
-          }
-        : {}),
-
-      sortOrder: Math.max(
-        0,
-        Number(sortOrder) || 0,
-      ),
+      sortOrder:
+        normalizedSortOrder,
 
       isPrimary,
     });
   }
 
+  /* =======================================================
+     RENDER
+  ======================================================= */
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/30 p-4">
       <div className="my-auto flex max-h-[calc(100vh-32px)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-        {/* HEADER */}
+
+        {/* =================================================
+            HEADER
+        ================================================= */}
+
         <div className="flex items-center justify-between border-b border-[#e7e2dd] px-6 py-5">
           <div>
             <h2 className="text-lg font-semibold text-[#171717]">
@@ -323,8 +345,9 @@ export default function MediaFormModal({
             </h2>
 
             <p className="mt-1 text-sm text-[#6f706f]">
-              Upload product imagery or
-              add an external media URL.
+              Upload product imagery
+              or add an external
+              media URL.
             </p>
           </div>
 
@@ -341,8 +364,16 @@ export default function MediaFormModal({
           </button>
         </div>
 
+        {/* =================================================
+            BODY
+        ================================================= */}
+
         <div className="min-h-0 flex-1 space-y-5 overflow-y-auto px-6 py-5">
-          {/* UPLOAD */}
+
+          {/* =================================================
+              UPLOAD
+          ================================================= */}
+
           <div>
             <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
               Product Image
@@ -393,8 +424,8 @@ export default function MediaFormModal({
             </button>
 
             <p className="mt-2 text-xs text-[#969696]">
-              JPEG, PNG or WebP · Maximum
-              5 MB
+              JPEG, PNG or WebP ·
+              Maximum 5 MB
             </p>
 
             {selectedFile && (
@@ -418,40 +449,50 @@ export default function MediaFormModal({
             )}
           </div>
 
-          {/* PREVIEW */}
+          {/* =================================================
+              PREVIEW
+          ================================================= */}
+
           {src && (
-  <div className="flex items-center gap-4 rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-3">
-    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-[#e7e2dd] bg-[#f5f1ec]">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={
-          alt ||
-          "Product media preview"
-        }
-        className="h-full w-full object-cover"
-      />
+            <div className="flex items-center gap-4 rounded-xl border border-[#e7e2dd] bg-[#fcfbf9] p-3">
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-[#e7e2dd] bg-[#f5f1ec]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={
+                    alt ||
+                    "Product media preview"
+                  }
+                  className="h-full w-full object-cover"
+                />
 
-      <div className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-white/90 px-1.5 py-1 text-[9px] font-medium text-[#292c2c] shadow-sm">
-        <ImageIcon size={10} />
-        Preview
-      </div>
-    </div>
+                <div className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-white/90 px-1.5 py-1 text-[9px] font-medium text-[#292c2c] shadow-sm">
+                  <ImageIcon
+                    size={10}
+                  />
 
-    <div className="min-w-0">
-      <p className="text-sm font-medium text-[#292c2c]">
-        Image uploaded
-      </p>
+                  Preview
+                </div>
+              </div>
 
-      <p className="mt-1 text-xs leading-5 text-[#969696]">
-        This image will be saved as
-        product media.
-      </p>
-    </div>
-  </div>
-)}
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-[#292c2c]">
+                  Image uploaded
+                </p>
 
-          {/* SOURCE URL */}
+                <p className="mt-1 text-xs leading-5 text-[#969696]">
+                  This image will
+                  be saved as
+                  product media.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* =================================================
+              SOURCE URL
+          ================================================= */}
+
           <label>
             <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
               Source URL
@@ -469,97 +510,45 @@ export default function MediaFormModal({
             />
 
             <p className="mt-1.5 text-xs text-[#969696]">
-              Cloudinary URL is filled
-              automatically after upload.
+              Cloudinary URL is
+              filled automatically
+              after upload.
             </p>
           </label>
 
-          {/* MEDIA TYPE + IMAGE TYPE */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label>
-              <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
-                Media Type
-              </span>
+          {/* =================================================
+              MEDIA TYPE
+          ================================================= */}
 
-              <select
-                value={type}
-                onChange={(event) =>
-                  setType(
-                    event.target
-                      .value as ProductMedia["type"],
-                  )
-                }
-                className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
-              >
-                <option value="image">
-                  Image
-                </option>
+          <label>
+            <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
+              Media Type
+            </span>
 
-                <option value="video">
-                  Video
-                </option>
+            <select
+              value={type}
+              onChange={(event) =>
+                setType(
+                  event.target
+                    .value as ProductMedia["type"],
+                )
+              }
+              className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
+            >
+              <option value="image">
+                Image
+              </option>
 
-                <option value="external-video">
-                  External Video
-                </option>
+              <option value="video">
+                Video
+              </option>
+            </select>
+          </label>
 
-                <option value="360">
-                  360
-                </option>
-              </select>
-            </label>
+          {/* =================================================
+              ALT + SORT
+          ================================================= */}
 
-            <label>
-              <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
-                Image Type
-              </span>
-
-              <select
-                value={imageType}
-                onChange={(event) =>
-                  setImageType(
-                    event.target
-                      .value as typeof imageType,
-                  )
-                }
-                className="h-11 w-full rounded-xl border border-[#d8d1ca] bg-white px-3 text-sm outline-none focus:border-[#d98791]"
-              >
-                <option value="">
-                  None
-                </option>
-
-                <option value="model">
-                  Model
-                </option>
-
-                <option value="front">
-                  Front
-                </option>
-
-                <option value="back">
-                  Back
-                </option>
-
-                <option value="detail">
-                  Detail
-                </option>
-
-                <option value="flat-lay">
-                  Flat Lay
-                </option>
-
-                <option value="lifestyle">
-                  Lifestyle
-                </option>
-
-                <option value="video-poster">
-                  Video Poster
-                </option>
-              </select>
-            </label>
-          </div>
-
-          {/* ALT + SORT */}
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="sm:col-span-2">
               <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
@@ -597,25 +586,10 @@ export default function MediaFormModal({
             </label>
           </div>
 
-          {/* COLOR ID */}
-          <label>
-            <span className="mb-1.5 block text-sm font-medium text-[#292c2c]">
-              Variant Color ID
-            </span>
+          {/* =================================================
+              PRIMARY MEDIA
+          ================================================= */}
 
-            <input
-              value={colorId}
-              onChange={(event) =>
-                setColorId(
-                  event.target.value,
-                )
-              }
-              placeholder="Optional color master ID"
-              className="h-11 w-full rounded-xl border border-[#d8d1ca] px-3 text-sm outline-none focus:border-[#d98791]"
-            />
-          </label>
-
-          {/* PRIMARY */}
           <label className="flex items-center gap-3">
             <input
               type="checkbox"
@@ -629,13 +603,16 @@ export default function MediaFormModal({
             />
 
             <span className="text-sm text-[#292c2c]">
-              Make this the primary
-              media
+              Make this the
+              primary media
             </span>
           </label>
         </div>
 
-        {/* FOOTER */}
+        {/* =================================================
+            FOOTER
+        ================================================= */}
+
         <div className="flex justify-end gap-3 border-t border-[#e7e2dd] px-6 py-4">
           <button
             type="button"

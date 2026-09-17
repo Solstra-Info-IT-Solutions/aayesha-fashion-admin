@@ -79,7 +79,7 @@ export default function CatalogPage() {
 
         <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">
           Manage the master data that powers
-          products, variants, merchandising and
+          products, merchandising and
           storefront discovery.
         </p>
       </div>

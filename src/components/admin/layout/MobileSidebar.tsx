@@ -8,7 +8,6 @@ import {
   Settings,
   ShoppingBag,
   Users,
-  Warehouse,
   X,
 } from "lucide-react";
 
@@ -27,11 +26,6 @@ const items = [
     href: "/admin/products",
     label: "Products",
     icon: ShoppingBag,
-  },
-  {
-    href: "/admin/inventory",
-    label: "Inventory",
-    icon: Warehouse,
   },
   {
     href: "/admin/customers",
@@ -93,27 +87,21 @@ export function MobileSidebar({
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto p-4">
-          {items.map(
-            ({
-              href,
-              label,
-              icon: Icon,
-            }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={onClose}
-                className="flex items-center gap-3 px-4 py-3 text-sm text-[#d0ccc7] transition hover:bg-[#292c2c] hover:text-white"
-              >
-                <Icon
-                  size={18}
-                  strokeWidth={1.7}
-                />
+          {items.map(({ href, label, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={onClose}
+              className="flex items-center gap-3 px-4 py-3 text-sm text-[#d0ccc7] transition hover:bg-[#292c2c] hover:text-white"
+            >
+              <Icon
+                size={18}
+                strokeWidth={1.7}
+              />
 
-                {label}
-              </Link>
-            ),
-          )}
+              {label}
+            </Link>
+          ))}
         </nav>
       </aside>
     </div>

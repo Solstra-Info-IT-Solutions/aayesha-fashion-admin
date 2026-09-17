@@ -28,8 +28,7 @@ function getPrimaryImage(
   return (
     product.media?.find(
       (media) =>
-        media.type ===
-          "image" &&
+        media.type === "image" &&
         media.isPrimary,
     )?.src ??
     product.media?.find(
@@ -40,27 +39,38 @@ function getPrimaryImage(
   );
 }
 
-function getStartingPrice(
+function getProductPrice(
   product: Product,
 ): number {
-  const prices =
-    product.variants
-      .filter(
-        (variant) =>
-          variant.status ===
-          "active",
-      )
-      .map(
-        (variant) =>
-          variant.pricing
-            .sellingPrice,
-      );
+  return product.pricing?.sellingPrice ?? 0;
+}
 
-  if (!prices.length) {
-    return 0;
+function getProductStock(
+  product: Product,
+): number {
+  const stock =
+    product.inventory?.stock ?? 0;
+
+  const reserved =
+    product.inventory?.reserved ?? 0;
+
+  return Math.max(
+    stock - reserved,
+    0,
+  );
+}
+
+function getStockLabel(
+  product: Product,
+): string {
+  const available =
+    getProductStock(product);
+
+  if (available <= 0) {
+    return "Out of stock";
   }
 
-  return Math.min(...prices);
+  return `${available} in stock`;
 }
 
 export default function ProductTable({
@@ -94,18 +104,23 @@ export default function ProductTable({
               <th className="px-5 py-4 font-medium">
                 Product
               </th>
+
               <th className="px-5 py-4 font-medium">
-                Type
+                Category
               </th>
+
               <th className="px-5 py-4 font-medium">
                 Price
               </th>
+
               <th className="px-5 py-4 font-medium">
-                Variants
+                Stock
               </th>
+
               <th className="px-5 py-4 font-medium">
                 Status
               </th>
+
               <th className="px-5 py-4 text-right font-medium">
                 Actions
               </th>
@@ -121,25 +136,27 @@ export default function ProductTable({
                   );
 
                 const price =
-                  getStartingPrice(
+                  getProductPrice(
+                    product,
+                  );
+
+                const stock =
+                  getProductStock(
                     product,
                   );
 
                 return (
                   <tr
-                    key={
-                      product.id
-                    }
+                    key={product.id}
                     className="hover:bg-[#fcfbf9]"
                   >
+                    {/* PRODUCT */}
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
                         <div className="relative h-14 w-12 shrink-0 overflow-hidden rounded-lg border border-[#e7e2dd] bg-[#f5f1ec]">
                           {image ? (
                             <Image
-                              src={
-                                image
-                              }
+                              src={image}
                               alt={
                                 product.name
                               }
@@ -175,27 +192,59 @@ export default function ProductTable({
                       </div>
                     </td>
 
+                    {/* CATEGORY */}
                     <td className="px-5 py-4 text-sm text-[#6f706f]">
-                      {
-                        product.productType
-                      }
+                      {product.categoryId ||
+                        "—"}
                     </td>
 
-                    <td className="px-5 py-4 text-sm font-semibold text-[#171717]">
-                      ₹
-                      {price.toLocaleString(
-                        "en-IN",
+                    {/* PRICE */}
+                    <td className="px-5 py-4">
+                      <div className="text-sm font-semibold text-[#171717]">
+                        ₹
+                        {price.toLocaleString(
+                          "en-IN",
+                        )}
+                      </div>
+
+                      {product.pricing
+                        ?.mrp >
+                        price && (
+                        <div className="mt-0.5 text-xs text-[#969696] line-through">
+                          ₹
+                          {product.pricing.mrp.toLocaleString(
+                            "en-IN",
+                          )}
+                        </div>
                       )}
                     </td>
 
-                    <td className="px-5 py-4 text-sm text-[#6f706f]">
-                      {
-                        product
-                          .variants
-                          .length
-                      }
+                    {/* STOCK */}
+                    <td className="px-5 py-4">
+                      <div
+                        className={`text-sm font-medium ${
+                          stock <= 0
+                            ? "text-[#a33a3a]"
+                            : stock <=
+                                (product
+                                  .inventory
+                                  ?.lowStockThreshold ??
+                                  2)
+                              ? "text-[#a06a00]"
+                              : "text-[#292c2c]"
+                        }`}
+                      >
+                        {stock}
+                      </div>
+
+                      <p className="mt-0.5 text-xs text-[#969696]">
+                        {getStockLabel(
+                          product,
+                        )}
+                      </p>
                     </td>
 
+                    {/* STATUS */}
                     <td className="px-5 py-4">
                       <ProductStatusBadge
                         status={
@@ -204,6 +253,7 @@ export default function ProductTable({
                       />
                     </td>
 
+                    {/* ACTIONS */}
                     <td className="px-5 py-4">
                       <div className="flex justify-end gap-2">
                         <Link
@@ -230,9 +280,7 @@ export default function ProductTable({
                             className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#efd2d2] px-3 text-xs font-medium text-[#a33a3a] hover:bg-[#fff5f5]"
                           >
                             <Archive
-                              size={
-                                13
-                              }
+                              size={13}
                             />
                             Archive
                           </button>

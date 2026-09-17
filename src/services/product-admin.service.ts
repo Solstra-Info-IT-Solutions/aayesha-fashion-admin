@@ -20,9 +20,11 @@ import type {
   PublishProductInput,
 } from "@/types/admin-product";
 
-import type {
-  ProductVariant,
-} from "@/types/product";
+/*
+ * -------------------------------------------------------
+ * QUERY
+ * -------------------------------------------------------
+ */
 
 function buildQuery(
   params: ProductListParams = {},
@@ -45,12 +47,7 @@ function buildQuery(
   > = [
     ["search", params.search],
     ["status", params.status],
-    ["category", params.category],
-    ["productType", params.productType],
-    ["collection", params.collection],
-    ["color", params.color],
-    ["size", params.size],
-    ["badge", params.badge],
+    ["categoryId", params.categoryId],
     ["minPrice", params.minPrice],
     ["maxPrice", params.maxPrice],
     [
@@ -85,6 +82,12 @@ function buildQuery(
 
   return searchParams.toString();
 }
+
+/*
+ * -------------------------------------------------------
+ * PRODUCTS
+ * -------------------------------------------------------
+ */
 
 export async function getAdminProducts(
   params: ProductListParams = {},
@@ -397,6 +400,12 @@ export async function publishProduct(
   );
 }
 
+/*
+ * -------------------------------------------------------
+ * ARCHIVE
+ * -------------------------------------------------------
+ */
+
 export async function archiveProduct(
   productId: string,
   accessToken?: string | null,
@@ -419,6 +428,12 @@ export async function archiveProduct(
       response.data,
   );
 }
+
+/*
+ * -------------------------------------------------------
+ * UNPUBLISH
+ * -------------------------------------------------------
+ */
 
 export async function unpublishProduct(
   productId: string,
@@ -443,6 +458,11 @@ export async function unpublishProduct(
   );
 }
 
+/*
+ * -------------------------------------------------------
+ * DELETE
+ * -------------------------------------------------------
+ */
 
 export async function deleteAdminProduct(
   productId: string,
@@ -457,128 +477,6 @@ export async function deleteAdminProduct(
   }>(
     `/admin/products/${encodeURIComponent(
       productId,
-    )}`,
-    accessToken,
-  );
-}
-
-/*
- * -------------------------------------------------------
- * VARIANTS
- * -------------------------------------------------------
- */
-
-export async function getProductVariants(
-  productId: string,
-  accessToken?: string | null,
-) {
-  return apiGet<{
-    success: true;
-    data: {
-      productId: string;
-      variants: ProductVariant[];
-    };
-  }>(
-    `/admin/products/${encodeURIComponent(
-      productId,
-    )}/variants`,
-    accessToken,
-  ).then(
-    (response) =>
-      response.data,
-  );
-}
-
-export async function getProductVariant(
-  productId: string,
-  variantId: string,
-  accessToken?: string | null,
-) {
-  return apiGet<{
-    success: true;
-    data: {
-      productId: string;
-      variant: ProductVariant;
-    };
-  }>(
-    `/admin/products/${encodeURIComponent(
-      productId,
-    )}/variants/${encodeURIComponent(
-      variantId,
-    )}`,
-    accessToken,
-  ).then(
-    (response) =>
-      response.data,
-  );
-}
-
-export async function createProductVariant(
-  productId: string,
-  input: ProductVariant,
-  accessToken?: string | null,
-) {
-  return apiPost<{
-    success: true;
-    data: {
-      productId: string;
-      variant: ProductVariant;
-    };
-  }>(
-    `/admin/products/${encodeURIComponent(
-      productId,
-    )}/variants`,
-    input,
-    accessToken,
-  ).then(
-    (response) =>
-      response.data,
-  );
-}
-
-export async function updateProductVariant(
-  productId: string,
-  variantId: string,
-  input: Partial<ProductVariant>,
-  accessToken?: string | null,
-) {
-  return apiPatch<{
-    success: true;
-    data: {
-      productId: string;
-      variant: ProductVariant;
-    };
-  }>(
-    `/admin/products/${encodeURIComponent(
-      productId,
-    )}/variants/${encodeURIComponent(
-      variantId,
-    )}`,
-    input,
-    accessToken,
-  ).then(
-    (response) =>
-      response.data,
-  );
-}
-
-export async function deleteProductVariant(
-  productId: string,
-  variantId: string,
-  accessToken?: string | null,
-) {
-  return apiDelete<{
-    success: true;
-    data: {
-      productId: string;
-      variantId: string;
-      deleted: boolean;
-    };
-  }>(
-    `/admin/products/${encodeURIComponent(
-      productId,
-    )}/variants/${encodeURIComponent(
-      variantId,
     )}`,
     accessToken,
   );
