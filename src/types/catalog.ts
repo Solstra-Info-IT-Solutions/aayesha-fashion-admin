@@ -72,7 +72,7 @@ export type Category = {
 ========================================================= */
 
 export type Collection = {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   description: string;
@@ -94,7 +94,7 @@ export type Collection = {
 ========================================================= */
 
 export type Tag = {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   description: string;
@@ -116,7 +116,7 @@ export type BadgeTone =
   | "danger";
 
 export type Badge = {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   label: string;
@@ -139,7 +139,7 @@ export type AttributeType =
   | "multi_select";
 
 export type AttributeMaster = {
-  _id: string;
+  id: string;
   key: string;
   label: string;
   type: AttributeType;
@@ -155,7 +155,7 @@ export type AttributeMaster = {
 ========================================================= */
 
 export type SizeMaster = {
-  _id: string;
+  id: string;
   code: string;
   label: string;
   sortOrder: number;
@@ -169,7 +169,7 @@ export type SizeMaster = {
 ========================================================= */
 
 export type ColorMaster = {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   hex: string | null;
