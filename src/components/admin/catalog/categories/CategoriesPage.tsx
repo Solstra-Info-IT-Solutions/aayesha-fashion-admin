@@ -353,7 +353,7 @@ export function CategoriesPage() {
 
       if (editingCategory) {
         await apiPatch(
-          `/admin/catalog/categories/${editingCategory._id}`,
+          `/admin/catalog/categories/${editingCategory.id}`,
           payload,
           accessToken,
         );
@@ -408,8 +408,8 @@ export function CategoriesPage() {
   const parentOptions =
     categories.filter(
       (category) =>
-        category._id !==
-        editingCategory?._id,
+        category.id !==
+        editingCategory?.id,
     );
 
   /* =======================================================
@@ -685,14 +685,14 @@ export function CategoriesPage() {
                     const parent =
                       categories.find(
                         (item) =>
-                          item._id ===
+                          item.id ===
                           category.parentId,
                       );
 
                     return (
                       <tr
                         key={
-                          category._id
+                          category.id
                         }
                         className="transition hover:bg-neutral-50/60"
                       >
@@ -1003,10 +1003,10 @@ export function CategoriesPage() {
                       (category) => (
                         <option
                           key={
-                            category._id
+                            category.id
                           }
                           value={
-                            category._id
+                            category.id
                           }
                         >
                           {

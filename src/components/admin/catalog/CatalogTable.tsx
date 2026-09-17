@@ -269,7 +269,7 @@ export default function CatalogTable({
                 (item) => (
                   <tr
                     key={
-                      item._id
+                      item.id
                     }
                     className="transition hover:bg-neutral-50/70"
                   >
