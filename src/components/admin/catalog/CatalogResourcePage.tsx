@@ -416,7 +416,7 @@ export default function CatalogResourcePage({
           item as Category;
 
         setForm({
-  id: category._id,
+  id: category.id,
   name: category.name,
   slug: category.slug,
   description:
@@ -450,7 +450,7 @@ export default function CatalogResourcePage({
           item as Collection;
 
         setForm({
-          id: collection._id,
+          id: collection.id,
           name: collection.name,
           slug: collection.slug,
           description:
@@ -498,7 +498,7 @@ export default function CatalogResourcePage({
           item as Tag;
 
         setForm({
-          id: tag._id,
+          id: tag.id,
           name: tag.name,
           slug: tag.slug,
           description:
@@ -519,7 +519,7 @@ export default function CatalogResourcePage({
           item as Badge;
 
         setForm({
-          id: badge._id,
+          id: badge.id,
           name: badge.name,
           slug: badge.slug,
           label: badge.label,
@@ -543,7 +543,7 @@ export default function CatalogResourcePage({
           item as AttributeMaster;
 
         setForm({
-          id: attribute._id,
+          id: attribute.id,
           key: attribute.key,
           label: attribute.label,
           type: attribute.type,
@@ -570,7 +570,7 @@ export default function CatalogResourcePage({
           item as SizeMaster;
 
         setForm({
-          id: size._id,
+          id: size.id,
           code: size.code,
           label: size.label,
           sortOrder: String(
@@ -592,7 +592,7 @@ export default function CatalogResourcePage({
           item as ColorMaster;
 
         setForm({
-          id: color._id,
+          id: color.id,
           name: color.name,
           slug: color.slug,
           hex: color.hex ?? "",
@@ -715,49 +715,49 @@ async function handleDelete(
     switch (resource) {
       case "categories":
         await deleteCategory(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "collections":
         await deleteCollection(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "tags":
         await deleteTag(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "badges":
         await deleteBadge(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "attributes":
         await deleteAttribute(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "sizes":
         await deleteSize(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
 
       case "colors":
         await deleteColor(
-          item._id,
+          item.id,
           accessToken,
         );
         break;
@@ -802,7 +802,7 @@ async function handleDelete(
 
     try {
       const id =
-        editingItem?._id;
+        editingItem?.id;
 
       /* ===================================================
          CATEGORIES
@@ -958,14 +958,14 @@ async function handleDelete(
                   resource:
                     "category",
                   resourceId:
-                    createdCategory._id,
+                    createdCategory.id,
                   folder:
                     "images",
                 },
               );
 
             await updateCategory(
-              createdCategory._id,
+              createdCategory.id,
               {
                 image:
                   uploadedImage.url,
@@ -1131,7 +1131,7 @@ async function handleDelete(
             );
 
           const collectionId =
-            createdCollection._id;
+            createdCollection.id;
 
           let imageUrl = "";
           let bannerImageUrl = "";
@@ -1590,13 +1590,13 @@ async function handleDelete(
     categories
       .filter(
         (category) =>
-          category._id !==
-          editingItem?._id,
+          category.id !==
+          editingItem?.id,
       )
       .map(
         (category) => ({
           value:
-            category._id,
+            category.id,
           label:
             category.name,
         }),
