@@ -47,7 +47,7 @@ export type CatalogFormState = Record<
 ========================================================= */
 
 export type Category = {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   description: string;
