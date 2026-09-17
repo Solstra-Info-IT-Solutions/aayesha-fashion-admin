@@ -481,3 +481,13 @@ export async function deleteAdminProduct(
     accessToken,
   );
 }
+
+export async function deleteProduct(
+  productId: string,
+  accessToken: string,
+): Promise<void> {
+  await deleteAdminProduct(
+    productId,
+    accessToken,
+  );
+}

@@ -11,6 +11,7 @@ import {
 
 import {
   archiveProduct,
+  deleteProduct,
 } from "@/services/product-admin.service";
 
 import {
@@ -48,6 +49,10 @@ export default function ProductPage() {
     refresh,
   } = useProducts(filters);
 
+  /* =========================================================
+     ARCHIVE PRODUCT
+  ========================================================= */
+
   const archive = async (
     product: Product,
   ) => {
@@ -84,6 +89,48 @@ export default function ProductPage() {
     }
   };
 
+  /* =========================================================
+     DELETE PRODUCT
+     PERMANENT DATABASE DELETE
+  ========================================================= */
+
+  const deleteProductHandler =
+    async (
+      product: Product,
+    ) => {
+      if (!accessToken) {
+        window.alert(
+          "You are not authorized to delete this product.",
+        );
+
+        return;
+      }
+
+      const confirmed =
+        window.confirm(
+          `Permanently delete "${product.name}"?\n\nThis product will be permanently removed and cannot be recovered.`,
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      try {
+        await deleteProduct(
+          product.id,
+          accessToken,
+        );
+
+        await refresh();
+      } catch (reason) {
+        window.alert(
+          reason instanceof Error
+            ? reason.message
+            : "Unable to delete product.",
+        );
+      }
+    };
+
   const hasProducts =
     products.length > 0;
 
@@ -99,6 +146,10 @@ export default function ProductPage() {
 
   return (
     <div className="space-y-6">
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <ProductHeader
         loading={loading}
         onRefresh={() =>
@@ -106,10 +157,18 @@ export default function ProductPage() {
         }
       />
 
+      {/* =====================================================
+          TOOLBAR
+      ===================================================== */}
+
       <ProductToolbar
         filters={filters}
         onChange={setFilters}
       />
+
+      {/* =====================================================
+          ERROR
+      ===================================================== */}
 
       {error && (
         <div className="rounded-xl border border-[#f0d1d1] bg-[#fff5f5] px-4 py-3 text-sm text-[#a33a3a]">
@@ -117,13 +176,24 @@ export default function ProductPage() {
         </div>
       )}
 
+      {/* =====================================================
+          PRODUCT LIST
+      ===================================================== */}
+
       {hasProducts ? (
         <>
           <ProductTable
             products={products}
             loading={loading}
             onArchive={archive}
+            onDelete={
+              deleteProductHandler
+            }
           />
+
+          {/* =================================================
+              PAGINATION
+          ================================================= */}
 
           <ProductPagination
             page={
@@ -150,14 +220,25 @@ export default function ProductPage() {
           />
         </>
       ) : loading ? (
+        /* ===================================================
+           LOADING STATE
+        =================================================== */
+
         <ProductTable
           products={[]}
           loading
           onArchive={
             archive
           }
+          onDelete={
+            deleteProductHandler
+          }
         />
       ) : (
+        /* ===================================================
+           EMPTY STATE
+        =================================================== */
+
         <ProductEmptyState />
       )}
     </div>
