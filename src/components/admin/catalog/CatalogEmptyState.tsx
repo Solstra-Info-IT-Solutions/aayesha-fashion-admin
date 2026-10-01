@@ -19,22 +19,22 @@ export default function CatalogEmptyState({
 }: Props) {
   return (
     <div className="px-6 py-16 text-center">
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-500">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#efe8d8] text-[#756d62]">
         <Plus className="h-5 w-5" />
       </div>
 
-      <p className="mt-4 text-sm font-semibold text-neutral-800">
+      <p className="mt-4 text-sm font-semibold text-[#2a2520]">
         {title}
       </p>
 
-      <p className="mt-1 text-sm text-neutral-500">
+      <p className="mt-1 text-sm text-[#756d62]">
         {description}
       </p>
 
       <button
         type="button"
         onClick={onAction}
-        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
       >
         <Plus className="h-4 w-4" />
         {actionLabel}

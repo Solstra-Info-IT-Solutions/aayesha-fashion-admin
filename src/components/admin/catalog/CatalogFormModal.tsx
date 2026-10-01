@@ -95,7 +95,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -106,7 +106,7 @@ function Input({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm text-[#2a2520] outline-none transition focus:border-[#756d62]"
       />
     </div>
   );
@@ -125,7 +125,7 @@ function TextArea({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -136,7 +136,7 @@ function TextArea({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full resize-y rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full resize-y rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm text-[#2a2520] outline-none transition focus:border-[#756d62]"
       />
     </div>
   );
@@ -155,7 +155,7 @@ function Select({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -164,7 +164,7 @@ function Select({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm text-[#2a2520] outline-none transition focus:border-[#756d62]"
       >
         {options.map((option) => (
           <option
@@ -189,17 +189,17 @@ function ActiveField({
   label?: string;
 }) {
   return (
-    <label className="flex items-center gap-3 rounded-xl border border-neutral-200 px-4 py-3">
+    <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
       <input
         type="checkbox"
         checked={value}
         onChange={(event) =>
           onChange(event.target.checked)
         }
-        className="h-4 w-4 rounded border-neutral-300"
+        className="h-4 w-4 rounded border-[#bdb199]"
       />
 
-      <span className="text-sm font-medium text-neutral-800">
+      <span className="text-sm font-medium text-[#2a2520]">
         {label}
       </span>
     </label>
@@ -309,7 +309,7 @@ function ImageField({
 
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -321,7 +321,7 @@ function ImageField({
             onChange(event.target.value)
           }
           placeholder="https://..."
-          className="min-w-0 flex-1 rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+          className="min-w-0 flex-1 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm text-[#2a2520] outline-none transition focus:border-[#756d62]"
         />
 
         {isEditing ? (
@@ -330,7 +330,7 @@ function ImageField({
             onClick={onSelect}
             disabled={disabled}
             title={selectTitle}
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#fffdf8] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#f7f2e7] px-3.5 py-2.5 text-sm font-medium text-[#3d372f] transition hover:border-[#756d62] hover:bg-[#fffdf8] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <ImageIcon className="h-4 w-4" />
             Select
@@ -338,7 +338,7 @@ function ImageField({
         ) : (
           <label
             className={[
-              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#fffdf8]",
+              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#f7f2e7] px-3.5 py-2.5 text-sm font-medium text-[#3d372f] transition hover:border-[#756d62] hover:bg-[#fffdf8]",
               disabled
                 ? "pointer-events-none cursor-not-allowed opacity-50"
                 : "",
@@ -359,13 +359,13 @@ function ImageField({
       </div>
 
       {helperText && (
-        <p className="mt-1.5 text-xs text-neutral-400">
+        <p className="mt-1.5 text-xs text-[#756d62]">
           {helperText}
         </p>
       )}
 
       {pendingFile && previewUrl && (
-        <div className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50">
+        <div className="mt-3 overflow-hidden rounded-lg border border-[#d6ccb6] bg-[#f7f2e7]">
           <div className="aspect-[16/7] w-full">
             <img
               src={previewUrl}
@@ -374,8 +374,8 @@ function ImageField({
             />
           </div>
 
-          <div className="flex items-center justify-between border-t border-neutral-200 px-3 py-2">
-            <p className="min-w-0 truncate text-xs text-neutral-600">
+          <div className="flex items-center justify-between border-t border-[#d6ccb6] px-3 py-2">
+            <p className="min-w-0 truncate text-xs text-[#5f584d]">
               {pendingFile.name}
             </p>
 
@@ -383,7 +383,7 @@ function ImageField({
               type="button"
               onClick={removePendingImage}
               disabled={disabled}
-              className="ml-3 shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-rose-600 transition hover:bg-rose-50 disabled:opacity-50"
+              className="ml-3 shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-[#b3261e] transition hover:bg-[#fdecec] disabled:opacity-50"
             >
               Remove
             </button>
@@ -392,7 +392,7 @@ function ImageField({
       )}
 
       {!pendingFile && value && (
-        <div className="mt-3 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50">
+        <div className="mt-3 overflow-hidden rounded-lg border border-[#d6ccb6] bg-[#f7f2e7]">
           <div className="aspect-[16/7] w-full">
             <img
               src={value}
@@ -484,15 +484,15 @@ export default function CatalogFormModal({
     Boolean(accessToken);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
-      <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-[#fffdf8] shadow-2xl">
-        <div className="flex items-start justify-between border-b border-neutral-200 px-6 py-5">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#2a2520] p-4">
+      <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-[14px] bg-[#fffdf8] shadow-2xl">
+        <div className="flex items-start justify-between border-b border-[#d6ccb6] px-6 py-5">
           <div>
-            <h2 className="text-lg font-semibold text-neutral-950">
+            <h2 className="text-lg font-semibold text-[#2a2520]">
               {title}
             </h2>
 
-            <p className="mt-1 text-sm text-neutral-500">
+            <p className="mt-1 text-sm text-[#756d62]">
               {isEditing
                 ? "Update the existing catalog record."
                 : "Create a new catalog record."}
@@ -504,7 +504,7 @@ export default function CatalogFormModal({
             onClick={onClose}
             disabled={saving}
             aria-label="Close"
-            className="rounded-lg p-2 text-neutral-400 transition hover:bg-neutral-100 hover:text-neutral-700 disabled:opacity-40"
+            className="rounded-lg p-2 text-[#756d62] transition hover:bg-[#efe8d8] hover:text-[#3d372f] disabled:opacity-40"
           >
             <X className="h-5 w-5" />
           </button>
@@ -515,7 +515,7 @@ export default function CatalogFormModal({
           className="overflow-y-auto p-6"
         >
           {error && (
-            <div className="mb-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+            <div className="mb-5 rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
               {error}
             </div>
           )}
@@ -627,8 +627,8 @@ export default function CatalogFormModal({
                 }
               />
 
-              <div className="border-t border-neutral-200 pt-5">
-                <p className="text-sm font-semibold text-neutral-900">
+              <div className="border-t border-[#d6ccb6] pt-5">
+                <p className="text-sm font-semibold text-[#2a2520]">
                   SEO
                 </p>
 
@@ -691,7 +691,7 @@ export default function CatalogFormModal({
     label="Featured on Homepage"
   />
 
-  <p className="ml-1 text-xs text-neutral-500">
+  <p className="ml-1 text-xs text-[#756d62]">
     Show this category in the Featured Categories section on the homepage.
   </p>
 </div>
@@ -886,8 +886,8 @@ export default function CatalogFormModal({
                 />
               </div>
 
-              <div className="border-t border-neutral-200 pt-5">
-                <p className="text-sm font-semibold text-neutral-900">
+              <div className="border-t border-[#d6ccb6] pt-5">
+                <p className="text-sm font-semibold text-[#2a2520]">
                   SEO
                 </p>
 
@@ -1345,9 +1345,9 @@ export default function CatalogFormModal({
                 }
               />
 
-              <div className="flex items-center gap-3 rounded-xl border border-neutral-200 p-4">
+              <div className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] p-4">
                 <span
-                  className="h-10 w-10 rounded-full border border-neutral-200"
+                  className="h-10 w-10 rounded-full border border-[#d6ccb6]"
                   style={{
                     backgroundColor:
                       getString(
@@ -1358,11 +1358,11 @@ export default function CatalogFormModal({
                 />
 
                 <div>
-                  <p className="text-sm font-medium text-neutral-800">
+                  <p className="text-sm font-medium text-[#2a2520]">
                     Color Preview
                   </p>
 
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs text-[#756d62]">
                     {getString(
                       form,
                       "hex",
@@ -1386,12 +1386,12 @@ export default function CatalogFormModal({
             </div>
           )}
 
-          <div className="mt-6 flex justify-end gap-3 border-t border-neutral-200 pt-5">
+          <div className="mt-6 flex justify-end gap-3 border-t border-[#d6ccb6] pt-5">
             <button
               type="button"
               onClick={onClose}
               disabled={saving}
-              className="rounded-xl border border-neutral-200 px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:opacity-50"
+              className="rounded-lg border border-[#d6ccb6] px-4 py-2.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:opacity-50"
             >
               Cancel
             </button>
@@ -1399,7 +1399,7 @@ export default function CatalogFormModal({
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d] disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {saving && (
                 <Loader2 className="h-4 w-4 animate-spin" />

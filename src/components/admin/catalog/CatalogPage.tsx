@@ -69,15 +69,15 @@ export default function CatalogPage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">
           Catalog
         </p>
 
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-950">
+        <h1 className="mt-1 text-[#2a2520]">
           Catalog Management
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-500">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#756d62]">
           Manage the master data that powers
           products, merchandising and
           storefront discovery.
@@ -92,21 +92,21 @@ export default function CatalogPage() {
             <Link
               key={item.title}
               href={item.href}
-              className="group rounded-2xl border border-neutral-200 bg-[#fffdf8] p-5 transition hover:border-neutral-300 hover:shadow-sm"
+              className="group surface surface-hover p-5"
             >
               <div className="flex items-start justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-100 text-neutral-800">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f1ead9] text-[#6f542f]">
                   <Icon className="h-5 w-5" />
                 </div>
 
-                <ChevronRight className="h-5 w-5 text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-neutral-500" />
+                <ChevronRight className="h-5 w-5 text-[#bdb199] transition group-hover:translate-x-0.5 group-hover:text-[#756d62]" />
               </div>
 
-              <h2 className="mt-5 text-base font-semibold text-neutral-900">
+              <h2 className="display mt-5 text-2xl font-semibold text-[#2a2520]">
                 {item.title}
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-neutral-500">
+              <p className="mt-2 text-sm leading-6 text-[#756d62]">
                 {item.description}
               </p>
             </Link>

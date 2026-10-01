@@ -85,9 +85,9 @@ export default function ColorForm({
         }
       />
 
-      <div className="flex items-center gap-3 rounded-xl border border-neutral-200 p-4">
+      <div className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] p-4">
         <span
-          className="h-10 w-10 rounded-full border border-neutral-200"
+          className="h-10 w-10 rounded-full border border-[#d6ccb6]"
           style={{
             backgroundColor:
               value.hex ||
@@ -96,18 +96,18 @@ export default function ColorForm({
         />
 
         <div>
-          <p className="text-sm font-medium text-neutral-800">
+          <p className="text-sm font-medium text-[#2a2520]">
             Color Preview
           </p>
 
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-[#756d62]">
             {value.hex ||
               "No hex value"}
           </p>
         </div>
       </div>
 
-      <label className="flex items-center gap-3 rounded-xl border border-neutral-200 px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
         <input
           type="checkbox"
           checked={
@@ -123,7 +123,7 @@ export default function ColorForm({
           className="h-4 w-4"
         />
 
-        <span className="text-sm font-medium text-neutral-800">
+        <span className="text-sm font-medium text-[#2a2520]">
           Active
         </span>
       </label>
@@ -146,7 +146,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -157,7 +157,7 @@ function Input({
         onChange={(e) =>
           onChange(e.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+        className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
       />
     </div>
   );

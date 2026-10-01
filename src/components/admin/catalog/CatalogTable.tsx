@@ -89,7 +89,7 @@ function StatusBadge({
         "inline-flex rounded-full px-2.5 py-1 text-xs font-medium",
         active
           ? "bg-emerald-50 text-emerald-700"
-          : "bg-neutral-100 text-neutral-500",
+          : "bg-[#efe8d8] text-[#756d62]",
       ].join(" ")}
     >
       {active
@@ -106,7 +106,7 @@ function renderExtraCell(
   switch (resource) {
     case "categories": {
       return (
-        <td className="px-5 py-4 text-sm text-neutral-600">
+        <td className="px-5 py-4 text-sm text-[#5f584d]">
           {(item as Category).parentId
             ? "Nested"
             : "Root"}
@@ -119,7 +119,7 @@ function renderExtraCell(
         item as Collection;
 
       return (
-        <td className="px-5 py-4 text-sm text-neutral-600">
+        <td className="px-5 py-4 text-sm text-[#5f584d]">
           {collection.isFeatured
             ? "Yes"
             : "No"}
@@ -132,7 +132,7 @@ function renderExtraCell(
         item as Badge;
 
       return (
-        <td className="px-5 py-4 text-sm capitalize text-neutral-600">
+        <td className="px-5 py-4 text-sm capitalize text-[#5f584d]">
           {badge.tone}
         </td>
       );
@@ -143,7 +143,7 @@ function renderExtraCell(
         item as AttributeMaster;
 
       return (
-        <td className="px-5 py-4 text-sm text-neutral-600">
+        <td className="px-5 py-4 text-sm text-[#5f584d]">
           {attribute.type}
         </td>
       );
@@ -157,7 +157,7 @@ function renderExtraCell(
         <td className="px-5 py-4">
           <div className="flex items-center gap-2">
             <span
-              className="h-6 w-6 rounded-full border border-neutral-200"
+              className="h-6 w-6 rounded-full border border-[#d6ccb6]"
               style={{
                 backgroundColor:
                   color.hex ??
@@ -165,7 +165,7 @@ function renderExtraCell(
               }}
             />
 
-            <span className="text-sm text-neutral-600">
+            <span className="text-sm text-[#5f584d]">
               {color.hex ??
                 "—"}
             </span>
@@ -207,24 +207,47 @@ export default function CatalogTable({
   const columnCount =
     getColumnCount(resource);
 
+  const cards = !loading && (
+    <div className="divide-y divide-[#e6dfcf] md:hidden">
+      {items.map((item) => (
+        <div key={item.id} className="flex items-center justify-between gap-3 p-4">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-[#2a2520]">{getName(item)}</p>
+            <p className="truncate text-xs text-[#756d62]">{getIdentifier(item)}</p>
+            <div className="mt-2"><StatusBadge active={item.isActive} /></div>
+          </div>
+          <div className="flex shrink-0 gap-1">
+            <button type="button" aria-label="Edit" onClick={() => onEdit(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#d6ccb6] text-[#3d372f] hover:bg-[#f1ead9]">
+              <Pencil className="h-4 w-4" />
+            </button>
+            <button type="button" aria-label="Delete" onClick={() => onDelete(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] hover:bg-[#fdecec]">
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className="overflow-hidden">
-      <div className="overflow-x-auto">
+      {cards}
+      <div className={loading ? "overflow-x-auto" : "hidden overflow-x-auto md:block"}>
         <table className="min-w-full">
-          <thead className="border-b border-neutral-200 bg-neutral-50">
+          <thead className="border-b border-[#d6ccb6] bg-[#f7f2e7]">
             <tr>
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Name
               </th>
 
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Identifier
               </th>
 
               {resource !== "tags" &&
                 resource !==
                   "sizes" && (
-                  <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                  <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                     {resource ===
                     "categories"
                       ? "Hierarchy"
@@ -241,24 +264,24 @@ export default function CatalogTable({
                   </th>
                 )}
 
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Status
               </th>
 
-              <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-neutral-500">
+              <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Action
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-neutral-100">
+          <tbody className="divide-y divide-[#e6dfcf]">
             {loading ? (
               <tr>
                 <td
                   colSpan={columnCount}
                   className="px-5 py-16 text-center"
                 >
-                  <span className="inline-flex items-center gap-2 text-sm text-neutral-500">
+                  <span className="inline-flex items-center gap-2 text-sm text-[#756d62]">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     Loading...
                   </span>
@@ -271,17 +294,17 @@ export default function CatalogTable({
                     key={
                       item.id
                     }
-                    className="transition hover:bg-neutral-50/70"
+                    className="transition hover:bg-[#f7f2e7]"
                   >
                     <td className="px-5 py-4">
-                      <p className="text-sm font-semibold text-neutral-900">
+                      <p className="text-sm font-semibold text-[#2a2520]">
                         {getName(
                           item,
                         )}
                       </p>
                     </td>
 
-                    <td className="px-5 py-4 text-sm text-neutral-500">
+                    <td className="px-5 py-4 text-sm text-[#756d62]">
                       {getIdentifier(
                         item,
                       )}
@@ -307,7 +330,7 @@ export default function CatalogTable({
       onClick={() =>
         onEdit(item)
       }
-      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-950"
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
     >
       <Pencil className="h-3.5 w-3.5" />
       Edit
@@ -318,7 +341,7 @@ export default function CatalogTable({
       onClick={() =>
         onDelete(item)
       }
-      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 hover:text-red-700"
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] hover:text-[#8f1f19]"
     >
       <Trash2 className="h-3.5 w-3.5" />
       Delete

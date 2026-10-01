@@ -56,7 +56,7 @@ export default function AttributeForm({
       />
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-neutral-800">
+        <label className="mb-2 block text-sm font-medium text-[#2a2520]">
           Type
         </label>
 
@@ -69,7 +69,7 @@ export default function AttributeForm({
                 .value as AttributeType,
             })
           }
-          className="w-full rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+          className="w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
         >
           {types.map((type) => (
             <option
@@ -127,7 +127,7 @@ export default function AttributeForm({
         }
       />
 
-      <label className="flex items-center gap-3 rounded-xl border border-neutral-200 px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
         <input
           type="checkbox"
           checked={
@@ -143,7 +143,7 @@ export default function AttributeForm({
           className="h-4 w-4"
         />
 
-        <span className="text-sm font-medium text-neutral-800">
+        <span className="text-sm font-medium text-[#2a2520]">
           Active
         </span>
       </label>
@@ -166,7 +166,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-neutral-800">
+      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
         {label}
       </label>
 
@@ -177,7 +177,7 @@ function Input({
         onChange={(e) =>
           onChange(e.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+        className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
       />
     </div>
   );

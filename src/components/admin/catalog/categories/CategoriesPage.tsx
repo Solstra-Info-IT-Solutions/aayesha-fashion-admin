@@ -23,6 +23,7 @@ import {
   apiPatch,
 } from "@/lib/api";
 
+import CatalogTabs from "../CatalogTabs";
 import {
   useAdminAuth,
 } from "@/hooks/useAdminAuth";
@@ -94,7 +95,7 @@ function StatusBadge({
         "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium",
         active
           ? "bg-emerald-50 text-emerald-700"
-          : "bg-neutral-100 text-neutral-500",
+          : "bg-[#efe8d8] text-[#756d62]",
       ].join(" ")}
     >
       {active ? "Active" : "Inactive"}
@@ -418,21 +419,22 @@ export function CategoriesPage() {
 
   return (
     <div className="space-y-6">
+      <CatalogTabs active="categories" />
       {/* =====================================================
           HEADER
       ===================================================== */}
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">
             Catalog
           </p>
 
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-950">
+          <h1 className="mt-1 text-[#2a2520]">
             Categories
           </h1>
 
-          <p className="mt-1 text-sm text-neutral-500">
+          <p className="mt-1 text-sm text-[#756d62]">
             Manage primary and nested product categories.
           </p>
         </div>
@@ -444,7 +446,7 @@ export function CategoriesPage() {
               void refresh()
             }
             disabled={loading}
-            className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <RefreshCw
               className={[
@@ -461,7 +463,7 @@ export function CategoriesPage() {
           <button
             type="button"
             onClick={openCreate}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
           >
             <Plus className="h-4 w-4" />
 
@@ -474,11 +476,11 @@ export function CategoriesPage() {
           TOOLBAR
       ===================================================== */}
 
-      <div className="rounded-2xl border border-neutral-200 bg-[#fffdf8] p-4">
+      <div className="rounded-[14px] border border-[#d6ccb6] bg-[#fffdf8] p-4">
         <div className="flex flex-col gap-3 lg:flex-row">
           <div className="flex min-w-0 flex-1 gap-2">
             <div className="relative min-w-0 flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
 
               <input
                 value={searchInput}
@@ -496,14 +498,14 @@ export function CategoriesPage() {
                   }
                 }}
                 placeholder="Search categories..."
-                className="h-11 w-full rounded-xl border border-neutral-200 bg-[#fffdf8] pl-9 pr-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-400"
+                className="h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] pl-9 pr-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#756d62]"
               />
             </div>
 
             <button
               type="button"
               onClick={handleSearch}
-              className="h-11 shrink-0 rounded-xl bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#26221d]"
+              className="h-11 shrink-0 rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
             >
               Search
             </button>
@@ -512,7 +514,7 @@ export function CategoriesPage() {
               <button
                 type="button"
                 onClick={clearSearch}
-                className="h-11 shrink-0 rounded-xl border border-neutral-200 px-4 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50"
+                className="h-11 shrink-0 rounded-lg border border-[#d6ccb6] px-4 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7]"
               >
                 Clear
               </button>
@@ -535,7 +537,7 @@ export function CategoriesPage() {
                       .value as CatalogStatusFilter,
                   );
                 }}
-                className="h-11 min-w-[145px] appearance-none rounded-xl border border-neutral-200 bg-[#fffdf8] pl-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+                className="h-11 min-w-[145px] appearance-none rounded-lg border border-[#d6ccb6] bg-[#fffdf8] pl-3 pr-9 text-sm text-[#3d372f] outline-none focus:border-[#756d62]"
               >
                 <option value="all">
                   All Status
@@ -550,7 +552,7 @@ export function CategoriesPage() {
                 </option>
               </select>
 
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
             </label>
 
             <label className="relative">
@@ -568,7 +570,7 @@ export function CategoriesPage() {
                       .value as CatalogSort,
                   );
                 }}
-                className="h-11 min-w-[165px] appearance-none rounded-xl border border-neutral-200 bg-[#fffdf8] pl-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+                className="h-11 min-w-[165px] appearance-none rounded-lg border border-[#d6ccb6] bg-[#fffdf8] pl-3 pr-9 text-sm text-[#3d372f] outline-none focus:border-[#756d62]"
               >
                 <option value="sort_order">
                   Sort Order
@@ -587,7 +589,7 @@ export function CategoriesPage() {
                 </option>
               </select>
 
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
             </label>
           </div>
         </div>
@@ -598,7 +600,7 @@ export function CategoriesPage() {
       ===================================================== */}
 
       {error && (
-        <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <div className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
           {error}
         </div>
       )}
@@ -607,45 +609,45 @@ export function CategoriesPage() {
           TABLE
       ===================================================== */}
 
-      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-[#fffdf8]">
+      <div className="overflow-hidden rounded-[14px] border border-[#d6ccb6] bg-[#fffdf8]">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left">
-            <thead className="border-b border-neutral-200 bg-neutral-50/70">
+            <thead className="border-b border-[#d6ccb6] bg-[#f7f2e7]">
               <tr>
-                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Category
                 </th>
 
-                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Slug
                 </th>
 
-                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Parent
                 </th>
 
-                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Sort
                 </th>
 
-                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Status
                 </th>
 
-                <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                   Action
                 </th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-neutral-100">
+            <tbody className="divide-y divide-[#e6dfcf]">
               {loading ? (
                 <tr>
                   <td
                     colSpan={6}
                     className="px-5 py-14 text-center"
                   >
-                    <div className="inline-flex items-center gap-2 text-sm text-neutral-500">
+                    <div className="inline-flex items-center gap-2 text-sm text-[#756d62]">
                       <Loader2 className="h-4 w-4 animate-spin" />
 
                       Loading categories...
@@ -659,11 +661,11 @@ export function CategoriesPage() {
                     colSpan={6}
                     className="px-5 py-14 text-center"
                   >
-                    <p className="text-sm font-medium text-neutral-700">
+                    <p className="text-sm font-medium text-[#3d372f]">
                       No categories found
                     </p>
 
-                    <p className="mt-1 text-sm text-neutral-500">
+                    <p className="mt-1 text-sm text-[#756d62]">
                       Create your first category
                       to get started.
                     </p>
@@ -671,7 +673,7 @@ export function CategoriesPage() {
                     <button
                       type="button"
                       onClick={openCreate}
-                      className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#26221d]"
+                      className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#3d372f]"
                     >
                       <Plus className="h-4 w-4" />
 
@@ -694,20 +696,20 @@ export function CategoriesPage() {
                         key={
                           category.id
                         }
-                        className="transition hover:bg-neutral-50/60"
+                        className="transition hover:bg-[#f7f2e7]"
                       >
                         {/* Category */}
 
                         <td className="px-5 py-4">
                           <div>
-                            <p className="text-sm font-semibold text-neutral-900">
+                            <p className="text-sm font-semibold text-[#2a2520]">
                               {
                                 category.name
                               }
                             </p>
 
                             {category.description && (
-                              <p className="mt-1 max-w-md truncate text-xs text-neutral-500">
+                              <p className="mt-1 max-w-md truncate text-xs text-[#756d62]">
                                 {
                                   category.description
                                 }
@@ -725,7 +727,7 @@ export function CategoriesPage() {
 
                         {/* Slug */}
 
-                        <td className="px-5 py-4 text-sm text-neutral-600">
+                        <td className="px-5 py-4 text-sm text-[#5f584d]">
                           {
                             category.slug
                           }
@@ -733,14 +735,14 @@ export function CategoriesPage() {
 
                         {/* Parent */}
 
-                        <td className="px-5 py-4 text-sm text-neutral-600">
+                        <td className="px-5 py-4 text-sm text-[#5f584d]">
                           {parent?.name ||
                             "—"}
                         </td>
 
                         {/* Sort */}
 
-                        <td className="px-5 py-4 text-sm text-neutral-600">
+                        <td className="px-5 py-4 text-sm text-[#5f584d]">
                           {
                             category.sortOrder
                           }
@@ -766,7 +768,7 @@ export function CategoriesPage() {
                                 category,
                               )
                             }
-                            className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-neutral-950"
+                            className="rounded-lg px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
                           >
                             Edit
                           </button>
@@ -784,8 +786,8 @@ export function CategoriesPage() {
             PAGINATION
         =================================================== */}
 
-        <div className="flex flex-col gap-3 border-t border-neutral-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-neutral-500">
+        <div className="flex flex-col gap-3 border-t border-[#d6ccb6] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-[#756d62]">
             {pagination.total === 0
               ? "0 categories"
               : `Showing ${
@@ -818,12 +820,12 @@ export function CategoriesPage() {
                     ),
                 )
               }
-              className="rounded-lg border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-lg border border-[#d6ccb6] px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
             >
               Previous
             </button>
 
-            <span className="px-2 text-sm text-neutral-500">
+            <span className="px-2 text-sm text-[#756d62]">
               Page{" "}
               {pagination.page}{" "}
               of{" "}
@@ -846,7 +848,7 @@ export function CategoriesPage() {
                     current + 1,
                 )
               }
-              className="rounded-lg border border-neutral-200 px-3 py-2 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-lg border border-[#d6ccb6] px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
             >
               Next
             </button>
@@ -859,18 +861,18 @@ export function CategoriesPage() {
       ===================================================== */}
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
-          <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-[#fffdf8] shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#2a2520] p-4">
+          <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-[14px] bg-[#fffdf8] shadow-xl">
             {/* Modal Header */}
 
-            <div className="border-b border-neutral-200 px-6 py-5">
-              <h2 className="text-lg font-semibold text-neutral-950">
+            <div className="border-b border-[#d6ccb6] px-6 py-5">
+              <h2 className="text-lg font-semibold text-[#2a2520]">
                 {editingCategory
                   ? "Edit Category"
                   : "Add Category"}
               </h2>
 
-              <p className="mt-1 text-sm text-neutral-500">
+              <p className="mt-1 text-sm text-[#756d62]">
                 Configure category information and SEO.
               </p>
             </div>
@@ -884,7 +886,7 @@ export function CategoriesPage() {
               {/* Form Error */}
 
               {formError && (
-                <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                <div className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
                   {formError}
                 </div>
               )}
@@ -897,7 +899,7 @@ export function CategoriesPage() {
                 {/* Name */}
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Name *
                   </label>
 
@@ -925,14 +927,14 @@ export function CategoriesPage() {
                       }
                     }}
                     placeholder="e.g. Sarees"
-                    className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   />
                 </div>
 
                 {/* Slug */}
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Slug *
                   </label>
 
@@ -947,14 +949,14 @@ export function CategoriesPage() {
                       )
                     }
                     placeholder="sarees"
-                    className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   />
                 </div>
 
                 {/* Description */}
 
                 <div className="md:col-span-2">
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Description
                   </label>
 
@@ -971,14 +973,14 @@ export function CategoriesPage() {
                     }
                     rows={3}
                     placeholder="Describe this category..."
-                    className="w-full resize-y rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full resize-y rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   />
                 </div>
 
                 {/* Parent */}
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Parent Category
                   </label>
 
@@ -993,7 +995,7 @@ export function CategoriesPage() {
                           .value,
                       )
                     }
-                    className="w-full rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   >
                     <option value="">
                       No Parent
@@ -1021,7 +1023,7 @@ export function CategoriesPage() {
                 {/* Sort Order */}
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Sort Order
                   </label>
 
@@ -1037,14 +1039,14 @@ export function CategoriesPage() {
                           .value,
                       )
                     }
-                    className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   />
                 </div>
 
                 {/* Image */}
 
                 <div className="md:col-span-2">
-                  <label className="mb-2 block text-sm font-medium text-neutral-800">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Image URL
                   </label>
 
@@ -1058,7 +1060,7 @@ export function CategoriesPage() {
                       )
                     }
                     placeholder="https://..."
-                    className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                    className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                   />
                 </div>
               </div>
@@ -1067,8 +1069,8 @@ export function CategoriesPage() {
                   SEO
               ================================================= */}
 
-              <div className="border-t border-neutral-200 pt-6">
-                <h3 className="text-sm font-semibold text-neutral-900">
+              <div className="border-t border-[#d6ccb6] pt-6">
+                <h3 className="text-sm font-semibold text-[#2a2520]">
                   SEO
                 </h3>
 
@@ -1076,7 +1078,7 @@ export function CategoriesPage() {
                   {/* SEO Title */}
 
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-neutral-800">
+                    <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                       SEO Title
                     </label>
 
@@ -1094,14 +1096,14 @@ export function CategoriesPage() {
                         )
                       }
                       placeholder="SEO Title"
-                      className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                      className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                     />
                   </div>
 
                   {/* SEO Description */}
 
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-neutral-800">
+                    <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                       SEO Description
                     </label>
 
@@ -1120,7 +1122,7 @@ export function CategoriesPage() {
                       }
                       rows={3}
                       placeholder="SEO Description"
-                      className="w-full resize-y rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+                      className="w-full resize-y rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
                     />
                   </div>
                 </div>
@@ -1130,15 +1132,15 @@ export function CategoriesPage() {
                   VISIBILITY
               ================================================= */}
 
-              <div className="border-t border-neutral-200 pt-6">
-                <h3 className="text-sm font-semibold text-neutral-900">
+              <div className="border-t border-[#d6ccb6] pt-6">
+                <h3 className="text-sm font-semibold text-[#2a2520]">
                   Visibility
                 </h3>
 
                 <div className="mt-4 space-y-3">
                   {/* Active */}
 
-                  <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-neutral-200 bg-[#fffdf8] px-4 py-3 transition hover:border-neutral-300">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 transition hover:border-[#bdb199]">
                     <input
                       type="checkbox"
                       checked={
@@ -1151,15 +1153,15 @@ export function CategoriesPage() {
                             .checked,
                         )
                       }
-                      className="h-4 w-4 rounded border-neutral-300"
+                      className="h-4 w-4 rounded border-[#bdb199]"
                     />
 
                     <div>
-                      <p className="text-sm font-medium text-neutral-800">
+                      <p className="text-sm font-medium text-[#2a2520]">
                         Category is active
                       </p>
 
-                      <p className="mt-0.5 text-xs text-neutral-500">
+                      <p className="mt-0.5 text-xs text-[#756d62]">
                         Active categories can
                         be displayed on the
                         storefront.
@@ -1169,7 +1171,7 @@ export function CategoriesPage() {
 
                   {/* Featured */}
 
-                  <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-neutral-200 bg-[#fffdf8] px-4 py-3 transition hover:border-neutral-300">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 transition hover:border-[#bdb199]">
                     <input
                       type="checkbox"
                       checked={
@@ -1182,17 +1184,17 @@ export function CategoriesPage() {
                             .checked,
                         )
                       }
-                      className="h-4 w-4 rounded border-neutral-300"
+                      className="h-4 w-4 rounded border-[#bdb199]"
                     />
 
                     <div className="min-w-0">
-                      <p className="flex items-center gap-2 text-sm font-medium text-neutral-800">
+                      <p className="flex items-center gap-2 text-sm font-medium text-[#2a2520]">
                         <Star className="h-4 w-4 text-amber-500" />
 
                         Featured on Homepage
                       </p>
 
-                      <p className="mt-0.5 text-xs text-neutral-500">
+                      <p className="mt-0.5 text-xs text-[#756d62]">
                         Show this category in
                         the Featured Collections
                         section on the homepage.
@@ -1206,12 +1208,12 @@ export function CategoriesPage() {
                   ACTIONS
               ================================================= */}
 
-              <div className="flex justify-end gap-3 border-t border-neutral-200 pt-5">
+              <div className="flex justify-end gap-3 border-t border-[#d6ccb6] pt-5">
                 <button
                   type="button"
                   onClick={closeModal}
                   disabled={saving}
-                  className="rounded-xl border border-neutral-200 px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:opacity-50"
+                  className="rounded-lg border border-[#d6ccb6] px-4 py-2.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -1219,7 +1221,7 @@ export function CategoriesPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving && (
                     <Loader2 className="h-4 w-4 animate-spin" />

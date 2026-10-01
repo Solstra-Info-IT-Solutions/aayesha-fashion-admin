@@ -40,7 +40,7 @@ export default function CategoryForm({
     <div className="space-y-5">
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div>
-          <label className="mb-2 block text-sm font-medium text-neutral-800">
+          <label className="mb-2 block text-sm font-medium text-[#2a2520]">
             Name *
           </label>
 
@@ -53,12 +53,12 @@ export default function CategoryForm({
               )
             }
             placeholder="Sarees"
-            className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-neutral-800">
+          <label className="mb-2 block text-sm font-medium text-[#2a2520]">
             Slug *
           </label>
 
@@ -72,13 +72,13 @@ export default function CategoryForm({
               )
             }
             placeholder="sarees"
-            className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           />
         </div>
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-neutral-800">
+        <label className="mb-2 block text-sm font-medium text-[#2a2520]">
           Description
         </label>
 
@@ -93,13 +93,13 @@ export default function CategoryForm({
               e.target.value,
             )
           }
-          className="w-full resize-y rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+          className="w-full resize-y rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
         />
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div>
-          <label className="mb-2 block text-sm font-medium text-neutral-800">
+          <label className="mb-2 block text-sm font-medium text-[#2a2520]">
             Parent Category
           </label>
 
@@ -114,7 +114,7 @@ export default function CategoryForm({
                   null,
               )
             }
-            className="w-full rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           >
             <option value="">
               No Parent
@@ -142,7 +142,7 @@ export default function CategoryForm({
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-neutral-800">
+          <label className="mb-2 block text-sm font-medium text-[#2a2520]">
             Sort Order
           </label>
 
@@ -159,13 +159,13 @@ export default function CategoryForm({
                 ) || 0,
               )
             }
-            className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           />
         </div>
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-neutral-800">
+        <label className="mb-2 block text-sm font-medium text-[#2a2520]">
           Image URL
         </label>
 
@@ -178,12 +178,12 @@ export default function CategoryForm({
             )
           }
           placeholder="https://..."
-          className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+          className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
         />
       </div>
 
-      <div className="border-t border-neutral-200 pt-5">
-        <p className="text-sm font-semibold text-neutral-900">
+      <div className="border-t border-[#d6ccb6] pt-5">
+        <p className="text-sm font-semibold text-[#2a2520]">
           SEO
         </p>
 
@@ -199,7 +199,7 @@ export default function CategoryForm({
               )
             }
             placeholder="SEO Title"
-            className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           />
 
           <textarea
@@ -215,12 +215,12 @@ export default function CategoryForm({
               )
             }
             placeholder="SEO Description"
-            className="w-full rounded-xl border border-neutral-200 px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
           />
         </div>
       </div>
 
-      <label className="flex items-center gap-3 rounded-xl border border-neutral-200 px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
         <input
           type="checkbox"
           checked={
@@ -235,7 +235,7 @@ export default function CategoryForm({
           className="h-4 w-4 rounded"
         />
 
-        <span className="text-sm font-medium text-neutral-800">
+        <span className="text-sm font-medium text-[#2a2520]">
           Category is active
         </span>
       </label>

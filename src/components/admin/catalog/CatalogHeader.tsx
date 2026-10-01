@@ -10,6 +10,7 @@ type Props = {
   description: string;
   addLabel: string;
   loading: boolean;
+  total?: number;
   onRefresh: () => void;
   onAdd: () => void;
 };
@@ -19,31 +20,37 @@ export default function CatalogHeader({
   description,
   addLabel,
   loading,
+  total,
   onRefresh,
   onAdd,
 }: Props) {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
       <div>
-        <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">
           Catalog
         </p>
 
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-950">
+        <h1 className="mt-1 text-[#2a2520]">
           {title}
         </h1>
 
-        <p className="mt-1 max-w-2xl text-sm leading-6 text-neutral-500">
+        <p className="mt-1 max-w-2xl text-sm leading-6 text-[#756d62]">
           {description}
         </p>
       </div>
 
       <div className="flex items-center gap-2">
+        {typeof total === "number" && (
+          <span className="rounded-full border border-[#e6dfcf] bg-[#fffdf8] px-3 py-1.5 text-xs font-semibold text-[#5f584d]">
+            {total} total
+          </span>
+        )}
         <button
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 py-2.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <RefreshCw
             className={
@@ -59,7 +66,7 @@ export default function CatalogHeader({
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
         >
           <Plus className="h-4 w-4" />
 
