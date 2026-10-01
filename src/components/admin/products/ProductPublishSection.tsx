@@ -69,33 +69,33 @@ export default function ProductPublishSection({
   };
 
   return (
-    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e7e2dd] bg-white p-4 sm:p-5">
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] p-4 sm:p-5">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#171717]">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#3f2d2a]">
           Publish
         </h2>
 
-        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#6f706f]">
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#70635d]">
           Control storefront availability and
           product lifecycle.
         </p>
       </div>
 
       {/* CURRENT STATUS */}
-      <div className="mt-5 min-w-0 overflow-hidden rounded-xl bg-[#fcfbf9] p-3.5">
+      <div className="mt-5 min-w-0 overflow-hidden rounded-xl bg-[#f7f3ed] p-3.5">
         <div className="flex min-w-0 items-center justify-between gap-3">
-          <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#6f706f]">
+          <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#70635d]">
             Current Status
           </span>
 
-          <span className="shrink-0 rounded-full bg-[#171717] px-2.5 py-1 text-[11px] font-medium capitalize leading-4 text-white">
+          <span className="shrink-0 rounded-full bg-[#7a5650] px-2.5 py-1 text-[11px] font-medium capitalize leading-4 text-white">
             {product.status}
           </span>
         </div>
 
         {product.publishedAt && (
-          <p className="mt-2.5 break-words text-[11px] leading-5 text-[#969696]">
+          <p className="mt-2.5 break-words text-[11px] leading-5 text-[#958781]">
             Published{" "}
             {new Date(
               product.publishedAt,
@@ -118,7 +118,7 @@ export default function ProductPublishSection({
               onPublish,
             )
           }
-          className={`${buttonBaseClass} bg-[#171717] text-white hover:opacity-90`}
+          className={`${buttonBaseClass} bg-[#7a5650] text-white hover:opacity-90`}
         >
           <Globe
             size={14}
@@ -144,7 +144,7 @@ export default function ProductPublishSection({
               onDraft,
             )
           }
-          className={`${buttonBaseClass} border border-[#d8d1ca] bg-white text-[#292c2c] hover:bg-[#f8f6f3]`}
+          className={`${buttonBaseClass} border border-[#d8cec5] bg-[#fbf9f5] text-[#3f2d2a] hover:bg-[#f7f3ed]`}
         >
           <span className="min-w-0 truncate">
             {action === "draft"
@@ -166,7 +166,7 @@ export default function ProductPublishSection({
                 onUnpublish,
               )
             }
-            className={`${buttonBaseClass} border border-[#efdede] bg-white text-[#a33a3a] hover:bg-[#fff7f7]`}
+            className={`${buttonBaseClass} border border-[#f5eae6] bg-[#fbf9f5] text-[#955c56] hover:bg-[#f5eae6]`}
           >
             <EyeOff
               size={14}
@@ -194,7 +194,7 @@ export default function ProductPublishSection({
                 onArchive,
               )
             }
-            className={`${buttonBaseClass} border border-[#efdede] bg-white text-[#a33a3a] hover:bg-[#fff7f7]`}
+            className={`${buttonBaseClass} border border-[#f5eae6] bg-[#fbf9f5] text-[#955c56] hover:bg-[#f5eae6]`}
           >
             <Archive
               size={14}
@@ -218,7 +218,7 @@ export default function ProductPublishSection({
           onClick={() =>
             setShowDeleteConfirm(true)
           }
-          className={`${buttonBaseClass} mt-2 border border-[#c94b4b] bg-[#fff5f5] text-[#a33a3a] hover:bg-[#ffeaea]`}
+          className={`${buttonBaseClass} mt-2 border border-[#955c56] bg-[#f5eae6] text-[#955c56] hover:bg-[#543c38]`}
         >
           <Trash2
             size={14}
@@ -233,13 +233,13 @@ export default function ProductPublishSection({
 
       {/* DELETE CONFIRMATION */}
       {showDeleteConfirm && (
-        <div className="mt-4 min-w-0 overflow-hidden rounded-xl border border-[#efcaca] bg-[#fff7f7] p-3.5">
+        <div className="mt-4 min-w-0 overflow-hidden rounded-xl border border-[#f5eae6] bg-[#f5eae6] p-3.5">
           <div className="min-w-0">
-            <p className="break-words text-sm font-semibold leading-5 text-[#8f2f2f]">
+            <p className="break-words text-sm font-semibold leading-5 text-[#955c56]">
               Delete this product?
             </p>
 
-            <p className="mt-1.5 break-words text-xs leading-5 text-[#6f706f]">
+            <p className="mt-1.5 break-words text-xs leading-5 text-[#70635d]">
               This action permanently deletes the
               product and cannot be undone.
             </p>
@@ -255,7 +255,7 @@ export default function ProductPublishSection({
               onClick={() =>
                 setShowDeleteConfirm(false)
               }
-              className="min-w-0 rounded-xl border border-[#d8d1ca] bg-white px-3 py-2 text-xs font-medium text-[#292c2c] transition hover:bg-[#f8f6f3] disabled:opacity-50"
+              className="min-w-0 rounded-xl border border-[#d8cec5] bg-[#fbf9f5] px-3 py-2 text-xs font-medium text-[#3f2d2a] transition hover:bg-[#f7f3ed] disabled:opacity-50"
             >
               Cancel
             </button>
@@ -269,7 +269,7 @@ export default function ProductPublishSection({
               onClick={() =>
                 void handleDelete()
               }
-              className="min-w-0 rounded-xl bg-[#a33a3a] px-3 py-2 text-xs font-medium text-white transition hover:bg-[#8f2f2f] disabled:cursor-not-allowed disabled:opacity-50"
+              className="min-w-0 rounded-xl bg-[#955c56] px-3 py-2 text-xs font-medium text-white transition hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {action === "delete"
                 ? "Deleting..."

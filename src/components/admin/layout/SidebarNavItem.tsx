@@ -1,49 +1,38 @@
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
-type SidebarNavItemProps = {
-  href: string;
-  label: string;
-  icon: LucideIcon;
-  pathname: string;
+import type { NavItem } from "./nav-config";
+
+type SidebarNavItemProps = NavItem & {
+  active: boolean;
+  onNavigate?: () => void;
 };
 
 export function SidebarNavItem({
   href,
   label,
   icon: Icon,
-  pathname,
+  active,
+  onNavigate,
 }: SidebarNavItemProps) {
-  const active =
-    href === "/admin"
-      ? pathname === "/admin"
-      : pathname.startsWith(href);
-
   return (
     <Link
       href={href}
+      onClick={onNavigate}
+      aria-current={active ? "page" : undefined}
       className={[
-        "group flex items-center gap-3 px-3 py-2.5 text-sm transition",
+        "group relative flex items-center gap-3 px-3 py-2.5 text-[13px] tracking-[0.01em] transition-colors",
         active
-          ? "bg-[#292c2c] text-white"
-          : "text-[#c8c4c0] hover:bg-[#232424] hover:text-white",
+          ? "bg-[#7a5650] text-white"
+          : "text-[#d8cec5] hover:bg-[#fbf9f5]/10 hover:text-white",
       ].join(" ")}
     >
       <Icon
         size={17}
-        strokeWidth={1.7}
-        className={
-          active
-            ? "text-[#efa7ae]"
-            : "text-[#969696] group-hover:text-[#c8c4c0]"
-        }
+        strokeWidth={1.6}
+        className={active ? "text-white" : "text-[#b9aaa1] group-hover:text-white"}
       />
 
-      <span>{label}</span>
-
-      {active && (
-        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#efa7ae]" />
-      )}
+      <span className="truncate">{label}</span>
     </Link>
   );
 }

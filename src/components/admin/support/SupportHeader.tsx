@@ -19,10 +19,10 @@ export default function SupportHeader({
     <div className="flex flex-col gap-5 border-b border-[var(--color-border)] pb-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
         {/* Breadcrumb */}
-        <div className="mb-2 flex items-center gap-2 text-xs text-[var(--color-secondary)]">
+        <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
           <Link
             href="/admin"
-            className="transition hover:text-[#9f1239]"
+            className="transition hover:text-[#7a5650]"
           >
             Admin
           </Link>
@@ -36,7 +36,7 @@ export default function SupportHeader({
 
         {/* Title */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#9f1239]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#7a5650]">
             <Headphones size={22} />
           </div>
 
@@ -58,7 +58,7 @@ export default function SupportHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={17}

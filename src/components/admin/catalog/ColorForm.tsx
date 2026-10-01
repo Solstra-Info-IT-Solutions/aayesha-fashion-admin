@@ -51,7 +51,7 @@ export default function ColorForm({
               hex: hex || null,
             })
           }
-          placeholder="#EFA7AE"
+          placeholder="#d8bfb9"
         />
 
         <Input

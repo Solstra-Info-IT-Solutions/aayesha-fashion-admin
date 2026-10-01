@@ -43,11 +43,11 @@ export default function ReviewFilters({
   const hasFilters = Boolean(search || status || sort !== "newest");
 
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-white p-4 shadow-sm">
+    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-4 shadow-sm">
       <div className="mb-4 flex items-center gap-2">
         <SlidersHorizontal
           size={17}
-          className="text-[#9f1239]"
+          className="text-[#7a5650]"
         />
 
         <h2 className="text-sm font-semibold text-[var(--color-ink)]">
@@ -68,7 +68,7 @@ export default function ReviewFilters({
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
             placeholder="Search reviews..."
-            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-white pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#9f1239] focus:ring-2 focus:ring-[#9f1239]/10"
+            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function ReviewFilters({
           onChange={(event) =>
             onStatusChange(event.target.value as ReviewStatus | "")
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#9f1239] focus:ring-2 focus:ring-[#9f1239]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
         >
           <option value="">All Statuses</option>
 
@@ -95,7 +95,7 @@ export default function ReviewFilters({
           onChange={(event) =>
             onSortChange(event.target.value as ReviewSort)
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#9f1239] focus:ring-2 focus:ring-[#9f1239]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
         >
           {REVIEW_SORTS.map((item) => (
             <option key={item} value={item}>
@@ -109,7 +109,7 @@ export default function ReviewFilters({
           type="button"
           onClick={onReset}
           disabled={!hasFilters}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <RotateCcw size={16} />
           Reset

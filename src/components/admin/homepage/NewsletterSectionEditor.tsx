@@ -136,13 +136,13 @@ export function NewsletterSectionEditor({
     >
       {/* SECTION STATUS */}
 
-      <div className="flex items-center justify-between border border-[#e5e0db] bg-[#faf9f7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6ddd4] bg-[#f7f3ed] px-5 py-4">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#77736e]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#70635d]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#393532]">
+          <p className="mt-1 text-sm text-[#3f2d2a]">
             {form.enabled
               ? "Newsletter is visible on the homepage."
               : "Newsletter is hidden from the homepage."}
@@ -161,12 +161,12 @@ export function NewsletterSectionEditor({
           }
           className={`relative flex h-7 w-12 items-center rounded-full p-1 transition-all ${
             form.enabled
-              ? "bg-[#8f6b57]"
-              : "bg-[#d8d0c8]"
+              ? "bg-[#7a5650]"
+              : "bg-[#d8cec5]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#fffdf9] shadow transition-transform ${
+            className={`block h-5 w-5 rounded-full bg-[#fbf9f5] shadow transition-transform ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -211,12 +211,12 @@ export function NewsletterSectionEditor({
 
       {/* FORM SETTINGS */}
 
-      <div className="border-t border-[#e5e0db] pt-6">
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#77736e]">
+      <div className="border-t border-[#e6ddd4] pt-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#70635d]">
           Signup Form
         </p>
 
-        <p className="mt-1 text-sm text-[#393532]">
+        <p className="mt-1 text-sm text-[#3f2d2a]">
           Configure the newsletter input and button.
         </p>
       </div>
@@ -258,8 +258,8 @@ export function NewsletterSectionEditor({
       )}
 
       {success && !error && (
-        <div className="border border-[#d9e3d8] bg-[#f4f8f2] px-4 py-3">
-          <p className="text-sm text-[#557050]">
+        <div className="border border-[#c9d3c4] bg-[#edf1e9] px-4 py-3">
+          <p className="text-sm text-[#65745f]">
             {success}
           </p>
         </div>
@@ -267,11 +267,11 @@ export function NewsletterSectionEditor({
 
       {/* SAVE */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e5e0db] bg-white/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6ddd4] bg-[#fbf9f5]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#8f6b57] bg-[#8f6b57] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf9] transition hover:bg-[#755644] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#7a5650] bg-[#7a5650] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fbf9f5] transition hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -306,7 +306,7 @@ function Field({
 }): ReactElement {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#77736e]">
+      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#70635d]">
         {label}
       </label>
 
@@ -317,7 +317,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d8d1ca] bg-white px-3 text-sm text-[#292522] outline-none focus:border-[#8f6b57] focus:ring-1 focus:ring-[#8f6b57]/20"
+        className="mt-2 h-11 w-full border border-[#d8cec5] bg-[#fbf9f5] px-3 text-sm text-[#3f2d2a] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]/20"
       />
     </div>
   );

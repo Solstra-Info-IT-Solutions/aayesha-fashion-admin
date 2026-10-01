@@ -87,8 +87,8 @@ export function OrdersPage({
             }
             className={
               activeQuick === quick.id
-                ? "h-9 border border-[#171717] bg-[#171717] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
-                : "h-9 border border-[#d8d1ca] bg-white px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#292c2c] hover:border-[#292c2c]"
+                ? "h-9 border border-[#7a5650] bg-[#7a5650] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
+                : "h-9 border border-[#d8cec5] bg-[#fbf9f5] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#3f2d2a] hover:border-[#3f2d2a]"
             }
           >
             {quick.label}

@@ -14,12 +14,12 @@ export function OrderCustomerCard({
   order: AdminOrder;
 }) {
   return (
-    <section className="border border-[#e7e2dd] bg-white p-6">
-      <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
+    <section className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
+      <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
         Customer
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#171717]">
+      <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
         Customer details
       </h2>
 
@@ -27,15 +27,15 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <User
             size={17}
-            className="text-[#969696]"
+            className="text-[#958781]"
           />
 
           <div>
-            <p className="text-sm text-[#171717]">
+            <p className="text-sm text-[#3f2d2a]">
               {order.customerName}
             </p>
 
-            <p className="text-xs text-[#969696]">
+            <p className="text-xs text-[#958781]">
               Customer
             </p>
           </div>
@@ -44,10 +44,10 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <Mail
             size={17}
-            className="text-[#969696]"
+            className="text-[#958781]"
           />
 
-          <p className="break-all text-sm text-[#6f706f]">
+          <p className="break-all text-sm text-[#70635d]">
             {order.customerEmail}
           </p>
         </div>
@@ -55,10 +55,10 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <Phone
             size={17}
-            className="text-[#969696]"
+            className="text-[#958781]"
           />
 
-          <p className="text-sm text-[#6f706f]">
+          <p className="text-sm text-[#70635d]">
             {order.customerPhone}
           </p>
         </div>

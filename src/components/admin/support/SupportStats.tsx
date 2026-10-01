@@ -22,7 +22,7 @@ const statCards = [
     label: "Total Tickets",
     icon: Headphones,
     iconClass:
-      "bg-[var(--color-rose-light)] text-[#9f1239]",
+      "bg-[var(--color-rose-light)] text-[#7a5650]",
   },
   {
     key: "open",
@@ -66,7 +66,7 @@ export default function SupportStats({
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
-            className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-sm"
+            className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm"
           >
             <div className="h-10 w-10 animate-pulse rounded-xl bg-gray-100" />
 
@@ -88,7 +88,7 @@ export default function SupportStats({
         return (
           <div
             key={card.key}
-            className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-sm transition hover:shadow-md"
+            className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm transition hover:shadow-md"
           >
             <div
               className={`flex h-10 w-10 items-center justify-center rounded-xl ${card.iconClass}`}

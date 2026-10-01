@@ -17,17 +17,17 @@ export default function ProductHeader({
   onRefresh,
 }: ProductHeaderProps) {
   return (
-    <div className="flex flex-col gap-4 border-b border-[#e7e2dd] pb-6 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col gap-4 border-b border-[#e6ddd4] pb-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#969696]">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#958781]">
           Catalog
         </p>
 
-        <h1 className="mt-1 text-2xl font-semibold text-[#171717]">
+        <h1 className="mt-1 text-2xl font-semibold text-[#3f2d2a]">
           Products
         </h1>
 
-        <p className="mt-1 text-sm text-[#6f706f]">
+        <p className="mt-1 text-sm text-[#70635d]">
           Manage products, content,
           pricing and publishing.
         </p>
@@ -38,7 +38,7 @@ export default function ProductHeader({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex h-10 items-center gap-2 rounded-xl border border-[#d8d1ca] px-3.5 text-sm font-medium text-[#292c2c] hover:bg-[#fcfbf9] disabled:opacity-50"
+          className="inline-flex h-10 items-center gap-2 rounded-xl border border-[#d8cec5] px-3.5 text-sm font-medium text-[#3f2d2a] hover:bg-[#f7f3ed] disabled:opacity-50"
         >
           <RefreshCw
             size={15}
@@ -53,7 +53,7 @@ export default function ProductHeader({
 
         <Link
           href="/admin/products/new"
-          className="inline-flex h-10 items-center gap-2 rounded-xl bg-[#171717] px-4 text-sm font-medium text-white hover:bg-[#292c2c]"
+          className="inline-flex h-10 items-center gap-2 rounded-xl bg-[#7a5650] px-4 text-sm font-medium text-white hover:bg-[#543c38]"
         >
           <Plus size={16} />
           Add Product

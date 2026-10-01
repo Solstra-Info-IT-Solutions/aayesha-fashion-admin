@@ -40,15 +40,15 @@ export function AdminDashboard({
 
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#969696]">
+          <p className="text-xs uppercase tracking-[0.18em] text-[#958781]">
             Overview
           </p>
 
-          <h1 className="mt-1 font-serif text-4xl text-[#171717]">
+          <h1 className="mt-1 font-serif text-4xl text-[#3f2d2a]">
             Dashboard
           </h1>
 
-          <p className="mt-2 text-sm text-[#6f706f]">
+          <p className="mt-2 text-sm text-[#70635d]">
             A live view of your store
             operations and performance.
           </p>
@@ -58,7 +58,7 @@ export function AdminDashboard({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex h-10 items-center justify-center gap-2 border border-[#d8d1ca] bg-white px-4 text-sm text-[#292c2c] transition hover:border-[#292c2c] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center gap-2 border border-[#d8cec5] bg-[#fbf9f5] px-4 text-sm text-[#3f2d2a] transition hover:border-[#3f2d2a] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={16}

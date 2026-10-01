@@ -171,13 +171,13 @@ export function RichTextEditor({
           LABEL
       =================================================== */}
 
-      <div className="flex items-center justify-between gap-4">
-        <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#77736e]">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#70635d]">
           {label}
         </label>
 
         {/* MODE SWITCH */}
-        <div className="flex border border-[#d8d1ca] bg-[#faf9f7] p-0.5">
+        <div className="flex border border-[#d8cec5] bg-[#f7f3ed] p-0.5">
           <button
             type="button"
             onClick={() =>
@@ -187,8 +187,8 @@ export function RichTextEditor({
             }
             className={`px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.14em] transition ${
               mode === "visual"
-                ? "bg-[#8f6b57] text-[#fffdf9]"
-                : "text-[#77736e] hover:text-[#393532]"
+                ? "bg-[#7a5650] text-[#fbf9f5]"
+                : "text-[#70635d] hover:text-[#3f2d2a]"
             }`}
           >
             Visual
@@ -203,8 +203,8 @@ export function RichTextEditor({
             }
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.14em] transition ${
               mode === "html"
-                ? "bg-[#8f6b57] text-[#fffdf9]"
-                : "text-[#77736e] hover:text-[#393532]"
+                ? "bg-[#7a5650] text-[#fbf9f5]"
+                : "text-[#70635d] hover:text-[#3f2d2a]"
             }`}
           >
             <Code2 size={12} />
@@ -219,7 +219,7 @@ export function RichTextEditor({
       =================================================== */}
 
       {mode === "visual" && (
-        <div className="mt-2 flex flex-wrap items-center gap-1 border-x border-t border-[#d8d1ca] bg-[#faf9f7] p-2">
+        <div className="mt-2 flex flex-wrap items-center gap-1 border-x border-t border-[#d8cec5] bg-[#f7f3ed] p-2">
           <ToolbarButton
             label="Bold"
             onClick={() =>
@@ -294,7 +294,7 @@ export function RichTextEditor({
 
               event.target.value = "";
             }}
-            className="ml-1 h-8 border border-[#d8d1ca] bg-white px-2 text-[10px] uppercase tracking-[0.1em] text-[#77736e] outline-none focus:border-[#8f6b57]"
+            className="ml-1 h-8 border border-[#d8cec5] bg-[#fbf9f5] px-2 text-[10px] uppercase tracking-[0.1em] text-[#70635d] outline-none focus:border-[#7a5650]"
             aria-label="Text style"
           >
             <option value="">
@@ -327,7 +327,7 @@ export function RichTextEditor({
           suppressContentEditableWarning
           onInput={handleVisualChange}
           data-placeholder={placeholder}
-          className="rich-text-editor w-full overflow-y-auto border border-[#d8d1ca] bg-white px-4 py-3 text-sm leading-7 text-[#292522] outline-none focus:border-[#8f6b57] focus:ring-1 focus:ring-[#8f6b57]/20 empty:before:pointer-events-none empty:before:text-[#b0a9a2] empty:before:content-[attr(data-placeholder)]"
+          className="rich-text-editor w-full overflow-y-auto border border-[#d8cec5] bg-[#fbf9f5] px-4 py-3 text-sm leading-7 text-[#3f2d2a] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]/20 empty:before:pointer-events-none empty:before:text-[#958781] empty:before:content-[attr(data-placeholder)]"
           style={{
             minHeight,
           }}
@@ -342,7 +342,7 @@ export function RichTextEditor({
           }
           placeholder={placeholder}
           spellCheck={false}
-          className="w-full resize-y border border-[#d8d1ca] bg-[#fffdf9] px-4 py-3 font-mono text-xs leading-6 text-[#292522] outline-none focus:border-[#8f6b57] focus:ring-1 focus:ring-[#8f6b57]/20"
+          className="w-full resize-y border border-[#d8cec5] bg-[#fbf9f5] px-4 py-3 font-mono text-xs leading-6 text-[#3f2d2a] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]/20"
           style={{
             minHeight,
           }}
@@ -353,7 +353,7 @@ export function RichTextEditor({
           HELPER
       =================================================== */}
 
-      <p className="mt-2 text-[10px] leading-5 text-[#9a928b]">
+      <p className="mt-2 text-[10px] leading-5 text-[#958781]">
         Use Visual mode for formatting or HTML mode
         to edit/paste HTML directly.
       </p>
@@ -380,7 +380,7 @@ function ToolbarButton({
       title={label}
       aria-label={label}
       onClick={onClick}
-      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#77736e] transition hover:border-[#d8d1ca] hover:bg-white hover:text-[#8f6b57]"
+      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#70635d] transition hover:border-[#d8cec5] hover:bg-[#fbf9f5] hover:text-[#7a5650]"
     >
       {children}
     </button>
@@ -395,7 +395,7 @@ function ToolbarDivider(): ReactElement {
   return (
     <span
       aria-hidden="true"
-      className="mx-1 h-5 w-px bg-[#ded8d2]"
+      className="mx-1 h-5 w-px bg-[#e6ddd4]"
     />
   );
 }

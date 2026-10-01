@@ -1,63 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import {
-  usePathname,
-} from "next/navigation";
+import { usePathname } from "next/navigation";
 
-const labels: Record<string, string> =
-  {
-    admin: "Dashboard",
-    orders: "Orders",
-    products: "Products",
-    inventory: "Inventory",
-    customers: "Customers",
-    catalog: "Catalog",
-    marketing: "Marketing",
-    coupons: "Discounts",
-    reviews: "Reviews",
-    support: "Support",
-    reports: "Reports",
-    settings: "Settings",
-  };
+import { titleForPath } from "./nav-config";
 
 export function Breadcrumbs() {
-  const pathname =
-    usePathname();
-
-  const segments =
-    pathname
-      .split("/")
-      .filter(Boolean);
-
-  const current =
-    segments.at(-1) || "admin";
-
-  const title =
-    labels[current] ||
-    "Admin";
+  const pathname = usePathname();
+  const title = titleForPath(pathname);
+  const deeper = pathname.split("/").filter(Boolean).length > 2;
 
   return (
-    <div>
-      <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
+    <div className="min-w-0">
+      <p className="hidden text-[10px] uppercase tracking-[0.2em] text-[#958781] sm:block">
         Aayesha Fashion
       </p>
 
-      <div className="mt-1 flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:mt-0.5">
         <Link
           href="/admin"
-          className="text-sm text-[#6f706f] hover:text-[#171717]"
+          className="hidden text-sm text-[#70635d] hover:text-[#3f2d2a] sm:inline"
         >
           Admin
         </Link>
 
-        <span className="text-[#c6c0ba]">
-          /
-        </span>
+        <span className="hidden text-[#b9aaa1] sm:inline">/</span>
 
-        <span className="text-sm font-medium text-[#171717]">
+        <span
+          className={`truncate font-serif text-xl text-[#3f2d2a] ${
+            deeper ? "hidden sm:inline" : ""
+          }`}
+        >
           {title}
         </span>
+
+        {deeper ? (
+          <span className="truncate font-serif text-xl text-[#3f2d2a] sm:hidden">
+            {title}
+          </span>
+        ) : null}
       </div>
     </div>
   );

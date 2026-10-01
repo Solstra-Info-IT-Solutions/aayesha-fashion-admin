@@ -21,10 +21,10 @@ export default function DiscountHeader({
       {/* Left */}
       <div>
         {/* Breadcrumb */}
-        <div className="mb-2 flex items-center gap-2 text-xs text-[var(--color-secondary)]">
+        <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
           <Link
             href="/admin"
-            className="transition hover:text-[#9f1239]"
+            className="transition hover:text-[#7a5650]"
           >
             Admin
           </Link>
@@ -38,7 +38,7 @@ export default function DiscountHeader({
 
         {/* Title */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#9f1239]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#7a5650]">
             <Percent size={22} />
           </div>
 
@@ -61,7 +61,7 @@ export default function DiscountHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={17}
@@ -80,7 +80,7 @@ export default function DiscountHeader({
         {/* Create Discount */}
         <Link
           href="/admin/discounts/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#000000] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#881337]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#7a5650] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#543c38]"
         >
           <Plus size={17} />
 

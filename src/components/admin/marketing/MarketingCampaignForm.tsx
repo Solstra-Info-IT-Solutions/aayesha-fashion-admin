@@ -543,7 +543,7 @@ export default function MarketingCampaignForm({
             <div className="mt-2 h-4 w-80 animate-pulse rounded bg-gray-100" />
           </div>
 
-          <div className="rounded-xl border border-[var(--color-border)] bg-white">
+          <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5]">
             <div className="space-y-6 p-5 sm:p-7">
               <div className="space-y-2">
                 <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
@@ -675,7 +675,7 @@ export default function MarketingCampaignForm({
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl border border-[var(--color-border)] bg-white"
+          className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5]"
         >
           <div className="space-y-6 p-5 sm:p-7">
             {/* Campaign Name */}
@@ -703,7 +703,7 @@ export default function MarketingCampaignForm({
                 }
                 placeholder="e.g. Festive Season Sale"
                 maxLength={120}
-                className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                className={`h-11 w-full rounded-lg border bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
                   errors.name
                     ? "border-red-500"
                     : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
@@ -738,7 +738,7 @@ export default function MarketingCampaignForm({
                 placeholder="Describe the purpose of this campaign..."
                 rows={4}
                 maxLength={500}
-                className={`w-full resize-none rounded-lg border bg-white px-3 py-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                className={`w-full resize-none rounded-lg border bg-[#fbf9f5] px-3 py-3 text-sm text-[var(--color-ink)] outline-none transition ${
                   errors.description
                     ? "border-red-500"
                     : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
@@ -785,7 +785,7 @@ export default function MarketingCampaignForm({
                         .value as MarketingCampaignType,
                     )
                   }
-                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
                 >
                   {MARKETING_CAMPAIGN_TYPES.map(
                     (item) => (
@@ -819,7 +819,7 @@ export default function MarketingCampaignForm({
                         .value as MarketingCampaignStatus,
                     )
                   }
-                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
                 >
                   {MARKETING_CAMPAIGN_STATUSES.map(
                     (item) => (
@@ -866,7 +866,7 @@ export default function MarketingCampaignForm({
                     )
                   }
                   placeholder="0"
-                  className={`h-11 w-full rounded-lg border bg-white pl-8 pr-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fbf9f5] pl-8 pr-3 text-sm text-[var(--color-ink)] outline-none transition ${
                     errors.budget
                       ? "border-red-500"
                       : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
@@ -906,7 +906,7 @@ export default function MarketingCampaignForm({
                       event.target.value,
                     )
                   }
-                  className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
                     errors.startsAt
                       ? "border-red-500"
                       : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
@@ -939,7 +939,7 @@ export default function MarketingCampaignForm({
                       event.target.value,
                     )
                   }
-                  className={`h-11 w-full rounded-lg border bg-white px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
                     errors.endsAt
                       ? "border-red-500"
                       : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
@@ -972,7 +972,7 @@ export default function MarketingCampaignForm({
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#000000] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#7a5650] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitting ? (
                 <Loader2

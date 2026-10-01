@@ -134,13 +134,13 @@ export default function DiscountMobileCard({
     );
 
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-4 shadow-sm">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Link
             href={`/admin/discounts/${discount._id}`}
-            className="inline-flex max-w-full items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#9f1239] transition hover:bg-pink-100"
+            className="inline-flex max-w-full items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#7a5650] transition hover:bg-pink-100"
           >
             <span className="truncate">
               {discount.code}
@@ -192,7 +192,7 @@ export default function DiscountMobileCard({
 
       {/* Details */}
       <div className="mt-4 space-y-2.5 border-t border-[var(--color-border)] pt-4">
-        <div className="flex items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <span className="text-[var(--color-secondary)]">
             Start Date
           </span>
@@ -204,7 +204,7 @@ export default function DiscountMobileCard({
           </span>
         </div>
 
-        <div className="flex items-center justify-between gap-3 text-xs">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           <span className="text-[var(--color-secondary)]">
             End Date
           </span>
@@ -217,7 +217,7 @@ export default function DiscountMobileCard({
         </div>
 
         {minimumOrder && (
-          <div className="flex items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
             <span className="text-[var(--color-secondary)]">
               Minimum Order
             </span>
@@ -231,7 +231,7 @@ export default function DiscountMobileCard({
         {discount
           .usageLimitPerCustomer !==
           null && (
-          <div className="flex items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
             <span className="text-[var(--color-secondary)]">
               Per Customer
             </span>
@@ -264,7 +264,7 @@ export default function DiscountMobileCard({
 
         <Link
           href={`/admin/discounts/${discount._id}/edit`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] text-xs font-medium text-[#9f1239] transition hover:bg-[var(--color-rose-light)]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] text-xs font-medium text-[#7a5650] transition hover:bg-[var(--color-rose-light)]"
         >
           <Pencil size={15} />
           Edit

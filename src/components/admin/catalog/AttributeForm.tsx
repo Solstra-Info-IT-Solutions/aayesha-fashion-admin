@@ -69,7 +69,7 @@ export default function AttributeForm({
                 .value as AttributeType,
             })
           }
-          className="w-full rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+          className="w-full rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
         >
           {types.map((type) => (
             <option

@@ -29,7 +29,7 @@ export default function SettingsConfirmDelete({
       aria-modal="true"
       aria-labelledby="delete-setting-title"
     >
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+      <div className="w-full max-w-md rounded-2xl bg-[#fbf9f5] p-6 shadow-xl">
         <div className="flex items-start justify-between gap-4">
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50">
             <AlertTriangle className="h-5 w-5 text-red-600" />

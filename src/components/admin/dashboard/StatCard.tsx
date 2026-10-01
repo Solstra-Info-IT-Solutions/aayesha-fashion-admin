@@ -14,24 +14,24 @@ export function StatCard({
   icon: Icon,
 }: StatCardProps) {
   return (
-    <article className="border border-[#e7e2dd] bg-white p-5">
+    <article className="border border-[#e6ddd4] bg-[#fbf9f5] p-5">
       <div className="flex items-start justify-between">
-        <span className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
+        <span className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
           {label}
         </span>
 
         <Icon
           size={18}
           strokeWidth={1.6}
-          className="text-[#b8b0a8]"
+          className="text-[#958781]"
         />
       </div>
 
-      <p className="mt-5 font-serif text-3xl text-[#171717]">
+      <p className="mt-5 font-serif text-3xl text-[#3f2d2a]">
         {value}
       </p>
 
-      <p className="mt-2 text-xs text-[#969696]">
+      <p className="mt-2 text-xs text-[#958781]">
         {helper}
       </p>
     </article>

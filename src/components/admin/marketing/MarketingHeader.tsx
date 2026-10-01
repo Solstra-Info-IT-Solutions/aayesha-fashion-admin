@@ -21,7 +21,7 @@ export default function MarketingHeader({
       {/* Left */}
       <div>
         {/* Breadcrumb */}
-        <div className="mb-2 flex items-center gap-2 text-xs text-[var(--color-secondary)]">
+        <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
           <Link
             href="/admin"
             className="transition hover:text-[var(--color-rose-dark)]"
@@ -61,7 +61,7 @@ export default function MarketingHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={16}
@@ -77,7 +77,7 @@ export default function MarketingHeader({
 
         <Link
   href="/admin/marketing/create"
-  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#000000] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#881337]"
+  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#7a5650] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#543c38]"
 >
   <Plus size={17} />
   New Campaign

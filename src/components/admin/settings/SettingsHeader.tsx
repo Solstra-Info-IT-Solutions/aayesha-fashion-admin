@@ -19,7 +19,7 @@ export default function SettingsHeader({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <div className="mb-2 flex items-center gap-2 text-sm text-slate-500">
+        <div className="mb-2 hidden items-center gap-2 text-sm text-slate-500">
           <Link
             href="/admin"
             className="transition hover:text-slate-900"
@@ -57,7 +57,7 @@ export default function SettingsHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fbf9f5] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             className={`h-4 w-4 ${
@@ -74,7 +74,7 @@ export default function SettingsHeader({
 
         <Link
           href="/admin/settings/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#000000] px-4 text-sm font-medium text-white transition hover:bg-[#881337]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#7a5650] px-4 text-sm font-medium text-white transition hover:bg-[#543c38]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

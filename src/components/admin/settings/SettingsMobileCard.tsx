@@ -25,7 +25,7 @@ export default function SettingsMobileCard({
       : String(setting.value ?? "");
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="rounded-2xl border border-gray-200 bg-[#fbf9f5] p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="break-all font-semibold text-gray-900">
@@ -67,7 +67,7 @@ export default function SettingsMobileCard({
         </p>
       </div>
 
-      <div className="mt-4 flex items-center justify-between gap-3">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-gray-400">
           Updated {new Date(setting.updatedAt).toLocaleDateString()}
         </p>

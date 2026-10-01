@@ -4,7 +4,7 @@ export default function ReviewTableSkeleton() {
   return (
     <>
       {/* Desktop Skeleton */}
-      <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-sm lg:block">
+      <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm lg:block">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[1050px]">
             <thead>
@@ -88,7 +88,7 @@ export default function ReviewTableSkeleton() {
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}
-            className="rounded-2xl border border-[var(--color-border)] bg-white p-4 shadow-sm"
+            className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-4 shadow-sm"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0 flex-1 space-y-2">

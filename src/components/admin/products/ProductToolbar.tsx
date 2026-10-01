@@ -50,7 +50,7 @@ export default function ProductToolbar({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-[#e7e2dd] bg-white p-3 sm:p-4">
+    <div className="w-full rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] p-3 sm:p-4">
       {/* =====================================================
           FILTER GRID
       ===================================================== */}
@@ -85,17 +85,17 @@ export default function ProductToolbar({
               w-full
               rounded-xl
               border
-              border-[#d8d1ca]
-              bg-white
+              border-[#d8cec5]
+              bg-[#fbf9f5]
               px-3.5
               text-sm
-              text-[#292c2c]
-              placeholder:text-[#9b938c]
+              text-[#3f2d2a]
+              placeholder:text-[#958781]
               outline-none
               transition
-              focus:border-[#d98791]
+              focus:border-[#a98282]
               focus:ring-4
-              focus:ring-[#f9e4e6]
+              focus:ring-[#e9dcd7]
             "
           />
         </div>
@@ -121,16 +121,16 @@ export default function ProductToolbar({
             min-w-0
             rounded-xl
             border
-            border-[#d8d1ca]
-            bg-white
+            border-[#d8cec5]
+            bg-[#fbf9f5]
             px-3.5
             text-sm
-            text-[#292c2c]
+            text-[#3f2d2a]
             outline-none
             transition
-            focus:border-[#d98791]
+            focus:border-[#a98282]
             focus:ring-4
-            focus:ring-[#f9e4e6]
+            focus:ring-[#e9dcd7]
           "
         >
           <option value="">
@@ -168,17 +168,17 @@ export default function ProductToolbar({
             min-w-0
             rounded-xl
             border
-            border-[#d8d1ca]
-            bg-white
+            border-[#d8cec5]
+            bg-[#fbf9f5]
             px-3.5
             text-sm
-            text-[#292c2c]
-            placeholder:text-[#9b938c]
+            text-[#3f2d2a]
+            placeholder:text-[#958781]
             outline-none
             transition
-            focus:border-[#d98791]
+            focus:border-[#a98282]
             focus:ring-4
-            focus:ring-[#f9e4e6]
+            focus:ring-[#e9dcd7]
           "
         />
 
@@ -207,16 +207,16 @@ export default function ProductToolbar({
             min-w-0
             rounded-xl
             border
-            border-[#d8d1ca]
-            bg-white
+            border-[#d8cec5]
+            bg-[#fbf9f5]
             px-3.5
             text-sm
-            text-[#292c2c]
+            text-[#3f2d2a]
             outline-none
             transition
-            focus:border-[#d98791]
+            focus:border-[#a98282]
             focus:ring-4
-            focus:ring-[#f9e4e6]
+            focus:ring-[#e9dcd7]
           "
         >
           <option value="">
@@ -249,16 +249,16 @@ export default function ProductToolbar({
             min-w-0
             rounded-xl
             border
-            border-[#d8d1ca]
-            bg-white
+            border-[#d8cec5]
+            bg-[#fbf9f5]
             px-3.5
             text-sm
-            text-[#292c2c]
+            text-[#3f2d2a]
             outline-none
             transition
-            focus:border-[#d98791]
+            focus:border-[#a98282]
             focus:ring-4
-            focus:ring-[#f9e4e6]
+            focus:ring-[#e9dcd7]
           "
         >
           <option value="newest">
@@ -287,12 +287,12 @@ export default function ProductToolbar({
           MERCHANDISING FILTERS
       ===================================================== */}
 
-      <div className="mt-3 border-t border-[#eee9e5] pt-3">
+      <div className="mt-3 border-t border-[#e6ddd4] pt-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           {/* LABEL */}
 
           <div className="shrink-0">
-            <span className="text-xs font-medium uppercase tracking-[0.08em] text-[#8c837c]">
+            <span className="text-xs font-medium uppercase tracking-[0.08em] text-[#958781]">
               Quick Filters
             </span>
           </div>
@@ -319,8 +319,8 @@ export default function ProductToolbar({
                 transition
                 ${
                   filters.isNew === true
-                    ? "border-[#d98791] bg-[#fff5f6] text-[#7d3f48]"
-                    : "border-[#d8d1ca] bg-white text-[#5e5751] hover:border-[#c9bfb8] hover:bg-[#faf8f6]"
+                    ? "border-[#a98282] bg-[#f5eae6] text-[#543c38]"
+                    : "border-[#d8cec5] bg-[#fbf9f5] text-[#70635d] hover:border-[#958781] hover:bg-[#f7f3ed]"
                 }
               `}
             >
@@ -342,7 +342,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#d98791]
+                  accent-[#a98282]
                 "
               />
 
@@ -371,8 +371,8 @@ export default function ProductToolbar({
                 ${
                   filters.isFeatured ===
                   true
-                    ? "border-[#d98791] bg-[#fff5f6] text-[#7d3f48]"
-                    : "border-[#d8d1ca] bg-white text-[#5e5751] hover:border-[#c9bfb8] hover:bg-[#faf8f6]"
+                    ? "border-[#a98282] bg-[#f5eae6] text-[#543c38]"
+                    : "border-[#d8cec5] bg-[#fbf9f5] text-[#70635d] hover:border-[#958781] hover:bg-[#f7f3ed]"
                 }
               `}
             >
@@ -396,7 +396,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#d98791]
+                  accent-[#a98282]
                 "
               />
 
@@ -425,8 +425,8 @@ export default function ProductToolbar({
                 ${
                   filters.isBestSeller ===
                   true
-                    ? "border-[#d98791] bg-[#fff5f6] text-[#7d3f48]"
-                    : "border-[#d8d1ca] bg-white text-[#5e5751] hover:border-[#c9bfb8] hover:bg-[#faf8f6]"
+                    ? "border-[#a98282] bg-[#f5eae6] text-[#543c38]"
+                    : "border-[#d8cec5] bg-[#fbf9f5] text-[#70635d] hover:border-[#958781] hover:bg-[#f7f3ed]"
                 }
               `}
             >
@@ -450,7 +450,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#d98791]
+                  accent-[#a98282]
                 "
               />
 
