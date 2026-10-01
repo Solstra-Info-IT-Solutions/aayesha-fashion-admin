@@ -88,6 +88,10 @@ export type AdminOrder = {
   /** Customer reported a payment (UTR) — needs checking. */
   paymentClaimedAt?: string | null;
   paymentClaimReference?: string | null;
+  /** Last time the Bank / UPI bill was sent on WhatsApp. */
+  billSentAt?: string | null;
+  /** Last time the paid invoice was sent on WhatsApp. */
+  invoiceSentAt?: string | null;
 
   status: OrderStatus;
 
