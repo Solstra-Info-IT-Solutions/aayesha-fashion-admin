@@ -94,10 +94,10 @@ export default function ProductBasicSection({
   }, [accessToken]);
 
   return (
-    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e6dfcf] bg-[#fffdf8] p-4 sm:p-5">
+    <section className="surface min-w-0 overflow-hidden p-5 sm:p-6">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#2a2520]">
+        <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#2a2520]">
           Product Basics
         </h2>
 

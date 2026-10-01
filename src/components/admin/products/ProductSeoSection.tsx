@@ -16,8 +16,8 @@ export default function ProductSeoSection({
   onChange,
 }: ProductSeoSectionProps) {
   return (
-    <section className="rounded-2xl border border-[#e6dfcf] bg-[#fffdf8] p-5">
-      <h2 className="text-base font-semibold text-[#2a2520]">
+    <section className="surface p-5 sm:p-6">
+      <h2 className="display text-[26px] font-semibold leading-tight text-[#2a2520]">
         SEO
       </h2>
 
@@ -27,7 +27,7 @@ export default function ProductSeoSection({
       </p>
 
       <div className="mt-5 space-y-4">
-        <label>
+        <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Meta Title
           </span>
@@ -46,7 +46,7 @@ export default function ProductSeoSection({
           />
         </label>
 
-        <label>
+        <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Meta Description
           </span>
@@ -69,7 +69,7 @@ export default function ProductSeoSection({
           />
         </label>
 
-        <label>
+        <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Keywords
           </span>
@@ -99,7 +99,7 @@ export default function ProductSeoSection({
           />
         </label>
 
-        <label>
+        <label className="block">
           <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Canonical URL
           </span>
