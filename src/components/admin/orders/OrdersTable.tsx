@@ -1,5 +1,6 @@
 "use client";
 
+import { paymentMethodLabel } from "@/lib/payment";
 import Link from "next/link";
 
 import type {
@@ -138,7 +139,9 @@ export function OrdersTable({
                       />
 
                       <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#969696]">
-                        {order.paymentMethod}
+                        {paymentMethodLabel(
+                          order.paymentMethod,
+                        )}
                       </p>
                     </td>
 

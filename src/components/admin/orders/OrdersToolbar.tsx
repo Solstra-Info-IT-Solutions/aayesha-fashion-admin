@@ -122,6 +122,37 @@ export function OrdersToolbar({
 
         <select
           value={
+            filters.paymentMethod ??
+            ""
+          }
+          onChange={(event) =>
+            onChange({
+              paymentMethod:
+                event.target.value ||
+                undefined,
+            })
+          }
+          className="h-11 border border-[#d8d1ca] bg-white px-3 text-sm text-[#292c2c] outline-none focus:border-[#292c2c]"
+        >
+          <option value="">
+            All methods
+          </option>
+
+          <option value="cod">
+            Cash on Delivery
+          </option>
+
+          <option value="online">
+            Online (Razorpay)
+          </option>
+
+          <option value="bank_upi">
+            Bank / UPI
+          </option>
+        </select>
+
+        <select
+          value={
             filters.sort ??
             "newest"
           }

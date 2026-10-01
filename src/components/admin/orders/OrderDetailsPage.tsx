@@ -35,6 +35,10 @@ import {
 } from "./OrderSummaryCard";
 
 import {
+  OrderPaymentCard,
+} from "./OrderPaymentCard";
+
+import {
   OrderActionsCard,
 } from "./OrderActionsCard";
 
@@ -177,6 +181,16 @@ export function OrderDetailsPage({
 
           <OrderItemsCard
             order={order}
+          />
+
+          <OrderPaymentCard
+            order={order}
+            loading={actionLoading}
+            onMarkPaid={async (
+              input,
+            ) => {
+              await changePayment(input);
+            }}
           />
 
           <OrderSummaryCard
