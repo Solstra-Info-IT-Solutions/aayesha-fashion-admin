@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { paymentMethodLabel } from "@/lib/payment";
 import type {
   AdminOrder,
 } from "@/types/order";
@@ -65,7 +66,9 @@ export function OrderDetailHeader({
         />
 
         <span className="text-sm text-[#6f706f]">
-          {order.paymentMethod}
+          {paymentMethodLabel(
+            order.paymentMethod,
+          )}
         </span>
       </div>
     </div>

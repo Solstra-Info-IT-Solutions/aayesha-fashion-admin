@@ -19,8 +19,8 @@ export type PaymentStatus =
 
 export type PaymentMethod =
   | "cod"
-  | "razorpay"
   | "online"
+  | "bank_upi"
   | string;
 
 export type OrderItem = {
@@ -80,6 +80,11 @@ export type AdminOrder = {
   paymentStatus: PaymentStatus;
   paymentId?: string | null;
   paymentSource?: string | null;
+  /** Razorpay order id (online payments). */
+  razorpayOrderId?: string | null;
+  /** WhatsApp number the Bank / UPI bill was sent to. */
+  paymentWhatsapp?: string | null;
+  paymentPaidAt?: string | null;
 
   status: OrderStatus;
 

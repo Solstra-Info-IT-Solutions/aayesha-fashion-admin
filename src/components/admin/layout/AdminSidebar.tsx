@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3,
+  BellRing,
   Boxes,
   ClipboardList,
   FileText,
@@ -73,6 +74,11 @@ const sections = [
         href: "/admin/reviews",
         label: "Reviews",
         icon: FileText,
+      },
+      {
+        href: "/admin/stock-alerts",
+        label: "Stock Alerts",
+        icon: BellRing,
       },
       {
         href: "/admin/support",
