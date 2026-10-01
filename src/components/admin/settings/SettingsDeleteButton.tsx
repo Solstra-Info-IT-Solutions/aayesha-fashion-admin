@@ -18,7 +18,7 @@ export default function SettingsDeleteButton({
       type="button"
       onClick={onClick}
       disabled={disabled || deleting}
-      className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-red-200 px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+      className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#f5c2c0] px-4 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] disabled:cursor-not-allowed disabled:opacity-50"
     >
       {deleting ? (
         <Loader2 className="h-4 w-4 animate-spin" />

@@ -54,13 +54,13 @@ export default function ContactSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 px-5 py-4">
-        <h2 className="text-base font-semibold text-slate-900">
+    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-[#e6dfcf] px-5 py-4">
+        <h2 className="text-base font-semibold text-[#2a2520]">
           Contact Settings
         </h2>
 
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-[#756d62]">
           Manage the store contact information.
         </p>
       </div>
@@ -69,13 +69,13 @@ export default function ContactSettings({
         <div>
           <label
             htmlFor="contact-email"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Email Address
           </label>
 
           <div className="relative">
-            <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
 
             <input
               id="contact-email"
@@ -88,7 +88,7 @@ export default function ContactSettings({
                 )
               }
               placeholder="support@example.com"
-              className="h-11 w-full rounded-lg border border-slate-200 pl-10 pr-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+              className="h-11 w-full rounded-lg border border-[#e6dfcf] pl-10 pr-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
             />
           </div>
         </div>
@@ -96,13 +96,13 @@ export default function ContactSettings({
         <div>
           <label
             htmlFor="contact-phone"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Phone Number
           </label>
 
           <div className="relative">
-            <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
 
             <input
               id="contact-phone"
@@ -115,7 +115,7 @@ export default function ContactSettings({
                 )
               }
               placeholder="+91 00000 00000"
-              className="h-11 w-full rounded-lg border border-slate-200 pl-10 pr-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+              className="h-11 w-full rounded-lg border border-[#e6dfcf] pl-10 pr-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
             />
           </div>
         </div>
@@ -123,13 +123,13 @@ export default function ContactSettings({
         <div>
           <label
             htmlFor="contact-address"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Address
           </label>
 
           <div className="relative">
-            <MapPin className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <MapPin className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-[#756d62]" />
 
             <textarea
               id="contact-address"
@@ -142,7 +142,7 @@ export default function ContactSettings({
               }
               rows={4}
               placeholder="Enter store address..."
-              className="w-full resize-y rounded-lg border border-slate-200 py-3 pl-10 pr-3 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+              className="w-full resize-y rounded-lg border border-[#e6dfcf] py-3 pl-10 pr-3 text-sm leading-6 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
             />
           </div>
         </div>

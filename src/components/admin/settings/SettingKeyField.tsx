@@ -31,10 +31,10 @@ export default function SettingKeyField({
         maxLength={150}
         autoComplete="off"
         spellCheck={false}
-        className="h-11 w-full rounded-xl border border-gray-200 bg-[#fffdf8] px-3.5 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10 disabled:cursor-not-allowed disabled:bg-gray-50"
+        className="h-11 w-full rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-3.5 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10 disabled:cursor-not-allowed disabled:bg-[#f7f2e7]"
       />
 
-      <p className="text-right text-xs text-gray-400">
+      <p className="text-right text-xs text-[#756d62]">
         {value.length}/150
       </p>
     </SettingFormField>

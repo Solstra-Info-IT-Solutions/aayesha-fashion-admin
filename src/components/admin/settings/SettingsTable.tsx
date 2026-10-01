@@ -19,28 +19,28 @@ export default function SettingsTable({
   onDelete,
 }: SettingsTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-[#fffdf8] shadow-sm md:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm md:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] text-left">
-          <thead className="border-b border-gray-200 bg-gray-50">
+          <thead className="border-b border-[#e6dfcf] bg-[#f7f2e7]">
             <tr>
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Setting
               </th>
 
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Group
               </th>
 
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Value
               </th>
 
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Visibility
               </th>
 
-              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-[#756d62]">
                 Actions
               </th>
             </tr>

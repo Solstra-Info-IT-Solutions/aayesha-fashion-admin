@@ -15,7 +15,7 @@ export default function SettingsBackButton({
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition hover:text-gray-800"
+      className="inline-flex items-center gap-2 text-sm font-medium text-[#756d62] transition hover:text-[#2a2520]"
     >
       <ArrowLeft className="h-4 w-4" />
       {label}

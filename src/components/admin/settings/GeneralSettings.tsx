@@ -52,13 +52,13 @@ export default function GeneralSettings({
       }}
       className="space-y-6"
     >
-      <div className="rounded-2xl border border-gray-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="mb-6">
-          <h2 className="text-base font-semibold text-gray-900">
+          <h2 className="text-base font-semibold text-[#2a2520]">
             {isEdit ? "Edit Setting" : "Create Setting"}
           </h2>
 
-          <p className="mt-1 text-sm leading-6 text-gray-500">
+          <p className="mt-1 text-sm leading-6 text-[#756d62]">
             Configure the setting key, group, value and visibility.
           </p>
         </div>

@@ -80,19 +80,19 @@ export default function ShippingSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 px-5 py-4">
+    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-[#e6dfcf] px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
-            <Truck className="h-4 w-4 text-rose-700" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9]">
+            <Truck className="h-4 w-4 text-[#6f542f]" />
           </div>
 
           <div>
-            <h2 className="text-base font-semibold text-slate-900">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Shipping Settings
             </h2>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-[#756d62]">
               Configure shipping availability and charges.
             </p>
           </div>
@@ -101,13 +101,13 @@ export default function ShippingSettings({
 
       <div className="space-y-5 p-5">
         {/* Shipping enabled */}
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-[#e6dfcf] p-4">
           <div>
-            <p className="text-sm font-medium text-slate-900">
+            <p className="text-sm font-medium text-[#2a2520]">
               Shipping Enabled
             </p>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-[#756d62]">
               Allow shipping for customer orders.
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function ShippingSettings({
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               shippingEnabled
                 ? "bg-[#26221d]"
-                : "bg-slate-300"
+                : "bg-[#d6ccb6]"
             }`}
           >
             <span
@@ -140,7 +140,7 @@ export default function ShippingSettings({
         <div>
           <label
             htmlFor="default-shipping-charge"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Default Shipping Charge
           </label>
@@ -160,18 +160,18 @@ export default function ShippingSettings({
               )
             }
             placeholder="0"
-            className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+            className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
           />
         </div>
 
         {/* Free shipping */}
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-[#e6dfcf] p-4">
           <div>
-            <p className="text-sm font-medium text-slate-900">
+            <p className="text-sm font-medium text-[#2a2520]">
               Free Shipping
             </p>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-[#756d62]">
               Enable free shipping above a minimum order value.
             </p>
           </div>
@@ -187,7 +187,7 @@ export default function ShippingSettings({
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               freeShippingEnabled
                 ? "bg-[#26221d]"
-                : "bg-slate-300"
+                : "bg-[#d6ccb6]"
             }`}
           >
             <span
@@ -204,7 +204,7 @@ export default function ShippingSettings({
         <div>
           <label
             htmlFor="free-shipping-threshold"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Free Shipping Threshold
           </label>
@@ -225,14 +225,14 @@ export default function ShippingSettings({
             }
             placeholder="0"
             disabled={!freeShippingEnabled}
-            className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+            className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf] disabled:cursor-not-allowed disabled:bg-[#f7f2e7] disabled:text-[#756d62]"
           />
         </div>
 
-        <div className="flex gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+        <div className="flex gap-3 rounded-[14px] border border-[#c7dcea] bg-[#e6f0f7] p-4">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#1f5f86]" />
 
-          <p className="text-xs leading-5 text-blue-700">
+          <p className="text-xs leading-5 text-[#1f5f86]">
             Shipping values are stored inside the setting value as a JSON
             object. Actual shipping calculation rules should remain aligned
             with the backend order/shipping logic.

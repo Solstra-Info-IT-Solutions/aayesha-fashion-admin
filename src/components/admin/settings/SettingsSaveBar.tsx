@@ -14,9 +14,9 @@ export default function SettingsSaveBar({
   onSave,
 }: SettingsSaveBarProps) {
   return (
-    <div className="sticky bottom-4 z-20 rounded-2xl border border-slate-200 bg-[#fffdf8]/95 p-4 shadow-lg backdrop-blur">
+    <div className="sticky bottom-4 z-20 rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]/95 p-4 shadow-lg backdrop-blur">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-[#756d62]">
           Save your changes before leaving this page.
         </p>
 

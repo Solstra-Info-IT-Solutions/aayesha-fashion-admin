@@ -64,26 +64,26 @@ export default function NotificationSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 px-5 py-4">
+    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-[#e6dfcf] px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
-            <Bell className="h-4 w-4 text-rose-700" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9]">
+            <Bell className="h-4 w-4 text-[#6f542f]" />
           </div>
 
           <div>
-            <h2 className="text-base font-semibold text-slate-900">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Notification Settings
             </h2>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-[#756d62]">
               Configure customer notification channels.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="divide-y divide-slate-100">
+      <div className="divide-y divide-[#efe8d8]">
         <NotificationRow
           icon={
             <Mail className="h-4 w-4" />
@@ -170,16 +170,16 @@ function NotificationRow({
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-5">
       <div className="flex min-w-0 items-start gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-500">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f7f2e7] text-[#756d62]">
           {icon}
         </div>
 
         <div>
-          <p className="text-sm font-medium text-slate-900">
+          <p className="text-sm font-medium text-[#2a2520]">
             {title}
           </p>
 
-          <p className="mt-1 text-xs leading-5 text-slate-500">
+          <p className="mt-1 text-xs leading-5 text-[#756d62]">
             {description}
           </p>
         </div>
@@ -193,7 +193,7 @@ function NotificationRow({
         className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
           enabled
             ? "bg-[#26221d]"
-            : "bg-slate-300"
+            : "bg-[#d6ccb6]"
         }`}
         aria-label={
           enabled
