@@ -116,6 +116,8 @@ export type OrderListFilters = {
   status?: OrderStatus;
   paymentStatus?: PaymentStatus;
   paymentMethod?: string;
+  /** Only orders where the customer reported a payment (UTR). */
+  paymentClaimed?: boolean;
   customerEmail?: string;
   customerPhone?: string;
   sort?:

@@ -16,6 +16,7 @@ import {
   Percent,
   Settings,
   ShoppingBag,
+  ShoppingCart,
   Users,
 } from "lucide-react";
 
@@ -74,6 +75,11 @@ const sections = [
         href: "/admin/reviews",
         label: "Reviews",
         icon: FileText,
+      },
+      {
+        href: "/admin/abandoned-carts",
+        label: "Abandoned Carts",
+        icon: ShoppingCart,
       },
       {
         href: "/admin/stock-alerts",
