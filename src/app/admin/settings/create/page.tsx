@@ -82,7 +82,7 @@ export default function CreateSettingPage() {
       });
 
       toast.success("Setting created successfully.");
-      router.push("/admin/settings");
+      router.replace("/admin/settings");
       router.refresh();
     } catch (error) {
       console.error("Failed to create setting:", error);
@@ -99,7 +99,7 @@ export default function CreateSettingPage() {
 
   return (
     <div className="min-h-full">
-      <main className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         <SettingsFormHeader
           title="Create Setting"
           description="Create a new store configuration setting."
@@ -144,7 +144,7 @@ export default function CreateSettingPage() {
           valueError={errors.value}
           groupError={errors.group}
         />
-      </main>
+      </div>
     </div>
   );
 }

@@ -114,7 +114,7 @@ export default function EditSettingPage() {
 
       toast.success("Setting updated successfully.");
 
-      router.push("/admin/settings");
+      router.replace("/admin/settings");
       router.refresh();
     } catch (error) {
       console.error("Failed to update setting:", error);
@@ -131,7 +131,7 @@ export default function EditSettingPage() {
 
   return (
     <div className="min-h-full">
-      <main className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         <SettingsFormHeader
           title="Edit Setting"
           description={
@@ -191,7 +191,7 @@ export default function EditSettingPage() {
             isEdit
           />
         )}
-      </main>
+      </div>
     </div>
   );
 }

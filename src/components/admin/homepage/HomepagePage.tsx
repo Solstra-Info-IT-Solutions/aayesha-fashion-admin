@@ -208,7 +208,7 @@ export function HomepagePage(): ReactElement {
           MAIN
       =================================================== */}
 
-      <main className="mx-auto max-w-[1500px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1500px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
         {/* =================================================
             TABS
         ================================================= */}
@@ -249,7 +249,7 @@ export function HomepagePage(): ReactElement {
             }
           />
         )}
-      </main>
+      </div>
     </div>
   );
 }

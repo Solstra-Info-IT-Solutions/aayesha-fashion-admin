@@ -1,5 +1,6 @@
 "use client";
 
+import { goBackTo } from "@/lib/nav-history";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -191,7 +192,7 @@ export default function ReviewDetailPage({
 
       toast.success("Review deleted.");
 
-      router.push("/admin/reviews");
+      router.replace("/admin/reviews");
       router.refresh();
     } catch (error) {
       toast.error(
@@ -248,7 +249,7 @@ export default function ReviewDetailPage({
 
         <button
           type="button"
-          onClick={() => router.push("/admin/reviews")}
+          onClick={() => goBackTo(router, "/admin/reviews")}
           className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
         >
           Back to Reviews

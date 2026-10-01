@@ -1,5 +1,6 @@
 "use client";
 
+import { goBackTo } from "@/lib/nav-history";
 import {
   useCallback,
   useEffect,
@@ -177,7 +178,7 @@ export default function DiscountDetailPage() {
           "Discount deleted.",
         );
 
-        router.push(
+        router.replace(
           "/admin/discounts",
         );
       } catch (error) {
@@ -243,11 +244,7 @@ export default function DiscountDetailPage() {
 
         <button
           type="button"
-          onClick={() =>
-            router.push(
-              "/admin/discounts",
-            )
-          }
+          onClick={() => goBackTo(router, "/admin/discounts")}
           className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white transition hover:bg-[#3d372f]"
         >
           Back to Discounts

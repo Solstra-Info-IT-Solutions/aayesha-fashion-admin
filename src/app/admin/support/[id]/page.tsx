@@ -1,5 +1,6 @@
 "use client";
 
+import { goBackTo } from "@/lib/nav-history";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -129,7 +130,7 @@ export default function AdminSupportDetailPage() {
 
       toast.success("Support ticket deleted successfully.");
 
-      router.push("/admin/support");
+      router.replace("/admin/support");
     } catch (error) {
       console.error("Failed to delete support ticket:", error);
 
@@ -174,7 +175,7 @@ export default function AdminSupportDetailPage() {
 
           <button
             type="button"
-            onClick={() => router.push("/admin/support")}
+            onClick={() => goBackTo(router, "/admin/support")}
             className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-4 text-sm font-medium text-white transition hover:bg-[#3d372f]"
           >
             Back to Support

@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -146,13 +147,13 @@ export default function DiscountDetail({
     <div className="mx-auto max-w-5xl space-y-6">
       {/* Top navigation */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <Link
+        <SmartBackLink
           href="/admin/discounts"
           className="inline-flex w-fit items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#26221d]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
-        </Link>
+        </SmartBackLink>
 
         <div className="flex flex-wrap gap-2">
           <Link

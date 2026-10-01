@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -146,13 +147,13 @@ export default function ReviewDetail({
       {/* Header */}
       <div className="flex flex-col gap-4 border-b border-[#e6dfcf] pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <Link
+          <SmartBackLink
             href="/admin/reviews"
             className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[#5f584d] transition hover:text-[#26221d]"
           >
             <ArrowLeft size={16} />
             Back to Reviews
-          </Link>
+          </SmartBackLink>
 
           <div className="flex items-center gap-3">
 

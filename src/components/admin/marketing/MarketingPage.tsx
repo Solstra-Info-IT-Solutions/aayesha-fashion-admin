@@ -413,7 +413,7 @@ export default function MarketingPage() {
 
   if (!isInitialized) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-6">
             <div className="h-20 rounded-[14px] bg-[#efe8d8]" />
@@ -434,7 +434,7 @@ export default function MarketingPage() {
             <div className="h-96 rounded-[14px] bg-[#efe8d8]" />
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -454,7 +454,7 @@ export default function MarketingPage() {
     includeArchived;
 
   return (
-    <main className="min-h-full">
+    <div className="min-h-full">
       {confirmDialog}
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="space-y-6">
@@ -530,7 +530,7 @@ export default function MarketingPage() {
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
@@ -561,17 +561,17 @@ export default function MarketingPage() {
 
 //   if (!isInitialized) {
 //     return (
-//       <main className="min-h-screen flex items-center justify-center">
+//       <div className="min-h-screen flex items-center justify-center">
 //         <p>Loading admin...</p>
-//       </main>
+//       </div>
 //     );
 //   }
 
 //   if (!isAuthenticated || !accessToken) {
 //     return (
-//       <main className="min-h-screen flex items-center justify-center">
+//       <div className="min-h-screen flex items-center justify-center">
 //         <p>Not authenticated</p>
-//       </main>
+//       </div>
 //     );
 //   }
 
@@ -608,7 +608,7 @@ export default function MarketingPage() {
 //   };
 
 //   return (
-//     <main className="min-h-full">
+//     <div className="min-h-full">
 //       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 //         <div className="space-y-6">
 //           <MarketingHeader
@@ -656,6 +656,6 @@ export default function MarketingPage() {
 // </div>
 //         </div>
 //       </div>
-//     </main>
+//     </div>
 //   );
 // }

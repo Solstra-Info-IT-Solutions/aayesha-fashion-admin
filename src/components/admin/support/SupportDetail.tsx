@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import { useConfirm } from "@/components/ui/useConfirm";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -211,13 +212,13 @@ export default function SupportDetail({
       {/* Header */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-3">
-          <Link
+          <SmartBackLink
             href="/admin/support"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7]"
             aria-label="Back to support"
           >
             <ArrowLeft className="h-5 w-5" />
-          </Link>
+          </SmartBackLink>
 
           <div>
             <div className="flex flex-wrap items-center gap-2">
