@@ -302,7 +302,7 @@ export function BrandStorySectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
@@ -399,9 +399,9 @@ export function BrandStorySectionEditor({
       <div>
         <Label text="Brand Story Image" />
 
-        <div className="mt-2 border border-[#e6dfcf] bg-[#f7f2e7] p-4">
+        <div className="mt-2 border border-[#e6dfcf] bg-[#f7f2e7] p-4 rounded-[14px]">
           {form.image ? (
-            <div className="relative overflow-hidden border border-[#e6dfcf] bg-[#fffdf8]">
+            <div className="relative overflow-hidden border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
               <img
                 src={form.image}
                 alt="Brand Story preview"
@@ -412,14 +412,14 @@ export function BrandStorySectionEditor({
                 type="button"
                 onClick={handleRemoveImage}
                 disabled={uploading !== null}
-                className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center border border-white/60 bg-black/60 text-white transition hover:bg-black/75 disabled:cursor-not-allowed disabled:opacity-50"
+                className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center border border-white/60 bg-black/60 text-white transition hover:bg-black/75 disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
                 aria-label="Remove image"
               >
                 <X size={16} />
               </button>
             </div>
           ) : (
-            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#d6ccb6] bg-[#fffdf8]">
+            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#d6ccb6] bg-[#fffdf8] rounded-lg">
               <div className="text-center">
                 <p className="text-sm text-[#5f584d]">
                   No image selected
@@ -514,15 +514,15 @@ export function BrandStorySectionEditor({
       ===================================================== */}
 
       {error && (
-        <div className="border border-red-200 bg-red-50 px-4 py-3">
-          <p className="text-sm text-red-700">
+        <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#8f1f19]">
             {error}
           </p>
         </div>
       )}
 
       {success && !error && (
-        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3">
+        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
           <p className="text-sm text-[#2f7d4f]">
             {success}
           </p>
@@ -540,7 +540,7 @@ export function BrandStorySectionEditor({
             saving ||
             uploading !== null
           }
-          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           {saving ? (
             <>
@@ -590,7 +590,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
       />
     </div>
   );
@@ -622,7 +622,7 @@ function TextAreaField({
         }
         placeholder={placeholder}
         rows={6}
-        className="mt-2 w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-3 py-3 text-sm leading-7 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
+        className="mt-2 w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-3 py-3 text-sm leading-7 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
       />
     </div>
   );

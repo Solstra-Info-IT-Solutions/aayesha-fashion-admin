@@ -194,7 +194,7 @@ export function HomepagePage(): ReactElement {
   ======================================================= */
 
   return (
-    <div className="min-h-full bg-[#f7f2e7]">
+    <div className="min-h-full bg-[#f7f2e7] rounded-lg">
       {/* ===================================================
           HEADER
       =================================================== */}
@@ -208,7 +208,7 @@ export function HomepagePage(): ReactElement {
           MAIN
       =================================================== */}
 
-      <main className="mx-auto max-w-[1500px] px-6 py-6 lg:px-8">
+      <main className="mx-auto max-w-[1500px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
         {/* =================================================
             TABS
         ================================================= */}
@@ -223,8 +223,8 @@ export function HomepagePage(): ReactElement {
         ================================================= */}
 
         {error ? (
-          <div className="mt-6 border border-red-200 bg-red-50 px-5 py-4">
-            <p className="text-sm text-red-700">
+          <div className="mt-6 border border-[#f5c2c0] bg-[#fdecec] px-5 py-4 rounded-[14px]">
+            <p className="text-sm text-[#8f1f19]">
               {error}
             </p>
 
@@ -233,7 +233,7 @@ export function HomepagePage(): ReactElement {
               onClick={() =>
                 void loadHomepage()
               }
-              className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-red-800 underline underline-offset-4"
+              className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-[#8f1f19] underline underline-offset-4"
             >
               Try Again
             </button>
@@ -260,7 +260,7 @@ export function HomepagePage(): ReactElement {
 
 function HomepageLoading(): ReactElement {
   return (
-    <div className="mt-6 flex min-h-[420px] items-center justify-center border border-[#e6dfcf] bg-[#fffdf8]">
+    <div className="mt-6 flex min-h-[420px] items-center justify-center border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
       <div className="flex items-center gap-3 text-[#5f584d]">
         <Loader2
           size={18}
@@ -314,7 +314,7 @@ function HomepageTabContent({
 
   return (
     <section className="mt-6">
-      <div className="border border-[#e6dfcf] bg-[#fffdf8]">
+      <div className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
         {/* =================================================
             SECTION HEADER
         ================================================= */}
@@ -560,7 +560,7 @@ function HomepagePlaceholder({
   data,
 }: HomepagePlaceholderProps): ReactElement {
   return (
-    <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-10">
+    <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-10 rounded-[14px]">
       <p className="text-sm font-medium text-[#2a2520]">
         {title} editor
       </p>
@@ -596,7 +596,7 @@ function HomepageNotConfigured({
   title: string;
 }): ReactElement {
   return (
-    <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center">
+    <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center rounded-[14px]">
       <p className="text-sm font-medium text-[#2a2520]">
         {title} is not configured
       </p>

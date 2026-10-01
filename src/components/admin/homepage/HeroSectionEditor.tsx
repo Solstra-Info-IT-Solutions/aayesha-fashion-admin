@@ -17,6 +17,7 @@ import type {
   HomepageHeroSlide,
 } from "@/types/homepage";
 
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { HeroSlideForm } from "./HeroSlideForm";
 
 interface HeroSectionEditorProps {
@@ -29,6 +30,7 @@ export function HeroSectionEditor({
   onSave,
 }: HeroSectionEditorProps) {
   const [hero, setHero] = useState<HomepageHero>(data);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const [editingSlideId, setEditingSlideId] = useState<string | null>(
     null,
   );
@@ -92,13 +94,7 @@ export function HeroSectionEditor({
 }
 
   function handleDeleteSlide(id: string) {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this hero slide?",
-    );
-
-    if (!confirmed) {
-      return;
-    }
+    setPendingDeleteId(null);
 
     setHero((current) => ({
       ...current,
@@ -176,8 +172,16 @@ export function HeroSectionEditor({
 
   return (
     <div className="space-y-6">
+      <ConfirmDialog
+        open={pendingDeleteId !== null}
+        title="Delete this slide?"
+        description="The slide is removed from the draft. It goes live only after you save changes."
+        confirmLabel="Delete slide"
+        onConfirm={() => pendingDeleteId && handleDeleteSlide(pendingDeleteId)}
+        onCancel={() => setPendingDeleteId(null)}
+      />
       {/* Hero Status */}
-      <section className="border border-[#e6dfcf] bg-[#fffdf8]">
+      <section className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] px-6 py-5">
           <div>
             <h3 className="text-sm font-medium text-[#2a2520]">
@@ -245,7 +249,7 @@ export function HeroSectionEditor({
       </section>
 
       {/* Slides */}
-      <section className="border border-[#e6dfcf] bg-[#fffdf8]">
+      <section className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] px-6 py-5">
           <div>
             <h3 className="text-sm font-medium text-[#2a2520]">
@@ -263,7 +267,7 @@ export function HeroSectionEditor({
               setEditingSlideId(null);
               setShowForm(true);
             }}
-            className="inline-flex items-center gap-2 bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f]"
+            className="inline-flex items-center gap-2 bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f] rounded-lg"
           >
             <Plus size={15} />
             Add Slide
@@ -272,7 +276,7 @@ export function HeroSectionEditor({
 
         <div className="p-6">
           {showForm && (
-            <div className="mb-6 border border-[#e6dfcf] bg-[#f7f2e7] p-6">
+            <div className="mb-6 border border-[#e6dfcf] bg-[#f7f2e7] p-6 rounded-[14px]">
               <HeroSlideForm
                 mode="create"
                 onCancel={() => setShowForm(false)}
@@ -282,7 +286,7 @@ export function HeroSectionEditor({
           )}
 
           {hero.slides.length === 0 ? (
-            <div className="border border-dashed border-[#d6ccb6] px-6 py-12 text-center">
+            <div className="border border-dashed border-[#d6ccb6] px-6 py-12 text-center rounded-[14px]">
               <p className="text-sm text-[#5f584d]">
                 No hero slides configured.
               </p>
@@ -307,10 +311,10 @@ export function HeroSectionEditor({
                   return (
                     <div
                       key={slide.id}
-                      className="border border-[#e6dfcf] bg-[#fffdf8]"
+                      className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg"
                     >
                       {editing ? (
-                        <div className="bg-[#f7f2e7] p-6">
+                        <div className="bg-[#f7f2e7] p-6 rounded-[14px]">
                           <HeroSlideForm
                             mode="edit"
                             initialData={slide}
@@ -333,7 +337,7 @@ export function HeroSectionEditor({
                             )
                           }
                           onDelete={() =>
-                            handleDeleteSlide(
+                            setPendingDeleteId(
                               slide.id,
                             )
                           }
@@ -365,7 +369,7 @@ export function HeroSectionEditor({
       </section>
 
       {/* Save */}
-      <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-4 border border-[#d6ccb6] bg-[#fffdf8]/95 px-5 py-4 shadow-sm backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-4 border border-[#d6ccb6] bg-[#fffdf8]/95 px-5 py-4 shadow-sm backdrop-blur rounded-[14px]">
         <div>
           <p className="text-xs font-medium text-[#2a2520]">
             Hero changes
@@ -380,7 +384,7 @@ export function HeroSectionEditor({
           type="button"
           onClick={() => void handleSave()}
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-[#26221d] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#26221d] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           <Check size={15} />
 
@@ -483,7 +487,7 @@ function HeroSlideRow({
             onClick={onMoveUp}
             disabled={index === 0}
             title="Move up"
-            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d] disabled:cursor-not-allowed disabled:opacity-30 rounded-lg"
           >
             <ChevronUp size={15} />
           </button>
@@ -504,7 +508,7 @@ function HeroSlideRow({
             type="button"
             onClick={onToggle}
             title={slide.isActive ? "Deactivate" : "Activate"}
-            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d]"
+            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d] rounded-lg"
           >
             {slide.isActive ? (
               <Eye size={14} />
@@ -526,7 +530,7 @@ function HeroSlideRow({
             type="button"
             onClick={onDelete}
             title="Delete"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d6ccb6] text-[#5f584d] hover:text-red-700"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d6ccb6] text-[#5f584d] hover:text-[#8f1f19]"
           >
             <Trash2 size={14} />
           </button>

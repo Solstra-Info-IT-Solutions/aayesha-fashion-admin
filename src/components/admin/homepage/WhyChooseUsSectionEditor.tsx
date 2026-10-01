@@ -283,7 +283,7 @@ export function WhyChooseUsSectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
@@ -394,7 +394,7 @@ export function WhyChooseUsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="inline-flex shrink-0 items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f]"
+            className="inline-flex shrink-0 items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] rounded-lg"
           >
             <Plus size={15} />
 
@@ -408,7 +408,7 @@ export function WhyChooseUsSectionEditor({
       ===================================================== */}
 
       {form.items.length === 0 ? (
-        <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center">
+        <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center rounded-[14px]">
           <p className="text-sm font-medium text-[#2a2520]">
             No Why Ayesha items yet.
           </p>
@@ -420,7 +420,7 @@ export function WhyChooseUsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="mt-5 inline-flex items-center gap-2 border border-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#26221d] transition hover:bg-[#26221d] hover:text-[#fffdf8]"
+            className="mt-5 inline-flex items-center gap-2 border border-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#26221d] transition hover:bg-[#26221d] hover:text-[#fffdf8] rounded-lg"
           >
             <Plus size={15} />
 
@@ -456,15 +456,15 @@ export function WhyChooseUsSectionEditor({
       ===================================================== */}
 
       {error && (
-        <div className="border border-red-200 bg-red-50 px-4 py-3">
-          <p className="text-sm text-red-700">
+        <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#8f1f19]">
             {error}
           </p>
         </div>
       )}
 
       {success && !error && (
-        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3">
+        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
           <p className="text-sm text-[#2f7d4f]">
             {success}
           </p>
@@ -479,7 +479,7 @@ export function WhyChooseUsSectionEditor({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           {saving ? (
             <>
@@ -543,14 +543,14 @@ function WhyAyeshaItemCard({
   ) => void;
 }): ReactElement {
   return (
-    <div className="border border-[#e6dfcf] bg-[#fffdf8]">
+    <div className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
       {/* ===================================================
           ITEM HEADER
       =================================================== */}
 
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-xs font-medium text-[#5f584d]">
+          <span className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-xs font-medium text-[#5f584d] rounded-lg">
             {String(index + 1).padStart(
               2,
               "0",
@@ -576,7 +576,7 @@ function WhyAyeshaItemCard({
               onMove(index, "up")
             }
             disabled={index === 0}
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30 rounded-lg"
             aria-label="Move item up"
           >
             <ArrowUp size={15} />
@@ -591,7 +591,7 @@ function WhyAyeshaItemCard({
               index ===
               totalItems - 1
             }
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30 rounded-lg"
             aria-label="Move item down"
           >
             <ArrowDown size={15} />
@@ -602,7 +602,7 @@ function WhyAyeshaItemCard({
             onClick={() =>
               onDelete(item.id)
             }
-            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#fffdf8] text-[#b08d57] transition hover:border-[#b08d57] hover:bg-[#fdecec]"
+            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#fffdf8] text-[#b08d57] transition hover:border-[#b08d57] hover:bg-[#fdecec] rounded-lg"
             aria-label="Delete item"
           >
             <Trash2 size={15} />
@@ -744,7 +744,7 @@ function Field({
           )
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
       />
     </div>
   );
