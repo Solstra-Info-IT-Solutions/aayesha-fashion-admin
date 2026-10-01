@@ -198,12 +198,12 @@ export function OrderActionsCard({
 
   return (
     <section className="space-y-5">
-      <div className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <div className="surface p-5 sm:p-6">
         <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
           Fulfilment
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
+        <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
           Order status
         </h2>
 
@@ -271,13 +271,13 @@ export function OrderActionsCard({
         </div>
       </div>
 
-      <div className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <div className="surface p-5 sm:p-6">
         <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
           Payment
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
-          Payment details
+        <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
+          Record payment
         </h2>
 
         <div className="mt-5 space-y-3">
@@ -351,12 +351,12 @@ export function OrderActionsCard({
         </div>
       </div>
 
-      <div className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <div className="surface p-5 sm:p-6">
         <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
           Shipping
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
+        <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
           Tracking information
         </h2>
 
@@ -410,12 +410,12 @@ export function OrderActionsCard({
         </div>
       </div>
 
-      <div className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <div className="surface p-5 sm:p-6">
         <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
           Internal
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
+        <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
           Admin notes
         </h2>
 
@@ -459,7 +459,7 @@ export function OrderActionsCard({
               Destructive action
             </p>
 
-            <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
+            <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
               Cancel order
             </h2>
 

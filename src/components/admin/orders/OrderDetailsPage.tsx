@@ -74,10 +74,13 @@ export function OrderDetailsPage({
 
   if (loading) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="flex items-center gap-3 text-sm text-neutral-500">
-          <Loader2 className="h-5 w-5 animate-spin" />
-          Loading order details...
+      <div className="space-y-6" aria-busy="true">
+        <div className="h-24 animate-pulse rounded-xl bg-[#efe8d8]" />
+        <div className="h-24 animate-pulse rounded-xl bg-[#efe8d8]" />
+
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
+          <div className="h-80 animate-pulse rounded-xl bg-[#efe8d8]" />
+          <div className="h-80 animate-pulse rounded-xl bg-[#efe8d8]" />
         </div>
       </div>
     );
@@ -89,37 +92,34 @@ export function OrderDetailsPage({
 
   if (error || !order) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center px-6">
-        <div className="w-full max-w-lg rounded-2xl border border-neutral-200 bg-[#fffdf8] p-8 text-center shadow-sm">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-lg font-semibold text-rose-600">
+      <div className="flex min-h-[60vh] items-center justify-center px-2">
+        <div className="surface w-full max-w-lg p-8 text-center">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#fdecec] text-lg font-bold text-[#b3261e]">
             !
           </div>
 
-          <h2 className="text-xl font-semibold text-neutral-900">
-            Unable to load order
-          </h2>
+          <h2 className="display text-3xl font-semibold text-[#2a2520]">Unable to load order</h2>
 
-          <p className="mt-2 text-sm leading-6 text-neutral-500">
-            {error ||
-              "The requested order could not be found."}
+          <p className="mt-2 text-sm leading-6 text-[#5f584d]">
+            {error || "The requested order could not be found."}
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
               onClick={() => router.back()}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#d6ccb6] px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57]"
             >
               <ArrowLeft className="h-4 w-4" />
-              Go Back
+              Go back
             </button>
 
             <button
               type="button"
               onClick={() => void refresh()}
-              className="inline-flex items-center justify-center rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] transition hover:bg-[#3d372f]"
             >
-              Try Again
+              Try again
             </button>
           </div>
         </div>
@@ -133,110 +133,55 @@ export function OrderDetailsPage({
 
   return (
     <div className="space-y-6">
-      {/* -----------------------------------------------------
-          HEADER
-      ----------------------------------------------------- */}
+      <OrderDetailHeader
+        order={order}
+        onRefresh={() => void refresh()}
+        refreshing={actionLoading}
+        onBack={() => router.back()}
+      />
 
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => router.back()}
-          aria-label="Go back"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-[#fffdf8] text-neutral-700 transition hover:bg-neutral-50"
-        >
-          <ArrowLeft className="h-4 w-4" />
-        </button>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
+        {/* What was ordered, what it cost, what happened */}
+        <div className="min-w-0 space-y-6">
+          <OrderItemsCard order={order} />
 
-        <div className="min-w-0 flex-1">
-          <OrderDetailHeader order={order} />
+          <OrderSummaryCard order={order} />
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <OrderCustomerCard order={order} />
+
+            <OrderAddressCard order={order} />
+          </div>
+
+          <OrderTimeline order={order} />
         </div>
 
-        <button
-          type="button"
-          onClick={() => void refresh()}
-          disabled={actionLoading}
-          className="shrink-0 rounded-xl border border-neutral-200 bg-[#fffdf8] px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Refresh
-        </button>
-      </div>
-
-      {/* -----------------------------------------------------
-          CONTENT
-      ----------------------------------------------------- */}
-
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
-        {/* ===================================================
-            LEFT
-        =================================================== */}
-
-        <div className="min-w-0 space-y-6">
-          <OrderCustomerCard
-            order={order}
-          />
-
-          <OrderAddressCard
-            order={order}
-          />
-
-          <OrderItemsCard
-            order={order}
-          />
-
+        {/* Payment first (verification is urgent), then fulfilment actions */}
+        <aside className="min-w-0 space-y-6">
           <OrderPaymentCard
             order={order}
             loading={actionLoading}
-            onMarkPaid={async (
-              input,
-            ) => {
+            onMarkPaid={async (input) => {
               await changePayment(input);
             }}
           />
 
-          <OrderSummaryCard
-            order={order}
-          />
-
-          <OrderTimeline
-            order={order}
-          />
-        </div>
-
-        {/* ===================================================
-            RIGHT
-        =================================================== */}
-
-        <aside className="min-w-0">
           <OrderActionsCard
             order={order}
             loading={actionLoading}
-            onStatus={async (
-              status: OrderStatus,
-              note?: string,
-            ) => {
-              await changeStatus(
-                status,
-                note,
-              );
+            onStatus={async (status: OrderStatus, note?: string) => {
+              await changeStatus(status, note);
             }}
-            onPayment={async (
-              input,
-            ) => {
+            onPayment={async (input) => {
               await changePayment(input);
             }}
-            onShipping={async (
-              input,
-            ) => {
+            onShipping={async (input) => {
               await changeShipping(input);
             }}
-            onNotes={async (
-              notes,
-            ) => {
+            onNotes={async (notes) => {
               await saveNotes(notes);
             }}
-            onCancel={async (
-              reason,
-            ) => {
+            onCancel={async (reason) => {
               await cancel(reason);
             }}
           />
