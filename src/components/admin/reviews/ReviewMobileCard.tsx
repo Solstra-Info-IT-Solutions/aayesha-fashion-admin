@@ -74,6 +74,13 @@ export default function ReviewMobileCard({
           <p className="mt-1 line-clamp-3 text-sm leading-6 text-[var(--color-secondary)]">
             {review.body || "No review text"}
           </p>
+
+          {(review.media?.length ?? 0) > 0 && (
+            <span className="mt-2 inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-[var(--color-ink)]">
+              {review.media?.length} photo/video
+              {review.media?.length === 1 ? "" : "s"}
+            </span>
+          )}
         </div>
 
         <button

@@ -118,6 +118,15 @@ export default function ReviewTable({
                     <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-[var(--color-secondary)]">
                       <span>User: {review.userId}</span>
 
+                      {(review.media?.length ?? 0) > 0 && (
+                        <>
+                          <span>•</span>
+                          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 font-medium text-[var(--color-ink)]">
+                            {review.media?.length} media
+                          </span>
+                        </>
+                      )}
+
                       {review.orderNumber && (
                         <>
                           <span>•</span>
