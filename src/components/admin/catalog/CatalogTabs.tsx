@@ -66,7 +66,7 @@ export default function CatalogTabs({
 }: Props) {
   return (
     <div className="overflow-x-auto">
-      <div className="flex min-w-max gap-1 rounded-xl border border-neutral-200 bg-[#fffdf8] p-1">
+      <div className="flex min-w-max gap-1 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] p-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
 
@@ -81,7 +81,7 @@ export default function CatalogTabs({
                 "inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition",
                 isActive
                   ? "bg-[#26221d] text-white"
-                  : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-950",
+                  : "text-[#5f584d] hover:bg-[#efe8d8] hover:text-[#2a2520]",
               ].join(" ")}
             >
               <Icon className="h-4 w-4" />

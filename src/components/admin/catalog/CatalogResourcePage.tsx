@@ -65,6 +65,8 @@ import type {
 } from "@/types/catalog";
 
 import CatalogHeader from "./CatalogHeader";
+import CatalogTabs from "./CatalogTabs";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import CatalogToolbar from "./CatalogToolbar";
 import CatalogTable from "./CatalogTable";
 import CatalogPagination from "./CatalogPagination";
@@ -260,6 +262,9 @@ export default function CatalogResourcePage({
   const {
     accessToken,
   } = useAdminAuth();
+
+  const [pendingDelete, setPendingDelete] =
+    useState<CatalogItem | null>(null);
 
   /* =======================================================
      LIST STATE
@@ -688,27 +693,7 @@ async function handleDelete(
     return;
   }
 
-  const itemName =
-    "name" in item &&
-    typeof item.name === "string"
-      ? item.name
-      : "label" in item &&
-          typeof item.label === "string"
-        ? item.label
-        : "code" in item &&
-            typeof item.code === "string"
-          ? item.code
-          : "this item";
-
-  const confirmed =
-    window.confirm(
-      `Are you sure you want to delete "${itemName}"?\n\nThis action cannot be undone.`,
-    );
-
-  if (!confirmed) {
-    return;
-  }
-
+  setPendingDelete(null);
   setDeleting(true);
 
   try {
@@ -1608,6 +1593,26 @@ async function handleDelete(
 
   return (
     <div className="space-y-6">
+      <ConfirmDialog
+        open={pendingDelete !== null}
+        title={`Delete ${config.title.slice(0, -1).toLowerCase()}?`}
+        description={`"${
+          pendingDelete
+            ? "name" in pendingDelete && typeof pendingDelete.name === "string"
+              ? pendingDelete.name
+              : "label" in pendingDelete && typeof pendingDelete.label === "string"
+                ? pendingDelete.label
+                : "code" in pendingDelete && typeof pendingDelete.code === "string"
+                  ? pendingDelete.code
+                  : "This item"
+            : ""
+        }" will be removed. This cannot be undone.`}
+        confirmLabel="Delete"
+        busy={deleting}
+        onConfirm={() => pendingDelete && void handleDelete(pendingDelete)}
+        onCancel={() => setPendingDelete(null)}
+      />
+      <CatalogTabs active={resource} />
       <CatalogHeader
         title={config.title}
         description={
@@ -1617,6 +1622,7 @@ async function handleDelete(
           config.addLabel
         }
         loading={loading}
+        total={pagination.total}
         onRefresh={() =>
           void refresh()
         }
@@ -1654,12 +1660,12 @@ async function handleDelete(
       />
 
       {(error || formError) && (
-        <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <div className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
           {error || formError}
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-[#fffdf8]">
+      <div className="overflow-hidden rounded-[14px] border border-[#d6ccb6] bg-[#fffdf8]">
         {loading ||
         items.length > 0 ? (
           <CatalogTable
@@ -1669,7 +1675,7 @@ async function handleDelete(
             items={items}
             loading={loading}
             onEdit={openEdit}
-            onDelete={handleDelete}
+            onDelete={setPendingDelete}
           />
         ) : (
           <CatalogEmptyState

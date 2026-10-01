@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import {
   ChevronDown,
   Search,
@@ -40,12 +41,18 @@ export default function CatalogToolbar({
   onStatusChange,
   onSortChange,
 }: Props) {
+  useEffect(() => {
+    if (searchInput.trim() === search) return;
+    const timer = setTimeout(onSearch, 350);
+    return () => clearTimeout(timer);
+  }, [searchInput, search, onSearch]);
+
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-[#fffdf8] p-4">
+    <div className="rounded-[14px] border border-[#d6ccb6] bg-[#fffdf8] p-4">
       <div className="flex flex-col gap-3 lg:flex-row">
         <div className="flex min-w-0 flex-1 gap-2">
           <div className="relative min-w-0 flex-1">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
 
             <input
               value={searchInput}
@@ -61,24 +68,17 @@ export default function CatalogToolbar({
                   onSearch();
                 }
               }}
-              placeholder="Search..."
-              className="h-11 w-full rounded-xl border border-neutral-200 bg-[#fffdf8] pl-9 pr-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-400"
+              placeholder="Search by name or identifier"
+              className="h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] pl-9 pr-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#756d62]"
             />
           </div>
 
-          <button
-            type="button"
-            onClick={onSearch}
-            className="h-11 shrink-0 rounded-xl bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#26221d]"
-          >
-            Search
-          </button>
 
           {search && (
             <button
               type="button"
               onClick={onClearSearch}
-              className="inline-flex h-11 shrink-0 items-center gap-2 rounded-xl border border-neutral-200 px-3.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50"
+              className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg border border-[#d6ccb6] px-3.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7]"
             >
               <X className="h-4 w-4" />
               Clear
@@ -95,7 +95,7 @@ export default function CatalogToolbar({
                   event.target.value as CatalogStatusFilter,
                 )
               }
-              className="h-11 min-w-[145px] appearance-none rounded-xl border border-neutral-200 bg-[#fffdf8] px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+              className="h-11 min-w-[145px] appearance-none rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 pr-9 text-sm text-[#3d372f] outline-none focus:border-[#756d62]"
             >
               <option value="all">
                 All Status
@@ -110,7 +110,7 @@ export default function CatalogToolbar({
               </option>
             </select>
 
-            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
           </div>
 
           <div className="relative">
@@ -121,7 +121,7 @@ export default function CatalogToolbar({
                   event.target.value as CatalogSort,
                 )
               }
-              className="h-11 min-w-[155px] appearance-none rounded-xl border border-neutral-200 bg-[#fffdf8] px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+              className="h-11 min-w-[155px] appearance-none rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 pr-9 text-sm text-[#3d372f] outline-none focus:border-[#756d62]"
             >
               <option value="sort_order">
                 Sort Order
@@ -140,7 +140,7 @@ export default function CatalogToolbar({
               </option>
             </select>
 
-            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
+            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
           </div>
         </div>
       </div>
