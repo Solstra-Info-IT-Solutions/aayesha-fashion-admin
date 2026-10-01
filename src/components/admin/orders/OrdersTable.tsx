@@ -138,6 +138,13 @@ export function OrdersTable({
                         }
                       />
 
+                      {order.paymentClaimedAt &&
+                      order.paymentStatus === "pending" ? (
+                        <p className="mt-1 inline-flex rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-amber-800">
+                          Customer reported paid
+                        </p>
+                      ) : null}
+
                       <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#969696]">
                         {paymentMethodLabel(
                           order.paymentMethod,

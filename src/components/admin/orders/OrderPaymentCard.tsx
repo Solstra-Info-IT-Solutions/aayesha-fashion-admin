@@ -38,7 +38,9 @@ export function OrderPaymentCard({
   loading = false,
   onMarkPaid,
 }: OrderPaymentCardProps) {
-  const [reference, setReference] = useState("");
+  const [reference, setReference] = useState(
+    order.paymentClaimReference || "",
+  );
 
   const isCod = order.paymentMethod === "cod";
   const isBankUpi = order.paymentMethod === "bank_upi";
@@ -103,7 +105,20 @@ export function OrderPaymentCard({
 
       {awaiting ? (
         <div className="mt-6 border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          <p className="font-medium">Awaiting payment</p>
+          <p className="font-medium">
+            {order.paymentClaimedAt
+              ? "Customer says they have paid — please verify"
+              : "Awaiting payment"}
+          </p>
+
+          {order.paymentClaimedAt ? (
+            <p className="mt-1 text-xs leading-5">
+              Reported {formatDateTime(order.paymentClaimedAt)} · UTR / ref{" "}
+              <strong>{order.paymentClaimReference || "—"}</strong>. Check your
+              bank / UPI app, then mark as paid. The order is held for up to 3
+              hours from placing before it auto-cancels.
+            </p>
+          ) : null}
 
           <p className="mt-1 text-xs leading-5">
             {deadline

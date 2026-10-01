@@ -85,6 +85,9 @@ export type AdminOrder = {
   /** WhatsApp number the Bank / UPI bill was sent to. */
   paymentWhatsapp?: string | null;
   paymentPaidAt?: string | null;
+  /** Customer reported a payment (UTR) — needs checking. */
+  paymentClaimedAt?: string | null;
+  paymentClaimReference?: string | null;
 
   status: OrderStatus;
 
