@@ -59,19 +59,19 @@ export default function ReviewPagination({
   const end = Math.min(page * limit, total);
 
   return (
-    <div className="flex flex-col gap-4 border-t border-[var(--color-border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 border-t border-[#e6dfcf] pt-5 sm:flex-row sm:items-center sm:justify-between">
       {/* Result count */}
-      <p className="text-sm text-[var(--color-secondary)]">
+      <p className="text-sm text-[#5f584d]">
         Showing{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {start}
         </span>{" "}
         to{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {end}
         </span>{" "}
         of{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {total}
         </span>{" "}
         reviews
@@ -84,7 +84,7 @@ export default function ReviewPagination({
           type="button"
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={17} />
@@ -97,7 +97,7 @@ export default function ReviewPagination({
               return (
                 <span
                   key={`ellipsis-${index}`}
-                  className="flex h-9 w-9 items-center justify-center text-sm text-[var(--color-secondary)]"
+                  className="flex h-9 w-9 items-center justify-center text-sm text-[#5f584d]"
                 >
                   …
                 </span>
@@ -114,7 +114,7 @@ export default function ReviewPagination({
                 className={`h-9 min-w-9 rounded-lg px-2 text-sm font-medium transition ${
                   isActive
                     ? "bg-[#26221d] text-white"
-                    : "border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-ink)] hover:bg-gray-50"
+                    : "border border-[#e6dfcf] bg-[#fffdf8] text-[#2a2520] hover:bg-[#f7f2e7]"
                 }`}
               >
                 {item}
@@ -124,7 +124,7 @@ export default function ReviewPagination({
         </div>
 
         {/* Mobile page indicator */}
-        <div className="flex h-9 items-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm font-medium text-[var(--color-ink)] sm:hidden">
+        <div className="flex h-9 items-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm font-medium text-[#2a2520] sm:hidden">
           {page} / {totalPages}
         </div>
 
@@ -133,7 +133,7 @@ export default function ReviewPagination({
           type="button"
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={17} />

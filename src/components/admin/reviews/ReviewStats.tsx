@@ -19,31 +19,31 @@ const statCards = [
     key: "total",
     label: "Total Reviews",
     icon: MessageSquareText,
-    iconClass: "bg-[var(--color-rose-light)] text-[#26221d]",
+    iconClass: "bg-[#f1ead9] text-[#26221d]",
   },
   {
     key: "pending",
     label: "Pending",
     icon: Clock3,
-    iconClass: "bg-amber-50 text-amber-600",
+    iconClass: "bg-[#fdf3e1] text-[#7f4806]",
   },
   {
     key: "approved",
     label: "Approved",
     icon: CheckCircle2,
-    iconClass: "bg-emerald-50 text-emerald-600",
+    iconClass: "bg-[#e8f5ec] text-[#276541]",
   },
   {
     key: "rejected",
     label: "Rejected",
     icon: XCircle,
-    iconClass: "bg-red-50 text-red-600",
+    iconClass: "bg-[#fdecec] text-[#b3261e]",
   },
   {
     key: "featured",
     label: "Featured",
     icon: Star,
-    iconClass: "bg-yellow-50 text-yellow-600",
+    iconClass: "bg-[#fdf3e1] text-[#7f4806]",
   },
 ] as const;
 
@@ -57,13 +57,13 @@ export default function ReviewStats({
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}
-            className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm"
+            className="surface p-5"
           >
-            <div className="h-10 w-10 animate-pulse rounded-xl bg-gray-100" />
+            <div className="h-10 w-10 animate-pulse rounded-[14px] bg-[#efe8d8]" />
 
-            <div className="mt-5 h-3 w-24 animate-pulse rounded bg-gray-100" />
+            <div className="mt-5 h-3 w-24 animate-pulse rounded bg-[#efe8d8]" />
 
-            <div className="mt-2 h-7 w-16 animate-pulse rounded bg-gray-100" />
+            <div className="mt-2 h-7 w-16 animate-pulse rounded bg-[#efe8d8]" />
           </div>
         ))}
       </div>
@@ -79,19 +79,19 @@ export default function ReviewStats({
         return (
           <div
             key={card.key}
-            className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm transition hover:shadow-md"
+            className="surface surface-hover p-5"
           >
             <div
-              className={`flex h-10 w-10 items-center justify-center rounded-xl ${card.iconClass}`}
+              className={`flex h-10 w-10 items-center justify-center rounded-[14px] ${card.iconClass}`}
             >
               <Icon size={19} />
             </div>
 
-            <p className="mt-4 text-sm font-medium text-[var(--color-secondary)]">
+            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
               {card.label}
             </p>
 
-            <p className="mt-1 text-2xl font-semibold tracking-tight text-[var(--color-ink)]">
+            <p className="display mt-1 text-3xl font-semibold text-[#2a2520]">
               {value.toLocaleString()}
             </p>
           </div>

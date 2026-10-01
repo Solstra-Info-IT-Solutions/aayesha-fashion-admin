@@ -13,16 +13,16 @@ export default function ReviewEmptyState({
   onReset,
 }: ReviewEmptyStateProps) {
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#26221d]">
+    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14 text-center shadow-sm">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#f1ead9] text-[#26221d]">
         <MessageSquareText size={26} />
       </div>
 
-      <h3 className="mt-5 text-lg font-semibold text-[var(--color-ink)]">
+      <h3 className="mt-5 text-lg font-semibold text-[#2a2520]">
         {hasFilters ? "No reviews found" : "No reviews yet"}
       </h3>
 
-      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[var(--color-secondary)]">
+      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5f584d]">
         {hasFilters
           ? "No reviews match your current search or filters. Try changing the filters or clearing them."
           : "Customer reviews will appear here once customers start submitting reviews."}
@@ -32,7 +32,7 @@ export default function ReviewEmptyState({
         <button
           type="button"
           onClick={onReset}
-          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50"
+          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7]"
         >
           <RotateCcw size={16} />
           Clear Filters
