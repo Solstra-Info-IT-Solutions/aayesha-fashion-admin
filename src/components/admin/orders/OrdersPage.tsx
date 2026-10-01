@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
+
 import {
   QUICK_FILTERS,
   activeQuickFilter,
@@ -12,6 +14,7 @@ import {
 } from "./OrdersHeader";
 
 import {
+  EMPTY_FILTERS,
   OrdersToolbar,
 } from "./OrdersToolbar";
 
@@ -31,6 +34,9 @@ import {
   useOrders,
 } from "@/hooks/useOrders";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { getAdminOrders } from "@/services/order.service";
+
 import type { OrderListFilters } from "@/types/order";
 
 export function OrdersPage({
@@ -40,6 +46,8 @@ export function OrdersPage({
   initialQuick?: OrderQuickFilter;
   initialFilters?: Partial<OrderListFilters>;
 }) {
+  const { accessToken, isInitialized } = useAdminAuth();
+
   const {
     orders,
     pagination,
@@ -54,105 +62,115 @@ export function OrdersPage({
     ...initialFilters,
   });
 
-  const activeQuick =
-    activeQuickFilter(filters);
+  const activeQuick = activeQuickFilter(filters);
 
-  const filtered = Boolean(
-    filters.search ||
-      filters.status ||
-      filters.paymentStatus ||
-      filters.paymentMethod ||
-      filters.paymentClaimed ||
-      filters.customerEmail ||
-      filters.customerPhone ||
-      filters.from ||
-      filters.to,
+  // Counts for the quick tabs (independent of the other filters).
+  const [counts, setCounts] = useState<Partial<Record<OrderQuickFilter, number>>>({});
+
+  useEffect(() => {
+    if (!isInitialized || !accessToken) return;
+
+    let cancelled = false;
+
+    Promise.allSettled(
+      QUICK_FILTERS.map((quick) =>
+        getAdminOrders(
+          { page: 1, limit: 1, sort: "newest", ...quickFilterToFilters(quick.id) } as OrderListFilters,
+          accessToken,
+        ),
+      ),
+    ).then((results) => {
+      if (cancelled) return;
+
+      const next: Partial<Record<OrderQuickFilter, number>> = {};
+
+      results.forEach((result, index) => {
+        if (result.status === "fulfilled") next[QUICK_FILTERS[index]!.id] = result.value.pagination.total;
+      });
+
+      setCounts(next);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isInitialized, accessToken]);
+
+  const filtered = useMemo(
+    () =>
+      Boolean(
+        filters.search ||
+          filters.status ||
+          filters.paymentStatus ||
+          filters.paymentMethod ||
+          filters.paymentClaimed ||
+          filters.customerEmail ||
+          filters.customerPhone ||
+          filters.from ||
+          filters.to,
+      ),
+    [filters],
   );
 
   return (
     <div className="space-y-6">
-      <OrdersHeader
-        total={pagination.total}
-        loading={loading}
-        onRefresh={() =>
-          void refresh()
-        }
-      />
+      <OrdersHeader total={pagination.total} loading={loading} onRefresh={() => void refresh()} />
 
-      <div className="flex flex-wrap gap-2">
-        {QUICK_FILTERS.map((quick) => (
-          <button
-            key={quick.id}
-            type="button"
-            title={quick.hint}
-            onClick={() =>
-              updateFilters(
-                quickFilterToFilters(
-                  quick.id,
-                ),
-              )
-            }
-            className={
-              activeQuick === quick.id
-                ? "h-9 border border-[#26221d] bg-[#26221d] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
-                : "h-9 border border-[#d6ccb6] bg-[#fffdf8] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#2a2520] hover:border-[#2a2520]"
-            }
-          >
-            {quick.label}
-          </button>
-        ))}
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Quick filters">
+        {QUICK_FILTERS.map((quick) => {
+          const active = activeQuick === quick.id;
+          const count = counts[quick.id];
+          const attention = quick.id === "reported" && (count ?? 0) > 0;
+
+          return (
+            <button
+              key={quick.id}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              title={quick.hint}
+              onClick={() => updateFilters({ ...quickFilterToFilters(quick.id), from: undefined, to: undefined })}
+              className={`inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition ${
+                active
+                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8] shadow-[0_6px_14px_-8px_rgba(38,34,29,0.7)]"
+                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#2a2520] hover:border-[#b08d57]"
+              }`}
+            >
+              {quick.label}
+
+              {count !== undefined ? (
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                    active
+                      ? "bg-white/15 text-[#fffdf8]"
+                      : attention
+                        ? "bg-[#d29a0a] text-white"
+                        : "bg-[#efe8d8] text-[#5f584d]"
+                  }`}
+                >
+                  {count}
+                </span>
+              ) : null}
+            </button>
+          );
+        })}
       </div>
 
-      {filters.from || filters.to ? (
-        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5f584d]">
-          <span className="inline-flex items-center gap-2 border border-[#d6ccb6] bg-white px-3 py-1.5 font-medium text-[#2a2520]">
-            {filters.from === filters.to
-              ? filters.from
-              : `${filters.from ?? "…"} → ${filters.to ?? "…"}`}
+      <OrdersToolbar filters={filters} onChange={updateFilters} />
 
-            <button
-              type="button"
-              aria-label="Clear date filter"
-              onClick={() => updateFilters({ from: undefined, to: undefined })}
-              className="text-[#756d62] hover:text-[#2a2520]"
-            >
-              ×
-            </button>
-          </span>
+      {error ? (
+        <div role="alert" className="rounded-lg border border-[#f5b5b1] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
+          {error}
         </div>
       ) : null}
 
-      <OrdersToolbar
-        filters={filters}
-        onChange={
-          updateFilters
-        }
-      />
-
-      {error && (
-        <div className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {error}
-        </div>
-      )}
-
-      {!loading &&
-      orders.length === 0 ? (
-        <OrdersEmptyState
-          filtered={filtered}
-        />
+      {!loading && orders.length === 0 ? (
+        <OrdersEmptyState filtered={filtered} onReset={() => updateFilters(EMPTY_FILTERS)} />
       ) : (
         <>
-          <OrdersTable
-            orders={orders}
-            loading={loading}
-          />
+          <OrdersTable orders={orders} loading={loading} />
 
-          <OrdersPagination
-            pagination={pagination}
-            onPageChange={
-              setPage
-            }
-          />
+          <OrdersPagination pagination={pagination} onPageChange={setPage} />
         </>
       )}
     </div>
