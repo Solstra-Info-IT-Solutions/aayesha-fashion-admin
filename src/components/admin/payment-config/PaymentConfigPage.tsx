@@ -9,7 +9,6 @@ import {
   Loader2,
   Save,
   ShieldCheck,
-  Wallet,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -66,7 +65,7 @@ function validate(values: PaymentSettings): Errors {
 ========================================================= */
 
 const inputClass =
-  "h-11 w-full border border-[#d6ccb6] bg-white px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/15 disabled:bg-[#efe8d8]";
+  "h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#b08d57]/20 disabled:bg-[#efe8d8]";
 
 function Field({
   label,
@@ -106,13 +105,13 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="border border-[#e6dfcf] bg-white p-5 shadow-sm sm:p-6">
+    <section className="surface p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a6a3b]">
             {eyebrow}
           </p>
-          <h2 className="mt-1 text-lg font-bold text-[#2a2520]">{title}</h2>
+          <h2 className="display mt-1 text-2xl font-semibold text-[#2a2520]">{title}</h2>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-[#5f584d]">{description}</p>
         </div>
 
@@ -127,7 +126,7 @@ function Section({
 function Badge({ ok, yes, no }: { ok: boolean; yes: string; no: string }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-semibold ${
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${
         ok
           ? "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]"
           : "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]"
@@ -279,13 +278,10 @@ export default function PaymentConfigPage() {
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="flex items-center gap-3 border-b border-[#d6ccb6] pb-6">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#f1ead9] text-[#26221d]">
-          <Wallet size={22} />
-        </div>
-
+      <div className="flex items-center gap-3 pb-2">
         <div>
-          <h1 className="text-[#2a2520]">Payments &amp; WhatsApp</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">System</p>
+          <h1 className="mt-1 text-[#2a2520]">Payments &amp; WhatsApp</h1>
 
           <p className="mt-1 text-sm text-[#5f584d]">
             Enter your payment, invoice and WhatsApp details here. Changes apply to new
@@ -458,7 +454,7 @@ export default function PaymentConfigPage() {
                 <button
                   type="button"
                   onClick={() => setShowToken((value) => !value)}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[#d6ccb6] bg-white text-[#5f584d] hover:text-[#2a2520]"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:text-[#2a2520]"
                   aria-label={showToken ? "Hide token" : "Show token"}
                 >
                   {showToken ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -501,12 +497,12 @@ export default function PaymentConfigPage() {
             </Field>
 
             <div className="sm:col-span-2">
-              <div className="flex flex-wrap items-center gap-3 border border-[#e6dfcf] bg-[#f7f2e7] p-4">
+              <div className="flex flex-wrap items-center gap-3 rounded-[14px] border border-[#e6dfcf] bg-[#f7f2e7] p-4">
                 <button
                   type="button"
                   onClick={handleVerify}
                   disabled={verifying || dirty || !view.status.whatsappCredentialsConfigured}
-                  className="inline-flex h-10 items-center gap-2 border border-[#26221d] bg-white px-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#26221d] hover:bg-[#f1ead9] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#26221d] bg-[#fffdf8] px-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#26221d] hover:bg-[#f1ead9] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {verifying ? <Loader2 size={14} className="animate-spin" /> : <ShieldCheck size={14} />}
                   Verify connection
@@ -531,7 +527,7 @@ export default function PaymentConfigPage() {
               </div>
 
               {!view.status.invoiceTemplateSet || !view.status.billTemplateSet ? (
-                <p className="mt-3 border border-[#f6d08a] bg-[#fdf3e1] p-3 text-xs leading-5 text-[#7f4806]">
+                <p className="mt-3 rounded-lg border border-[#f6d08a] bg-[#fdf3e1] p-3 text-xs leading-5 text-[#7f4806]">
                   Without approved template names, WhatsApp only delivers to customers who
                   messaged your business in the last 24 hours. Create the templates in Meta
                   Business Manager, wait for approval, then enter their names above.
@@ -540,7 +536,7 @@ export default function PaymentConfigPage() {
             </div>
           </Section>
 
-          <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d6ccb6] bg-white/95 px-4 py-3 backdrop-blur lg:left-[250px]">
+          <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d6ccb6] bg-[#fffdf8]/95 px-4 py-3 backdrop-blur lg:left-[250px]">
             <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-3 lg:px-4">
               <p className={`text-sm ${dirty ? "font-semibold text-[#a15c07]" : "text-[#5f584d]"}`}>
                 {dirty ? "You have unsaved changes." : "All changes saved."}
@@ -556,7 +552,7 @@ export default function PaymentConfigPage() {
                     setRemoveToken(false);
                     setShowErrors(false);
                   }}
-                  className="h-10 border border-[#d6ccb6] bg-white px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f7f2e7] disabled:opacity-50"
+                  className="h-10 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f7f2e7] disabled:opacity-50"
                 >
                   Discard
                 </button>
@@ -565,7 +561,7 @@ export default function PaymentConfigPage() {
                   type="button"
                   disabled={!dirty || saving}
                   onClick={handleSave}
-                  className="inline-flex h-10 items-center gap-2 bg-[#26221d] px-5 text-sm font-semibold text-white hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-white hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
                   Save changes

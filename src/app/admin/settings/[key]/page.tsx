@@ -130,7 +130,7 @@ export default function EditSettingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-full">
       <main className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         <SettingsFormHeader
           title="Edit Setting"
@@ -144,12 +144,12 @@ export default function EditSettingPage() {
         {loading ? (
           <SettingsFormSkeleton />
         ) : !setting ? (
-          <div className="rounded-2xl border border-red-200 bg-[#fffdf8] p-8 text-center shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900">
+          <div className="rounded-[14px] border border-[#f5c2c0] bg-[#fffdf8] p-8 text-center shadow-sm">
+            <h2 className="text-lg font-semibold text-[#2a2520]">
               Setting not found
             </h2>
 
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-sm text-[#756d62]">
               The requested setting could not be loaded.
             </p>
           </div>

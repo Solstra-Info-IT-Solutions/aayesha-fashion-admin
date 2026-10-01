@@ -54,19 +54,19 @@ export default function PaymentSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-slate-200 px-5 py-4">
+    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+      <div className="border-b border-[#e6dfcf] px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
-            <CreditCard className="h-4 w-4 text-rose-700" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9]">
+            <CreditCard className="h-4 w-4 text-[#6f542f]" />
           </div>
 
           <div>
-            <h2 className="text-base font-semibold text-slate-900">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Payment Settings
             </h2>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-[#756d62]">
               Configure available payment options.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function PaymentSettings({
         <div>
           <label
             htmlFor="payment-currency"
-            className="mb-1.5 block text-sm font-medium text-slate-700"
+            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
           >
             Currency
           </label>
@@ -94,18 +94,18 @@ export default function PaymentSettings({
               )
             }
             placeholder="INR"
-            className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm uppercase text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+            className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm uppercase text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
           />
         </div>
 
         {/* COD */}
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-[#e6dfcf] p-4">
           <div>
-            <p className="text-sm font-medium text-slate-900">
+            <p className="text-sm font-medium text-[#2a2520]">
               Cash on Delivery
             </p>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-[#756d62]">
               Allow customers to place orders using COD.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function PaymentSettings({
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               codEnabled
                 ? "bg-[#26221d]"
-                : "bg-slate-300"
+                : "bg-[#d6ccb6]"
             }`}
             aria-label={
               codEnabled
@@ -140,13 +140,13 @@ export default function PaymentSettings({
         </div>
 
         {/* Online payment */}
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-[#e6dfcf] p-4">
           <div>
-            <p className="text-sm font-medium text-slate-900">
+            <p className="text-sm font-medium text-[#2a2520]">
               Online Payments
             </p>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-[#756d62]">
               Allow customers to pay online.
             </p>
           </div>
@@ -162,7 +162,7 @@ export default function PaymentSettings({
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               onlinePaymentEnabled
                 ? "bg-[#26221d]"
-                : "bg-slate-300"
+                : "bg-[#d6ccb6]"
             }`}
             aria-label={
               onlinePaymentEnabled
@@ -180,10 +180,10 @@ export default function PaymentSettings({
           </button>
         </div>
 
-        <div className="flex gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+        <div className="flex gap-3 rounded-[14px] border border-[#c7dcea] bg-[#e6f0f7] p-4">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#1f5f86]" />
 
-          <p className="text-xs leading-5 text-blue-700">
+          <p className="text-xs leading-5 text-[#1f5f86]">
             Payment gateway credentials should not be stored in public
             settings. Keep sensitive credentials private and manage them
             through the appropriate secure environment configuration.

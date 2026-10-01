@@ -29,17 +29,17 @@ export default function SettingsConfirmDelete({
       aria-modal="true"
       aria-labelledby="delete-setting-title"
     >
-      <div className="w-full max-w-md rounded-2xl bg-[#fffdf8] p-6 shadow-xl">
+      <div className="w-full max-w-md rounded-[14px] bg-[#fffdf8] p-6 shadow-xl">
         <div className="flex items-start justify-between gap-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50">
-            <AlertTriangle className="h-5 w-5 text-red-600" />
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[#fdecec]">
+            <AlertTriangle className="h-5 w-5 text-[#b3261e]" />
           </div>
 
           <button
             type="button"
             onClick={onCancel}
             disabled={deleting}
-            className="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600 disabled:opacity-50"
+            className="rounded-lg p-2 text-[#756d62] transition hover:bg-[#efe8d8] hover:text-[#5f584d] disabled:opacity-50"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -49,14 +49,14 @@ export default function SettingsConfirmDelete({
         <div className="mt-5">
           <h2
             id="delete-setting-title"
-            className="text-lg font-semibold text-gray-900"
+            className="text-lg font-semibold text-[#2a2520]"
           >
             Delete setting?
           </h2>
 
-          <p className="mt-2 text-sm leading-6 text-gray-500">
+          <p className="mt-2 text-sm leading-6 text-[#756d62]">
             This will permanently remove the setting{" "}
-            <span className="font-medium text-gray-800">
+            <span className="font-medium text-[#2a2520]">
               &quot;{setting.key}&quot;
             </span>
             .
@@ -68,7 +68,7 @@ export default function SettingsConfirmDelete({
             type="button"
             onClick={onCancel}
             disabled={deleting}
-            className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+            className="rounded-lg border border-[#e6dfcf] px-4 py-2.5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:opacity-50"
           >
             Cancel
           </button>
@@ -77,7 +77,7 @@ export default function SettingsConfirmDelete({
             type="button"
             onClick={onConfirm}
             disabled={deleting}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#b3261e] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#8f1f19] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {deleting ? (
               <Loader2 className="h-4 w-4 animate-spin" />

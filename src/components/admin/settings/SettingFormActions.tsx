@@ -17,10 +17,10 @@ export default function SettingFormActions({
   saveLabel = "Save Setting",
 }: SettingFormActionsProps) {
   return (
-    <div className="flex flex-col-reverse gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-end">
+    <div className="flex flex-col-reverse gap-3 border-t border-[#e6dfcf] pt-5 sm:flex-row sm:items-center sm:justify-end">
       <Link
         href={cancelHref}
-        className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-200 px-5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+        className="inline-flex h-11 items-center justify-center rounded-[14px] border border-[#e6dfcf] px-5 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7]"
       >
         Cancel
       </Link>
@@ -28,7 +28,7 @@ export default function SettingFormActions({
       <button
         type="submit"
         disabled={saving || disabled}
-        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex h-11 items-center justify-center gap-2 rounded-[14px] bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {saving ? (
           <Loader2 className="h-4 w-4 animate-spin" />

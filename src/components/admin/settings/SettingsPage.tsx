@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
@@ -21,6 +22,7 @@ import SettingsOverview from "./SettingsOverview";
 import SettingsSearch from "./SettingsSearch";
 
 export default function SettingsPage() {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const { accessToken } = useAdminAuth();
 
   const [settings, setSettings] = useState<StoreSetting[]>([]);
@@ -144,9 +146,11 @@ export default function SettingsPage() {
   const handleDelete = async (setting: StoreSetting) => {
     if (!accessToken) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${setting.key}"?`,
-    );
+    const confirmed = await confirm({
+      title: "Delete this setting?",
+      description: `"${setting.key}" will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete setting",
+    });
 
     if (!confirmed) return;
 
@@ -189,24 +193,25 @@ export default function SettingsPage() {
   const hasFilters = Boolean(search || selectedGroup);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-full">
+      {confirmDialog}
       <SettingsHeader
         onRefresh={() => void loadSettings(true)}
         refreshing={refreshing}
       />
 
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl py-6">
         {loading ? (
           <SettingsSkeleton />
         ) : (
           <>
             <div className="mb-6">
               <div className="mb-5">
-                <h2 className="text-lg font-semibold text-gray-900">
+                <h2 className="display text-2xl font-semibold text-[#2a2520]">
                   Store Settings
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-[#756d62]">
                   Manage your store configuration and visibility.
                 </p>
               </div>
@@ -214,7 +219,7 @@ export default function SettingsPage() {
               <SettingsOverview settings={settings} />
             </div>
 
-            <div className="mb-5 rounded-2xl border border-gray-200 bg-[#fffdf8] p-4 shadow-sm">
+            <div className="mb-5 rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                 <SettingsSearch
                   value={search}
@@ -233,7 +238,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={clearFilters}
-                      className="h-10 rounded-lg border border-gray-200 bg-[#fffdf8] px-4 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
+                      className="h-10 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#5f584d] transition hover:bg-[#f7f2e7]"
                     >
                       Clear Filters
                     </button>
@@ -242,7 +247,7 @@ export default function SettingsPage() {
               </div>
 
               {hasFilters && (
-                <div className="mt-3 text-xs text-gray-400">
+                <div className="mt-3 text-xs text-[#756d62]">
                   Showing {filteredSettings.length} of {settings.length}{" "}
                   settings
                 </div>

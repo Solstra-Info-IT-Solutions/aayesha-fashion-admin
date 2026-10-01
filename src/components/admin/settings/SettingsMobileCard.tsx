@@ -25,14 +25,14 @@ export default function SettingsMobileCard({
       : String(setting.value ?? "");
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-[#fffdf8] p-4 shadow-sm">
+    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="break-all font-semibold text-gray-900">
+          <h3 className="break-all font-semibold text-[#2a2520]">
             {setting.key}
           </h3>
 
-          <span className="mt-2 inline-flex rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium capitalize text-gray-600">
+          <span className="mt-2 inline-flex rounded-full bg-[#efe8d8] px-2.5 py-1 text-xs font-medium capitalize text-[#5f584d]">
             {setting.group}
           </span>
         </div>
@@ -57,25 +57,25 @@ export default function SettingsMobileCard({
         </button>
       </div>
 
-      <div className="mt-4 rounded-xl bg-gray-50 p-3">
-        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-400">
+      <div className="mt-4 rounded-[14px] bg-[#f7f2e7] p-3">
+        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#756d62]">
           Value
         </p>
 
-        <p className="break-all text-sm text-gray-700">
+        <p className="break-all text-sm text-[#3d372f]">
           {displayValue || "—"}
         </p>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-[#756d62]">
           Updated {new Date(setting.updatedAt).toLocaleDateString()}
         </p>
 
         <div className="flex items-center gap-2">
           <Link
             href={`/admin/settings/${encodeURIComponent(setting.key)}`}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-gray-200 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 text-sm font-medium text-[#3d372f] hover:bg-[#f7f2e7]"
           >
             <Edit3 className="h-4 w-4" />
             Edit
@@ -85,7 +85,7 @@ export default function SettingsMobileCard({
             type="button"
             onClick={() => onDelete(setting)}
             disabled={deleting}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-600 hover:bg-red-50 disabled:opacity-50"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] hover:bg-[#fdecec] disabled:opacity-50"
             title="Delete setting"
           >
             <Trash2 className="h-4 w-4" />
