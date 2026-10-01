@@ -83,19 +83,19 @@ export default function DiscountPagination({
   };
 
   return (
-    <div className="flex flex-col gap-3 border-t border-[var(--color-border)] pt-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-3 border-t border-[#e6dfcf] pt-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Result count */}
-      <p className="text-xs text-[var(--color-secondary)]">
+      <p className="text-xs text-[#5f584d]">
         Showing{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {start}
         </span>{" "}
         to{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {end}
         </span>{" "}
         of{" "}
-        <span className="font-medium text-[var(--color-ink)]">
+        <span className="font-medium text-[#2a2520]">
           {total}
         </span>{" "}
         discounts
@@ -110,7 +110,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page - 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={16} />
@@ -126,7 +126,7 @@ export default function DiscountPagination({
                 return (
                   <span
                     key={`ellipsis-${index}`}
-                    className="flex h-9 w-9 items-center justify-center text-xs text-[var(--color-secondary)]"
+                    className="flex h-9 w-9 items-center justify-center text-xs text-[#5f584d]"
                   >
                     ...
                   </span>
@@ -146,7 +146,7 @@ export default function DiscountPagination({
                   className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition ${
                     isActive
                       ? "bg-[#26221d] text-white"
-                      : "border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] hover:bg-gray-50 hover:text-[var(--color-ink)]"
+                      : "border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f7f2e7] hover:text-[#2a2520]"
                   }`}
                   aria-current={
                     isActive
@@ -162,13 +162,13 @@ export default function DiscountPagination({
         </div>
 
         {/* Mobile page indicator */}
-        <span className="px-3 text-xs text-[var(--color-secondary)] sm:hidden">
+        <span className="px-3 text-xs text-[#5f584d] sm:hidden">
           Page{" "}
-          <span className="font-medium text-[var(--color-ink)]">
+          <span className="font-medium text-[#2a2520]">
             {page}
           </span>{" "}
           of{" "}
-          <span className="font-medium text-[var(--color-ink)]">
+          <span className="font-medium text-[#2a2520]">
             {totalPages}
           </span>
         </span>
@@ -182,7 +182,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page + 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={16} />

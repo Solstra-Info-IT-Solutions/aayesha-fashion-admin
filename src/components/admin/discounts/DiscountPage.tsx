@@ -7,6 +7,8 @@ import {
 } from "react";
 import { toast } from "sonner";
 
+import { useConfirm } from "@/components/ui/useConfirm";
+
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
@@ -37,6 +39,7 @@ import DiscountEmptyState from "./DiscountEmptyState";
 const PAGE_LIMIT = 10;
 
 export default function DiscountPage() {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const {
     accessToken,
     isAuthenticated,
@@ -321,9 +324,11 @@ export default function DiscountPage() {
     if (!accessToken) return;
 
     const confirmed =
-      window.confirm(
-        `Are you sure you want to delete coupon "${discount.code}"?`,
-      );
+      await confirm({
+        title: "Delete this coupon?",
+        description: `Coupon "${discount.code}" will be permanently deleted. This cannot be undone.`,
+        confirmLabel: "Delete coupon",
+      });
 
     if (!confirmed) return;
 
@@ -390,7 +395,7 @@ export default function DiscountPage() {
   ) {
     return (
       <div className="space-y-6">
-        <div className="h-28 animate-pulse rounded-xl bg-gray-100" />
+        <div className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]" />
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {Array.from({
@@ -398,7 +403,7 @@ export default function DiscountPage() {
           }).map((_, index) => (
             <div
               key={index}
-              className="h-32 animate-pulse rounded-xl bg-gray-100"
+              className="h-32 animate-pulse rounded-[14px] bg-[#efe8d8]"
             />
           ))}
         </div>
@@ -417,6 +422,7 @@ export default function DiscountPage() {
 
   return (
     <div className="space-y-6">
+      {confirmDialog}
       {/* Header */}
       <DiscountHeader
         refreshing={refreshing}

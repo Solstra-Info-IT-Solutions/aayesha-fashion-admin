@@ -35,25 +35,25 @@ const statusConfig: Record<
   active: {
     label: "Active",
     className:
-      "bg-emerald-50 text-emerald-700 border-emerald-100",
+      "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]",
     icon: CheckCircle2,
   },
   inactive: {
     label: "Inactive",
     className:
-      "bg-gray-100 text-gray-600 border-gray-200",
+      "bg-[#efe8d8] text-[#5f584d] border-[#e6dfcf]",
     icon: CircleOff,
   },
   scheduled: {
     label: "Scheduled",
     className:
-      "bg-blue-50 text-blue-700 border-blue-100",
+      "bg-[#e6f0f7] text-[#1f5f86] border-[#c7dcea]",
     icon: Clock3,
   },
   expired: {
     label: "Expired",
     className:
-      "bg-red-50 text-red-700 border-red-100",
+      "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]",
     icon: Clock3,
   },
 };
@@ -148,7 +148,7 @@ export default function DiscountDetail({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/admin/discounts"
-          className="inline-flex w-fit items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#26221d]"
+          className="inline-flex w-fit items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#26221d]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
@@ -157,7 +157,7 @@ export default function DiscountDetail({
         <div className="flex flex-wrap gap-2">
           <Link
             href={`/admin/discounts/${discount._id}/edit`}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm font-medium text-[#2a2520] shadow-sm transition hover:bg-[#f7f2e7]"
           >
             <Pencil size={15} />
             Edit
@@ -167,7 +167,7 @@ export default function DiscountDetail({
             type="button"
             disabled={actionLoading}
             onClick={onToggleStatus}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm font-medium text-[#2a2520] shadow-sm transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {discount.isActive ? (
               <CircleOff size={15} />
@@ -184,7 +184,7 @@ export default function DiscountDetail({
             type="button"
             disabled={actionLoading}
             onClick={onDelete}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-red-200 bg-[#fffdf8] px-3 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#f5c2c0] bg-[#fffdf8] px-3 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 size={15} />
             Delete
@@ -193,11 +193,11 @@ export default function DiscountDetail({
       </div>
 
       {/* Hero */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-light)] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#26221d]">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-[#f1ead9] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#26221d]">
                 <Tag size={18} />
                 {discount.code}
               </div>
@@ -211,14 +211,14 @@ export default function DiscountDetail({
             </div>
 
             {discount.description && (
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--color-secondary)]">
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-[#5f584d]">
                 {discount.description}
               </p>
             )}
           </div>
 
-          <div className="rounded-xl bg-gray-50 px-5 py-4 text-center sm:min-w-[150px]">
-            <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+          <div className="rounded-[14px] bg-[#f7f2e7] px-5 py-4 text-center sm:min-w-[150px]">
+            <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
               Discount
             </p>
 
@@ -233,15 +233,15 @@ export default function DiscountDetail({
 
       {/* Stats */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-[var(--color-secondary)]">
+        <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm">
+          <div className="flex items-center gap-2 text-[#5f584d]">
             <ShoppingBag size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
               Usage
             </span>
           </div>
 
-          <p className="mt-2 text-xl font-semibold text-[var(--color-ink)]">
+          <p className="mt-2 text-xl font-semibold text-[#2a2520]">
             {discount.usedCount}
             {discount.usageLimit !==
             null
@@ -251,7 +251,7 @@ export default function DiscountDetail({
 
           {discount.usageLimit !==
             null && (
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100">
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#efe8d8]">
               <div
                 className="h-full rounded-full bg-[#26221d]"
                 style={{
@@ -262,15 +262,15 @@ export default function DiscountDetail({
           )}
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-[var(--color-secondary)]">
+        <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm">
+          <div className="flex items-center gap-2 text-[#5f584d]">
             <Percent size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
               Type
             </span>
           </div>
 
-          <p className="mt-2 text-base font-semibold capitalize text-[var(--color-ink)]">
+          <p className="mt-2 text-base font-semibold capitalize text-[#2a2520]">
             {discount.discountType ===
             "free_shipping"
               ? "Free Shipping"
@@ -278,15 +278,15 @@ export default function DiscountDetail({
           </p>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-[var(--color-secondary)]">
+        <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm">
+          <div className="flex items-center gap-2 text-[#5f584d]">
             <ShoppingBag size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
               Minimum Order
             </span>
           </div>
 
-          <p className="mt-2 text-base font-semibold text-[var(--color-ink)]">
+          <p className="mt-2 text-base font-semibold text-[#2a2520]">
             {discount.minimumOrderValue >
             0
               ? formatCurrency(
@@ -296,15 +296,15 @@ export default function DiscountDetail({
           </p>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-[var(--color-secondary)]">
+        <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm">
+          <div className="flex items-center gap-2 text-[#5f584d]">
             <Users size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
               Per Customer
             </span>
           </div>
 
-          <p className="mt-2 text-base font-semibold text-[var(--color-ink)]">
+          <p className="mt-2 text-base font-semibold text-[#2a2520]">
             {discount.usageLimitPerCustomer ??
               "Unlimited"}
           </p>
@@ -312,37 +312,37 @@ export default function DiscountDetail({
       </div>
 
       {/* Schedule */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+      <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="flex items-center gap-2">
           <CalendarDays
             size={18}
             className="text-[#26221d]"
           />
 
-          <h2 className="text-base font-semibold text-[var(--color-ink)]">
+          <h2 className="text-base font-semibold text-[#2a2520]">
             Schedule
           </h2>
         </div>
 
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div className="rounded-lg bg-gray-50 p-4">
-            <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+          <div className="rounded-lg bg-[#f7f2e7] p-4">
+            <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
               Starts At
             </p>
 
-            <p className="mt-1 text-sm font-semibold text-[var(--color-ink)]">
+            <p className="mt-1 text-sm font-semibold text-[#2a2520]">
               {formatDate(
                 discount.startsAt,
               )}
             </p>
           </div>
 
-          <div className="rounded-lg bg-gray-50 p-4">
-            <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+          <div className="rounded-lg bg-[#f7f2e7] p-4">
+            <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
               Ends At
             </p>
 
-            <p className="mt-1 text-sm font-semibold text-[var(--color-ink)]">
+            <p className="mt-1 text-sm font-semibold text-[#2a2520]">
               {formatDate(
                 discount.endsAt,
               )}
@@ -352,30 +352,30 @@ export default function DiscountDetail({
       </section>
 
       {/* Additional settings */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
-        <h2 className="text-base font-semibold text-[var(--color-ink)]">
+      <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <h2 className="text-base font-semibold text-[#2a2520]">
           Additional Settings
         </h2>
 
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <div className="flex items-center justify-between rounded-lg border border-[var(--color-border)] px-4 py-3">
-            <span className="text-sm text-[var(--color-secondary)]">
+          <div className="flex items-center justify-between rounded-lg border border-[#e6dfcf] px-4 py-3">
+            <span className="text-sm text-[#5f584d]">
               First Order Only
             </span>
 
-            <span className="text-sm font-semibold text-[var(--color-ink)]">
+            <span className="text-sm font-semibold text-[#2a2520]">
               {discount.firstOrderOnly
                 ? "Yes"
                 : "No"}
             </span>
           </div>
 
-          <div className="flex items-center justify-between rounded-lg border border-[var(--color-border)] px-4 py-3">
-            <span className="text-sm text-[var(--color-secondary)]">
+          <div className="flex items-center justify-between rounded-lg border border-[#e6dfcf] px-4 py-3">
+            <span className="text-sm text-[#5f584d]">
               Maximum Discount
             </span>
 
-            <span className="text-sm font-semibold text-[var(--color-ink)]">
+            <span className="text-sm font-semibold text-[#2a2520]">
               {discount.maxDiscountAmount !==
               null
                 ? formatCurrency(

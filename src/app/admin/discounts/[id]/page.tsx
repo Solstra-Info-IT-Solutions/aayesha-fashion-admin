@@ -203,9 +203,9 @@ export default function DiscountDetailPage() {
   ) {
     return (
       <div className="mx-auto max-w-5xl space-y-6">
-        <div className="h-8 w-40 animate-pulse rounded bg-gray-100" />
+        <div className="h-8 w-40 animate-pulse rounded bg-[#efe8d8]" />
 
-        <div className="h-40 animate-pulse rounded-xl bg-gray-100" />
+        <div className="h-40 animate-pulse rounded-[14px] bg-[#efe8d8]" />
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({
@@ -213,12 +213,12 @@ export default function DiscountDetailPage() {
           }).map((_, index) => (
             <div
               key={index}
-              className="h-28 animate-pulse rounded-xl bg-gray-100"
+              className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]"
             />
           ))}
         </div>
 
-        <div className="h-48 animate-pulse rounded-xl bg-gray-100" />
+        <div className="h-48 animate-pulse rounded-[14px] bg-[#efe8d8]" />
       </div>
     );
   }
@@ -232,12 +232,12 @@ export default function DiscountDetailPage() {
 
   if (!discount) {
     return (
-      <div className="mx-auto max-w-2xl rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-12 text-center shadow-sm">
-        <h1 className="text-lg font-semibold text-[var(--color-ink)]">
+      <div className="mx-auto max-w-2xl rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-12 text-center shadow-sm">
+        <h1 className="text-lg font-semibold text-[#2a2520]">
           Discount not found
         </h1>
 
-        <p className="mt-2 text-sm text-[var(--color-secondary)]">
+        <p className="mt-2 text-sm text-[#5f584d]">
           The requested discount coupon could not be found.
         </p>
 
