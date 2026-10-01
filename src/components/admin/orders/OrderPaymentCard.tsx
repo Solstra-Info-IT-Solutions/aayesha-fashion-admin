@@ -98,14 +98,14 @@ export function OrderPaymentCard({
   ];
 
   return (
-    <section className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+    <section className="surface p-5 sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
             Payment
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
+          <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">
             Payment details
           </h2>
         </div>
