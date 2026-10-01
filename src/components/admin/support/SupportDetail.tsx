@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
@@ -89,32 +90,32 @@ function formatDate(value: string | null) {
 function getStatusClasses(status: SupportStatus) {
   switch (status) {
     case "open":
-      return "bg-blue-50 text-blue-700 ring-blue-200";
+      return "bg-[#e6f0f7] text-[#1f5f86] ring-[#c7dcea]";
     case "in_progress":
-      return "bg-amber-50 text-amber-700 ring-amber-200";
+      return "bg-[#fdf3e1] text-[#7f4806] ring-[#f6d08a]";
     case "waiting_customer":
-      return "bg-purple-50 text-purple-700 ring-purple-200";
+      return "bg-[#efebf8] text-[#4f43a0] ring-[#d9d2ee]";
     case "resolved":
-      return "bg-emerald-50 text-emerald-700 ring-emerald-200";
+      return "bg-[#e8f5ec] text-[#276541] ring-[#bfe3cb]";
     case "closed":
-      return "bg-slate-100 text-slate-700 ring-slate-200";
+      return "bg-[#efe8d8] text-[#3d372f] ring-[#e6dfcf]";
     default:
-      return "bg-slate-100 text-slate-700 ring-slate-200";
+      return "bg-[#efe8d8] text-[#3d372f] ring-[#e6dfcf]";
   }
 }
 
 function getPriorityClasses(priority: SupportPriority) {
   switch (priority) {
     case "urgent":
-      return "bg-red-50 text-red-700 ring-red-200";
+      return "bg-[#fdecec] text-[#8f1f19] ring-[#f5c2c0]";
     case "high":
-      return "bg-orange-50 text-orange-700 ring-orange-200";
+      return "bg-[#fdf3e1] text-[#7f4806] ring-[#f6d08a]";
     case "normal":
-      return "bg-blue-50 text-blue-700 ring-blue-200";
+      return "bg-[#e6f0f7] text-[#1f5f86] ring-[#c7dcea]";
     case "low":
-      return "bg-slate-100 text-slate-600 ring-slate-200";
+      return "bg-[#efe8d8] text-[#5f584d] ring-[#e6dfcf]";
     default:
-      return "bg-slate-100 text-slate-600 ring-slate-200";
+      return "bg-[#efe8d8] text-[#5f584d] ring-[#e6dfcf]";
   }
 }
 
@@ -134,6 +135,7 @@ export default function SupportDetail({
   onClose,
   onDelete,
 }: SupportDetailProps) {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const [isEditing, setIsEditing] = useState(false);
 
   const [customerName, setCustomerName] = useState(ticket.customerName);
@@ -191,10 +193,12 @@ export default function SupportDetail({
     setIsEditing(false);
   };
 
-  const handleDelete = () => {
-    const confirmed = window.confirm(
-      `Are you sure you want to delete ticket ${ticket.ticketNumber}?`
-    );
+  const handleDelete = async () => {
+    const confirmed = await confirm({
+      title: "Delete this ticket?",
+      description: `Ticket ${ticket.ticketNumber} will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete ticket",
+    });
 
     if (confirmed) {
       onDelete();
@@ -203,12 +207,13 @@ export default function SupportDetail({
 
   return (
     <div className="space-y-6">
+      {confirmDialog}
       {/* Header */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-3">
           <Link
             href="/admin/support"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-[#fffdf8] text-slate-600 transition hover:bg-slate-50"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7]"
             aria-label="Back to support"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -216,7 +221,7 @@ export default function SupportDetail({
 
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-xl font-semibold text-slate-900">
+              <h1 className="text-[#2a2520]">
                 {ticket.ticketNumber}
               </h1>
 
@@ -237,7 +242,7 @@ export default function SupportDetail({
               </span>
             </div>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-[#756d62]">
               Support ticket details and management
             </p>
           </div>
@@ -248,7 +253,7 @@ export default function SupportDetail({
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fffdf8] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7]"
             >
               <Edit3 className="h-4 w-4" />
               Edit
@@ -259,7 +264,7 @@ export default function SupportDetail({
                 type="button"
                 onClick={handleCancel}
                 disabled={updating}
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fffdf8] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <X className="h-4 w-4" />
                 Cancel
@@ -281,7 +286,7 @@ export default function SupportDetail({
             type="button"
             onClick={handleDelete}
             disabled={deleting}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-200 bg-[#fffdf8] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#f5c2c0] bg-[#fffdf8] px-4 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 className="h-4 w-4" />
             {deleting ? "Deleting..." : "Delete"}
@@ -293,11 +298,11 @@ export default function SupportDetail({
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         {/* Conversation */}
         <div className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-            <div className="border-b border-slate-200 px-5 py-4">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+            <div className="border-b border-[#e6dfcf] px-5 py-4">
               <div className="flex items-center gap-2">
-                <MessageSquare className="h-5 w-5 text-rose-600" />
-                <h2 className="font-semibold text-slate-900">
+                <MessageSquare className="h-5 w-5 text-[#6f542f]" />
+                <h2 className="font-semibold text-[#2a2520]">
                   Customer Message
                 </h2>
               </div>
@@ -307,36 +312,36 @@ export default function SupportDetail({
               {isEditing ? (
                 <div className="space-y-4">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Subject
                     </label>
                     <input
                       type="text"
                       value={subject}
                       onChange={(event) => setSubject(event.target.value)}
-                      className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                      className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Message
                     </label>
                     <textarea
                       value={message}
                       onChange={(event) => setMessage(event.target.value)}
                       rows={9}
-                      className="w-full resize-y rounded-lg border border-slate-200 px-3 py-3 text-sm leading-6 text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                      className="w-full resize-y rounded-lg border border-[#e6dfcf] px-3 py-3 text-sm leading-6 text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                     />
                   </div>
                 </div>
               ) : (
                 <>
-                  <h3 className="text-base font-semibold text-slate-900">
+                  <h3 className="text-base font-semibold text-[#2a2520]">
                     {ticket.subject}
                   </h3>
 
-                  <div className="mt-4 whitespace-pre-wrap text-sm leading-7 text-slate-600">
+                  <div className="mt-4 whitespace-pre-wrap text-sm leading-7 text-[#5f584d]">
                     {ticket.message}
                   </div>
                 </>
@@ -345,11 +350,11 @@ export default function SupportDetail({
           </section>
 
           {/* Resolution */}
-          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-            <div className="border-b border-slate-200 px-5 py-4">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+            <div className="border-b border-[#e6dfcf] px-5 py-4">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-                <h2 className="font-semibold text-slate-900">
+                <CheckCircle2 className="h-5 w-5 text-[#276541]" />
+                <h2 className="font-semibold text-[#2a2520]">
                   Resolution
                 </h2>
               </div>
@@ -358,7 +363,7 @@ export default function SupportDetail({
             <div className="p-5">
               {isEditing ? (
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                  <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                     Resolution Note
                   </label>
 
@@ -369,11 +374,11 @@ export default function SupportDetail({
                     }
                     rows={5}
                     placeholder="Add a resolution note..."
-                    className="w-full resize-y rounded-lg border border-slate-200 px-3 py-3 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                    className="w-full resize-y rounded-lg border border-[#e6dfcf] px-3 py-3 text-sm leading-6 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                   />
                 </div>
               ) : (
-                <p className="whitespace-pre-wrap text-sm leading-7 text-slate-600">
+                <p className="whitespace-pre-wrap text-sm leading-7 text-[#5f584d]">
                   {ticket.resolutionNote || "No resolution note added."}
                 </p>
               )}
@@ -381,11 +386,11 @@ export default function SupportDetail({
           </section>
 
           {/* Customer */}
-          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-            <div className="border-b border-slate-200 px-5 py-4">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+            <div className="border-b border-[#e6dfcf] px-5 py-4">
               <div className="flex items-center gap-2">
-                <User className="h-5 w-5 text-slate-600" />
-                <h2 className="font-semibold text-slate-900">
+                <User className="h-5 w-5 text-[#5f584d]" />
+                <h2 className="font-semibold text-[#2a2520]">
                   Customer Information
                 </h2>
               </div>
@@ -395,7 +400,7 @@ export default function SupportDetail({
               {isEditing ? (
                 <>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Customer Name
                     </label>
                     <input
@@ -404,12 +409,12 @@ export default function SupportDetail({
                       onChange={(event) =>
                         setCustomerName(event.target.value)
                       }
-                      className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                      className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Customer Email
                     </label>
                     <input
@@ -418,28 +423,28 @@ export default function SupportDetail({
                       onChange={(event) =>
                         setCustomerEmail(event.target.value)
                       }
-                      className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                      className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                     />
                   </div>
                 </>
               ) : (
                 <>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Name
                     </p>
-                    <p className="mt-1 text-sm font-medium text-slate-900">
+                    <p className="mt-1 text-sm font-medium text-[#2a2520]">
                       {ticket.customerName}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Email
                     </p>
                     <a
                       href={`mailto:${ticket.customerEmail}`}
-                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-rose-700 hover:underline"
+                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-[#6f542f] hover:underline"
                     >
                       <Mail className="h-4 w-4" />
                       {ticket.customerEmail}
@@ -449,19 +454,19 @@ export default function SupportDetail({
               )}
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                   User ID
                 </p>
-                <p className="mt-1 break-all text-sm text-slate-700">
+                <p className="mt-1 break-all text-sm text-[#3d372f]">
                   {ticket.userId || "Guest Customer"}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                   Order Number
                 </p>
-                <p className="mt-1 text-sm font-medium text-slate-900">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {ticket.orderNumber || "—"}
                 </p>
               </div>
@@ -471,9 +476,9 @@ export default function SupportDetail({
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
-            <div className="border-b border-slate-200 px-5 py-4">
-              <h2 className="font-semibold text-slate-900">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
+            <div className="border-b border-[#e6dfcf] px-5 py-4">
+              <h2 className="font-semibold text-[#2a2520]">
                 Ticket Management
               </h2>
             </div>
@@ -482,7 +487,7 @@ export default function SupportDetail({
               {isEditing ? (
                 <>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Status
                     </label>
 
@@ -492,7 +497,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setStatus(event.target.value as SupportStatus)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 pr-9 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                       >
                         {STATUS_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -501,12 +506,12 @@ export default function SupportDetail({
                         ))}
                       </select>
 
-                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Priority
                     </label>
 
@@ -516,7 +521,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setPriority(event.target.value as SupportPriority)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 pr-9 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                       >
                         {PRIORITY_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -525,12 +530,12 @@ export default function SupportDetail({
                         ))}
                       </select>
 
-                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Category
                     </label>
 
@@ -540,7 +545,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setCategory(event.target.value as SupportCategory)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 pr-9 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                       >
                         {CATEGORY_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -549,12 +554,12 @@ export default function SupportDetail({
                         ))}
                       </select>
 
-                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                    <label className="mb-1.5 block text-sm font-medium text-[#3d372f]">
                       Assigned To
                     </label>
 
@@ -563,14 +568,14 @@ export default function SupportDetail({
                       value={assignedTo}
                       onChange={(event) => setAssignedTo(event.target.value)}
                       placeholder="Admin / staff ID"
-                      className="h-11 w-full rounded-lg border border-slate-200 px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                      className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
                     />
                   </div>
                 </>
               ) : (
                 <>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Status
                     </p>
 
@@ -584,7 +589,7 @@ export default function SupportDetail({
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Priority
                     </p>
 
@@ -598,49 +603,49 @@ export default function SupportDetail({
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Category
                     </p>
 
-                    <p className="mt-1 text-sm font-medium text-slate-900">
+                    <p className="mt-1 text-sm font-medium text-[#2a2520]">
                       {formatLabel(ticket.category)}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Assigned To
                     </p>
 
-                    <p className="mt-1 break-all text-sm font-medium text-slate-900">
+                    <p className="mt-1 break-all text-sm font-medium text-[#2a2520]">
                       {ticket.assignedTo || "Unassigned"}
                     </p>
                   </div>
                 </>
               )}
 
-              <div className="border-t border-slate-100 pt-5">
+              <div className="border-t border-[#e6dfcf] pt-5">
                 <div className="flex items-start gap-3">
-                  <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                  <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-[#756d62]" />
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Created
                     </p>
-                    <p className="mt-1 text-sm text-slate-700">
+                    <p className="mt-1 text-sm text-[#3d372f]">
                       {formatDate(ticket.createdAt)}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-4 flex items-start gap-3">
-                  <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                  <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-[#756d62]" />
 
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                       Last Updated
                     </p>
-                    <p className="mt-1 text-sm text-slate-700">
+                    <p className="mt-1 text-sm text-[#3d372f]">
                       {formatDate(ticket.updatedAt)}
                     </p>
                   </div>
@@ -648,13 +653,13 @@ export default function SupportDetail({
 
                 {ticket.closedAt && (
                   <div className="mt-4 flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#276541]" />
 
                     <div>
-                      <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                      <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
                         Closed
                       </p>
-                      <p className="mt-1 text-sm text-slate-700">
+                      <p className="mt-1 text-sm text-[#3d372f]">
                         {formatDate(ticket.closedAt)}
                       </p>
                     </div>
@@ -666,18 +671,18 @@ export default function SupportDetail({
 
           {/* Close ticket */}
           {ticket.status !== "closed" && onClose && (
-            <section className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5">
+            <section className="rounded-[14px] border border-[#bfe3cb] bg-[#e8f5ec]/50 p-5">
               <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#bfe3cb]">
+                  <CheckCircle2 className="h-5 w-5 text-[#276541]" />
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-900">
+                  <h3 className="text-sm font-semibold text-[#2a2520]">
                     Close Ticket
                   </h3>
 
-                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                  <p className="mt-1 text-xs leading-5 text-[#756d62]">
                     Mark this support ticket as closed once the issue has been
                     resolved.
                   </p>
@@ -697,7 +702,7 @@ export default function SupportDetail({
                     onClose(note.trim() || undefined);
                   }
                 }}
-                className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 text-sm font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-[#276541] px-4 text-sm font-medium text-white transition hover:bg-[#276541] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 {closing ? "Closing..." : "Close Ticket"}
