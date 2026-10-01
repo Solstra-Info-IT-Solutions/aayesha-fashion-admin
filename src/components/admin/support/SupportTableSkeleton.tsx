@@ -4,7 +4,7 @@ export default function SupportTableSkeleton() {
   return (
     <>
       {/* Desktop Skeleton */}
-      <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm lg:block">
+      <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm lg:block">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[1150px]">
             <thead>
@@ -105,7 +105,7 @@ export default function SupportTableSkeleton() {
           (_, index) => (
             <div
               key={index}
-              className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-4 shadow-sm"
+              className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm"
             >
               {/* Header */}
               <div className="flex items-start justify-between gap-3">

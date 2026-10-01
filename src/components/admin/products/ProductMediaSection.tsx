@@ -35,15 +35,15 @@ export default function ProductMediaSection({
 
   return (
     <>
-      <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] p-4 sm:p-5">
+      <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
         {/* HEADER */}
         <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
-            <h2 className="break-words text-base font-semibold leading-6 text-[#3f2d2a]">
+            <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
               Media
             </h2>
 
-            <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#70635d]">
+            <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#5b6270]">
               Product imagery and supporting media.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function ProductMediaSection({
               setEditingMedia(null);
               setModalOpen(true);
             }}
-            className={`${buttonBaseClass} h-10 shrink-0 gap-2 rounded-xl bg-[#7a5650] px-4 text-sm font-medium text-white hover:opacity-90`}
+            className={`${buttonBaseClass} h-10 shrink-0 gap-2 rounded-xl bg-[#2b3a55] px-4 text-sm font-medium text-white hover:opacity-90`}
           >
             <Plus size={15} />
             Add Media
@@ -64,16 +64,16 @@ export default function ProductMediaSection({
 
         {/* MEDIA CONTENT */}
         {media.length === 0 ? (
-          <div className="mt-6 rounded-2xl border border-dashed border-[#d8cec5] bg-[#f7f3ed] px-5 py-12 text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#efe8df]">
-              <Plus size={18} className="text-[#958781]" />
+          <div className="mt-6 rounded-2xl border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-5 py-12 text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#eef0f4]">
+              <Plus size={18} className="text-[#737a8c]" />
             </div>
 
-            <p className="mt-3 break-words text-sm font-medium text-[#3f2d2a]">
+            <p className="mt-3 break-words text-sm font-medium text-[#1a1d24]">
               No media uploaded yet
             </p>
 
-            <p className="mx-auto mt-1.5 max-w-md break-words text-xs leading-5 text-[#958781]">
+            <p className="mx-auto mt-1.5 max-w-md break-words text-xs leading-5 text-[#737a8c]">
               Upload product images, videos and gallery assets.
             </p>
           </div>
@@ -82,10 +82,10 @@ export default function ProductMediaSection({
             {media.map((item) => (
               <div
                 key={item.id}
-                className="min-w-0 overflow-hidden rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] shadow-sm transition-shadow hover:shadow-md"
+                className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] shadow-sm transition-shadow hover:shadow-md"
               >
                 {/* MEDIA PREVIEW */}
-                <div className="relative aspect-[4/5] bg-[#f7f3ed]">
+                <div className="relative aspect-[4/5] bg-[#f4f5f7]">
                   {item.type === "image" && item.src ? (
                     <Image
                       src={item.src}
@@ -95,14 +95,14 @@ export default function ProductMediaSection({
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center px-4 text-center text-xs capitalize text-[#958781]">
+                    <div className="flex h-full items-center justify-center px-4 text-center text-xs capitalize text-[#737a8c]">
                       {item.type}
                     </div>
                   )}
 
                   {/* PRIMARY BADGE */}
                   {item.isPrimary && (
-                    <span className="absolute left-3 top-3 rounded-full bg-[#7a5650] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
+                    <span className="absolute left-3 top-3 rounded-full bg-[#2b3a55] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
                       Primary
                     </span>
                   )}
@@ -111,12 +111,12 @@ export default function ProductMediaSection({
                 {/* CARD DETAILS */}
                 <div className="min-w-0 p-3.5">
                   <div className="min-w-0">
-                    <p className="break-words text-sm font-medium leading-5 text-[#3f2d2a]">
+                    <p className="break-words text-sm font-medium leading-5 text-[#1a1d24]">
                       {item.type === "image" ? "Image" : "Video"}
                     </p>
 
                     {item.alt && (
-                      <p className="mt-1 break-words text-xs leading-5 text-[#958781]">
+                      <p className="mt-1 break-words text-xs leading-5 text-[#737a8c]">
                         {item.alt}
                       </p>
                     )}
@@ -131,7 +131,7 @@ export default function ProductMediaSection({
                         setEditingMedia(item);
                         setModalOpen(true);
                       }}
-                      className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d8cec5] bg-[#fbf9f5] px-3 text-xs font-medium text-[#3f2d2a] hover:bg-[#f7f3ed]`}
+                      className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-xs font-medium text-[#1a1d24] hover:bg-[#f4f5f7]`}
                     >
                       <Pencil size={13} />
                       <span>Edit</span>
@@ -141,7 +141,7 @@ export default function ProductMediaSection({
                       type="button"
                       disabled={saving}
                       onClick={() => void onDeleteMedia(item.id)}
-                      className={`${buttonBaseClass} h-9 w-10 shrink-0 rounded-xl border border-[#f5eae6] bg-[#fbf9f5] text-[#955c56] hover:bg-[#f5eae6]`}
+                      className={`${buttonBaseClass} h-9 w-10 shrink-0 rounded-xl border border-[#fdecec] bg-[#ffffff] text-[#b3261e] hover:bg-[#fdecec]`}
                       aria-label="Delete media"
                     >
                       <Trash2 size={13} />

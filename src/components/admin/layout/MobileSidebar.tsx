@@ -37,15 +37,15 @@ export function MobileSidebar({
       <button
         type="button"
         onClick={onClose}
-        className="absolute inset-0 bg-[#3f2d2a]/50"
+        className="absolute inset-0 bg-[#1a1d24]/50"
         aria-label="Close navigation"
       />
 
-      <aside className="relative h-full w-[290px] max-w-[85vw] bg-[#3f2d2a] text-white shadow-xl">
+      <aside className="relative h-full w-[290px] max-w-[85vw] bg-[#1a1d24] text-white shadow-xl">
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-4 z-10 inline-flex h-9 w-9 items-center justify-center text-[#d8cec5] hover:text-white"
+          className="absolute right-3 top-4 z-10 inline-flex h-9 w-9 items-center justify-center text-[#d3d7df] hover:text-white"
           aria-label="Close navigation"
         >
           <X size={20} />

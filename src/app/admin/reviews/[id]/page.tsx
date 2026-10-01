@@ -218,7 +218,7 @@ export default function ReviewDetailPage({
 
   if (!accessToken) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-10 text-center shadow-sm">
+      <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-10 text-center shadow-sm">
         <h2 className="text-lg font-semibold text-[var(--color-ink)]">
           Authentication required
         </h2>
@@ -232,7 +232,7 @@ export default function ReviewDetailPage({
 
   if (!review) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-10 text-center shadow-sm">
+      <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-10 text-center shadow-sm">
         <h2 className="text-lg font-semibold text-[var(--color-ink)]">
           Review not found
         </h2>
@@ -244,7 +244,7 @@ export default function ReviewDetailPage({
         <button
           type="button"
           onClick={() => router.push("/admin/reviews")}
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#7a5650] px-5 text-sm font-medium text-white transition hover:bg-[#543c38]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
         >
           Back to Reviews
         </button>

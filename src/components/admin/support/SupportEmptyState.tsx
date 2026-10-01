@@ -13,7 +13,7 @@ export default function SupportEmptyState({
   onReset,
 }: SupportEmptyStateProps) {
   return (
-    <div className="flex min-h-[360px] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-[#fbf9f5] px-6 py-12 text-center shadow-sm">
+    <div className="flex min-h-[360px] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-[#ffffff] px-6 py-12 text-center shadow-sm">
       <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-rose-50">
         <Inbox className="h-8 w-8 text-rose-600" />
       </div>
@@ -33,7 +33,7 @@ export default function SupportEmptyState({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fbf9f5] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#ffffff] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
           >
             <RotateCcw className="h-4 w-4" />
             Reset Filters
@@ -42,7 +42,7 @@ export default function SupportEmptyState({
 
         <Link
           href="/admin"
-          className="inline-flex h-10 items-center rounded-lg bg-[#7a5650] px-4 text-sm font-medium text-white transition hover:bg-[#543c38]"
+          className="inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-4 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
         >
           Back to Dashboard
         </Link>

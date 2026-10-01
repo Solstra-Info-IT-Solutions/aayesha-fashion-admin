@@ -98,14 +98,14 @@ export function OrderPaymentCard({
   ];
 
   return (
-    <section className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
+    <section className="border border-[#e5e7ec] bg-[#ffffff] p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
             Payment
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
             Payment details
           </h2>
         </div>
@@ -116,20 +116,20 @@ export function OrderPaymentCard({
       <dl className="mt-6 space-y-3 text-sm">
         {rows.map(([label, value]) => (
           <div key={label} className="flex justify-between gap-4">
-            <dt className="text-[#70635d]">{label}</dt>
-            <dd className="break-all text-right text-[#3f2d2a]">{value}</dd>
+            <dt className="text-[#5b6270]">{label}</dt>
+            <dd className="break-all text-right text-[#1a1d24]">{value}</dd>
           </div>
         ))}
 
         {isBankUpi && whatsapp ? (
           <div className="flex justify-between gap-4">
-            <dt className="text-[#70635d]">Bill sent to (WhatsApp)</dt>
+            <dt className="text-[#5b6270]">Bill sent to (WhatsApp)</dt>
             <dd className="text-right">
               <a
                 href={`https://wa.me/${whatsapp.length === 10 ? `91${whatsapp}` : whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#3f2d2a] underline underline-offset-2"
+                className="text-[#1a1d24] underline underline-offset-2"
               >
                 {order.paymentWhatsapp}
               </a>
@@ -169,7 +169,7 @@ export function OrderPaymentCard({
               value={reference}
               onChange={(event) => setReference(event.target.value)}
               placeholder="UTR / reference (optional)"
-              className="h-10 flex-1 border border-amber-200 bg-[#fbf9f5] px-3 text-sm text-[#3f2d2a] outline-none focus:border-[#3f2d2a]"
+              className="h-10 flex-1 border border-amber-200 bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
             />
 
             <button
@@ -190,7 +190,7 @@ export function OrderPaymentCard({
                   note: "Payment received (marked by admin).",
                 });
               }}
-              className="h-10 bg-[#7a5650] px-4 text-sm font-medium text-white hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-50"
+              className="h-10 bg-[#2b3a55] px-4 text-sm font-medium text-white hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading ? "Saving…" : "Mark as paid"}
             </button>
@@ -199,7 +199,7 @@ export function OrderPaymentCard({
       ) : null}
 
       {cancelled && !isCod && order.paymentStatus === "failed" ? (
-        <p className="mt-6 border border-neutral-200 bg-neutral-50 p-4 text-xs leading-5 text-[#70635d]">
+        <p className="mt-6 border border-neutral-200 bg-neutral-50 p-4 text-xs leading-5 text-[#5b6270]">
           This order was cancelled because payment was not completed
           {order.paymentId
             ? `. A payment (${order.paymentId}) was received after cancellation — please refund it.`

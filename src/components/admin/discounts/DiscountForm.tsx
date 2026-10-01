@@ -466,7 +466,7 @@ export default function DiscountForm({
       <div className="space-y-6">
         <div className="h-8 w-48 animate-pulse rounded bg-gray-100" />
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-6">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-6">
           <div className="space-y-5">
             {Array.from({
               length: 8,
@@ -506,7 +506,7 @@ export default function DiscountForm({
       <div className="mb-6">
         <Link
           href="/admin/discounts"
-          className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#7a5650]"
+          className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
@@ -530,7 +530,7 @@ export default function DiscountForm({
         className="space-y-6"
       >
         {/* Basic Information */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
           <h2 className="text-base font-semibold text-[var(--color-ink)]">
             Basic Information
           </h2>
@@ -561,7 +561,7 @@ export default function DiscountForm({
                 }
                 placeholder="e.g. WELCOME10"
                 maxLength={40}
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 font-mono text-sm uppercase text-[var(--color-ink)] outline-none transition placeholder:normal-case placeholder:text-gray-400 focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 font-mono text-sm uppercase text-[var(--color-ink)] outline-none transition placeholder:normal-case placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
 
               <p className="mt-1.5 text-xs text-[var(--color-secondary)]">
@@ -589,7 +589,7 @@ export default function DiscountForm({
                       .value as CouponDiscountType,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               >
                 <option value="percentage">
                   Percentage
@@ -624,14 +624,14 @@ export default function DiscountForm({
                 placeholder="Describe this discount..."
                 maxLength={500}
                 rows={3}
-                className="w-full resize-none rounded-lg border border-[var(--color-border)] px-3 py-2.5 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="w-full resize-none rounded-lg border border-[var(--color-border)] px-3 py-2.5 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
           </div>
         </section>
 
         {/* Discount Rules */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
           <h2 className="text-base font-semibold text-[var(--color-ink)]">
             Discount Rules
           </h2>
@@ -670,7 +670,7 @@ export default function DiscountForm({
                       event.target.value,
                     )
                   }
-                  className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 pr-12 text-sm text-[var(--color-ink)] outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                  className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 pr-12 text-sm text-[var(--color-ink)] outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
                 />
 
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-[var(--color-secondary)]">
@@ -710,7 +710,7 @@ export default function DiscountForm({
                     ? "e.g. 500"
                     : "Only for percentage"
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
 
@@ -734,14 +734,14 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="0"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
           </div>
         </section>
 
         {/* Usage */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
           <h2 className="text-base font-semibold text-[var(--color-ink)]">
             Usage Limits
           </h2>
@@ -767,7 +767,7 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
 
@@ -791,7 +791,7 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
 
@@ -808,7 +808,7 @@ export default function DiscountForm({
                     event.target.checked,
                   )
                 }
-                className="h-4 w-4 accent-[#7a5650]"
+                className="h-4 w-4 accent-[#2b3a55]"
               />
 
               <span>
@@ -825,7 +825,7 @@ export default function DiscountForm({
         </section>
 
         {/* Schedule */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
           <h2 className="text-base font-semibold text-[var(--color-ink)]">
             Schedule
           </h2>
@@ -851,7 +851,7 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
             </div>
 
@@ -872,7 +872,7 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-1 focus:ring-[#7a5650]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
               />
 
               <p className="mt-1.5 text-xs text-[var(--color-secondary)]">
@@ -883,7 +883,7 @@ export default function DiscountForm({
         </section>
 
         {/* Status */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
           <label className="flex cursor-pointer items-start gap-3">
             <input
               type="checkbox"
@@ -894,7 +894,7 @@ export default function DiscountForm({
                   event.target.checked,
                 )
               }
-              className="mt-0.5 h-4 w-4 accent-[#7a5650]"
+              className="mt-0.5 h-4 w-4 accent-[#2b3a55]"
             />
 
             <span>
@@ -913,7 +913,7 @@ export default function DiscountForm({
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <Link
             href="/admin/discounts"
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-5 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50"
+            className="inline-flex h-10 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-5 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50"
           >
             Cancel
           </Link>
@@ -921,7 +921,7 @@ export default function DiscountForm({
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#7a5650] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save
               size={17}

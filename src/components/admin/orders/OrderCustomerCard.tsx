@@ -14,12 +14,12 @@ export function OrderCustomerCard({
   order: AdminOrder;
 }) {
   return (
-    <section className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
-      <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+    <section className="border border-[#e5e7ec] bg-[#ffffff] p-6">
+      <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
         Customer
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+      <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
         Customer details
       </h2>
 
@@ -27,15 +27,15 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <User
             size={17}
-            className="text-[#958781]"
+            className="text-[#737a8c]"
           />
 
           <div>
-            <p className="text-sm text-[#3f2d2a]">
+            <p className="text-sm text-[#1a1d24]">
               {order.customerName}
             </p>
 
-            <p className="text-xs text-[#958781]">
+            <p className="text-xs text-[#737a8c]">
               Customer
             </p>
           </div>
@@ -44,10 +44,10 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <Mail
             size={17}
-            className="text-[#958781]"
+            className="text-[#737a8c]"
           />
 
-          <p className="break-all text-sm text-[#70635d]">
+          <p className="break-all text-sm text-[#5b6270]">
             {order.customerEmail}
           </p>
         </div>
@@ -55,10 +55,10 @@ export function OrderCustomerCard({
         <div className="flex items-center gap-3">
           <Phone
             size={17}
-            className="text-[#958781]"
+            className="text-[#737a8c]"
           />
 
-          <p className="text-sm text-[#70635d]">
+          <p className="text-sm text-[#5b6270]">
             {order.customerPhone}
           </p>
         </div>

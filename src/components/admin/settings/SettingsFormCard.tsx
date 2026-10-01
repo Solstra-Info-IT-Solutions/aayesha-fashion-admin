@@ -14,7 +14,7 @@ export default function SettingsFormCard({
   children,
 }: SettingsFormCardProps) {
   return (
-    <section className="rounded-2xl border border-gray-200 bg-[#fbf9f5] shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-[#ffffff] shadow-sm">
       <div className="border-b border-gray-100 px-5 py-4 sm:px-6">
         <h2 className="text-base font-semibold text-gray-900">
           {title}

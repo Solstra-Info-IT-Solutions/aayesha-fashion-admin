@@ -25,7 +25,7 @@ export default function SettingsMobileCard({
       : String(setting.value ?? "");
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-[#fbf9f5] p-4 shadow-sm">
+    <div className="rounded-2xl border border-gray-200 bg-[#ffffff] p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="break-all font-semibold text-gray-900">

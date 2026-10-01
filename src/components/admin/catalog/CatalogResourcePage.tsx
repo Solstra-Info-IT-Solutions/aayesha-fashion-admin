@@ -1659,7 +1659,7 @@ async function handleDelete(
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-[#fbf9f5]">
+      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-[#ffffff]">
         {loading ||
         items.length > 0 ? (
           <CatalogTable

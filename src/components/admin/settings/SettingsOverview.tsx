@@ -57,7 +57,7 @@ export default function SettingsOverview({
         return (
           <div
             key={card.label}
-            className="rounded-2xl border border-gray-200 bg-[#fbf9f5] p-4 shadow-sm"
+            className="rounded-2xl border border-gray-200 bg-[#ffffff] p-4 shadow-sm"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>

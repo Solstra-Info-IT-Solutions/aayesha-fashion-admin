@@ -12,22 +12,22 @@ export function Breadcrumbs() {
 
   return (
     <div className="min-w-0">
-      <p className="hidden text-[10px] uppercase tracking-[0.2em] text-[#958781] sm:block">
+      <p className="hidden text-[10px] uppercase tracking-[0.2em] text-[#737a8c] sm:block">
         Aayesha Fashion
       </p>
 
       <div className="flex items-center gap-2 sm:mt-0.5">
         <Link
           href="/admin"
-          className="hidden text-sm text-[#70635d] hover:text-[#3f2d2a] sm:inline"
+          className="hidden text-sm text-[#5b6270] hover:text-[#1a1d24] sm:inline"
         >
           Admin
         </Link>
 
-        <span className="hidden text-[#b9aaa1] sm:inline">/</span>
+        <span className="hidden text-[#747b8d] sm:inline">/</span>
 
         <span
-          className={`truncate font-serif text-xl text-[#3f2d2a] ${
+          className={`truncate font-serif text-xl text-[#1a1d24] ${
             deeper ? "hidden sm:inline" : ""
           }`}
         >
@@ -35,7 +35,7 @@ export function Breadcrumbs() {
         </span>
 
         {deeper ? (
-          <span className="truncate font-serif text-xl text-[#3f2d2a] sm:hidden">
+          <span className="truncate font-serif text-xl text-[#1a1d24] sm:hidden">
             {title}
           </span>
         ) : null}

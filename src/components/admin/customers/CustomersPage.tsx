@@ -408,7 +408,7 @@ export default function CustomersPage() {
               void loadCustomers();
               void loadStats();
             }}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <RefreshCw
               size={16}
@@ -496,7 +496,7 @@ export default function CustomersPage() {
 
         {/* FILTER BAR */}
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm">
 
           <div className="border-b border-[var(--color-border)] p-4">
 
@@ -516,7 +516,7 @@ export default function CustomersPage() {
                     )
                   }
                   placeholder="Search by name, email or phone..."
-                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-slate-400 focus:border-[var(--color-rose-dark)] focus:ring-2 focus:ring-[var(--color-rose-dark)]/10"
+                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-slate-400 focus:border-[var(--color-rose-dark)] focus:ring-2 focus:ring-[var(--color-rose-dark)]/10"
                 />
               </div>
 
@@ -527,7 +527,7 @@ export default function CustomersPage() {
                     event.target.value,
                   )
                 }
-                className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
               >
                 {statusOptions.map(
                   (option) => (
@@ -549,7 +549,7 @@ export default function CustomersPage() {
                   );
                   setPage(1);
                 }}
-                className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
               >
                 {sortOptions.map(
                   (option) => (
@@ -573,7 +573,7 @@ export default function CustomersPage() {
                 className={`inline-flex h-11 items-center justify-center gap-2 rounded-lg border px-4 text-sm font-medium transition ${
                   showFilters
                     ? "border-[var(--color-rose-dark)] bg-[var(--color-rose-dark)] text-white"
-                    : "border-[var(--color-border)] bg-[#fbf9f5] text-[var(--color-ink)] hover:bg-slate-50"
+                    : "border-[var(--color-border)] bg-[#ffffff] text-[var(--color-ink)] hover:bg-slate-50"
                 }`}
               >
                 <Filter size={16} />
@@ -593,7 +593,7 @@ export default function CustomersPage() {
                     );
                     setPage(1);
                   }}
-                  className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm outline-none"
+                  className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm outline-none"
                 >
                   <option value="">
                     Email Marketing: All
@@ -616,7 +616,7 @@ export default function CustomersPage() {
                     );
                     setPage(1);
                   }}
-                  className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm outline-none"
+                  className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm outline-none"
                 >
                   <option value="">
                     WhatsApp: All
@@ -817,7 +817,7 @@ export default function CustomersPage() {
                         <td className="px-5 py-4 text-right">
                           <Link
                             href={`/admin/customers/${customer.userId}`}
-                            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+                            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
                           >
                             <Eye size={15} />
                             View
@@ -874,7 +874,7 @@ export default function CustomersPage() {
                           ),
                       )
                     }
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] text-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <ChevronLeft
                       size={16}
@@ -900,7 +900,7 @@ export default function CustomersPage() {
                           ),
                       )
                     }
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] text-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <ChevronRight
                       size={16}
@@ -925,7 +925,7 @@ function StatCard({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">

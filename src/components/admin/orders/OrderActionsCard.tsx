@@ -198,12 +198,12 @@ export function OrderActionsCard({
 
   return (
     <section className="space-y-5">
-      <div className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+      <div className="border border-[#e5e7ec] bg-[#ffffff] p-6">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
           Fulfilment
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
           Order status
         </h2>
 
@@ -217,7 +217,7 @@ export function OrderActionsCard({
               )
             }
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] bg-[#fbf9f5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm outline-none focus:border-[#1a1d24]"
           >
             <option value="">
               Select next status
@@ -252,7 +252,7 @@ export function OrderActionsCard({
             placeholder="Optional status note"
             disabled={loading}
             rows={3}
-            className="w-full resize-none border border-[#d8cec5] p-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="w-full resize-none border border-[#d3d7df] p-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <button
@@ -264,19 +264,19 @@ export function OrderActionsCard({
               loading ||
               !status
             }
-            className="h-10 w-full bg-[#7a5650] text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-10 w-full bg-[#2b3a55] text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Update status
           </button>
         </div>
       </div>
 
-      <div className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+      <div className="border border-[#e5e7ec] bg-[#ffffff] p-6">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
           Payment
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
           Payment details
         </h2>
 
@@ -290,7 +290,7 @@ export function OrderActionsCard({
               )
             }
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] bg-[#fbf9f5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm outline-none focus:border-[#1a1d24]"
           >
             <option value="">
               Select payment status
@@ -320,7 +320,7 @@ export function OrderActionsCard({
             }
             placeholder="Payment ID"
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <input
@@ -332,7 +332,7 @@ export function OrderActionsCard({
             }
             placeholder="Payment source"
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <button
@@ -344,19 +344,19 @@ export function OrderActionsCard({
               loading ||
               !paymentStatus
             }
-            className="h-10 w-full border border-[#3f2d2a] text-sm font-medium text-[#3f2d2a] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-10 w-full border border-[#1a1d24] text-sm font-medium text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Update payment
           </button>
         </div>
       </div>
 
-      <div className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+      <div className="border border-[#e5e7ec] bg-[#ffffff] p-6">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
           Shipping
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
           Tracking information
         </h2>
 
@@ -370,7 +370,7 @@ export function OrderActionsCard({
             }
             placeholder="Courier name"
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <input
@@ -382,7 +382,7 @@ export function OrderActionsCard({
             }
             placeholder="Tracking number"
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <input
@@ -394,7 +394,7 @@ export function OrderActionsCard({
             }
             placeholder="Tracking URL"
             disabled={loading}
-            className="h-11 w-full border border-[#d8cec5] px-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="h-11 w-full border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <button
@@ -403,19 +403,19 @@ export function OrderActionsCard({
               void submitShipping()
             }
             disabled={loading}
-            className="h-10 w-full border border-[#3f2d2a] text-sm font-medium text-[#3f2d2a] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-10 w-full border border-[#1a1d24] text-sm font-medium text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Save shipping
           </button>
         </div>
       </div>
 
-      <div className="border border-[#e6ddd4] bg-[#fbf9f5] p-6">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+      <div className="border border-[#e5e7ec] bg-[#ffffff] p-6">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
           Internal
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
           Admin notes
         </h2>
 
@@ -430,7 +430,7 @@ export function OrderActionsCard({
             rows={5}
             placeholder="Internal notes..."
             disabled={loading}
-            className="w-full resize-none border border-[#d8cec5] p-3 text-sm outline-none focus:border-[#3f2d2a]"
+            className="w-full resize-none border border-[#d3d7df] p-3 text-sm outline-none focus:border-[#1a1d24]"
           />
 
           <button
@@ -439,7 +439,7 @@ export function OrderActionsCard({
               void submitNotes()
             }
             disabled={loading}
-            className="h-10 w-full border border-[#3f2d2a] text-sm font-medium text-[#3f2d2a] disabled:opacity-50"
+            className="h-10 w-full border border-[#1a1d24] text-sm font-medium text-[#1a1d24] disabled:opacity-50"
           >
             Save notes
           </button>
@@ -454,12 +454,12 @@ export function OrderActionsCard({
           "returned" &&
         order.status !==
           "exchanged" && (
-          <div className="border border-[#f5eae6] bg-[#f5eae6] p-6">
-            <p className="text-[10px] uppercase tracking-[0.16em] text-[#a98282]">
+          <div className="border border-[#fdecec] bg-[#fdecec] p-6">
+            <p className="text-[10px] uppercase tracking-[0.16em] text-[#7d8aa6]">
               Destructive action
             </p>
 
-            <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+            <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
               Cancel order
             </h2>
 
@@ -479,7 +479,7 @@ export function OrderActionsCard({
                 rows={3}
                 placeholder="Cancellation reason"
                 disabled={loading}
-                className="w-full resize-none border border-[#f5eae6] bg-[#fbf9f5] p-3 text-sm outline-none focus:border-[#a98282]"
+                className="w-full resize-none border border-[#fdecec] bg-[#ffffff] p-3 text-sm outline-none focus:border-[#7d8aa6]"
               />
 
               <button
@@ -491,7 +491,7 @@ export function OrderActionsCard({
                   loading ||
                   !cancelReason.trim()
                 }
-                className="h-10 w-full bg-[#a98282] text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+                className="h-10 w-full bg-[#7d8aa6] text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Cancel order
               </button>

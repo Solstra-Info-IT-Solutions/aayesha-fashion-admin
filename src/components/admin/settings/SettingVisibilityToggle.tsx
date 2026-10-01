@@ -33,7 +33,7 @@ export default function SettingVisibilityToggle({
       <div className="flex items-center gap-3">
         <div
           className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-            checked ? "bg-[#fbf9f5]" : "bg-gray-100"
+            checked ? "bg-[#ffffff]" : "bg-gray-100"
           }`}
         >
           {checked ? (
@@ -62,7 +62,7 @@ export default function SettingVisibilityToggle({
         }`}
       >
         <span
-          className={`absolute top-0.5 h-5 w-5 rounded-full bg-[#fbf9f5] shadow-sm transition ${
+          className={`absolute top-0.5 h-5 w-5 rounded-full bg-[#ffffff] shadow-sm transition ${
             checked ? "left-[22px]" : "left-0.5"
           }`}
         />
