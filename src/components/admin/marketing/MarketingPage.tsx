@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -33,6 +34,7 @@ import MarketingEmptyState from "./MarketingEmptyState";
 const DEFAULT_LIMIT = 10;
 
 export default function MarketingPage() {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const {
     accessToken,
     isAuthenticated,
@@ -251,9 +253,12 @@ export default function MarketingPage() {
   const handleArchive = async (
     campaign: MarketingCampaign,
   ) => {
-    const confirmed = window.confirm(
-      `Are you sure you want to archive "${campaign.name}"?`,
-    );
+    const confirmed = await confirm({
+      title: "Archive this campaign?",
+      description: `"${campaign.name}" will be moved to archived. You can restore it later.`,
+      confirmLabel: "Archive",
+      tone: "default",
+    });
 
     if (!confirmed) return;
 
@@ -333,9 +338,11 @@ export default function MarketingPage() {
   const handleDelete = async (
     campaign: MarketingCampaign,
   ) => {
-    const confirmed = window.confirm(
-      `Are you sure you want to permanently delete "${campaign.name}"?`,
-    );
+    const confirmed = await confirm({
+      title: "Delete this campaign?",
+      description: `"${campaign.name}" will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete campaign",
+    });
 
     if (!confirmed) return;
 
@@ -406,25 +413,25 @@ export default function MarketingPage() {
 
   if (!isInitialized) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-6">
-            <div className="h-20 rounded-xl bg-gray-100" />
+            <div className="h-20 rounded-[14px] bg-[#efe8d8]" />
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {Array.from({ length: 4 }).map(
                 (_, index) => (
                   <div
                     key={index}
-                    className="h-32 rounded-xl bg-gray-100"
+                    className="h-32 rounded-[14px] bg-[#efe8d8]"
                   />
                 ),
               )}
             </div>
 
-            <div className="h-16 rounded-xl bg-gray-100" />
+            <div className="h-16 rounded-[14px] bg-[#efe8d8]" />
 
-            <div className="h-96 rounded-xl bg-gray-100" />
+            <div className="h-96 rounded-[14px] bg-[#efe8d8]" />
           </div>
         </div>
       </main>
@@ -447,7 +454,8 @@ export default function MarketingPage() {
     includeArchived;
 
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <main className="min-h-full">
+      {confirmDialog}
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="space-y-6">
           {/* Header */}
@@ -600,7 +608,7 @@ export default function MarketingPage() {
 //   };
 
 //   return (
-//     <main className="min-h-screen bg-[var(--color-background)]">
+//     <main className="min-h-full">
 //       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 //         <div className="space-y-6">
 //           <MarketingHeader

@@ -28,23 +28,23 @@ function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5">
+    <div className="surface p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-sm font-medium text-[var(--color-secondary)]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
             {title}
           </p>
 
-          <p className="mt-2 truncate text-2xl font-semibold tracking-tight text-[var(--color-ink)]">
+          <p className="display mt-1 truncate text-3xl font-semibold text-[#2a2520]">
             {value}
           </p>
 
-          <p className="mt-1 text-xs text-[var(--color-secondary)]">
+          <p className="mt-1 text-xs text-[#5f584d]">
             {description}
           </p>
         </div>
 
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[var(--color-rose-dark)]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f1ead9] text-[#6f542f]">
           {icon}
         </div>
       </div>
@@ -58,18 +58,18 @@ function StatsSkeleton() {
       {Array.from({ length: 4 }).map((_, index) => (
         <div
           key={index}
-          className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-5"
+          className="surface p-5"
         >
           <div className="flex items-start justify-between gap-4">
             <div className="w-full">
-              <div className="h-4 w-28 animate-pulse rounded bg-gray-200" />
+              <div className="h-4 w-28 animate-pulse rounded bg-[#e6dfcf]" />
 
-              <div className="mt-3 h-8 w-24 animate-pulse rounded bg-gray-200" />
+              <div className="mt-3 h-8 w-24 animate-pulse rounded bg-[#e6dfcf]" />
 
-              <div className="mt-2 h-3 w-32 animate-pulse rounded bg-gray-200" />
+              <div className="mt-2 h-3 w-32 animate-pulse rounded bg-[#e6dfcf]" />
             </div>
 
-            <div className="h-10 w-10 shrink-0 animate-pulse rounded-lg bg-gray-200" />
+            <div className="h-10 w-10 shrink-0 animate-pulse rounded-lg bg-[#e6dfcf]" />
           </div>
         </div>
       ))}

@@ -17,8 +17,8 @@ export default function MarketingEmptyState({
   onClearFilters,
 }: MarketingEmptyStateProps) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-14 text-center">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-rose-light)] text-[var(--color-rose-dark)]">
+    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14 text-center">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#f1ead9] text-[#6f542f]">
         {filtered ? (
           <Search size={24} />
         ) : (
@@ -26,13 +26,13 @@ export default function MarketingEmptyState({
         )}
       </div>
 
-      <h3 className="mt-5 text-base font-semibold text-[var(--color-ink)]">
+      <h3 className="mt-5 text-base font-semibold text-[#2a2520]">
         {filtered
           ? "No campaigns found"
           : "No marketing campaigns yet"}
       </h3>
 
-      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[var(--color-secondary)]">
+      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5f584d]">
         {filtered
           ? "No campaigns match your current search or filters. Try changing the filters or search term."
           : "Create your first marketing campaign to start managing your promotional activities."}
@@ -43,14 +43,14 @@ export default function MarketingEmptyState({
           <button
             type="button"
             onClick={onClearFilters}
-            className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+            className="inline-flex items-center justify-center rounded-lg border border-[#e6dfcf] px-4 py-2.5 text-sm font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
           >
             Clear Filters
           </button>
         ) : (
           <Link
             href="/admin/marketing/create"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--color-rose-dark)] px-4 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#6f542f] px-4 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
           >
             <Plus size={16} />
             New Campaign

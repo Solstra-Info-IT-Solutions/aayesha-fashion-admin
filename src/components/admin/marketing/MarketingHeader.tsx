@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  Megaphone,
   Plus,
   RefreshCw,
 } from "lucide-react";
@@ -17,37 +16,35 @@ export default function MarketingHeader({
   onRefresh,
 }: MarketingHeaderProps) {
   return (
-    <div className="flex flex-col gap-5 border-b border-[var(--color-border)] pb-6 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col gap-5 pb-2 lg:flex-row lg:items-center lg:justify-between">
       {/* Left */}
       <div>
         {/* Breadcrumb */}
-        <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
+        <div className="mb-2 hidden items-center gap-2 text-xs text-[#5f584d]">
           <Link
             href="/admin"
-            className="transition hover:text-[var(--color-rose-dark)]"
+            className="transition hover:text-[#6f542f]"
           >
             Admin
           </Link>
 
           <span>/</span>
 
-          <span className="text-[var(--color-ink)]">
+          <span className="text-[#2a2520]">
             Marketing
           </span>
         </div>
 
         {/* Title */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[var(--color-rose-dark)]">
-            <Megaphone size={22} />
-          </div>
-
+          
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Campaigns</p>
+            <h1 className="mt-1 text-[#2a2520]">
               Marketing
             </h1>
 
-            <p className="mt-1 text-sm text-[var(--color-secondary)]">
+            <p className="mt-1 text-sm text-[#5f584d]">
               Manage campaigns, promotions and
               marketing activities.
             </p>
@@ -61,7 +58,7 @@ export default function MarketingHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] transition hover:bg-[#f1ead9] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={16}
@@ -77,7 +74,7 @@ export default function MarketingHeader({
 
         <Link
   href="/admin/marketing/create"
-  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3d372f]"
+  className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-[#fffdf8] transition hover:bg-[#3d372f]"
 >
   <Plus size={17} />
   New Campaign

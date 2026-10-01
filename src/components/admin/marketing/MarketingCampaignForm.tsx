@@ -500,9 +500,9 @@ export default function MarketingCampaignForm({
     return (
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="animate-pulse space-y-5">
-          <div className="h-8 w-56 rounded bg-gray-100" />
+          <div className="h-8 w-56 rounded bg-[#efe8d8]" />
 
-          <div className="h-[600px] rounded-xl bg-gray-100" />
+          <div className="h-[600px] rounded-[14px] bg-[#efe8d8]" />
         </div>
       </div>
     );
@@ -526,77 +526,77 @@ export default function MarketingCampaignForm({
     loadingCampaign
   ) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-6">
             <Link
               href="/admin/marketing"
-              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
+              className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
             >
               <ArrowLeft size={16} />
 
               Back to Marketing
             </Link>
 
-            <div className="h-8 w-64 animate-pulse rounded bg-gray-100" />
+            <div className="h-8 w-64 animate-pulse rounded bg-[#efe8d8]" />
 
-            <div className="mt-2 h-4 w-80 animate-pulse rounded bg-gray-100" />
+            <div className="mt-2 h-4 w-80 animate-pulse rounded bg-[#efe8d8]" />
           </div>
 
-          <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8]">
+          <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]">
             <div className="space-y-6 p-5 sm:p-7">
               <div className="space-y-2">
-                <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+                <div className="h-4 w-32 animate-pulse rounded bg-[#efe8d8]" />
 
-                <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
               </div>
 
               <div className="space-y-2">
-                <div className="h-4 w-24 animate-pulse rounded bg-gray-100" />
+                <div className="h-4 w-24 animate-pulse rounded bg-[#efe8d8]" />
 
-                <div className="h-28 w-full animate-pulse rounded-lg bg-gray-100" />
+                <div className="h-28 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-32 animate-pulse rounded bg-[#efe8d8]" />
 
-                  <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                  <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
                 </div>
 
                 <div className="space-y-2">
-                  <div className="h-4 w-24 animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-24 animate-pulse rounded bg-[#efe8d8]" />
 
-                  <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                  <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <div className="h-4 w-20 animate-pulse rounded bg-gray-100" />
+                <div className="h-4 w-20 animate-pulse rounded bg-[#efe8d8]" />
 
-                <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <div className="h-4 w-36 animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-36 animate-pulse rounded bg-[#efe8d8]" />
 
-                  <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                  <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
                 </div>
 
                 <div className="space-y-2">
-                  <div className="h-4 w-32 animate-pulse rounded bg-gray-100" />
+                  <div className="h-4 w-32 animate-pulse rounded bg-[#efe8d8]" />
 
-                  <div className="h-11 w-full animate-pulse rounded-lg bg-gray-100" />
+                  <div className="h-11 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-[var(--color-border)] p-5 sm:p-7">
+            <div className="border-t border-[#e6dfcf] p-5 sm:p-7">
               <div className="flex justify-end gap-3">
-                <div className="h-11 w-24 animate-pulse rounded-lg bg-gray-100" />
+                <div className="h-11 w-24 animate-pulse rounded-lg bg-[#efe8d8]" />
 
-                <div className="h-11 w-40 animate-pulse rounded-lg bg-gray-100" />
+                <div className="h-11 w-40 animate-pulse rounded-lg bg-[#efe8d8]" />
               </div>
             </div>
           </div>
@@ -613,29 +613,29 @@ export default function MarketingCampaignForm({
     loadError
   ) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <Link
             href="/admin/marketing"
-            className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
+            className="mb-6 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
           >
             <ArrowLeft size={16} />
 
             Back to Marketing
           </Link>
 
-          <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-center">
-            <h1 className="text-lg font-semibold text-red-700">
+          <div className="rounded-[14px] border border-[#f5c2c0] bg-[#fdecec] p-8 text-center">
+            <h1 className="text-lg font-semibold text-[#8f1f19]">
               Unable to load campaign
             </h1>
 
-            <p className="mt-2 text-sm text-red-600">
+            <p className="mt-2 text-sm text-[#b3261e]">
               {loadError}
             </p>
 
             <Link
               href="/admin/marketing"
-              className="mt-5 inline-flex h-10 items-center justify-center rounded-lg bg-[var(--color-rose-dark)] px-5 text-sm font-medium text-white transition hover:opacity-90"
+              className="mt-5 inline-flex h-10 items-center justify-center rounded-lg bg-[#6f542f] px-5 text-sm font-medium text-white transition hover:opacity-90"
             >
               Back to Campaigns
             </Link>
@@ -646,26 +646,26 @@ export default function MarketingCampaignForm({
   }
 
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <main className="min-h-full">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6">
           <Link
             href="/admin/marketing"
-            className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
+            className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
           >
             <ArrowLeft size={16} />
 
             Back to Marketing
           </Link>
 
-          <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+          <h1 className="text-2xl font-semibold tracking-tight text-[#2a2520] sm:text-3xl">
             {isEdit
               ? "Edit Campaign"
               : "Create Campaign"}
           </h1>
 
-          <p className="mt-1 text-sm text-[var(--color-secondary)]">
+          <p className="mt-1 text-sm text-[#5f584d]">
             {isEdit
               ? "Update the campaign details below."
               : "Create a new marketing campaign."}
@@ -675,18 +675,18 @@ export default function MarketingCampaignForm({
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8]"
+          className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]"
         >
           <div className="space-y-6 p-5 sm:p-7">
             {/* Campaign Name */}
             <div>
               <label
                 htmlFor="campaign-name"
-                className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                className="mb-2 block text-sm font-medium text-[#2a2520]"
               >
                 Campaign Name
 
-                <span className="ml-1 text-red-500">
+                <span className="ml-1 text-[#b3261e]">
                   *
                 </span>
               </label>
@@ -703,15 +703,15 @@ export default function MarketingCampaignForm({
                 }
                 placeholder="e.g. Festive Season Sale"
                 maxLength={120}
-                className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition ${
                   errors.name
-                    ? "border-red-500"
-                    : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
+                    ? "border-[#b3261e]"
+                    : "border-[#e6dfcf] focus:border-[#6f542f]"
                 }`}
               />
 
               {errors.name && (
-                <p className="mt-1.5 text-xs text-red-600">
+                <p className="mt-1.5 text-xs text-[#b3261e]">
                   {errors.name}
                 </p>
               )}
@@ -721,7 +721,7 @@ export default function MarketingCampaignForm({
             <div>
               <label
                 htmlFor="campaign-description"
-                className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                className="mb-2 block text-sm font-medium text-[#2a2520]"
               >
                 Description
               </label>
@@ -738,23 +738,23 @@ export default function MarketingCampaignForm({
                 placeholder="Describe the purpose of this campaign..."
                 rows={4}
                 maxLength={500}
-                className={`w-full resize-none rounded-lg border bg-[#fffdf8] px-3 py-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                className={`w-full resize-none rounded-lg border bg-[#fffdf8] px-3 py-3 text-sm text-[#2a2520] outline-none transition ${
                   errors.description
-                    ? "border-red-500"
-                    : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
+                    ? "border-[#b3261e]"
+                    : "border-[#e6dfcf] focus:border-[#6f542f]"
                 }`}
               />
 
               <div className="mt-1 flex justify-between">
                 {errors.description ? (
-                  <p className="text-xs text-red-600">
+                  <p className="text-xs text-[#b3261e]">
                     {errors.description}
                   </p>
                 ) : (
                   <span />
                 )}
 
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-[#756d62]">
                   {form.description.length}/500
                 </span>
               </div>
@@ -766,11 +766,11 @@ export default function MarketingCampaignForm({
               <div>
                 <label
                   htmlFor="campaign-type"
-                  className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                  className="mb-2 block text-sm font-medium text-[#2a2520]"
                 >
                   Campaign Type
 
-                  <span className="ml-1 text-red-500">
+                  <span className="ml-1 text-[#b3261e]">
                     *
                   </span>
                 </label>
@@ -785,7 +785,7 @@ export default function MarketingCampaignForm({
                         .value as MarketingCampaignType,
                     )
                   }
-                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                  className="h-11 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#6f542f]"
                 >
                   {MARKETING_CAMPAIGN_TYPES.map(
                     (item) => (
@@ -804,7 +804,7 @@ export default function MarketingCampaignForm({
               <div>
                 <label
                   htmlFor="campaign-status"
-                  className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                  className="mb-2 block text-sm font-medium text-[#2a2520]"
                 >
                   Status
                 </label>
@@ -819,7 +819,7 @@ export default function MarketingCampaignForm({
                         .value as MarketingCampaignStatus,
                     )
                   }
-                  className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-rose-dark)]"
+                  className="h-11 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#6f542f]"
                 >
                   {MARKETING_CAMPAIGN_STATUSES.map(
                     (item) => (
@@ -839,17 +839,17 @@ export default function MarketingCampaignForm({
             <div>
               <label
                 htmlFor="campaign-budget"
-                className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                className="mb-2 block text-sm font-medium text-[#2a2520]"
               >
                 Budget
 
-                <span className="ml-1 text-red-500">
+                <span className="ml-1 text-[#b3261e]">
                   *
                 </span>
               </label>
 
               <div className="relative">
-                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--color-secondary)]">
+                <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#5f584d]">
                   ₹
                 </span>
 
@@ -866,16 +866,16 @@ export default function MarketingCampaignForm({
                     )
                   }
                   placeholder="0"
-                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] pl-8 pr-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] pl-8 pr-3 text-sm text-[#2a2520] outline-none transition ${
                     errors.budget
-                      ? "border-red-500"
-                      : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
+                      ? "border-[#b3261e]"
+                      : "border-[#e6dfcf] focus:border-[#6f542f]"
                   }`}
                 />
               </div>
 
               {errors.budget && (
-                <p className="mt-1.5 text-xs text-red-600">
+                <p className="mt-1.5 text-xs text-[#b3261e]">
                   {errors.budget}
                 </p>
               )}
@@ -887,11 +887,11 @@ export default function MarketingCampaignForm({
               <div>
                 <label
                   htmlFor="campaign-start"
-                  className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                  className="mb-2 block text-sm font-medium text-[#2a2520]"
                 >
                   Start Date & Time
 
-                  <span className="ml-1 text-red-500">
+                  <span className="ml-1 text-[#b3261e]">
                     *
                   </span>
                 </label>
@@ -906,15 +906,15 @@ export default function MarketingCampaignForm({
                       event.target.value,
                     )
                   }
-                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition ${
                     errors.startsAt
-                      ? "border-red-500"
-                      : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
+                      ? "border-[#b3261e]"
+                      : "border-[#e6dfcf] focus:border-[#6f542f]"
                   }`}
                 />
 
                 {errors.startsAt && (
-                  <p className="mt-1.5 text-xs text-red-600">
+                  <p className="mt-1.5 text-xs text-[#b3261e]">
                     {errors.startsAt}
                   </p>
                 )}
@@ -924,7 +924,7 @@ export default function MarketingCampaignForm({
               <div>
                 <label
                   htmlFor="campaign-end"
-                  className="mb-2 block text-sm font-medium text-[var(--color-ink)]"
+                  className="mb-2 block text-sm font-medium text-[#2a2520]"
                 >
                   End Date & Time
                 </label>
@@ -939,15 +939,15 @@ export default function MarketingCampaignForm({
                       event.target.value,
                     )
                   }
-                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition ${
+                  className={`h-11 w-full rounded-lg border bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition ${
                     errors.endsAt
-                      ? "border-red-500"
-                      : "border-[var(--color-border)] focus:border-[var(--color-rose-dark)]"
+                      ? "border-[#b3261e]"
+                      : "border-[#e6dfcf] focus:border-[#6f542f]"
                   }`}
                 />
 
                 {errors.endsAt && (
-                  <p className="mt-1.5 text-xs text-red-600">
+                  <p className="mt-1.5 text-xs text-[#b3261e]">
                     {errors.endsAt}
                   </p>
                 )}
@@ -956,7 +956,7 @@ export default function MarketingCampaignForm({
           </div>
 
           {/* Footer */}
-          <div className="flex flex-col-reverse gap-3 border-t border-[var(--color-border)] p-5 sm:flex-row sm:items-center sm:justify-end sm:p-7">
+          <div className="flex flex-col-reverse gap-3 border-t border-[#e6dfcf] p-5 sm:flex-row sm:items-center sm:justify-end sm:p-7">
             <Link
               href={
                 isEdit &&
@@ -964,7 +964,7 @@ export default function MarketingCampaignForm({
                   ? `/admin/marketing/${loadedCampaign._id}`
                   : "/admin/marketing"
               }
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-[var(--color-border)] px-5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-[#e6dfcf] px-5 text-sm font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
             >
               Cancel
             </Link>

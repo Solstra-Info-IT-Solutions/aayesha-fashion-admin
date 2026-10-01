@@ -57,7 +57,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-blue-50 text-blue-700";
+      return "bg-[#e6f0f7] text-[#1f5f86]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -66,11 +66,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-gray-100 text-gray-600";
+      return "bg-[#efe8d8] text-[#5f584d]";
 
     case "draft":
     default:
-      return "bg-gray-50 text-gray-700";
+      return "bg-[#f7f2e7] text-[#3d372f]";
   }
 }
 
@@ -81,36 +81,36 @@ export default function MarketingCampaignTable({
   onDelete,
 }: MarketingCampaignTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#fffdf8] md:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] md:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] border-collapse">
           <thead>
-            <tr className="border-b border-[var(--color-border)] bg-gray-50/70">
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]/70">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Campaign
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Type
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Status
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Budget
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Start Date
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 End Date
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
                 Actions
               </th>
             </tr>
@@ -124,24 +124,24 @@ export default function MarketingCampaignTable({
               return (
                 <tr
                   key={campaign._id}
-                  className="border-b border-[var(--color-border)] last:border-b-0 hover:bg-gray-50/50"
+                  className="border-b border-[#e6dfcf] last:border-b-0 hover:bg-[#f7f2e7]/50"
                 >
                   {/* Campaign */}
                   <td className="px-5 py-4">
                     <div className="max-w-[280px]">
                       <Link
                         href={`/admin/marketing/${campaign._id}`}
-                        className="block truncate text-sm font-semibold text-[var(--color-ink)] transition hover:text-[var(--color-rose-dark)]"
+                        className="block truncate text-sm font-semibold text-[#2a2520] transition hover:text-[#6f542f]"
                       >
                         {campaign.name}
                       </Link>
 
                       {campaign.description ? (
-                        <p className="mt-1 truncate text-xs text-[var(--color-secondary)]">
+                        <p className="mt-1 truncate text-xs text-[#5f584d]">
                           {campaign.description}
                         </p>
                       ) : (
-                        <p className="mt-1 text-xs text-gray-400">
+                        <p className="mt-1 text-xs text-[#756d62]">
                           No description
                         </p>
                       )}
@@ -150,7 +150,7 @@ export default function MarketingCampaignTable({
 
                   {/* Type */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[var(--color-ink)]">
+                    <span className="text-sm text-[#2a2520]">
                       {formatLabel(campaign.type)}
                     </span>
                   </td>
@@ -168,21 +168,21 @@ export default function MarketingCampaignTable({
 
                   {/* Budget */}
                   <td className="px-5 py-4 text-right">
-                    <span className="text-sm font-medium text-[var(--color-ink)]">
+                    <span className="text-sm font-medium text-[#2a2520]">
                       {formatCurrency(campaign.budget)}
                     </span>
                   </td>
 
                   {/* Start Date */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[var(--color-ink)]">
+                    <span className="text-sm text-[#2a2520]">
                       {formatDate(campaign.startsAt)}
                     </span>
                   </td>
 
                   {/* End Date */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[var(--color-ink)]">
+                    <span className="text-sm text-[#2a2520]">
                       {formatDate(campaign.endsAt)}
                     </span>
                   </td>
@@ -194,7 +194,7 @@ export default function MarketingCampaignTable({
                       <Link
                         href={`/admin/marketing/${campaign._id}`}
                         title="View campaign"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-gray-100 hover:text-[var(--color-ink)]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
                       >
                         <Eye size={16} />
                       </Link>
@@ -204,7 +204,7 @@ export default function MarketingCampaignTable({
                         <Link
                           href={`/admin/marketing/${campaign._id}/edit`}
                           title="Edit campaign"
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-[var(--color-rose-light)] hover:text-[var(--color-rose-dark)]"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#f1ead9] hover:text-[#6f542f]"
                         >
                           <Pencil size={15} />
                         </Link>
@@ -218,7 +218,7 @@ export default function MarketingCampaignTable({
                           onClick={() =>
                             onRestore(campaign)
                           }
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-green-50 hover:text-green-700"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-green-50 hover:text-green-700"
                         >
                           <RotateCcw size={15} />
                         </button>
@@ -229,7 +229,7 @@ export default function MarketingCampaignTable({
                           onClick={() =>
                             onArchive(campaign)
                           }
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-yellow-50 hover:text-yellow-700"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-yellow-50 hover:text-yellow-700"
                         >
                           <Archive size={15} />
                         </button>
@@ -242,7 +242,7 @@ export default function MarketingCampaignTable({
                         onClick={() =>
                           onDelete(campaign)
                         }
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-red-50 hover:text-red-600"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#fdecec] hover:text-[#b3261e]"
                       >
                         <Trash2 size={15} />
                       </button>
