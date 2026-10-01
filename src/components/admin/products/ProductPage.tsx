@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -24,6 +25,8 @@ import type {
 } from "@/types/admin-product";
 
 import ProductHeader from "./ProductHeader";
+import { getCategories } from "@/services/catalog.service";
+
 import ProductToolbar from "./ProductToolbar";
 import ProductTable from "./ProductTable";
 import ProductPagination from "./ProductPagination";
@@ -40,6 +43,38 @@ export default function ProductPage() {
       limit: 25,
       sort: "newest",
     });
+
+  const [categories, setCategories] =
+    useState<Array<{ id: string; name: string }>>([]);
+
+  useEffect(() => {
+    if (!accessToken) return;
+
+    let cancelled = false;
+
+    getCategories(accessToken, { page: 1, limit: 100 })
+      .then((response) => {
+        if (!cancelled) {
+          setCategories(
+            response.items.map((category) => ({
+              id: String(category.id),
+              name: category.name,
+            })),
+          );
+        }
+      })
+      // Names are a nicety: fall back to the raw id if this fails.
+      .catch(() => undefined);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [accessToken]);
+
+  const categoryNames = useMemo(
+    () => new Map(categories.map((category) => [category.id, category.name])),
+    [categories],
+  );
 
   const {
     products,
@@ -162,6 +197,7 @@ export default function ProductPage() {
       ===================================================== */}
 
       <ProductToolbar
+        categories={categories}
         filters={filters}
         onChange={setFilters}
       />
@@ -183,6 +219,7 @@ export default function ProductPage() {
       {hasProducts ? (
         <>
           <ProductTable
+            categoryNames={categoryNames}
             products={products}
             loading={loading}
             onArchive={archive}
@@ -225,6 +262,7 @@ export default function ProductPage() {
         =================================================== */
 
         <ProductTable
+          categoryNames={categoryNames}
           products={[]}
           loading
           onArchive={

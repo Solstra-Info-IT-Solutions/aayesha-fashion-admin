@@ -7,6 +7,7 @@ import type {
 } from "@/types/admin-product";
 
 interface ProductToolbarProps {
+  categories?: Array<{ id: string; name: string }>;
   filters: ProductListParams;
   onChange: (
     filters: ProductListParams,
@@ -36,6 +37,7 @@ const statuses: Array<{
 ];
 
 export default function ProductToolbar({
+  categories = [],
   filters,
   onChange,
 }: ProductToolbarProps) {
@@ -151,8 +153,7 @@ export default function ProductToolbar({
             CATEGORY
         =================================================== */}
 
-        <input
-          type="text"
+        <select
           value={filters.categoryId ?? ""}
           onChange={(event) =>
             update({
@@ -161,7 +162,7 @@ export default function ProductToolbar({
                 undefined,
             })
           }
-          placeholder="Category ID"
+          aria-label="Category"
           className="
             h-11
             w-full
@@ -180,7 +181,18 @@ export default function ProductToolbar({
             focus:ring-4
             focus:ring-[#e4e9f2]
           "
-        />
+        >
+          <option value="">All categories</option>
+
+          {categories.map((category) => (
+            <option
+              key={category.id}
+              value={category.id}
+            >
+              {category.name}
+            </option>
+          ))}
+        </select>
 
         {/* ===================================================
             STOCK
