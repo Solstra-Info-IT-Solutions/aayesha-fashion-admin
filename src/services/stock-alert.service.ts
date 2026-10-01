@@ -2,6 +2,8 @@ import { apiGet } from "@/lib/api";
 
 export type StockAlertDemand = {
   productId: string;
+  /** Product code used in admin URLs. */
+  productCode: string;
   productName: string;
   image: string;
   /** Currently available units. */

@@ -134,7 +134,7 @@ export default function StockAlertsPage() {
                   <tr key={row.productId}>
                     <td className="px-5 py-4">
                       <Link
-                        href={`/admin/products/${row.productId}`}
+                        href={`/admin/products/${encodeURIComponent(row.productCode)}`}
                         className="flex items-center gap-3 font-medium text-[var(--color-ink)] hover:underline"
                       >
                         {row.image ? (
