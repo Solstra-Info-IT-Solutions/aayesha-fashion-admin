@@ -10,7 +10,8 @@ import type {
 
 type DashboardResponse = {
   success: boolean;
-  data?: DashboardData;
+  /** The API nests the payload as { dashboard }; older builds returned it flat. */
+  data?: { dashboard?: DashboardData } & Partial<DashboardData>;
 };
 
 export async function getDashboard(): Promise<DashboardData> {
@@ -29,8 +30,11 @@ export async function getDashboard(): Promise<DashboardData> {
       accessToken,
     );
 
+  const payload =
+    response.data?.dashboard ?? response.data;
+
   return (
-    response.data ?? {
+    (payload as DashboardData | undefined) ?? {
       summary: {
         revenue: 0,
         orders: 0,
