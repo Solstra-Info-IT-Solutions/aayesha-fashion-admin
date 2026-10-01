@@ -59,7 +59,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-blue-50 text-blue-700";
+      return "bg-[#e6f0f7] text-[#1f5f86]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -68,11 +68,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-gray-100 text-gray-600";
+      return "bg-[#efe8d8] text-[#5f584d]";
 
     case "draft":
     default:
-      return "bg-gray-50 text-gray-700";
+      return "bg-[#f7f2e7] text-[#3d372f]";
   }
 }
 
@@ -85,23 +85,23 @@ export default function MarketingCampaignMobileCard({
   const isArchived = campaign.status === "archived";
 
   return (
-    <article className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-4">
+    <article className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Link
             href={`/admin/marketing/${campaign._id}`}
-            className="block truncate text-base font-semibold text-[var(--color-ink)] transition hover:text-[var(--color-rose-dark)]"
+            className="block truncate text-base font-semibold text-[#2a2520] transition hover:text-[#6f542f]"
           >
             {campaign.name}
           </Link>
 
           {campaign.description ? (
-            <p className="mt-1 line-clamp-2 text-xs leading-5 text-[var(--color-secondary)]">
+            <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#5f584d]">
               {campaign.description}
             </p>
           ) : (
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-xs text-[#756d62]">
               No description
             </p>
           )}
@@ -118,52 +118,52 @@ export default function MarketingCampaignMobileCard({
 
       {/* Type */}
       <div className="mt-4">
-        <span className="inline-flex rounded-md bg-gray-50 px-2.5 py-1 text-xs font-medium text-[var(--color-secondary)]">
+        <span className="inline-flex rounded-md bg-[#f7f2e7] px-2.5 py-1 text-xs font-medium text-[#5f584d]">
           {formatLabel(campaign.type)}
         </span>
       </div>
 
       {/* Details */}
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <div className="rounded-lg border border-[var(--color-border)] p-3">
-          <div className="flex items-center gap-1.5 text-xs text-[var(--color-secondary)]">
+        <div className="rounded-lg border border-[#e6dfcf] p-3">
+          <div className="flex items-center gap-1.5 text-xs text-[#5f584d]">
             <CircleDollarSign size={14} />
             Budget
           </div>
 
-          <p className="mt-1 text-sm font-semibold text-[var(--color-ink)]">
+          <p className="mt-1 text-sm font-semibold text-[#2a2520]">
             {formatCurrency(campaign.budget)}
           </p>
         </div>
 
-        <div className="rounded-lg border border-[var(--color-border)] p-3">
-          <div className="flex items-center gap-1.5 text-xs text-[var(--color-secondary)]">
+        <div className="rounded-lg border border-[#e6dfcf] p-3">
+          <div className="flex items-center gap-1.5 text-xs text-[#5f584d]">
             <CalendarDays size={14} />
             Start Date
           </div>
 
-          <p className="mt-1 text-sm font-semibold text-[var(--color-ink)]">
+          <p className="mt-1 text-sm font-semibold text-[#2a2520]">
             {formatDate(campaign.startsAt)}
           </p>
         </div>
       </div>
 
       {/* End Date */}
-      <div className="mt-3 flex items-center justify-between border-t border-[var(--color-border)] pt-3">
-        <span className="text-xs text-[var(--color-secondary)]">
+      <div className="mt-3 flex items-center justify-between border-t border-[#e6dfcf] pt-3">
+        <span className="text-xs text-[#5f584d]">
           End Date
         </span>
 
-        <span className="text-sm font-medium text-[var(--color-ink)]">
+        <span className="text-sm font-medium text-[#2a2520]">
           {formatDate(campaign.endsAt)}
         </span>
       </div>
 
       {/* Actions */}
-      <div className="mt-4 flex items-center gap-2 border-t border-[var(--color-border)] pt-4">
+      <div className="mt-4 flex items-center gap-2 border-t border-[#e6dfcf] pt-4">
         <Link
           href={`/admin/marketing/${campaign._id}`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] text-xs font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#e6dfcf] text-xs font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
         >
           <Eye size={15} />
           View
@@ -172,7 +172,7 @@ export default function MarketingCampaignMobileCard({
         {!isArchived && (
           <Link
             href={`/admin/marketing/${campaign._id}/edit`}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#6f542f] hover:text-[#6f542f]"
             title="Edit campaign"
           >
             <Pencil size={15} />
@@ -184,7 +184,7 @@ export default function MarketingCampaignMobileCard({
             type="button"
             onClick={() => onRestore(campaign)}
             title="Restore campaign"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:border-green-600 hover:text-green-700"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-green-600 hover:text-green-700"
           >
             <RotateCcw size={15} />
           </button>
@@ -193,7 +193,7 @@ export default function MarketingCampaignMobileCard({
             type="button"
             onClick={() => onArchive(campaign)}
             title="Archive campaign"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:border-yellow-600 hover:text-yellow-700"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-yellow-600 hover:text-yellow-700"
           >
             <Archive size={15} />
           </button>
@@ -203,7 +203,7 @@ export default function MarketingCampaignMobileCard({
           type="button"
           onClick={() => onDelete(campaign)}
           title="Delete campaign"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:border-red-600 hover:text-red-600"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#b3261e] hover:text-[#b3261e]"
         >
           <Trash2 size={15} />
         </button>

@@ -58,13 +58,13 @@ export default function MarketingFilters({
     includeArchived;
 
   return (
-    <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-4">
+    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4">
       <div className="flex flex-col gap-3 xl:flex-row xl:items-center">
         {/* Search */}
         <div className="relative min-w-0 flex-1">
           <Search
             size={17}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-secondary)]"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#5f584d]"
           />
 
           <input
@@ -74,14 +74,14 @@ export default function MarketingFilters({
               onSearchChange(event.target.value)
             }
             placeholder="Search campaigns..."
-            className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fffdf8] pl-10 pr-10 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color-rose-dark)]"
+            className="h-11 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] pl-10 pr-10 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#6f542f]"
           />
 
           {search && (
             <button
               type="button"
               onClick={() => onSearchChange("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-secondary)] transition hover:text-[var(--color-ink)]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5f584d] transition hover:text-[#2a2520]"
               aria-label="Clear search"
             >
               <X size={16} />
@@ -97,7 +97,7 @@ export default function MarketingFilters({
               event.target.value as MarketingCampaignType | "",
             )
           }
-          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+          className="h-11 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#6f542f]"
         >
           <option value="">All Types</option>
 
@@ -116,7 +116,7 @@ export default function MarketingFilters({
               event.target.value as MarketingCampaignStatus | "",
             )
           }
-          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+          className="h-11 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#6f542f]"
         >
           <option value="">All Statuses</option>
 
@@ -131,7 +131,7 @@ export default function MarketingFilters({
         <div className="relative">
           <ArrowUpDown
             size={15}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-secondary)]"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#5f584d]"
           />
 
           <select
@@ -141,7 +141,7 @@ export default function MarketingFilters({
                 event.target.value as MarketingCampaignSort,
               )
             }
-            className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] pl-9 pr-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+            className="h-11 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] pl-9 pr-3 text-sm text-[#2a2520] outline-none transition focus:border-[#6f542f]"
           >
             {MARKETING_CAMPAIGN_SORTS.map((item) => (
               <option key={item} value={item}>
@@ -152,14 +152,14 @@ export default function MarketingFilters({
         </div>
 
         {/* Include Archived */}
-        <label className="flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)]">
+        <label className="flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520]">
           <input
             type="checkbox"
             checked={includeArchived}
             onChange={(event) =>
               onIncludeArchivedChange(event.target.checked)
             }
-            className="h-4 w-4 accent-[var(--color-rose-dark)]"
+            className="h-4 w-4 accent-[#6f542f]"
           />
 
           <Archive size={15} />
@@ -172,7 +172,7 @@ export default function MarketingFilters({
           <button
             type="button"
             onClick={onClear}
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] px-4 text-sm font-medium text-[var(--color-secondary)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#5f584d] transition hover:border-[#6f542f] hover:text-[#6f542f]"
           >
             <X size={15} />
             Clear

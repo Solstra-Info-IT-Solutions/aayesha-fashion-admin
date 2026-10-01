@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -71,7 +72,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-blue-50 text-blue-700";
+      return "bg-[#e6f0f7] text-[#1f5f86]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -80,11 +81,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-gray-100 text-gray-600";
+      return "bg-[#efe8d8] text-[#5f584d]";
 
     case "draft":
     default:
-      return "bg-gray-50 text-gray-700";
+      return "bg-[#f7f2e7] text-[#3d372f]";
   }
 }
 
@@ -96,12 +97,12 @@ function DetailItem({
   value: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-[var(--color-border)] p-4">
-      <p className="text-xs font-medium text-[var(--color-secondary)]">
+    <div className="rounded-lg border border-[#e6dfcf] p-4">
+      <p className="text-xs font-medium text-[#5f584d]">
         {label}
       </p>
 
-      <div className="mt-1.5 text-sm font-semibold text-[var(--color-ink)]">
+      <div className="mt-1.5 text-sm font-semibold text-[#2a2520]">
         {value}
       </div>
     </div>
@@ -111,6 +112,7 @@ function DetailItem({
 export default function MarketingCampaignDetail({
   id,
 }: MarketingCampaignDetailProps) {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const {
     accessToken,
     isAuthenticated,
@@ -172,9 +174,12 @@ export default function MarketingCampaignDetail({
   const handleArchive = async () => {
     if (!campaign || !accessToken) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to archive "${campaign.name}"?`,
-    );
+    const confirmed = await confirm({
+      title: "Archive this campaign?",
+      description: `"${campaign.name}" will be moved to archived. You can restore it later.`,
+      confirmLabel: "Archive",
+      tone: "default",
+    });
 
     if (!confirmed) return;
 
@@ -234,9 +239,11 @@ export default function MarketingCampaignDetail({
   const handleDelete = async () => {
     if (!campaign || !accessToken) return;
 
-    const confirmed = window.confirm(
-      `Are you sure you want to permanently delete "${campaign.name}"?`,
-    );
+    const confirmed = await confirm({
+      title: "Delete this campaign?",
+      description: `"${campaign.name}" will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete campaign",
+    });
 
     if (!confirmed) return;
 
@@ -266,12 +273,12 @@ export default function MarketingCampaignDetail({
 
   if (!isInitialized) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-5">
-            <div className="h-8 w-48 rounded bg-gray-100" />
-            <div className="h-72 rounded-xl bg-gray-100" />
-            <div className="h-48 rounded-xl bg-gray-100" />
+            <div className="h-8 w-48 rounded bg-[#efe8d8]" />
+            <div className="h-72 rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-48 rounded-[14px] bg-[#efe8d8]" />
           </div>
         </div>
       </main>
@@ -284,20 +291,20 @@ export default function MarketingCampaignDetail({
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="space-y-5">
-            <div className="h-8 w-48 animate-pulse rounded bg-gray-100" />
+            <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
 
-            <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-6">
-              <div className="h-7 w-72 animate-pulse rounded bg-gray-100" />
-              <div className="mt-3 h-4 w-full max-w-lg animate-pulse rounded bg-gray-100" />
+            <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6">
+              <div className="h-7 w-72 animate-pulse rounded bg-[#efe8d8]" />
+              <div className="mt-3 h-4 w-full max-w-lg animate-pulse rounded bg-[#efe8d8]" />
               <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
                 {Array.from({ length: 4 }).map(
                   (_, index) => (
                     <div
                       key={index}
-                      className="h-20 animate-pulse rounded-lg bg-gray-100"
+                      className="h-20 animate-pulse rounded-lg bg-[#efe8d8]"
                     />
                   ),
                 )}
@@ -311,20 +318,20 @@ export default function MarketingCampaignDetail({
 
   if (!campaign) {
     return (
-      <main className="min-h-screen bg-[var(--color-background)]">
+      <main className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 text-center sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-14">
-            <h2 className="text-lg font-semibold text-[var(--color-ink)]">
+          <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14">
+            <h2 className="text-lg font-semibold text-[#2a2520]">
               Campaign not found
             </h2>
 
-            <p className="mt-2 text-sm text-[var(--color-secondary)]">
+            <p className="mt-2 text-sm text-[#5f584d]">
               The requested campaign could not be found.
             </p>
 
             <Link
               href="/admin/marketing"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-dark)] px-4 py-2.5 text-sm font-medium text-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#6f542f] px-4 py-2.5 text-sm font-medium text-white"
             >
               <ArrowLeft size={16} />
               Back to Marketing
@@ -339,21 +346,22 @@ export default function MarketingCampaignDetail({
     campaign.status === "archived";
 
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <main className="min-h-full">
+      {confirmDialog}
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Back */}
         <Link
           href="/admin/marketing"
-          className="mb-5 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[var(--color-rose-dark)]"
+          className="mb-5 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
         >
           <ArrowLeft size={16} />
           Back to Marketing
         </Link>
 
         {/* Main Card */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8]">
+        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]">
           {/* Header */}
-          <div className="flex flex-col gap-5 border-b border-[var(--color-border)] p-5 sm:p-7 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex flex-col gap-5 border-b border-[#e6dfcf] p-5 sm:p-7 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span
@@ -364,16 +372,16 @@ export default function MarketingCampaignDetail({
                   {formatLabel(campaign.status)}
                 </span>
 
-                <span className="rounded-full bg-gray-50 px-2.5 py-1 text-xs font-medium text-[var(--color-secondary)]">
+                <span className="rounded-full bg-[#f7f2e7] px-2.5 py-1 text-xs font-medium text-[#5f584d]">
                   {formatLabel(campaign.type)}
                 </span>
               </div>
 
-              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[#2a2520] sm:text-3xl">
                 {campaign.name}
               </h1>
 
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--color-secondary)]">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5f584d]">
                 {campaign.description ||
                   "No description provided."}
               </p>
@@ -384,7 +392,7 @@ export default function MarketingCampaignDetail({
               {!isArchived && (
                 <Link
                   href={`/admin/marketing/${campaign._id}/edit`}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)]"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
                 >
                   <Pencil size={15} />
                   Edit
@@ -396,7 +404,7 @@ export default function MarketingCampaignDetail({
                   type="button"
                   disabled={actionLoading}
                   onClick={handleRestore}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:border-green-600 hover:text-green-700 disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-green-600 hover:text-green-700 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <Loader2
@@ -413,7 +421,7 @@ export default function MarketingCampaignDetail({
                   type="button"
                   disabled={actionLoading}
                   onClick={handleArchive}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:border-yellow-600 hover:text-yellow-700 disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-yellow-600 hover:text-yellow-700 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <Loader2
@@ -431,7 +439,7 @@ export default function MarketingCampaignDetail({
                 type="button"
                 disabled={actionLoading}
                 onClick={handleDelete}
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 text-sm font-medium text-red-600 transition hover:border-red-600 disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#b3261e] transition hover:border-[#b3261e] disabled:opacity-50"
               >
                 <Trash2 size={15} />
                 Delete
@@ -484,44 +492,44 @@ export default function MarketingCampaignDetail({
             </div>
 
             {/* Metadata */}
-            <div className="mt-6 border-t border-[var(--color-border)] pt-6">
-              <h2 className="text-sm font-semibold text-[var(--color-ink)]">
+            <div className="mt-6 border-t border-[#e6dfcf] pt-6">
+              <h2 className="text-sm font-semibold text-[#2a2520]">
                 Campaign Information
               </h2>
 
               <dl className="mt-4 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                 <div>
-                  <dt className="text-xs text-[var(--color-secondary)]">
+                  <dt className="text-xs text-[#5f584d]">
                     Created At
                   </dt>
-                  <dd className="mt-1 text-sm text-[var(--color-ink)]">
+                  <dd className="mt-1 text-sm text-[#2a2520]">
                     {formatDate(campaign.createdAt)}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[var(--color-secondary)]">
+                  <dt className="text-xs text-[#5f584d]">
                     Last Updated
                   </dt>
-                  <dd className="mt-1 text-sm text-[var(--color-ink)]">
+                  <dd className="mt-1 text-sm text-[#2a2520]">
                     {formatDate(campaign.updatedAt)}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[var(--color-secondary)]">
+                  <dt className="text-xs text-[#5f584d]">
                     Created By
                   </dt>
-                  <dd className="mt-1 break-all text-sm text-[var(--color-ink)]">
+                  <dd className="mt-1 break-all text-sm text-[#2a2520]">
                     {campaign.createdBy || "—"}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[var(--color-secondary)]">
+                  <dt className="text-xs text-[#5f584d]">
                     Updated By
                   </dt>
-                  <dd className="mt-1 break-all text-sm text-[var(--color-ink)]">
+                  <dd className="mt-1 break-all text-sm text-[#2a2520]">
                     {campaign.updatedBy || "—"}
                   </dd>
                 </div>
