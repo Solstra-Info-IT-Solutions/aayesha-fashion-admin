@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { BellRing, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
@@ -72,18 +72,15 @@ export default function StockAlertsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 pb-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#26221d]">
-            <BellRing size={22} />
-          </div>
-
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Inventory</p>
+            <h1 className="mt-1 text-[#2a2520]">
               Back-in-stock requests
             </h1>
 
-            <p className="mt-1 text-sm text-[var(--color-secondary)]">
+            <p className="mt-1 text-sm text-[#5f584d]">
               Customers who asked to be told when a sold-out product returns.
               They are emailed automatically when you restock it.
             </p>
@@ -94,7 +91,7 @@ export default function StockAlertsPage() {
           type="button"
           onClick={() => void refresh()}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-gray-50 disabled:opacity-50"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-50"
         >
           <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
           Refresh
@@ -102,24 +99,61 @@ export default function StockAlertsPage() {
       </div>
 
       {rows === null && !failed ? (
-        <p className="text-sm text-[var(--color-secondary)]">Loading…</p>
+        <p className="text-sm text-[#5f584d]">Loading…</p>
       ) : failed ? (
-        <p className="text-sm text-red-600">Unable to load stock alerts.</p>
+        <p className="text-sm text-[#b3261e]">Unable to load stock alerts.</p>
       ) : rows && rows.length === 0 ? (
-        <p className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-8 text-center text-sm text-[var(--color-secondary)]">
+        <p className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-8 text-center text-sm text-[#5f584d]">
           No back-in-stock requests yet.
         </p>
       ) : (
         <>
-          <p className="text-sm text-[var(--color-secondary)]">
-            <strong className="text-[var(--color-ink)]">{waitingTotal}</strong>{" "}
+          <p className="text-sm text-[#5f584d]">
+            <strong className="text-[#2a2520]">{waitingTotal}</strong>{" "}
             customer{waitingTotal === 1 ? " is" : "s are"} waiting across{" "}
             {rows?.length} product{rows?.length === 1 ? "" : "s"}.
           </p>
 
-          <div className="overflow-x-auto rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm">
+          <div className="space-y-3 md:hidden">
+            {rows?.map((row) => (
+              <Link
+                key={row.productId}
+                href={`/admin/products/${encodeURIComponent(row.productCode)}`}
+                className="surface surface-hover block p-4"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-semibold text-[#2a2520]">{row.productName}</p>
+                  <span
+                    className={
+                      row.stock > 0
+                        ? "text-sm font-semibold text-[#276541]"
+                        : "text-sm font-semibold text-[#b3261e]"
+                    }
+                  >
+                    {row.stock > 0 ? `${row.stock} in stock` : "Sold out"}
+                  </span>
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#e6dfcf] pt-3 text-xs">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Waiting</p>
+                    <p className="font-semibold text-[#2a2520]">{row.waiting}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Notified</p>
+                    <p className="font-semibold text-[#2a2520]">{row.notified}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Last request</p>
+                    <p className="font-semibold text-[#2a2520]">{formatDate(row.latestRequestAt)}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden overflow-x-auto surface md:block">
             <table className="w-full min-w-[640px] text-left text-sm">
-              <thead className="border-b border-[var(--color-border)] text-xs uppercase tracking-wide text-[var(--color-secondary)]">
+              <thead className="border-b border-[#e6dfcf] text-xs uppercase tracking-wide text-[#5f584d]">
                 <tr>
                   <th className="px-5 py-3 font-medium">Product</th>
                   <th className="px-5 py-3 font-medium">In stock</th>
@@ -129,13 +163,13 @@ export default function StockAlertsPage() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-[var(--color-border)]">
+              <tbody className="divide-y divide-[#e6dfcf]">
                 {rows?.map((row) => (
                   <tr key={row.productId}>
                     <td className="px-5 py-4">
                       <Link
                         href={`/admin/products/${encodeURIComponent(row.productCode)}`}
-                        className="flex items-center gap-3 font-medium text-[var(--color-ink)] hover:underline"
+                        className="flex items-center gap-3 font-medium text-[#2a2520] hover:underline"
                       >
                         {row.image ? (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -154,23 +188,23 @@ export default function StockAlertsPage() {
                       <span
                         className={
                           row.stock > 0
-                            ? "font-medium text-emerald-700"
-                            : "font-medium text-red-600"
+                            ? "font-medium text-[#276541]"
+                            : "font-medium text-[#b3261e]"
                         }
                       >
                         {row.stock > 0 ? row.stock : "Sold out"}
                       </span>
                     </td>
 
-                    <td className="px-5 py-4 font-semibold text-[var(--color-ink)]">
+                    <td className="px-5 py-4 font-semibold text-[#2a2520]">
                       {row.waiting}
                     </td>
 
-                    <td className="px-5 py-4 text-[var(--color-secondary)]">
+                    <td className="px-5 py-4 text-[#5f584d]">
                       {row.notified}
                     </td>
 
-                    <td className="px-5 py-4 text-[var(--color-secondary)]">
+                    <td className="px-5 py-4 text-[#5f584d]">
                       {formatDate(row.latestRequestAt)}
                     </td>
                   </tr>

@@ -120,7 +120,7 @@ export function LoginForm() {
       {formError ? (
         <p
           role="alert"
-          className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]"
+          className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]"
         >
           {formError}
         </p>
