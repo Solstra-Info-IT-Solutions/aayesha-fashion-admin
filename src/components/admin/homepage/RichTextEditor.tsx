@@ -177,7 +177,7 @@ export function RichTextEditor({
         </label>
 
         {/* MODE SWITCH */}
-        <div className="flex border border-[#d6ccb6] bg-[#f7f2e7] p-0.5">
+        <div className="flex border border-[#d6ccb6] bg-[#f7f2e7] p-0.5 rounded-[14px]">
           <button
             type="button"
             onClick={() =>
@@ -294,7 +294,7 @@ export function RichTextEditor({
 
               event.target.value = "";
             }}
-            className="ml-1 h-8 border border-[#d6ccb6] bg-[#fffdf8] px-2 text-[10px] uppercase tracking-[0.1em] text-[#5f584d] outline-none focus:border-[#26221d]"
+            className="ml-1 h-8 border border-[#d6ccb6] bg-[#fffdf8] px-2 text-[10px] uppercase tracking-[0.1em] text-[#5f584d] outline-none focus:border-[#26221d] rounded-lg"
             aria-label="Text style"
           >
             <option value="">
@@ -327,7 +327,7 @@ export function RichTextEditor({
           suppressContentEditableWarning
           onInput={handleVisualChange}
           data-placeholder={placeholder}
-          className="rich-text-editor w-full overflow-y-auto border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 text-sm leading-7 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 empty:before:pointer-events-none empty:before:text-[#756d62] empty:before:content-[attr(data-placeholder)]"
+          className="rich-text-editor w-full overflow-y-auto border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 text-sm leading-7 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 empty:before:pointer-events-none empty:before:text-[#756d62] empty:before:content-[attr(data-placeholder)] rounded-lg"
           style={{
             minHeight,
           }}
@@ -342,7 +342,7 @@ export function RichTextEditor({
           }
           placeholder={placeholder}
           spellCheck={false}
-          className="w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 font-mono text-xs leading-6 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
+          className="w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-4 py-3 font-mono text-xs leading-6 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
           style={{
             minHeight,
           }}
@@ -380,7 +380,7 @@ function ToolbarButton({
       title={label}
       aria-label={label}
       onClick={onClick}
-      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#5f584d] transition hover:border-[#d6ccb6] hover:bg-[#fffdf8] hover:text-[#26221d]"
+      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#5f584d] transition hover:border-[#d6ccb6] hover:bg-[#fffdf8] hover:text-[#26221d] rounded-lg"
     >
       {children}
     </button>

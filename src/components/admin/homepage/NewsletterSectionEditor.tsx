@@ -136,7 +136,7 @@ export function NewsletterSectionEditor({
     >
       {/* SECTION STATUS */}
 
-      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
@@ -250,15 +250,15 @@ export function NewsletterSectionEditor({
       {/* MESSAGES */}
 
       {error && (
-        <div className="border border-red-200 bg-red-50 px-4 py-3">
-          <p className="text-sm text-red-700">
+        <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#8f1f19]">
             {error}
           </p>
         </div>
       )}
 
       {success && !error && (
-        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3">
+        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
           <p className="text-sm text-[#2f7d4f]">
             {success}
           </p>
@@ -271,7 +271,7 @@ export function NewsletterSectionEditor({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           {saving ? (
             <>
@@ -317,7 +317,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
       />
     </div>
   );

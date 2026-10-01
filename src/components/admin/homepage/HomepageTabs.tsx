@@ -64,8 +64,8 @@ export function HomepageTabs({
   onChange,
 }: HomepageTabsProps) {
   return (
-    <div className="overflow-x-auto border-b border-[#d6ccb6]">
-      <div className="flex min-w-max gap-1">
+    <div className="-mx-1 overflow-x-auto px-1 pb-1">
+      <div className="flex min-w-max gap-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const active = activeTab === tab.id;
@@ -76,10 +76,10 @@ export function HomepageTabs({
               type="button"
               onClick={() => onChange(tab.id)}
               className={[
-                "relative flex items-center gap-2 px-4 py-3 text-xs font-medium uppercase tracking-[0.12em] transition",
+                "flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition",
                 active
-                  ? "bg-[#26221d] text-white"
-                  : "text-[#5f584d] hover:bg-[#fffdf8] hover:text-[#2a2520]",
+                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8]"
+                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f1ead9]",
               ].join(" ")}
             >
               <Icon size={15} strokeWidth={1.7} />
