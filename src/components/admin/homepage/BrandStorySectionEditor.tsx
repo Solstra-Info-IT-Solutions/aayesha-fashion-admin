@@ -302,13 +302,13 @@ export function BrandStorySectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#0f172a]">
+          <p className="mt-1 text-sm text-[#2a2520]">
             {form.enabled
               ? "Brand Story is visible on the homepage."
               : "Brand Story is hidden from the homepage."}
@@ -330,14 +330,14 @@ export function BrandStorySectionEditor({
               !form.enabled,
             )
           }
-          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b08d57]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#4338ca]"
-              : "bg-[#d3d7df]"
+              ? "bg-[#26221d]"
+              : "bg-[#d6ccb6]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#ffffff] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
+            className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -399,9 +399,9 @@ export function BrandStorySectionEditor({
       <div>
         <Label text="Brand Story Image" />
 
-        <div className="mt-2 border border-[#e5e7ec] bg-[#f6f7fb] p-4">
+        <div className="mt-2 border border-[#e6dfcf] bg-[#f7f2e7] p-4">
           {form.image ? (
-            <div className="relative overflow-hidden border border-[#e5e7ec] bg-[#ffffff]">
+            <div className="relative overflow-hidden border border-[#e6dfcf] bg-[#fffdf8]">
               <img
                 src={form.image}
                 alt="Brand Story preview"
@@ -419,13 +419,13 @@ export function BrandStorySectionEditor({
               </button>
             </div>
           ) : (
-            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#d3d7df] bg-[#ffffff]">
+            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#d6ccb6] bg-[#fffdf8]">
               <div className="text-center">
-                <p className="text-sm text-[#5b6270]">
+                <p className="text-sm text-[#5f584d]">
                   No image selected
                 </p>
 
-                <p className="mt-1 text-xs text-[#737a8c]">
+                <p className="mt-1 text-xs text-[#756d62]">
                   JPEG, PNG or WebP · Max 5MB
                 </p>
               </div>
@@ -434,7 +434,7 @@ export function BrandStorySectionEditor({
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <label
-              className={`inline-flex cursor-pointer items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] ${
+              className={`inline-flex cursor-pointer items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] ${
                 uploading
                   ? "pointer-events-none opacity-60"
                   : ""
@@ -471,7 +471,7 @@ export function BrandStorySectionEditor({
             </label>
 
             {form.image && (
-              <p className="text-xs text-[#5b6270]">
+              <p className="text-xs text-[#5f584d]">
                 Image uploaded to Cloudinary.
               </p>
             )}
@@ -533,14 +533,14 @@ export function BrandStorySectionEditor({
           SAVE
       ===================================================== */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e5e7ec] bg-[#ffffff]/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={
             saving ||
             uploading !== null
           }
-          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -590,7 +590,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
       />
     </div>
   );
@@ -622,7 +622,7 @@ function TextAreaField({
         }
         placeholder={placeholder}
         rows={6}
-        className="mt-2 w-full resize-y border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm leading-7 text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
+        className="mt-2 w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-3 py-3 text-sm leading-7 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
       />
     </div>
   );
@@ -638,7 +638,7 @@ function Label({
   text: string;
 }): ReactElement {
   return (
-    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
       {text}
     </label>
   );

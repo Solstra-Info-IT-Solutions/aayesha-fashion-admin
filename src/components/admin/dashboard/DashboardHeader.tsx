@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import type { DashboardData } from "@/types/dashboard";
 
 import { AttentionCard } from "./AttentionCard";
@@ -51,6 +52,17 @@ export function AdminDashboard({
   error,
   onRefresh,
 }: DashboardHeaderProps) {
+  const { user } = useAdminAuth();
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const first = (user?.name || user?.firstName || "").split(" ")[0];
+  const today = new Date().toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+
   const series = trend ?? revenue ?? [];
   const now = current ?? { revenue: 0, paidOrders: 0, orders: 0, newCustomers: 0 };
   const before = previous ?? { revenue: 0, paidOrders: 0, orders: 0, newCustomers: 0 };
@@ -65,17 +77,19 @@ export function AdminDashboard({
     <div className="space-y-6">
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#737a8c]">Overview</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">{today}</p>
 
-          <h1 className="mt-1 text-[#0f172a]">Dashboard</h1>
+          <h1 className="mt-1 text-[#2a2520]">
+            {greeting}{first ? `, ${first}` : ""}
+          </h1>
 
-          <p className="mt-2 text-sm text-[#5b6270]">
-            Everything here is clickable: open any card, chart or row to see the details.
+          <p className="mt-2 text-sm text-[#5f584d]">
+            Here is how the store is doing. Every card, chart and row opens its details.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex rounded-lg border border-[#e5e7ec] bg-white p-0.5 text-xs font-semibold" role="tablist" aria-label="Date range">
+          <div className="inline-flex rounded-lg border border-[#e6dfcf] bg-white p-0.5 text-xs font-semibold" role="tablist" aria-label="Date range">
             {RANGES.map((value) => (
               <button
                 key={value}
@@ -84,7 +98,7 @@ export function AdminDashboard({
                 aria-selected={days === value}
                 onClick={() => setDays(value)}
                 className={`rounded-md px-3.5 py-2 transition ${
-                  days === value ? "bg-[#4338ca] text-white" : "text-[#5b6270] hover:text-[#0f172a]"
+                  days === value ? "bg-[#26221d] text-white" : "text-[#5f584d] hover:text-[#2a2520]"
                 }`}
               >
                 {value}D
@@ -96,7 +110,7 @@ export function AdminDashboard({
             type="button"
             onClick={onRefresh}
             disabled={loading}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d3d7df] bg-white px-4 text-sm font-semibold text-[#0f172a] transition hover:border-[#818cf8] disabled:opacity-60"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-white px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57] disabled:opacity-60"
           >
             <RefreshCw size={15} className={loading ? "animate-spin" : ""} />
             Refresh
@@ -197,7 +211,7 @@ export function AdminDashboard({
         <LowStockProducts products={lowStockProducts} loading={loading} />
       </div>
 
-      <p className="pb-2 text-center text-xs text-[#737a8c]">
+      <p className="pb-2 text-center text-xs text-[#756d62]">
         Revenue counts paid, non-cancelled orders. Period: {range ? `${range.from} → ${range.to}` : "—"}.
       </p>
     </div>

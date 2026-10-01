@@ -289,7 +289,7 @@ export default function MarketingCampaignDetail({
           <div className="space-y-5">
             <div className="h-8 w-48 animate-pulse rounded bg-gray-100" />
 
-            <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-6">
+            <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-6">
               <div className="h-7 w-72 animate-pulse rounded bg-gray-100" />
               <div className="mt-3 h-4 w-full max-w-lg animate-pulse rounded bg-gray-100" />
               <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -313,7 +313,7 @@ export default function MarketingCampaignDetail({
     return (
       <main className="min-h-screen bg-[var(--color-background)]">
         <div className="mx-auto max-w-5xl px-4 py-8 text-center sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] px-6 py-14">
+          <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-14">
             <h2 className="text-lg font-semibold text-[var(--color-ink)]">
               Campaign not found
             </h2>
@@ -351,7 +351,7 @@ export default function MarketingCampaignDetail({
         </Link>
 
         {/* Main Card */}
-        <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff]">
+        <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8]">
           {/* Header */}
           <div className="flex flex-col gap-5 border-b border-[var(--color-border)] p-5 sm:p-7 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">

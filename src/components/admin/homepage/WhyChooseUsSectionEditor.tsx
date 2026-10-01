@@ -283,13 +283,13 @@ export function WhyChooseUsSectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#0f172a]">
+          <p className="mt-1 text-sm text-[#2a2520]">
             {form.enabled
               ? "Why Ayesha is visible on the homepage."
               : "Why Ayesha is hidden from the homepage."}
@@ -311,14 +311,14 @@ export function WhyChooseUsSectionEditor({
               !form.enabled,
             )
           }
-          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b08d57]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#4338ca]"
-              : "bg-[#d3d7df]"
+              ? "bg-[#26221d]"
+              : "bg-[#d6ccb6]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#ffffff] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
+            className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -378,14 +378,14 @@ export function WhyChooseUsSectionEditor({
           ITEMS HEADER
       ===================================================== */}
 
-      <div className="border-t border-[#e5e7ec] pt-6">
+      <div className="border-t border-[#e6dfcf] pt-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
               Why Ayesha Items
             </p>
 
-            <p className="mt-1 text-sm text-[#0f172a]">
+            <p className="mt-1 text-sm text-[#2a2520]">
               Add the key reasons customers choose
               Ayesha.
             </p>
@@ -394,7 +394,7 @@ export function WhyChooseUsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="inline-flex shrink-0 items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3]"
+            className="inline-flex shrink-0 items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f]"
           >
             <Plus size={15} />
 
@@ -408,19 +408,19 @@ export function WhyChooseUsSectionEditor({
       ===================================================== */}
 
       {form.items.length === 0 ? (
-        <div className="border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-6 py-12 text-center">
-          <p className="text-sm font-medium text-[#0f172a]">
+        <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center">
+          <p className="text-sm font-medium text-[#2a2520]">
             No Why Ayesha items yet.
           </p>
 
-          <p className="mt-1 text-xs text-[#5b6270]">
+          <p className="mt-1 text-xs text-[#5f584d]">
             Add your first item to build this section.
           </p>
 
           <button
             type="button"
             onClick={handleAddItem}
-            className="mt-5 inline-flex items-center gap-2 border border-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#4338ca] transition hover:bg-[#4338ca] hover:text-[#ffffff]"
+            className="mt-5 inline-flex items-center gap-2 border border-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#26221d] transition hover:bg-[#26221d] hover:text-[#fffdf8]"
           >
             <Plus size={15} />
 
@@ -475,11 +475,11 @@ export function WhyChooseUsSectionEditor({
           SAVE
       ===================================================== */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e5e7ec] bg-[#ffffff]/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -543,14 +543,14 @@ function WhyAyeshaItemCard({
   ) => void;
 }): ReactElement {
   return (
-    <div className="border border-[#e5e7ec] bg-[#ffffff]">
+    <div className="border border-[#e6dfcf] bg-[#fffdf8]">
       {/* ===================================================
           ITEM HEADER
       =================================================== */}
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-xs font-medium text-[#5b6270]">
+          <span className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-xs font-medium text-[#5f584d]">
             {String(index + 1).padStart(
               2,
               "0",
@@ -558,11 +558,11 @@ function WhyAyeshaItemCard({
           </span>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
+            <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
               Why Ayesha Item
             </p>
 
-            <p className="mt-0.5 text-sm font-medium text-[#0f172a]">
+            <p className="mt-0.5 text-sm font-medium text-[#2a2520]">
               {item.title ||
                 "Untitled item"}
             </p>
@@ -576,7 +576,7 @@ function WhyAyeshaItemCard({
               onMove(index, "up")
             }
             disabled={index === 0}
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Move item up"
           >
             <ArrowUp size={15} />
@@ -591,7 +591,7 @@ function WhyAyeshaItemCard({
               index ===
               totalItems - 1
             }
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Move item down"
           >
             <ArrowDown size={15} />
@@ -602,7 +602,7 @@ function WhyAyeshaItemCard({
             onClick={() =>
               onDelete(item.id)
             }
-            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#ffffff] text-[#818cf8] transition hover:border-[#818cf8] hover:bg-[#fdecec]"
+            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#fffdf8] text-[#b08d57] transition hover:border-[#b08d57] hover:bg-[#fdecec]"
             aria-label="Delete item"
           >
             <Trash2 size={15} />
@@ -665,13 +665,13 @@ function WhyAyeshaItemCard({
             ITEM STATUS
         ================================================= */}
 
-        <div className="flex items-center justify-between border-t border-[#e5e7ec] pt-4">
+        <div className="flex items-center justify-between border-t border-[#e6dfcf] pt-4">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#5b6270]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#5f584d]">
               Item Status
             </p>
 
-            <p className="mt-1 text-xs text-[#737a8c]">
+            <p className="mt-1 text-xs text-[#756d62]">
               {item.isActive
                 ? "Visible"
                 : "Hidden"}
@@ -696,14 +696,14 @@ function WhyAyeshaItemCard({
                 !item.isActive,
               )
             }
-            className={`relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
+            className={`relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b08d57]/25 focus:ring-offset-2 ${
               item.isActive
-                ? "bg-[#4338ca]"
-                : "bg-[#d3d7df]"
+                ? "bg-[#26221d]"
+                : "bg-[#d6ccb6]"
             }`}
           >
             <span
-              className={`block h-5 w-5 rounded-full bg-[#ffffff] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ${
+              className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ${
                 item.isActive
                   ? "translate-x-5"
                   : "translate-x-0"
@@ -744,7 +744,7 @@ function Field({
           )
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
       />
     </div>
   );
@@ -760,7 +760,7 @@ function Label({
   text: string;
 }): ReactElement {
   return (
-    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
       {text}
     </label>
   );

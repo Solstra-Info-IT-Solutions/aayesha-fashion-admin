@@ -26,7 +26,7 @@ export default function ProductPagination({
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4">
-      <p className="text-sm text-[#5b6270]">
+      <p className="text-sm text-[#5f584d]">
         Page {page} of{" "}
         {Math.max(
           totalPages,
@@ -46,7 +46,7 @@ export default function ProductPagination({
               page - 1,
             )
           }
-          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#0f172a] disabled:opacity-40"
+          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d6ccb6] px-3 text-xs font-medium text-[#2a2520] disabled:opacity-40"
         >
           <ChevronLeft
             size={14}
@@ -65,7 +65,7 @@ export default function ProductPagination({
               page + 1,
             )
           }
-          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#0f172a] disabled:opacity-40"
+          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d6ccb6] px-3 text-xs font-medium text-[#2a2520] disabled:opacity-40"
         >
           Next
           <ChevronRight

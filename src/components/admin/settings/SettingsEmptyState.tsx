@@ -11,7 +11,7 @@ export default function SettingsEmptyState({
   filtered = false,
 }: SettingsEmptyStateProps) {
   return (
-    <div className="rounded-2xl border border-dashed border-gray-300 bg-[#ffffff] px-6 py-14 text-center">
+    <div className="rounded-2xl border border-dashed border-gray-300 bg-[#fffdf8] px-6 py-14 text-center">
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100">
         <Settings2 className="h-7 w-7 text-gray-400" />
       </div>
@@ -29,7 +29,7 @@ export default function SettingsEmptyState({
       {!filtered && (
         <Link
           href="/admin/settings/create"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3730a3]"
+          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

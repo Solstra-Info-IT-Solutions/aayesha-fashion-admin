@@ -23,13 +23,13 @@ export function OrderDetailHeader({
       <div>
         <Link
           href="/admin/orders"
-          className="text-xs text-[#5b6270] hover:text-[#0f172a]"
+          className="text-xs text-[#5f584d] hover:text-[#2a2520]"
         >
           ← Back to orders
         </Link>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <h1 className="font-serif text-4xl text-[#0f172a]">
+          <h1 className="font-serif text-4xl text-[#2a2520]">
             {order.orderNumber}
           </h1>
 
@@ -38,7 +38,7 @@ export function OrderDetailHeader({
           />
         </div>
 
-        <p className="mt-2 text-sm text-[#5b6270]">
+        <p className="mt-2 text-sm text-[#5f584d]">
           Placed{" "}
           {order.createdAt
             ? new Intl.DateTimeFormat(
@@ -65,7 +65,7 @@ export function OrderDetailHeader({
           }
         />
 
-        <span className="text-sm text-[#5b6270]">
+        <span className="text-sm text-[#5f584d]">
           {paymentMethodLabel(
             order.paymentMethod,
           )}

@@ -28,7 +28,7 @@ export default function SettingFormActions({
       <button
         type="submit"
         disabled={saving || disabled}
-        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {saving ? (
           <Loader2 className="h-4 w-4 animate-spin" />

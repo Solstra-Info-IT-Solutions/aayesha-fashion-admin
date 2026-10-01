@@ -92,12 +92,12 @@ export default function SupportFilters({
   );
 
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm">
+    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-4 shadow-sm">
       {/* Filter Header */}
       <div className="mb-4 flex items-center gap-2">
         <SlidersHorizontal
           size={17}
-          className="text-[#4338ca]"
+          className="text-[#26221d]"
         />
 
         <h2 className="text-sm font-semibold text-[var(--color-ink)]">
@@ -120,7 +120,7 @@ export default function SupportFilters({
               onSearchChange(event.target.value)
             }
             placeholder="Search ticket, customer, email or subject..."
-            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fffdf8] pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
           />
         </div>
 
@@ -132,7 +132,7 @@ export default function SupportFilters({
               event.target.value as SupportStatus | "",
             )
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
         >
           <option value="">All Statuses</option>
 
@@ -151,7 +151,7 @@ export default function SupportFilters({
               event.target.value as SupportPriority | "",
             )
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
         >
           <option value="">All Priorities</option>
 
@@ -170,7 +170,7 @@ export default function SupportFilters({
               event.target.value as SupportCategory | "",
             )
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
         >
           <option value="">All Categories</option>
 
@@ -189,7 +189,7 @@ export default function SupportFilters({
             onAssignedToChange(event.target.value)
           }
           placeholder="Assigned admin ID..."
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
         />
 
         {/* Sort */}
@@ -200,7 +200,7 @@ export default function SupportFilters({
               event.target.value as SupportSort,
             )
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
         >
           {SUPPORT_SORTS.map((item) => (
             <option key={item} value={item}>
@@ -214,7 +214,7 @@ export default function SupportFilters({
           type="button"
           onClick={onReset}
           disabled={!hasFilters}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <RotateCcw size={16} />
           Reset

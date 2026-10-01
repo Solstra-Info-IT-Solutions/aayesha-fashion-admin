@@ -24,7 +24,7 @@ export default function DiscountHeader({
         <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
           <Link
             href="/admin"
-            className="transition hover:text-[#4338ca]"
+            className="transition hover:text-[#26221d]"
           >
             Admin
           </Link>
@@ -38,7 +38,7 @@ export default function DiscountHeader({
 
         {/* Title */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#4338ca]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#26221d]">
             <Percent size={22} />
           </div>
 
@@ -61,7 +61,7 @@ export default function DiscountHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={17}
@@ -80,7 +80,7 @@ export default function DiscountHeader({
         {/* Create Discount */}
         <Link
           href="/admin/discounts/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3730a3]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3d372f]"
         >
           <Plus size={17} />
 

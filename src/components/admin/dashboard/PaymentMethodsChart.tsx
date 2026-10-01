@@ -25,9 +25,9 @@ export function PaymentMethodsChart({
   return (
     <ChartCard eyebrow="Payments" title="Sales by payment method">
       {loading ? (
-        <p className="py-10 text-center text-sm text-[#737a8c]">Loading…</p>
+        <p className="py-10 text-center text-sm text-[#756d62]">Loading…</p>
       ) : methods.length === 0 ? (
-        <p className="py-10 text-center text-sm text-[#737a8c]">No orders in this period.</p>
+        <p className="py-10 text-center text-sm text-[#756d62]">No orders in this period.</p>
       ) : (
         <ul className="space-y-4">
           {methods.map((method) => (
@@ -37,18 +37,18 @@ export function PaymentMethodsChart({
                 className="group block"
               >
                 <div className="flex items-baseline justify-between text-sm">
-                  <span className="font-medium text-[#0f172a] group-hover:text-[#4338ca]">
+                  <span className="font-medium text-[#2a2520] group-hover:text-[#8a6a3b]">
                     {methodLabel(method.method)}
                   </span>
 
-                  <span className="text-[#5b6270]">
-                    <span className="font-semibold text-[#0f172a]">{money(method.total)}</span>{" "}
+                  <span className="text-[#5f584d]">
+                    <span className="font-semibold text-[#2a2520]">{money(method.total)}</span>{" "}
                     · {method.count} order{method.count === 1 ? "" : "s"} ·{" "}
                     {total ? Math.round((method.total / total) * 100) : 0}%
                   </span>
                 </div>
 
-                <div className="mt-1.5 h-2 w-full rounded-full bg-[#eef0f4]">
+                <div className="mt-1.5 h-2 w-full rounded-full bg-[#efe8d8]">
                   <div
                     className="h-2 rounded-full transition-all"
                     style={{ width: `${Math.max(3, (method.total / max) * 100)}%`, background: methodColor(method.method) }}

@@ -22,7 +22,7 @@ export default function SettingsSearch({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="h-10 w-full rounded-lg border border-gray-200 bg-[#ffffff] pl-9 pr-9 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+        className="h-10 w-full rounded-lg border border-gray-200 bg-[#fffdf8] pl-9 pr-9 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
       />
 
       {value && (

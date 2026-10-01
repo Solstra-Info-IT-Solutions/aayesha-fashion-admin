@@ -28,7 +28,7 @@ const STATE: Record<ImportState, { label: string; tone: string; icon: typeof Che
   ok: { label: "Ready", tone: "bg-[#e8f5ec] text-[#276541]", icon: CheckCircle2 },
   warning: { label: "Ready (note)", tone: "bg-[#fdf3e1] text-[#7f4806]", icon: AlertTriangle },
   error: { label: "Error", tone: "bg-[#fdecec] text-[#b3261e]", icon: XCircle },
-  skipped: { label: "Skipped", tone: "bg-[#eef0f4] text-[#5b6270]", icon: SkipForward },
+  skipped: { label: "Skipped", tone: "bg-[#efe8d8] text-[#5f584d]", icon: SkipForward },
   created: { label: "Created", tone: "bg-[#e8f5ec] text-[#276541]", icon: CheckCircle2 },
   failed: { label: "Failed", tone: "bg-[#fdecec] text-[#b3261e]", icon: XCircle },
 };
@@ -95,14 +95,14 @@ export default function ProductImportPage() {
 
   return (
     <div className="space-y-6">
-      <div className="border-b border-[#e5e7ec] pb-6">
-        <Link href="/admin/products" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4338ca] hover:underline">
+      <div className="border-b border-[#e6dfcf] pb-6">
+        <Link href="/admin/products" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#26221d] hover:underline">
           <ArrowLeft size={14} /> Back to products
         </Link>
 
-        <h1 className="mt-3 text-[#0f172a]">Import products from CSV</h1>
+        <h1 className="mt-3 text-[#2a2520]">Import products from CSV</h1>
 
-        <p className="mt-2 max-w-2xl text-sm text-[#5b6270]">
+        <p className="mt-2 max-w-2xl text-sm text-[#5f584d]">
           Upload a spreadsheet saved as CSV and the product list is created automatically. You will see a
           preview first; nothing is created until you confirm. Existing products (same ID or slug) are skipped,
           never overwritten.
@@ -111,10 +111,10 @@ export default function ProductImportPage() {
 
       <section className="surface grid gap-6 p-5 sm:p-6 lg:grid-cols-[1fr_1.2fr]">
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#737a8c]">Step 1</p>
-          <h2 className="mt-1 text-lg font-bold text-[#0f172a]">Get the template</h2>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">Step 1</p>
+          <h2 className="mt-1 text-lg font-bold text-[#2a2520]">Get the template</h2>
 
-          <p className="mt-2 text-sm leading-6 text-[#5b6270]">
+          <p className="mt-2 text-sm leading-6 text-[#5f584d]">
             Required columns: <strong>name, category, selling_price, stock</strong>. Category can be the
             category name, slug or ID. Put several images in <strong>image_urls</strong> separated by{" "}
             <code>|</code>. Up to 500 products and 2&nbsp;MB per file.
@@ -123,15 +123,15 @@ export default function ProductImportPage() {
           <button
             type="button"
             onClick={() => accessToken && downloadImportTemplate(accessToken).catch((reason) => toast.error(reason.message))}
-            className="mt-4 inline-flex h-10 items-center gap-2 rounded-lg border border-[#4338ca] bg-white px-4 text-sm font-semibold text-[#4338ca] hover:bg-[#eef2ff]"
+            className="mt-4 inline-flex h-10 items-center gap-2 rounded-lg border border-[#26221d] bg-white px-4 text-sm font-semibold text-[#26221d] hover:bg-[#f1ead9]"
           >
             <Download size={15} /> Download template
           </button>
         </div>
 
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#737a8c]">Step 2</p>
-          <h2 className="mt-1 text-lg font-bold text-[#0f172a]">Upload your file</h2>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">Step 2</p>
+          <h2 className="mt-1 text-lg font-bold text-[#2a2520]">Upload your file</h2>
 
           <div
             onDragOver={(event) => {
@@ -148,16 +148,16 @@ export default function ProductImportPage() {
               if (dropped) void preview(dropped);
             }}
             className={`mt-3 flex flex-col items-center justify-center rounded-xl border-2 border-dashed px-4 py-8 text-center transition ${
-              dragging ? "border-[#4338ca] bg-[#eef2ff]" : "border-[#d3d7df] bg-[#f6f7fb]"
+              dragging ? "border-[#26221d] bg-[#f1ead9]" : "border-[#d6ccb6] bg-[#f7f2e7]"
             }`}
           >
             {busy === "preview" ? (
-              <Loader2 className="animate-spin text-[#4338ca]" size={28} />
+              <Loader2 className="animate-spin text-[#26221d]" size={28} />
             ) : (
-              <UploadCloud className="text-[#4338ca]" size={28} />
+              <UploadCloud className="text-[#26221d]" size={28} />
             )}
 
-            <p className="mt-2 text-sm font-semibold text-[#0f172a]">
+            <p className="mt-2 text-sm font-semibold text-[#2a2520]">
               {file ? file.name : "Drag a CSV here"}
             </p>
 
@@ -165,7 +165,7 @@ export default function ProductImportPage() {
               type="button"
               onClick={() => inputRef.current?.click()}
               disabled={busy !== null}
-              className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white hover:bg-[#3730a3] disabled:opacity-60"
+              className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white hover:bg-[#3d372f] disabled:opacity-60"
             >
               <FileSpreadsheet size={15} /> {file ? "Choose another file" : "Choose file"}
             </button>
@@ -195,11 +195,11 @@ export default function ProductImportPage() {
 
       {report ? (
         <section className="surface p-5 sm:p-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#737a8c]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">
             {finished ? "Result" : "Step 3 · Preview"}
           </p>
 
-          <h2 className="mt-1 text-lg font-bold text-[#0f172a]">
+          <h2 className="mt-1 text-lg font-bold text-[#2a2520]">
             {finished
               ? `${report.counts.created} created, ${report.counts.skipped} skipped, ${report.counts.error + report.counts.failed} with problems`
               : `${importable} of ${report.totalRows} rows are ready to import`}
@@ -211,9 +211,9 @@ export default function ProductImportPage() {
                 ? ([["created", "Created"], ["skipped", "Skipped"], ["error", "Errors"], ["failed", "Failed"]] as const)
                 : ([["ok", "Ready"], ["warning", "Ready (note)"], ["skipped", "Skipped"], ["error", "Errors"]] as const)
             ).map(([key, label]) => (
-              <div key={key} className="rounded-xl border border-[#e5e7ec] p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#5b6270]">{label}</p>
-                <p className="mt-1 text-2xl font-bold text-[#0f172a]">{report.counts[key]}</p>
+              <div key={key} className="rounded-xl border border-[#e6dfcf] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#5f584d]">{label}</p>
+                <p className="mt-1 text-2xl font-bold text-[#2a2520]">{report.counts[key]}</p>
               </div>
             ))}
           </div>
@@ -225,7 +225,7 @@ export default function ProductImportPage() {
           ) : null}
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-            <label className="flex items-center gap-2 text-sm text-[#0f172a]">
+            <label className="flex items-center gap-2 text-sm text-[#2a2520]">
               <input type="checkbox" checked={onlyIssues} onChange={(event) => setOnlyIssues(event.target.checked)} />
               Show only rows that need attention
             </label>
@@ -233,7 +233,7 @@ export default function ProductImportPage() {
             {finished ? (
               <Link
                 href="/admin/products"
-                className="inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-5 text-sm font-semibold text-white hover:bg-[#3730a3]"
+                className="inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-white hover:bg-[#3d372f]"
               >
                 View product list
               </Link>
@@ -242,7 +242,7 @@ export default function ProductImportPage() {
                 type="button"
                 onClick={runImport}
                 disabled={importable === 0 || busy !== null}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-5 text-sm font-semibold text-white hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-white hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {busy === "import" ? <Loader2 size={15} className="animate-spin" /> : null}
                 Import {importable} product{importable === 1 ? "" : "s"}
@@ -250,9 +250,9 @@ export default function ProductImportPage() {
             )}
           </div>
 
-          <div className="mt-4 overflow-x-auto rounded-xl border border-[#e5e7ec]">
+          <div className="mt-4 overflow-x-auto rounded-xl border border-[#e6dfcf]">
             <table className="w-full min-w-[720px] text-left text-sm">
-              <thead className="bg-[#f6f7fb] text-xs uppercase tracking-wide text-[#5b6270]">
+              <thead className="bg-[#f7f2e7] text-xs uppercase tracking-wide text-[#5f584d]">
                 <tr>
                   <th className="px-4 py-3 font-semibold">Line</th>
                   <th className="px-4 py-3 font-semibold">Product</th>
@@ -263,16 +263,16 @@ export default function ProductImportPage() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-[#e5e7ec]">
+              <tbody className="divide-y divide-[#e6dfcf]">
                 {rows.map((row) => {
                   const meta = STATE[row.state];
                   const Icon = meta.icon;
 
                   return (
                     <tr key={row.line} className="align-top">
-                      <td className="px-4 py-3 text-[#5b6270]">{row.line}</td>
-                      <td className="px-4 py-3 font-medium text-[#0f172a]">{row.name || <em className="text-[#737a8c]">(no name)</em>}</td>
-                      <td className="px-4 py-3 text-[#5b6270]">{row.categoryName ?? "—"}</td>
+                      <td className="px-4 py-3 text-[#5f584d]">{row.line}</td>
+                      <td className="px-4 py-3 font-medium text-[#2a2520]">{row.name || <em className="text-[#756d62]">(no name)</em>}</td>
+                      <td className="px-4 py-3 text-[#5f584d]">{row.categoryName ?? "—"}</td>
                       <td className="px-4 py-3 text-right">{money(row.sellingPrice)}</td>
                       <td className="px-4 py-3 text-right">{row.stock ?? "—"}</td>
                       <td className="px-4 py-3">
@@ -281,7 +281,7 @@ export default function ProductImportPage() {
                         </span>
 
                         {row.messages.map((message) => (
-                          <p key={message} className="mt-1.5 max-w-md text-xs leading-5 text-[#5b6270]">
+                          <p key={message} className="mt-1.5 max-w-md text-xs leading-5 text-[#5f584d]">
                             {message}
                           </p>
                         ))}
@@ -292,7 +292,7 @@ export default function ProductImportPage() {
 
                 {rows.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-4 py-8 text-center text-[#737a8c]">
+                    <td colSpan={6} className="px-4 py-8 text-center text-[#756d62]">
                       Nothing to show.
                     </td>
                   </tr>

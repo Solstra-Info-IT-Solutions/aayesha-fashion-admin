@@ -57,7 +57,7 @@ export default function SettingsHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#ffffff] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fffdf8] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             className={`h-4 w-4 ${
@@ -74,7 +74,7 @@ export default function SettingsHeader({
 
         <Link
           href="/admin/settings/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:bg-[#3730a3]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-medium text-white transition hover:bg-[#3d372f]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

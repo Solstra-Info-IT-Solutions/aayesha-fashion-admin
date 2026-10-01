@@ -136,13 +136,13 @@ export function NewsletterSectionEditor({
     >
       {/* SECTION STATUS */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#0f172a]">
+          <p className="mt-1 text-sm text-[#2a2520]">
             {form.enabled
               ? "Newsletter is visible on the homepage."
               : "Newsletter is hidden from the homepage."}
@@ -161,12 +161,12 @@ export function NewsletterSectionEditor({
           }
           className={`relative flex h-7 w-12 items-center rounded-full p-1 transition-all ${
             form.enabled
-              ? "bg-[#4338ca]"
-              : "bg-[#d3d7df]"
+              ? "bg-[#26221d]"
+              : "bg-[#d6ccb6]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#ffffff] shadow transition-transform ${
+            className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow transition-transform ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -211,12 +211,12 @@ export function NewsletterSectionEditor({
 
       {/* FORM SETTINGS */}
 
-      <div className="border-t border-[#e5e7ec] pt-6">
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+      <div className="border-t border-[#e6dfcf] pt-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
           Signup Form
         </p>
 
-        <p className="mt-1 text-sm text-[#0f172a]">
+        <p className="mt-1 text-sm text-[#2a2520]">
           Configure the newsletter input and button.
         </p>
       </div>
@@ -267,11 +267,11 @@ export function NewsletterSectionEditor({
 
       {/* SAVE */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e5e7ec] bg-[#ffffff]/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -306,7 +306,7 @@ function Field({
 }): ReactElement {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
+      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
         {label}
       </label>
 
@@ -317,7 +317,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
+        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20"
       />
     </div>
   );

@@ -63,7 +63,7 @@ export default function ReviewMobileCard({
   onDelete,
 }: ReviewMobileCardProps) {
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm lg:hidden">
+    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-4 shadow-sm lg:hidden">
       {/* Top */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">

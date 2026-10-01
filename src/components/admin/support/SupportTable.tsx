@@ -82,7 +82,7 @@ export default function SupportTable({
   onDelete,
 }: SupportTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm lg:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1150px]">
           <thead>
@@ -135,7 +135,7 @@ export default function SupportTable({
                 <td className="px-5 py-4">
                   <Link
                     href={`/admin/support/${ticket._id}`}
-                    className="font-semibold text-[#4338ca] transition hover:underline"
+                    className="font-semibold text-[#26221d] transition hover:underline"
                   >
                     {ticket.ticketNumber}
                   </Link>
@@ -216,7 +216,7 @@ export default function SupportTable({
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="View ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -224,7 +224,7 @@ export default function SupportTable({
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="Edit ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
                     >
                       <Pencil size={16} />
                     </Link>

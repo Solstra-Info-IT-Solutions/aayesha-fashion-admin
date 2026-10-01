@@ -30,22 +30,22 @@ export function OrderSummaryCard({
   ];
 
   return (
-    <section className="border border-[#e5e7ec] bg-[#ffffff] p-6">
-      <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
+    <section className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
         Payment
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
+      <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
         Order summary
       </h2>
 
       <div className="mt-6 space-y-3">
         <div className="flex justify-between gap-4 text-sm">
-          <span className="text-[#5b6270]">
+          <span className="text-[#5f584d]">
             Subtotal
           </span>
 
-          <span className="text-[#0f172a]">
+          <span className="text-[#2a2520]">
             ₹
             {order.subtotal.toLocaleString(
               "en-IN",
@@ -58,15 +58,15 @@ export function OrderSummaryCard({
             key={row.label}
             className="flex justify-between gap-4 text-sm"
           >
-            <span className="text-[#5b6270]">
+            <span className="text-[#5f584d]">
               {row.label}
             </span>
 
             <span
               className={
                 row.value < 0
-                  ? "text-[#4338ca]"
-                  : "text-[#0f172a]"
+                  ? "text-[#26221d]"
+                  : "text-[#2a2520]"
               }
             >
               ₹
@@ -79,13 +79,13 @@ export function OrderSummaryCard({
           </div>
         ))}
 
-        <div className="border-t border-[#e5e7ec] pt-4">
+        <div className="border-t border-[#e6dfcf] pt-4">
           <div className="flex justify-between gap-4">
-            <span className="font-medium text-[#0f172a]">
+            <span className="font-medium text-[#2a2520]">
               Total
             </span>
 
-            <span className="font-serif text-2xl text-[#0f172a]">
+            <span className="font-serif text-2xl text-[#2a2520]">
               ₹
               {order.total.toLocaleString(
                 "en-IN",

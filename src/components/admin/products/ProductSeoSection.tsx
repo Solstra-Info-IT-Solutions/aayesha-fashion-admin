@@ -16,19 +16,19 @@ export default function ProductSeoSection({
   onChange,
 }: ProductSeoSectionProps) {
   return (
-    <section className="rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-5">
-      <h2 className="text-base font-semibold text-[#0f172a]">
+    <section className="rounded-2xl border border-[#e6dfcf] bg-[#fffdf8] p-5">
+      <h2 className="text-base font-semibold text-[#2a2520]">
         SEO
       </h2>
 
-      <p className="mt-1 text-sm text-[#5b6270]">
+      <p className="mt-1 text-sm text-[#5f584d]">
         Search-engine metadata for the
         product page.
       </p>
 
       <div className="mt-5 space-y-4">
         <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
+          <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Meta Title
           </span>
 
@@ -42,12 +42,12 @@ export default function ProductSeoSection({
                     .value,
               })
             }
-            className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
+            className="h-11 w-full rounded-xl border border-[#d6ccb6] px-3 text-sm outline-none focus:border-[#b08d57]"
           />
         </label>
 
         <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
+          <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Meta Description
           </span>
 
@@ -65,12 +65,12 @@ export default function ProductSeoSection({
               })
             }
             rows={4}
-            className="w-full rounded-xl border border-[#d3d7df] px-3 py-3 text-sm outline-none focus:border-[#818cf8]"
+            className="w-full rounded-xl border border-[#d6ccb6] px-3 py-3 text-sm outline-none focus:border-[#b08d57]"
           />
         </label>
 
         <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
+          <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Keywords
           </span>
 
@@ -95,12 +95,12 @@ export default function ProductSeoSection({
               })
             }
             placeholder="anarkali, festive wear, indian fashion"
-            className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
+            className="h-11 w-full rounded-xl border border-[#d6ccb6] px-3 text-sm outline-none focus:border-[#b08d57]"
           />
         </label>
 
         <label>
-          <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
+          <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
             Canonical URL
           </span>
 
@@ -118,7 +118,7 @@ export default function ProductSeoSection({
               })
             }
             placeholder="https://..."
-            className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
+            className="h-11 w-full rounded-xl border border-[#d6ccb6] px-3 text-sm outline-none focus:border-[#b08d57]"
           />
         </label>
 
@@ -136,10 +136,10 @@ export default function ProductSeoSection({
                     .checked,
               })
             }
-            className="h-4 w-4 accent-[#0f172a]"
+            className="h-4 w-4 accent-[#2a2520]"
           />
 
-          <span className="text-sm text-[#0f172a]">
+          <span className="text-sm text-[#2a2520]">
             Prevent search engine indexing
           </span>
         </label>

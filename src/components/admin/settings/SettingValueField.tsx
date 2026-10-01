@@ -105,7 +105,7 @@ export default function SettingValueField({
       required
       error={error}
     >
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-[#ffffff] focus-within:border-[#4338ca] focus-within:ring-2 focus-within:ring-[#4338ca]/10">
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-[#fffdf8] focus-within:border-[#26221d] focus-within:ring-2 focus-within:ring-[#26221d]/10">
         <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-2">
           <div className="flex items-center gap-1">
             <button
@@ -113,7 +113,7 @@ export default function SettingValueField({
               onClick={() => handleModeChange("text")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "text"
-                  ? "bg-[#ffffff] text-gray-800 shadow-sm"
+                  ? "bg-[#fffdf8] text-gray-800 shadow-sm"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -126,7 +126,7 @@ export default function SettingValueField({
               onClick={() => handleModeChange("json")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "json"
-                  ? "bg-[#ffffff] text-gray-800 shadow-sm"
+                  ? "bg-[#fffdf8] text-gray-800 shadow-sm"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -151,7 +151,7 @@ export default function SettingValueField({
               ? '{\n  "example": "value"\n}'
               : "Enter setting value..."
           }
-          className={`w-full resize-y border-0 bg-[#ffffff] px-4 py-3 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-400 ${
+          className={`w-full resize-y border-0 bg-[#fffdf8] px-4 py-3 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-400 ${
             mode === "json" ? "leading-6" : "leading-6"
           }`}
           spellCheck={false}

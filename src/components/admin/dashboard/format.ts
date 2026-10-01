@@ -28,17 +28,15 @@ export const labelOf = (value: string) =>
  * their colour when the data changes.
  */
 export const SERIES = [
-  "#2a78d6",
-  "#eb6834",
-  "#1baf7a",
-  "#eda100",
-  "#e87ba4",
-  "#008300",
-  "#4a3aa7",
-  "#e34948",
+  "#1f77a8",
+  "#d2561c",
+  "#2a9a68",
+  "#d29a0a",
+  "#b8457a",
+  "#6a58c4",
 ] as const;
 
-export const OTHER = "#9aa1b2";
+export const OTHER = "#a89f90";
 
 const STATUS_ORDER = [
   "pending",

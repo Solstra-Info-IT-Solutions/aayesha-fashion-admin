@@ -20,7 +20,7 @@ export function Input({
       {label && (
         <label
           htmlFor={id}
-          className="block text-sm font-medium text-[#0f172a]"
+          className="block text-sm font-medium text-[#2a2520]"
         >
           {label}
         </label>
@@ -28,7 +28,7 @@ export function Input({
 
       <input
         id={id}
-        className={`h-12 w-full border border-[#d3d7df] bg-[#ffffff] px-4 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#0f172a] disabled:cursor-not-allowed disabled:bg-[#eef0f4] ${className}`}
+        className={`h-12 w-full border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#2a2520] disabled:cursor-not-allowed disabled:bg-[#efe8d8] ${className}`}
         {...props}
       />
 

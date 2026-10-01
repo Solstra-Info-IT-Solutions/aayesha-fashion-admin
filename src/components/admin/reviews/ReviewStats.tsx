@@ -19,7 +19,7 @@ const statCards = [
     key: "total",
     label: "Total Reviews",
     icon: MessageSquareText,
-    iconClass: "bg-[var(--color-rose-light)] text-[#4338ca]",
+    iconClass: "bg-[var(--color-rose-light)] text-[#26221d]",
   },
   {
     key: "pending",
@@ -57,7 +57,7 @@ export default function ReviewStats({
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}
-            className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm"
+            className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm"
           >
             <div className="h-10 w-10 animate-pulse rounded-xl bg-gray-100" />
 
@@ -79,7 +79,7 @@ export default function ReviewStats({
         return (
           <div
             key={card.key}
-            className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm transition hover:shadow-md"
+            className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm transition hover:shadow-md"
           >
             <div
               className={`flex h-10 w-10 items-center justify-center rounded-xl ${card.iconClass}`}

@@ -144,7 +144,7 @@ export default function EditSettingPage() {
         {loading ? (
           <SettingsFormSkeleton />
         ) : !setting ? (
-          <div className="rounded-2xl border border-red-200 bg-[#ffffff] p-8 text-center shadow-sm">
+          <div className="rounded-2xl border border-red-200 bg-[#fffdf8] p-8 text-center shadow-sm">
             <h2 className="text-lg font-semibold text-gray-900">
               Setting not found
             </h2>

@@ -81,7 +81,7 @@ export default function MarketingCampaignTable({
   onDelete,
 }: MarketingCampaignTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#ffffff] md:block">
+    <div className="hidden overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#fffdf8] md:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] border-collapse">
           <thead>
