@@ -7,6 +7,7 @@ import type {
 } from "@/types/dashboard";
 
 import { StatsGrid } from "./StatsGrid";
+import { AttentionCard } from "./AttentionCard";
 import { RevenueCard } from "./RevenueCard";
 import { OrderStatusCard } from "./OrderStatusCard";
 import { RecentOrders } from "./RecentOrders";
@@ -90,6 +91,8 @@ export function AdminDashboard({
         summary={summary}
         loading={loading}
       />
+
+      <AttentionCard />
 
       {/* =====================================================
           REVENUE + ORDER STATUS

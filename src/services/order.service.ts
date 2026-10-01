@@ -67,6 +67,13 @@ export async function getAdminOrders(
     );
   }
 
+  if (filters.paymentClaimed) {
+    params.set(
+      "paymentClaimed",
+      "true",
+    );
+  }
+
   if (filters.customerEmail) {
     params.set(
       "customerEmail",

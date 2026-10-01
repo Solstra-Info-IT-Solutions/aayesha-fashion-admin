@@ -30,7 +30,9 @@ const initialPagination: OrderPagination =
     hasPreviousPage: false,
   };
 
-export function useOrders() {
+export function useOrders(
+  initialFilters: Partial<OrderListFilters> = {},
+) {
   const {
     accessToken,
     isAuthenticated,
@@ -56,6 +58,7 @@ export function useOrders() {
     page: 1,
     limit: 20,
     sort: "newest",
+    ...initialFilters,
   });
 
   const [

@@ -1,6 +1,13 @@
 "use client";
 
 import {
+  QUICK_FILTERS,
+  activeQuickFilter,
+  quickFilterToFilters,
+  type OrderQuickFilter,
+} from "@/lib/order-quick-filters";
+
+import {
   OrdersHeader,
 } from "./OrdersHeader";
 
@@ -24,7 +31,11 @@ import {
   useOrders,
 } from "@/hooks/useOrders";
 
-export function OrdersPage() {
+export function OrdersPage({
+  initialQuick = "all",
+}: {
+  initialQuick?: OrderQuickFilter;
+}) {
   const {
     orders,
     pagination,
@@ -34,13 +45,19 @@ export function OrdersPage() {
     updateFilters,
     setPage,
     refresh,
-  } = useOrders();
+  } = useOrders(
+    quickFilterToFilters(initialQuick),
+  );
+
+  const activeQuick =
+    activeQuickFilter(filters);
 
   const filtered = Boolean(
     filters.search ||
       filters.status ||
       filters.paymentStatus ||
       filters.paymentMethod ||
+      filters.paymentClaimed ||
       filters.customerEmail ||
       filters.customerPhone,
   );
@@ -54,6 +71,30 @@ export function OrdersPage() {
           void refresh()
         }
       />
+
+      <div className="flex flex-wrap gap-2">
+        {QUICK_FILTERS.map((quick) => (
+          <button
+            key={quick.id}
+            type="button"
+            title={quick.hint}
+            onClick={() =>
+              updateFilters(
+                quickFilterToFilters(
+                  quick.id,
+                ),
+              )
+            }
+            className={
+              activeQuick === quick.id
+                ? "h-9 border border-[#171717] bg-[#171717] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
+                : "h-9 border border-[#d8d1ca] bg-white px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#292c2c] hover:border-[#292c2c]"
+            }
+          >
+            {quick.label}
+          </button>
+        ))}
+      </div>
 
       <OrdersToolbar
         filters={filters}
