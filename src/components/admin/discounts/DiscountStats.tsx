@@ -51,7 +51,7 @@ function StatCard({
           </p>
         </div>
 
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[#2b3a55]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[#4338ca]">
           {icon}
         </div>
       </div>

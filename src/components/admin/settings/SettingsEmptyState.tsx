@@ -29,7 +29,7 @@ export default function SettingsEmptyState({
       {!filtered && (
         <Link
           href="/admin/settings/create"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
+          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#3730a3]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

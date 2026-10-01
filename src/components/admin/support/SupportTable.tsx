@@ -135,7 +135,7 @@ export default function SupportTable({
                 <td className="px-5 py-4">
                   <Link
                     href={`/admin/support/${ticket._id}`}
-                    className="font-semibold text-[#2b3a55] transition hover:underline"
+                    className="font-semibold text-[#4338ca] transition hover:underline"
                   >
                     {ticket.ticketNumber}
                   </Link>
@@ -216,7 +216,7 @@ export default function SupportTable({
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="View ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -224,7 +224,7 @@ export default function SupportTable({
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="Edit ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
                     >
                       <Pencil size={16} />
                     </Link>

@@ -201,7 +201,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="View review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -209,7 +209,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="Edit review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#4338ca]"
                     >
                       <Pencil size={16} />
                     </Link>

@@ -59,7 +59,7 @@ export default function CatalogHeader({
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
         >
           <Plus className="h-4 w-4" />
 

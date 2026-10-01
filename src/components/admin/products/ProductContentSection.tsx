@@ -12,10 +12,10 @@ interface ProductContentSectionProps {
 }
 
 const inputClassName =
-  "box-border min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition focus:border-[#7d8aa6] focus:ring-2 focus:ring-[#e4e9f2]";
+  "box-border min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition focus:border-[#818cf8] focus:ring-2 focus:ring-[#eef2ff]";
 
 const labelClassName =
-  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#1a1d24]";
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#0f172a]";
 
 export default function ProductContentSection({
   content,
@@ -26,7 +26,7 @@ export default function ProductContentSection({
       {/* HEADER */}
 
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
           Content
         </h2>
 

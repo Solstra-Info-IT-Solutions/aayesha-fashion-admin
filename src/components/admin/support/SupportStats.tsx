@@ -22,7 +22,7 @@ const statCards = [
     label: "Total Tickets",
     icon: Headphones,
     iconClass:
-      "bg-[var(--color-rose-light)] text-[#2b3a55]",
+      "bg-[var(--color-rose-light)] text-[#4338ca]",
   },
   {
     key: "open",

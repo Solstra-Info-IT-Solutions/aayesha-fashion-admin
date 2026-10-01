@@ -148,7 +148,7 @@ export default function DiscountDetail({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/admin/discounts"
-          className="inline-flex w-fit items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
+          className="inline-flex w-fit items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#4338ca]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
@@ -197,7 +197,7 @@ export default function DiscountDetail({
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-light)] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#2b3a55]">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-light)] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#4338ca]">
                 <Tag size={18} />
                 {discount.code}
               </div>
@@ -222,7 +222,7 @@ export default function DiscountDetail({
               Discount
             </p>
 
-            <p className="mt-1 text-2xl font-bold text-[#2b3a55]">
+            <p className="mt-1 text-2xl font-bold text-[#4338ca]">
               {getDiscountLabel(
                 discount,
               )}
@@ -253,7 +253,7 @@ export default function DiscountDetail({
             null && (
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100">
               <div
-                className="h-full rounded-full bg-[#2b3a55]"
+                className="h-full rounded-full bg-[#4338ca]"
                 style={{
                   width: `${usagePercentage}%`,
                 }}
@@ -316,7 +316,7 @@ export default function DiscountDetail({
         <div className="flex items-center gap-2">
           <CalendarDays
             size={18}
-            className="text-[#2b3a55]"
+            className="text-[#4338ca]"
           />
 
           <h2 className="text-base font-semibold text-[var(--color-ink)]">

@@ -30,6 +30,8 @@ const emptyDashboard: DashboardData = {
 };
 
 export function useDashboard() {
+  const [days, setDays] = useState(30);
+
   const [data, setData] =
     useState<DashboardData>(
       emptyDashboard,
@@ -48,7 +50,7 @@ export function useDashboard() {
 
       try {
         const result =
-          await getDashboard();
+          await getDashboard(days);
 
         setData({
           ...emptyDashboard,
@@ -67,7 +69,7 @@ export function useDashboard() {
       } finally {
         setLoading(false);
       }
-    }, []);
+    }, [days]);
 
   useEffect(() => {
     void loadDashboard();
@@ -75,6 +77,8 @@ export function useDashboard() {
 
   return {
     ...data,
+    days,
+    setDays,
     loading,
     error,
     onRefresh: loadDashboard,

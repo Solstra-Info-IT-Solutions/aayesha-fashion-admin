@@ -24,7 +24,7 @@ export default function SettingsSaveBar({
           type="button"
           onClick={onSave}
           disabled={saving || disabled}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save
             className={`h-4 w-4 ${

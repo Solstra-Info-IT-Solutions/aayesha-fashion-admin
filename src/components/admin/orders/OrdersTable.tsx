@@ -46,7 +46,7 @@ export function OrdersTable({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[950px]">
           <thead>
-            <tr className="border-b border-[#e5e7ec] bg-[#f4f5f7]">
+            <tr className="border-b border-[#e5e7ec] bg-[#f6f7fb]">
               {[
                 "Order",
                 "Customer",
@@ -94,21 +94,21 @@ export function OrdersTable({
                     key={
                       order.orderNumber
                     }
-                    className="border-b border-[#e5e7ec] transition hover:bg-[#f4f5f7]"
+                    className="border-b border-[#e5e7ec] transition hover:bg-[#f6f7fb]"
                   >
                     <td className="px-5 py-4">
                       <Link
                         href={`/admin/orders/${encodeURIComponent(
                           order.orderNumber,
                         )}`}
-                        className="text-sm font-medium text-[#1a1d24] hover:underline"
+                        className="text-sm font-medium text-[#0f172a] hover:underline"
                       >
                         {order.orderNumber}
                       </Link>
                     </td>
 
                     <td className="px-5 py-4">
-                      <p className="text-sm font-medium text-[#1a1d24]">
+                      <p className="text-sm font-medium text-[#0f172a]">
                         {order.customerName ||
                           "Guest customer"}
                       </p>
@@ -124,7 +124,7 @@ export function OrdersTable({
                       )}
                     </td>
 
-                    <td className="px-5 py-4 text-sm font-medium text-[#1a1d24]">
+                    <td className="px-5 py-4 text-sm font-medium text-[#0f172a]">
                       ₹
                       {order.total.toLocaleString(
                         "en-IN",
@@ -165,7 +165,7 @@ export function OrdersTable({
                         href={`/admin/orders/${encodeURIComponent(
                           order.orderNumber,
                         )}`}
-                        className="text-xs font-medium text-[#5b6270] hover:text-[#1a1d24]"
+                        className="text-xs font-medium text-[#5b6270] hover:text-[#0f172a]"
                       >
                         View
                       </Link>

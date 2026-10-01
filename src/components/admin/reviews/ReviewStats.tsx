@@ -19,7 +19,7 @@ const statCards = [
     key: "total",
     label: "Total Reviews",
     icon: MessageSquareText,
-    iconClass: "bg-[var(--color-rose-light)] text-[#2b3a55]",
+    iconClass: "bg-[var(--color-rose-light)] text-[#4338ca]",
   },
   {
     key: "pending",

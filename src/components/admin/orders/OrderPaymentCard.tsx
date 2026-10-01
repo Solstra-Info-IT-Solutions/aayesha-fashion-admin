@@ -105,7 +105,7 @@ export function OrderPaymentCard({
             Payment
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+          <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
             Payment details
           </h2>
         </div>
@@ -117,7 +117,7 @@ export function OrderPaymentCard({
         {rows.map(([label, value]) => (
           <div key={label} className="flex justify-between gap-4">
             <dt className="text-[#5b6270]">{label}</dt>
-            <dd className="break-all text-right text-[#1a1d24]">{value}</dd>
+            <dd className="break-all text-right text-[#0f172a]">{value}</dd>
           </div>
         ))}
 
@@ -129,7 +129,7 @@ export function OrderPaymentCard({
                 href={`https://wa.me/${whatsapp.length === 10 ? `91${whatsapp}` : whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#1a1d24] underline underline-offset-2"
+                className="text-[#0f172a] underline underline-offset-2"
               >
                 {order.paymentWhatsapp}
               </a>
@@ -169,7 +169,7 @@ export function OrderPaymentCard({
               value={reference}
               onChange={(event) => setReference(event.target.value)}
               placeholder="UTR / reference (optional)"
-              className="h-10 flex-1 border border-amber-200 bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+              className="h-10 flex-1 border border-amber-200 bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
             />
 
             <button
@@ -190,7 +190,7 @@ export function OrderPaymentCard({
                   note: "Payment received (marked by admin).",
                 });
               }}
-              className="h-10 bg-[#2b3a55] px-4 text-sm font-medium text-white hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+              className="h-10 bg-[#4338ca] px-4 text-sm font-medium text-white hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading ? "Saving…" : "Mark as paid"}
             </button>

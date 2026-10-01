@@ -19,7 +19,7 @@ export function HomepageHeader({
             Storefront CMS
           </p>
 
-          <h1 className="mt-1 font-serif text-3xl text-[#1a1d24]">
+          <h1 className="mt-1 font-serif text-3xl text-[#0f172a]">
             Homepage
           </h1>
 
@@ -33,7 +33,7 @@ export function HomepageHeader({
           type="button"
           onClick={() => void onRefresh()}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 border border-[#d3d7df] bg-[#ffffff] px-4 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1d24] transition hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-10 items-center gap-2 border border-[#d3d7df] bg-[#ffffff] px-4 text-xs font-medium uppercase tracking-[0.14em] text-[#0f172a] transition hover:border-[#4338ca] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <RefreshCw
             size={15}

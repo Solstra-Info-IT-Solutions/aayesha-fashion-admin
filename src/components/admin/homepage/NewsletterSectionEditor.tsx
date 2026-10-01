@@ -136,13 +136,13 @@ export function NewsletterSectionEditor({
     >
       {/* SECTION STATUS */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f4f5f7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#1a1d24]">
+          <p className="mt-1 text-sm text-[#0f172a]">
             {form.enabled
               ? "Newsletter is visible on the homepage."
               : "Newsletter is hidden from the homepage."}
@@ -161,7 +161,7 @@ export function NewsletterSectionEditor({
           }
           className={`relative flex h-7 w-12 items-center rounded-full p-1 transition-all ${
             form.enabled
-              ? "bg-[#2b3a55]"
+              ? "bg-[#4338ca]"
               : "bg-[#d3d7df]"
           }`}
         >
@@ -216,7 +216,7 @@ export function NewsletterSectionEditor({
           Signup Form
         </p>
 
-        <p className="mt-1 text-sm text-[#1a1d24]">
+        <p className="mt-1 text-sm text-[#0f172a]">
           Configure the newsletter input and button.
         </p>
       </div>
@@ -271,7 +271,7 @@ export function NewsletterSectionEditor({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#2b3a55] bg-[#2b3a55] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -317,7 +317,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20"
+        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
       />
     </div>
   );

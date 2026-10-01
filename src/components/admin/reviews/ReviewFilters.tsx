@@ -47,7 +47,7 @@ export default function ReviewFilters({
       <div className="mb-4 flex items-center gap-2">
         <SlidersHorizontal
           size={17}
-          className="text-[#2b3a55]"
+          className="text-[#4338ca]"
         />
 
         <h2 className="text-sm font-semibold text-[var(--color-ink)]">
@@ -68,7 +68,7 @@ export default function ReviewFilters({
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
             placeholder="Search reviews..."
-            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-10 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
           />
         </div>
 
@@ -78,7 +78,7 @@ export default function ReviewFilters({
           onChange={(event) =>
             onStatusChange(event.target.value as ReviewStatus | "")
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
         >
           <option value="">All Statuses</option>
 
@@ -95,7 +95,7 @@ export default function ReviewFilters({
           onChange={(event) =>
             onSortChange(event.target.value as ReviewSort)
           }
-          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+          className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
         >
           {REVIEW_SORTS.map((item) => (
             <option key={item} value={item}>

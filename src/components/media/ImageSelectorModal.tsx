@@ -442,7 +442,7 @@ export function ImageSelectorModal({
               Media Library
             </p>
 
-            <h2 className="mt-1 font-serif text-xl text-[#1a1d24]">
+            <h2 className="mt-1 font-serif text-xl text-[#0f172a]">
               {title}
             </h2>
 
@@ -455,7 +455,7 @@ export function ImageSelectorModal({
             type="button"
             onClick={onClose}
             disabled={uploading}
-            className="flex h-9 w-9 items-center justify-center border border-[#d3d7df] text-[#5b6270] transition hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-9 w-9 items-center justify-center border border-[#d3d7df] text-[#5b6270] transition hover:border-[#4338ca] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
             aria-label="Close image selector"
           >
             <X size={17} />
@@ -466,9 +466,9 @@ export function ImageSelectorModal({
             TOOLBAR
         ================================================= */}
 
-        <div className="flex flex-col gap-3 border-b border-[#e5e7ec] bg-[#f4f5f7] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-b border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-medium text-[#1a1d24]">
+            <p className="text-xs font-medium text-[#0f172a]">
               {images.length}{" "}
               {images.length === 1
                 ? "image"
@@ -502,7 +502,7 @@ export function ImageSelectorModal({
                 !canUpload ||
                 uploading
               }
-              className="inline-flex items-center gap-2 bg-[#2b3a55] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2 bg-[#4338ca] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
               title={
                 !canUpload
                   ? "Save this record first"
@@ -544,7 +544,7 @@ export function ImageSelectorModal({
             <div className="flex min-h-[280px] flex-col items-center justify-center">
               <Loader2
                 size={28}
-                className="animate-spin text-[#2b3a55]"
+                className="animate-spin text-[#4338ca]"
               />
 
               <p className="mt-3 text-xs text-[#5b6270]">
@@ -559,7 +559,7 @@ export function ImageSelectorModal({
                 <X size={20} />
               </div>
 
-              <p className="mt-4 text-sm font-medium text-[#1a1d24]">
+              <p className="mt-4 text-sm font-medium text-[#0f172a]">
                 Unable to load images
               </p>
 
@@ -572,7 +572,7 @@ export function ImageSelectorModal({
                 onClick={() =>
                   void loadImages()
                 }
-                className="mt-4 border border-[#d3d7df] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#5b6270] transition hover:border-[#2b3a55] hover:text-[#2b3a55]"
+                className="mt-4 border border-[#d3d7df] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#5b6270] transition hover:border-[#4338ca] hover:text-[#4338ca]"
               >
                 Try Again
               </button>
@@ -583,11 +583,11 @@ export function ImageSelectorModal({
             !error &&
             images.length === 0 && (
               <div className="flex min-h-[280px] flex-col items-center justify-center text-center">
-                <div className="flex h-14 w-14 items-center justify-center border border-[#e5e7ec] bg-[#f4f5f7] text-[#737a8c]">
+                <div className="flex h-14 w-14 items-center justify-center border border-[#e5e7ec] bg-[#f6f7fb] text-[#737a8c]">
                   <ImageIcon size={24} />
                 </div>
 
-                <p className="mt-4 text-sm font-medium text-[#1a1d24]">
+                <p className="mt-4 text-sm font-medium text-[#0f172a]">
                   No images found
                 </p>
 
@@ -606,7 +606,7 @@ export function ImageSelectorModal({
                     disabled={
                       uploading
                     }
-                    className="mt-5 inline-flex items-center gap-2 border border-[#2b3a55] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#1a1d24] transition hover:bg-[#2b3a55] hover:text-white disabled:opacity-50"
+                    className="mt-5 inline-flex items-center gap-2 border border-[#4338ca] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#0f172a] transition hover:bg-[#4338ca] hover:text-white disabled:opacity-50"
                   >
                     <Upload size={14} />
 
@@ -638,7 +638,7 @@ export function ImageSelectorModal({
                         className={[
                           "group relative overflow-hidden border bg-[#ffffff] transition",
                           isSelected
-                            ? "border-[#2b3a55] ring-2 ring-[#2b3a55]/20"
+                            ? "border-[#4338ca] ring-2 ring-[#4338ca]/20"
                             : "border-[#e5e7ec]",
                         ].join(" ")}
                       >
@@ -655,7 +655,7 @@ export function ImageSelectorModal({
 
                           {/* Selected indicator */}
                           {isSelected && (
-                            <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center bg-[#2b3a55] text-white shadow">
+                            <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center bg-[#4338ca] text-white shadow">
                               <Check
                                 size={
                                   15
@@ -734,8 +734,8 @@ export function ImageSelectorModal({
                               className={[
                                 "flex-1 px-2 py-2 text-[9px] font-medium uppercase tracking-[0.08em] transition",
                                 isSelected
-                                  ? "bg-[#2b3a55] text-white"
-                                  : "bg-[#2b3a55] text-white hover:bg-[#2b3a55]",
+                                  ? "bg-[#4338ca] text-white"
+                                  : "bg-[#4338ca] text-white hover:bg-[#4338ca]",
                               ].join(
                                 " ",
                               )}
@@ -755,7 +755,7 @@ export function ImageSelectorModal({
                                   uploading ||
                                   !canUpload
                                 }
-                                className="inline-flex items-center justify-center border border-[#d3d7df] px-2 text-[#5b6270] transition hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-50"
+                                className="inline-flex items-center justify-center border border-[#d3d7df] px-2 text-[#5b6270] transition hover:border-[#4338ca] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
                                 title="Replace selected image"
                                 aria-label="Replace selected image"
                               >
@@ -799,7 +799,7 @@ export function ImageSelectorModal({
             type="button"
             onClick={onClose}
             disabled={uploading}
-            className="border border-[#d3d7df] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#5b6270] transition hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-50"
+            className="border border-[#d3d7df] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#5b6270] transition hover:border-[#4338ca] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Done
           </button>

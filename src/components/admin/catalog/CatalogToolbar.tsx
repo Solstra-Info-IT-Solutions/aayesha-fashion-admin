@@ -69,7 +69,7 @@ export default function CatalogToolbar({
           <button
             type="button"
             onClick={onSearch}
-            className="h-11 shrink-0 rounded-xl bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
+            className="h-11 shrink-0 rounded-xl bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
           >
             Search
           </button>

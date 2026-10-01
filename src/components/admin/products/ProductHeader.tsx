@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   Plus,
   RefreshCw,
+  Upload,
 } from "lucide-react";
 
 interface ProductHeaderProps {
@@ -23,7 +24,7 @@ export default function ProductHeader({
           Catalog
         </p>
 
-        <h1 className="mt-1 text-2xl font-semibold text-[#1a1d24]">
+        <h1 className="mt-1 text-2xl font-semibold text-[#0f172a]">
           Products
         </h1>
 
@@ -33,12 +34,12 @@ export default function ProductHeader({
         </p>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex h-10 items-center gap-2 rounded-xl border border-[#d3d7df] px-3.5 text-sm font-medium text-[#1a1d24] hover:bg-[#f4f5f7] disabled:opacity-50"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d3d7df] px-3.5 text-sm font-medium text-[#0f172a] hover:bg-[#f6f7fb] disabled:opacity-50"
         >
           <RefreshCw
             size={15}
@@ -52,8 +53,16 @@ export default function ProductHeader({
         </button>
 
         <Link
+          href="/admin/products/import"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d3d7df] bg-white px-3.5 text-sm font-medium text-[#0f172a] hover:border-[#818cf8] hover:bg-[#eef2ff]"
+        >
+          <Upload size={16} />
+          Import CSV
+        </Link>
+
+        <Link
           href="/admin/products/new"
-          className="inline-flex h-10 items-center gap-2 rounded-xl bg-[#2b3a55] px-4 text-sm font-medium text-white hover:bg-[#1e2a40]"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl bg-[#4338ca] px-4 text-sm font-medium text-white hover:bg-[#3730a3]"
         >
           <Plus size={16} />
           Add Product

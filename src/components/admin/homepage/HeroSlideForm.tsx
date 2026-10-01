@@ -280,7 +280,7 @@ export function HeroSlideForm({
             Hero Slide
           </p>
 
-          <h4 className="mt-1 font-serif text-xl text-[#1a1d24]">
+          <h4 className="mt-1 font-serif text-xl text-[#0f172a]">
             {mode === "create"
               ? "Add New Slide"
               : "Edit Slide"}
@@ -290,7 +290,7 @@ export function HeroSlideForm({
         <button
           type="button"
           onClick={onCancel}
-          className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55]"
+          className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca]"
           aria-label="Close"
         >
           <X size={15} />
@@ -477,7 +477,7 @@ export function HeroSlideForm({
                 event.target.checked,
               )
             }
-            className="h-4 w-4 accent-[#2b3a55]"
+            className="h-4 w-4 accent-[#4338ca]"
           />
 
           <span className="text-xs text-[#5b6270]">
@@ -497,7 +497,7 @@ export function HeroSlideForm({
           <button
             type="submit"
             disabled={uploading !== null}
-            className="bg-[#2b3a55] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60"
+            className="bg-[#4338ca] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {mode === "create"
               ? "Add Slide"
@@ -545,7 +545,7 @@ function ImageUploadField({
       />
 
       {value ? (
-        <div className="overflow-hidden border border-[#d3d7df] bg-[#f4f5f7]">
+        <div className="overflow-hidden border border-[#d3d7df] bg-[#f6f7fb]">
           <div className="relative aspect-[16/7] w-full overflow-hidden bg-[#e5e7ec]">
             <img
               src={value}
@@ -563,7 +563,7 @@ function ImageUploadField({
               type="button"
               onClick={onUpload}
               disabled={uploading}
-              className="flex shrink-0 items-center gap-2 border border-[#d3d7df] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-[#5b6270] hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:opacity-50"
+              className="flex shrink-0 items-center gap-2 border border-[#d3d7df] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-[#5b6270] hover:border-[#4338ca] hover:text-[#4338ca] disabled:opacity-50"
             >
               {uploading ? (
                 <Loader2
@@ -583,13 +583,13 @@ function ImageUploadField({
           type="button"
           onClick={onUpload}
           disabled={uploading}
-          className="flex min-h-[145px] w-full flex-col items-center justify-center border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-4 text-center transition hover:border-[#2b3a55] hover:bg-[#ffffff] disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex min-h-[145px] w-full flex-col items-center justify-center border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-4 text-center transition hover:border-[#4338ca] hover:bg-[#ffffff] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {uploading ? (
             <>
               <Loader2
                 size={20}
-                className="animate-spin text-[#2b3a55]"
+                className="animate-spin text-[#4338ca]"
               />
 
               <span className="mt-3 text-xs font-medium text-[#5b6270]">
@@ -600,7 +600,7 @@ function ImageUploadField({
             <>
               <Upload
                 size={20}
-                className="text-[#2b3a55]"
+                className="text-[#4338ca]"
               />
 
               <span className="mt-3 text-xs font-medium uppercase tracking-[0.1em] text-[#5b6270]">
@@ -658,7 +658,7 @@ function Field({
           onChange(event.target.value)
         }
         className={[
-          "h-11 w-full border bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55]",
+          "h-11 w-full border bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca]",
           error
             ? "border-red-400"
             : "border-[#d3d7df]",
@@ -703,7 +703,7 @@ function TextArea({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full resize-none border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55]"
+        className="w-full resize-none border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca]"
       />
     </label>
   );

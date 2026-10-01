@@ -24,7 +24,7 @@ export default function DiscountHeader({
         <div className="mb-2 hidden items-center gap-2 text-xs text-[var(--color-secondary)]">
           <Link
             href="/admin"
-            className="transition hover:text-[#2b3a55]"
+            className="transition hover:text-[#4338ca]"
           >
             Admin
           </Link>
@@ -38,7 +38,7 @@ export default function DiscountHeader({
 
         {/* Title */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#2b3a55]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#4338ca]">
             <Percent size={22} />
           </div>
 
@@ -80,7 +80,7 @@ export default function DiscountHeader({
         {/* Create Discount */}
         <Link
           href="/admin/discounts/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e2a40]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3730a3]"
         >
           <Plus size={17} />
 

@@ -117,7 +117,7 @@ export function OrderDetailsPage({
             <button
               type="button"
               onClick={() => void refresh()}
-              className="inline-flex items-center justify-center rounded-xl bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
+              className="inline-flex items-center justify-center rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
             >
               Try Again
             </button>

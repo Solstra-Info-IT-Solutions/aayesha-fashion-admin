@@ -72,7 +72,7 @@ export default function ProductPublishSection({
     <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
           Publish
         </h2>
 
@@ -83,13 +83,13 @@ export default function ProductPublishSection({
       </div>
 
       {/* CURRENT STATUS */}
-      <div className="mt-5 min-w-0 overflow-hidden rounded-xl bg-[#f4f5f7] p-3.5">
+      <div className="mt-5 min-w-0 overflow-hidden rounded-xl bg-[#f6f7fb] p-3.5">
         <div className="flex min-w-0 items-center justify-between gap-3">
           <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#5b6270]">
             Current Status
           </span>
 
-          <span className="shrink-0 rounded-full bg-[#2b3a55] px-2.5 py-1 text-[11px] font-medium capitalize leading-4 text-white">
+          <span className="shrink-0 rounded-full bg-[#4338ca] px-2.5 py-1 text-[11px] font-medium capitalize leading-4 text-white">
             {product.status}
           </span>
         </div>
@@ -118,7 +118,7 @@ export default function ProductPublishSection({
               onPublish,
             )
           }
-          className={`${buttonBaseClass} bg-[#2b3a55] text-white hover:opacity-90`}
+          className={`${buttonBaseClass} bg-[#4338ca] text-white hover:opacity-90`}
         >
           <Globe
             size={14}
@@ -144,7 +144,7 @@ export default function ProductPublishSection({
               onDraft,
             )
           }
-          className={`${buttonBaseClass} border border-[#d3d7df] bg-[#ffffff] text-[#1a1d24] hover:bg-[#f4f5f7]`}
+          className={`${buttonBaseClass} border border-[#d3d7df] bg-[#ffffff] text-[#0f172a] hover:bg-[#f6f7fb]`}
         >
           <span className="min-w-0 truncate">
             {action === "draft"
@@ -218,7 +218,7 @@ export default function ProductPublishSection({
           onClick={() =>
             setShowDeleteConfirm(true)
           }
-          className={`${buttonBaseClass} mt-2 border border-[#b3261e] bg-[#fdecec] text-[#b3261e] hover:bg-[#1e2a40]`}
+          className={`${buttonBaseClass} mt-2 border border-[#b3261e] bg-[#fdecec] text-[#b3261e] hover:bg-[#3730a3]`}
         >
           <Trash2
             size={14}
@@ -255,7 +255,7 @@ export default function ProductPublishSection({
               onClick={() =>
                 setShowDeleteConfirm(false)
               }
-              className="min-w-0 rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 py-2 text-xs font-medium text-[#1a1d24] transition hover:bg-[#f4f5f7] disabled:opacity-50"
+              className="min-w-0 rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 py-2 text-xs font-medium text-[#0f172a] transition hover:bg-[#f6f7fb] disabled:opacity-50"
             >
               Cancel
             </button>
@@ -269,7 +269,7 @@ export default function ProductPublishSection({
               onClick={() =>
                 void handleDelete()
               }
-              className="min-w-0 rounded-xl bg-[#b3261e] px-3 py-2 text-xs font-medium text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+              className="min-w-0 rounded-xl bg-[#b3261e] px-3 py-2 text-xs font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {action === "delete"
                 ? "Deleting..."

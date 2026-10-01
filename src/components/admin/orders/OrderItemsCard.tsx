@@ -14,7 +14,7 @@ export function OrderItemsCard({
           Order items
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+        <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
           Products
         </h2>
       </div>
@@ -34,7 +34,7 @@ export function OrderItemsCard({
                 className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div>
-                  <p className="text-sm font-medium text-[#1a1d24]">
+                  <p className="text-sm font-medium text-[#0f172a]">
                     {item.productName ||
                       "Product"}
                   </p>
@@ -53,7 +53,7 @@ export function OrderItemsCard({
                 </div>
 
                 <div className="text-left sm:text-right">
-                  <p className="text-sm font-medium text-[#1a1d24]">
+                  <p className="text-sm font-medium text-[#0f172a]">
                     ₹
                     {lineTotal.toLocaleString(
                       "en-IN",

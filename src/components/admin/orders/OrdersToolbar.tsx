@@ -50,7 +50,7 @@ export function OrdersToolbar({
             })
           }
           placeholder="Search order, customer, email or phone..."
-          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
         />
 
         <select
@@ -64,7 +64,7 @@ export function OrdersToolbar({
                   | undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
         >
           <option value="">
             All statuses
@@ -99,7 +99,7 @@ export function OrdersToolbar({
                   | undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
         >
           <option value="">
             All payments
@@ -132,7 +132,7 @@ export function OrdersToolbar({
                 undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
         >
           <option value="">
             All methods
@@ -163,7 +163,7 @@ export function OrdersToolbar({
                   .value as OrderListFilters["sort"],
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none focus:border-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
         >
           <option value="newest">
             Newest
@@ -199,7 +199,7 @@ export function OrdersToolbar({
               sort: "newest",
             })
           }
-          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#5b6270] hover:border-[#1a1d24] hover:text-[#1a1d24]"
+          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#5b6270] hover:border-[#0f172a] hover:text-[#0f172a]"
         >
           Reset
         </button>

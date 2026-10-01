@@ -14,7 +14,7 @@ export default function ReviewEmptyState({
 }: ReviewEmptyStateProps) {
   return (
     <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#2b3a55]">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#4338ca]">
         <MessageSquareText size={26} />
       </div>
 
@@ -42,7 +42,7 @@ export default function ReviewEmptyState({
       {!hasFilters && (
         <Link
           href="/admin"
-          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
+          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3]"
         >
           Back to Admin
         </Link>

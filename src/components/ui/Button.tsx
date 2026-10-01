@@ -19,7 +19,7 @@ export function Button({
       disabled={
         disabled || loading
       }
-      className={`inline-flex h-12 w-full items-center justify-center bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`inline-flex h-12 w-full items-center justify-center bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
       {...props}
     >
       {loading

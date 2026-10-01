@@ -19,7 +19,7 @@ export function Breadcrumbs() {
       <div className="flex items-center gap-2 sm:mt-0.5">
         <Link
           href="/admin"
-          className="hidden text-sm text-[#5b6270] hover:text-[#1a1d24] sm:inline"
+          className="hidden text-sm text-[#5b6270] hover:text-[#0f172a] sm:inline"
         >
           Admin
         </Link>
@@ -27,7 +27,7 @@ export function Breadcrumbs() {
         <span className="hidden text-[#747b8d] sm:inline">/</span>
 
         <span
-          className={`truncate font-serif text-xl text-[#1a1d24] ${
+          className={`truncate font-serif text-xl text-[#0f172a] ${
             deeper ? "hidden sm:inline" : ""
           }`}
         >
@@ -35,7 +35,7 @@ export function Breadcrumbs() {
         </span>
 
         {deeper ? (
-          <span className="truncate font-serif text-xl text-[#1a1d24] sm:hidden">
+          <span className="truncate font-serif text-xl text-[#0f172a] sm:hidden">
             {title}
           </span>
         ) : null}

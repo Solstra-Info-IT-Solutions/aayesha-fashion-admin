@@ -283,13 +283,13 @@ export function WhyChooseUsSectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f4f5f7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#1a1d24]">
+          <p className="mt-1 text-sm text-[#0f172a]">
             {form.enabled
               ? "Why Ayesha is visible on the homepage."
               : "Why Ayesha is hidden from the homepage."}
@@ -311,9 +311,9 @@ export function WhyChooseUsSectionEditor({
               !form.enabled,
             )
           }
-          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#7d8aa6]/25 focus:ring-offset-2 ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#2b3a55]"
+              ? "bg-[#4338ca]"
               : "bg-[#d3d7df]"
           }`}
         >
@@ -385,7 +385,7 @@ export function WhyChooseUsSectionEditor({
               Why Ayesha Items
             </p>
 
-            <p className="mt-1 text-sm text-[#1a1d24]">
+            <p className="mt-1 text-sm text-[#0f172a]">
               Add the key reasons customers choose
               Ayesha.
             </p>
@@ -394,7 +394,7 @@ export function WhyChooseUsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="inline-flex shrink-0 items-center gap-2 border border-[#2b3a55] bg-[#2b3a55] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#1e2a40] hover:bg-[#1e2a40]"
+            className="inline-flex shrink-0 items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3]"
           >
             <Plus size={15} />
 
@@ -408,8 +408,8 @@ export function WhyChooseUsSectionEditor({
       ===================================================== */}
 
       {form.items.length === 0 ? (
-        <div className="border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-6 py-12 text-center">
-          <p className="text-sm font-medium text-[#1a1d24]">
+        <div className="border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-6 py-12 text-center">
+          <p className="text-sm font-medium text-[#0f172a]">
             No Why Ayesha items yet.
           </p>
 
@@ -420,7 +420,7 @@ export function WhyChooseUsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="mt-5 inline-flex items-center gap-2 border border-[#2b3a55] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#2b3a55] transition hover:bg-[#2b3a55] hover:text-[#ffffff]"
+            className="mt-5 inline-flex items-center gap-2 border border-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#4338ca] transition hover:bg-[#4338ca] hover:text-[#ffffff]"
           >
             <Plus size={15} />
 
@@ -479,7 +479,7 @@ export function WhyChooseUsSectionEditor({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#2b3a55] bg-[#2b3a55] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#1e2a40] hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -548,7 +548,7 @@ function WhyAyeshaItemCard({
           ITEM HEADER
       =================================================== */}
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] bg-[#f4f5f7] px-5 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
         <div className="flex items-center gap-3">
           <span className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-xs font-medium text-[#5b6270]">
             {String(index + 1).padStart(
@@ -562,7 +562,7 @@ function WhyAyeshaItemCard({
               Why Ayesha Item
             </p>
 
-            <p className="mt-0.5 text-sm font-medium text-[#1a1d24]">
+            <p className="mt-0.5 text-sm font-medium text-[#0f172a]">
               {item.title ||
                 "Untitled item"}
             </p>
@@ -576,7 +576,7 @@ function WhyAyeshaItemCard({
               onMove(index, "up")
             }
             disabled={index === 0}
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Move item up"
           >
             <ArrowUp size={15} />
@@ -591,7 +591,7 @@ function WhyAyeshaItemCard({
               index ===
               totalItems - 1
             }
-            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-30"
+            className="inline-flex h-8 w-8 items-center justify-center border border-[#d3d7df] bg-[#ffffff] text-[#5b6270] transition hover:border-[#737a8c] hover:text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Move item down"
           >
             <ArrowDown size={15} />
@@ -602,7 +602,7 @@ function WhyAyeshaItemCard({
             onClick={() =>
               onDelete(item.id)
             }
-            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#ffffff] text-[#7d8aa6] transition hover:border-[#7d8aa6] hover:bg-[#fdecec]"
+            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#ffffff] text-[#818cf8] transition hover:border-[#818cf8] hover:bg-[#fdecec]"
             aria-label="Delete item"
           >
             <Trash2 size={15} />
@@ -696,9 +696,9 @@ function WhyAyeshaItemCard({
                 !item.isActive,
               )
             }
-            className={`relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#7d8aa6]/25 focus:ring-offset-2 ${
+            className={`relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
               item.isActive
-                ? "bg-[#2b3a55]"
+                ? "bg-[#4338ca]"
                 : "bg-[#d3d7df]"
             }`}
           >
@@ -744,7 +744,7 @@ function Field({
           )
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20"
+        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
       />
     </div>
   );

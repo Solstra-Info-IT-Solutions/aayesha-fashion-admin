@@ -972,7 +972,7 @@ export default function MarketingCampaignForm({
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitting ? (
                 <Loader2

@@ -38,7 +38,7 @@ export function OrdersPagination({
                 1,
             )
           }
-          className="h-9 border border-[#d3d7df] px-3 text-xs text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-9 border border-[#d3d7df] px-3 text-xs text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Previous
         </button>
@@ -58,7 +58,7 @@ export function OrdersPagination({
                 1,
             )
           }
-          className="h-9 border border-[#d3d7df] px-3 text-xs text-[#1a1d24] disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-9 border border-[#d3d7df] px-3 text-xs text-[#0f172a] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next
         </button>

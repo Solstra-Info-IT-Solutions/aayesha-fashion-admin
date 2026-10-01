@@ -7,7 +7,7 @@ export function EmptyState({
 }) {
   return (
     <div className="border border-[#e5e7ec] bg-[#ffffff] px-6 py-14 text-center">
-      <h3 className="font-serif text-2xl text-[#1a1d24]">
+      <h3 className="font-serif text-2xl text-[#0f172a]">
         {title}
       </h3>
 

@@ -35,7 +35,7 @@ export function OrderSummaryCard({
         Payment
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
         Order summary
       </h2>
 
@@ -45,7 +45,7 @@ export function OrderSummaryCard({
             Subtotal
           </span>
 
-          <span className="text-[#1a1d24]">
+          <span className="text-[#0f172a]">
             ₹
             {order.subtotal.toLocaleString(
               "en-IN",
@@ -65,8 +65,8 @@ export function OrderSummaryCard({
             <span
               className={
                 row.value < 0
-                  ? "text-[#7d8aa6]"
-                  : "text-[#1a1d24]"
+                  ? "text-[#4338ca]"
+                  : "text-[#0f172a]"
               }
             >
               ₹
@@ -81,11 +81,11 @@ export function OrderSummaryCard({
 
         <div className="border-t border-[#e5e7ec] pt-4">
           <div className="flex justify-between gap-4">
-            <span className="font-medium text-[#1a1d24]">
+            <span className="font-medium text-[#0f172a]">
               Total
             </span>
 
-            <span className="font-serif text-2xl text-[#1a1d24]">
+            <span className="font-serif text-2xl text-[#0f172a]">
               ₹
               {order.total.toLocaleString(
                 "en-IN",

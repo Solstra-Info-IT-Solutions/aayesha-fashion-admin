@@ -180,7 +180,7 @@ export function HeroSectionEditor({
       <section className="border border-[#e5e7ec] bg-[#ffffff]">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] px-6 py-5">
           <div>
-            <h3 className="text-sm font-medium text-[#1a1d24]">
+            <h3 className="text-sm font-medium text-[#0f172a]">
               Hero Section
             </h3>
 
@@ -198,7 +198,7 @@ export function HeroSectionEditor({
             className={[
               "inline-flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] transition",
               hero.enabled
-                ? "bg-[#2b3a55] text-white"
+                ? "bg-[#4338ca] text-white"
                 : "border border-[#d3d7df] bg-[#ffffff] text-[#5b6270]",
             ].join(" ")}
           >
@@ -217,9 +217,9 @@ export function HeroSectionEditor({
         </div>
 
         <div className="px-6 py-5">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded border border-[#e5e7ec] bg-[#f4f5f7] px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded border border-[#e5e7ec] bg-[#f6f7fb] px-4 py-3">
             <div>
-              <p className="text-xs font-medium text-[#1a1d24]">
+              <p className="text-xs font-medium text-[#0f172a]">
                 Homepage hero visibility
               </p>
 
@@ -234,7 +234,7 @@ export function HeroSectionEditor({
               className={[
                 "text-[10px] font-medium uppercase tracking-[0.15em]",
                 hero.enabled
-                  ? "text-[#2b3a55]"
+                  ? "text-[#4338ca]"
                   : "text-[#737a8c]",
               ].join(" ")}
             >
@@ -248,7 +248,7 @@ export function HeroSectionEditor({
       <section className="border border-[#e5e7ec] bg-[#ffffff]">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] px-6 py-5">
           <div>
-            <h3 className="text-sm font-medium text-[#1a1d24]">
+            <h3 className="text-sm font-medium text-[#0f172a]">
               Hero Slides
             </h3>
 
@@ -263,7 +263,7 @@ export function HeroSectionEditor({
               setEditingSlideId(null);
               setShowForm(true);
             }}
-            className="inline-flex items-center gap-2 bg-[#2b3a55] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#1e2a40]"
+            className="inline-flex items-center gap-2 bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3730a3]"
           >
             <Plus size={15} />
             Add Slide
@@ -272,7 +272,7 @@ export function HeroSectionEditor({
 
         <div className="p-6">
           {showForm && (
-            <div className="mb-6 border border-[#e5e7ec] bg-[#f4f5f7] p-6">
+            <div className="mb-6 border border-[#e5e7ec] bg-[#f6f7fb] p-6">
               <HeroSlideForm
                 mode="create"
                 onCancel={() => setShowForm(false)}
@@ -310,7 +310,7 @@ export function HeroSectionEditor({
                       className="border border-[#e5e7ec] bg-[#ffffff]"
                     >
                       {editing ? (
-                        <div className="bg-[#f4f5f7] p-6">
+                        <div className="bg-[#f6f7fb] p-6">
                           <HeroSlideForm
                             mode="edit"
                             initialData={slide}
@@ -367,7 +367,7 @@ export function HeroSectionEditor({
       {/* Save */}
       <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-4 border border-[#d3d7df] bg-[#ffffff]/95 px-5 py-4 shadow-sm backdrop-blur">
         <div>
-          <p className="text-xs font-medium text-[#1a1d24]">
+          <p className="text-xs font-medium text-[#0f172a]">
             Hero changes
           </p>
 
@@ -380,7 +380,7 @@ export function HeroSectionEditor({
           type="button"
           onClick={() => void handleSave()}
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-[#2b3a55] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#4338ca] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Check size={15} />
 
@@ -440,7 +440,7 @@ function HeroSlideRow({
             className={[
               "inline-flex px-2 py-1 text-[9px] font-medium uppercase tracking-[0.12em]",
               slide.isActive
-                ? "bg-[#fdecec] text-[#2b3a55]"
+                ? "bg-[#eef2ff] text-[#4338ca]"
                 : "bg-[#e5e7ec] text-[#5b6270]",
             ].join(" ")}
           >
@@ -454,7 +454,7 @@ function HeroSlideRow({
           )}
         </div>
 
-        <h4 className="mt-2 font-serif text-xl text-[#1a1d24]">
+        <h4 className="mt-2 font-serif text-xl text-[#0f172a]">
           {slide.title}
         </h4>
 
@@ -483,7 +483,7 @@ function HeroSlideRow({
             onClick={onMoveUp}
             disabled={index === 0}
             title="Move up"
-            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronUp size={15} />
           </button>
@@ -493,7 +493,7 @@ function HeroSlideRow({
             onClick={onMoveDown}
             disabled={index === total - 1}
             title="Move down"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronDown size={15} />
           </button>
@@ -504,7 +504,7 @@ function HeroSlideRow({
             type="button"
             onClick={onToggle}
             title={slide.isActive ? "Deactivate" : "Activate"}
-            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55]"
+            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca]"
           >
             {slide.isActive ? (
               <Eye size={14} />
@@ -517,7 +517,7 @@ function HeroSlideRow({
             type="button"
             onClick={onEdit}
             title="Edit"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55]"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca]"
           >
             <Pencil size={14} />
           </button>

@@ -149,14 +149,14 @@ export default function ReviewDetail({
         <div>
           <Link
             href="/admin/reviews"
-            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
+            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)] transition hover:text-[#4338ca]"
           >
             <ArrowLeft size={16} />
             Back to Reviews
           </Link>
 
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#2b3a55]">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#4338ca]">
               <MessageSquareText size={22} />
             </div>
 
@@ -224,7 +224,7 @@ export default function ReviewDetail({
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     maxLength={180}
-                    className="h-11 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+                    className="h-11 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
                   />
                 </div>
 
@@ -238,7 +238,7 @@ export default function ReviewDetail({
                     onChange={(event) =>
                       setRating(Number(event.target.value))
                     }
-                    className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55]"
+                    className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca]"
                   >
                     {[1, 2, 3, 4, 5].map((value) => (
                       <option key={value} value={value}>
@@ -258,7 +258,7 @@ export default function ReviewDetail({
                     onChange={(event) => setBody(event.target.value)}
                     maxLength={3000}
                     rows={8}
-                    className="w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+                    className="w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
                   />
                 </div>
 
@@ -267,7 +267,7 @@ export default function ReviewDetail({
                     type="button"
                     onClick={handleSave}
                     disabled={updating}
-                    className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <Save size={16} />
                     {updating ? "Saving..." : "Save Changes"}
@@ -416,7 +416,7 @@ export default function ReviewDetail({
                 maxLength={1000}
                 rows={5}
                 placeholder="Add an internal admin note..."
-                className="mt-4 w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+                className="mt-4 w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
               />
             ) : (
               <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[var(--color-secondary)]">

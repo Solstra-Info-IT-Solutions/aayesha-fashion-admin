@@ -14,7 +14,7 @@ type DashboardResponse = {
   data?: { dashboard?: DashboardData } & Partial<DashboardData>;
 };
 
-export async function getDashboard(): Promise<DashboardData> {
+export async function getDashboard(days = 30): Promise<DashboardData> {
   const accessToken =
     getAccessToken();
 
@@ -26,7 +26,7 @@ export async function getDashboard(): Promise<DashboardData> {
 
   const response =
     await apiGet<DashboardResponse>(
-      "/admin/dashboard",
+      `/admin/dashboard?days=${days}`,
       accessToken,
     );
 

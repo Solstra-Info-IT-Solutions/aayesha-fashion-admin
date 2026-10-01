@@ -39,7 +39,7 @@ export default function ProductMediaSection({
         {/* HEADER */}
         <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
-            <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+            <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
               Media
             </h2>
 
@@ -55,7 +55,7 @@ export default function ProductMediaSection({
               setEditingMedia(null);
               setModalOpen(true);
             }}
-            className={`${buttonBaseClass} h-10 shrink-0 gap-2 rounded-xl bg-[#2b3a55] px-4 text-sm font-medium text-white hover:opacity-90`}
+            className={`${buttonBaseClass} h-10 shrink-0 gap-2 rounded-xl bg-[#4338ca] px-4 text-sm font-medium text-white hover:opacity-90`}
           >
             <Plus size={15} />
             Add Media
@@ -64,12 +64,12 @@ export default function ProductMediaSection({
 
         {/* MEDIA CONTENT */}
         {media.length === 0 ? (
-          <div className="mt-6 rounded-2xl border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-5 py-12 text-center">
+          <div className="mt-6 rounded-2xl border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-5 py-12 text-center">
             <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#eef0f4]">
               <Plus size={18} className="text-[#737a8c]" />
             </div>
 
-            <p className="mt-3 break-words text-sm font-medium text-[#1a1d24]">
+            <p className="mt-3 break-words text-sm font-medium text-[#0f172a]">
               No media uploaded yet
             </p>
 
@@ -85,7 +85,7 @@ export default function ProductMediaSection({
                 className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] shadow-sm transition-shadow hover:shadow-md"
               >
                 {/* MEDIA PREVIEW */}
-                <div className="relative aspect-[4/5] bg-[#f4f5f7]">
+                <div className="relative aspect-[4/5] bg-[#f6f7fb]">
                   {item.type === "image" && item.src ? (
                     <Image
                       src={item.src}
@@ -103,7 +103,7 @@ export default function ProductMediaSection({
 
                   {/* PRIMARY BADGE */}
                   {item.isPrimary && (
-                    <span className="absolute left-3 top-3 rounded-full bg-[#2b3a55] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
+                    <span className="absolute left-3 top-3 rounded-full bg-[#4338ca] px-2.5 py-1 text-[10px] font-medium text-white shadow-sm">
                       Primary
                     </span>
                   )}
@@ -112,7 +112,7 @@ export default function ProductMediaSection({
                 {/* CARD DETAILS */}
                 <div className="min-w-0 p-3.5">
                   <div className="min-w-0">
-                    <p className="break-words text-sm font-medium leading-5 text-[#1a1d24]">
+                    <p className="break-words text-sm font-medium leading-5 text-[#0f172a]">
                       {item.type === "image" ? "Image" : "Video"}
                     </p>
 
@@ -132,7 +132,7 @@ export default function ProductMediaSection({
                         setEditingMedia(item);
                         setModalOpen(true);
                       }}
-                      className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-xs font-medium text-[#1a1d24] hover:bg-[#f4f5f7]`}
+                      className={`${buttonBaseClass} h-9 min-w-0 flex-1 gap-1.5 rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-xs font-medium text-[#0f172a] hover:bg-[#f6f7fb]`}
                     >
                       <Pencil size={13} />
                       <span>Edit</span>

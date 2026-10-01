@@ -1,9 +1,4 @@
 export { AdminDashboard } from "./DashboardHeader";
-export { StatCard } from "./StatCard";
-export { StatsGrid } from "./StatsGrid";
-export { RevenueCard } from "./RevenueCard";
-export { OrderStatusCard } from "./OrderStatusCard";
 export { RecentOrders } from "./RecentOrders";
 export { LowStockProducts } from "./LowStockProducts";
-export { TopProducts } from "./TopProducts";
 export { EmptyState } from "./EmptyState";
