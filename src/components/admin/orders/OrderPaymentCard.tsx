@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { getPaymentConfig } from "@/services/payment-config.service";
 
 import { paymentDeadline, paymentMethodLabel } from "@/lib/payment";
 import type { AdminOrder } from "@/types/order";
@@ -42,6 +45,32 @@ export function OrderPaymentCard({
     order.paymentClaimReference || "",
   );
 
+  const { accessToken, isInitialized } = useAdminAuth();
+  const [holdMinutes, setHoldMinutes] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!isInitialized || !accessToken) return;
+
+    let cancelled = false;
+
+    getPaymentConfig(accessToken)
+      .then((config) => {
+        if (!cancelled) setHoldMinutes(config.claimHoldMinutes);
+      })
+      .catch(() => undefined);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isInitialized, accessToken]);
+
+  const holdLabel =
+    holdMinutes === null
+      ? "the verification period"
+      : holdMinutes % 60 === 0
+        ? `${holdMinutes / 60} hour${holdMinutes === 60 ? "" : "s"}`
+        : `${holdMinutes} minutes`;
+
   const isCod = order.paymentMethod === "cod";
   const isBankUpi = order.paymentMethod === "bank_upi";
   const cancelled = order.status === "cancelled";
@@ -60,6 +89,12 @@ export function OrderPaymentCard({
       ? ([["Payment ID / reference", order.paymentId]] as Array<[string, string]>)
       : []),
     ["Paid at", formatDateTime(order.paymentPaidAt)],
+    ...(order.billSentAt
+      ? ([["Bill sent on WhatsApp", formatDateTime(order.billSentAt)]] as Array<[string, string]>)
+      : []),
+    ...(order.invoiceSentAt
+      ? ([["Invoice sent on WhatsApp", formatDateTime(order.invoiceSentAt)]] as Array<[string, string]>)
+      : []),
   ];
 
   return (
@@ -115,8 +150,8 @@ export function OrderPaymentCard({
             <p className="mt-1 text-xs leading-5">
               Reported {formatDateTime(order.paymentClaimedAt)} · UTR / ref{" "}
               <strong>{order.paymentClaimReference || "—"}</strong>. Check your
-              bank / UPI app, then mark as paid. The order is held for up to 3
-              hours from placing before it auto-cancels.
+              bank / UPI app, then mark as paid. The order is held for up to{" "}
+              {holdLabel} from placing before it auto-cancels.
             </p>
           ) : null}
 

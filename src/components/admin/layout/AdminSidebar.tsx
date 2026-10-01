@@ -18,6 +18,7 @@ import {
   ShoppingBag,
   ShoppingCart,
   Users,
+  Wallet,
 } from "lucide-react";
 
 import { SidebarNavItem } from "./SidebarNavItem";
@@ -100,6 +101,11 @@ const sections = [
         href: "/admin/reports",
         label: "Reports",
         icon: BarChart3,
+      },
+      {
+        href: "/admin/payment-config",
+        label: "Payments & WhatsApp",
+        icon: Wallet,
       },
       {
         href: "/admin/settings",
