@@ -92,7 +92,7 @@ export default function CatalogPage() {
             <Link
               key={item.title}
               href={item.href}
-              className="group rounded-2xl border border-neutral-200 bg-[#fbf9f5] p-5 transition hover:border-neutral-300 hover:shadow-sm"
+              className="group rounded-2xl border border-neutral-200 bg-[#ffffff] p-5 transition hover:border-neutral-300 hover:shadow-sm"
             >
               <div className="flex items-start justify-between">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-100 text-neutral-800">

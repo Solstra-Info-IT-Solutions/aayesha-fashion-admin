@@ -54,7 +54,7 @@ export default function PaymentSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#fbf9f5] shadow-sm">
+    <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
       <div className="border-b border-slate-200 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
@@ -120,7 +120,7 @@ export default function PaymentSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               codEnabled
-                ? "bg-[#7a5650]"
+                ? "bg-[#2b3a55]"
                 : "bg-slate-300"
             }`}
             aria-label={
@@ -130,7 +130,7 @@ export default function PaymentSettings({
             }
           >
             <span
-              className={`inline-block h-4 w-4 rounded-full bg-[#fbf9f5] shadow-sm transition ${
+              className={`inline-block h-4 w-4 rounded-full bg-[#ffffff] shadow-sm transition ${
                 codEnabled
                   ? "translate-x-6"
                   : "translate-x-1"
@@ -161,7 +161,7 @@ export default function PaymentSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               onlinePaymentEnabled
-                ? "bg-[#7a5650]"
+                ? "bg-[#2b3a55]"
                 : "bg-slate-300"
             }`}
             aria-label={
@@ -171,7 +171,7 @@ export default function PaymentSettings({
             }
           >
             <span
-              className={`inline-block h-4 w-4 rounded-full bg-[#fbf9f5] shadow-sm transition ${
+              className={`inline-block h-4 w-4 rounded-full bg-[#ffffff] shadow-sm transition ${
                 onlinePaymentEnabled
                   ? "translate-x-6"
                   : "translate-x-1"

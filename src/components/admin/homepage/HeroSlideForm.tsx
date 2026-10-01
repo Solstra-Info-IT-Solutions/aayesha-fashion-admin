@@ -274,13 +274,13 @@ export function HeroSlideForm({
       onSubmit={handleSubmit}
       className="space-y-6"
     >
-      <div className="flex items-center justify-between border-b border-[#e6ddd4] pb-4">
+      <div className="flex items-center justify-between border-b border-[#e5e7ec] pb-4">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-[#958781]">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-[#737a8c]">
             Hero Slide
           </p>
 
-          <h4 className="mt-1 font-serif text-xl text-[#3f2d2a]">
+          <h4 className="mt-1 font-serif text-xl text-[#1a1d24]">
             {mode === "create"
               ? "Add New Slide"
               : "Edit Slide"}
@@ -290,7 +290,7 @@ export function HeroSlideForm({
         <button
           type="button"
           onClick={onCancel}
-          className="flex h-8 w-8 items-center justify-center border border-[#d8cec5] text-[#70635d] hover:text-[#7a5650]"
+          className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#2b3a55]"
           aria-label="Close"
         >
           <X size={15} />
@@ -466,7 +466,7 @@ export function HeroSlideForm({
         />
       </div>
 
-      <div className="flex items-center justify-between border-t border-[#e6ddd4] pt-5">
+      <div className="flex items-center justify-between border-t border-[#e5e7ec] pt-5">
         <label className="flex cursor-pointer items-center gap-3">
           <input
             type="checkbox"
@@ -477,10 +477,10 @@ export function HeroSlideForm({
                 event.target.checked,
               )
             }
-            className="h-4 w-4 accent-[#7a5650]"
+            className="h-4 w-4 accent-[#2b3a55]"
           />
 
-          <span className="text-xs text-[#70635d]">
+          <span className="text-xs text-[#5b6270]">
             Slide is active
           </span>
         </label>
@@ -489,7 +489,7 @@ export function HeroSlideForm({
           <button
             type="button"
             onClick={onCancel}
-            className="border border-[#d8cec5] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-[#70635d]"
+            className="border border-[#d3d7df] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-[#5b6270]"
           >
             Cancel
           </button>
@@ -497,7 +497,7 @@ export function HeroSlideForm({
           <button
             type="submit"
             disabled={uploading !== null}
-            className="bg-[#7a5650] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-60"
+            className="bg-[#2b3a55] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {mode === "create"
               ? "Add Slide"
@@ -532,7 +532,7 @@ function ImageUploadField({
 }: ImageUploadFieldProps) {
   return (
     <div>
-      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#70635d]">
+      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#5b6270]">
         {label}
       </span>
 
@@ -545,8 +545,8 @@ function ImageUploadField({
       />
 
       {value ? (
-        <div className="overflow-hidden border border-[#d8cec5] bg-[#f7f3ed]">
-          <div className="relative aspect-[16/7] w-full overflow-hidden bg-[#e6ddd4]">
+        <div className="overflow-hidden border border-[#d3d7df] bg-[#f4f5f7]">
+          <div className="relative aspect-[16/7] w-full overflow-hidden bg-[#e5e7ec]">
             <img
               src={value}
               alt={`${label} preview`}
@@ -554,8 +554,8 @@ function ImageUploadField({
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#e6ddd4] px-3 py-3">
-            <p className="min-w-0 truncate text-[11px] text-[#70635d]">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#e5e7ec] px-3 py-3">
+            <p className="min-w-0 truncate text-[11px] text-[#5b6270]">
               {value}
             </p>
 
@@ -563,7 +563,7 @@ function ImageUploadField({
               type="button"
               onClick={onUpload}
               disabled={uploading}
-              className="flex shrink-0 items-center gap-2 border border-[#d8cec5] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-[#70635d] hover:border-[#7a5650] hover:text-[#7a5650] disabled:opacity-50"
+              className="flex shrink-0 items-center gap-2 border border-[#d3d7df] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-[#5b6270] hover:border-[#2b3a55] hover:text-[#2b3a55] disabled:opacity-50"
             >
               {uploading ? (
                 <Loader2
@@ -583,16 +583,16 @@ function ImageUploadField({
           type="button"
           onClick={onUpload}
           disabled={uploading}
-          className="flex min-h-[145px] w-full flex-col items-center justify-center border border-dashed border-[#d8cec5] bg-[#f7f3ed] px-4 text-center transition hover:border-[#7a5650] hover:bg-[#fbf9f5] disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex min-h-[145px] w-full flex-col items-center justify-center border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-4 text-center transition hover:border-[#2b3a55] hover:bg-[#ffffff] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {uploading ? (
             <>
               <Loader2
                 size={20}
-                className="animate-spin text-[#7a5650]"
+                className="animate-spin text-[#2b3a55]"
               />
 
-              <span className="mt-3 text-xs font-medium text-[#70635d]">
+              <span className="mt-3 text-xs font-medium text-[#5b6270]">
                 Uploading image...
               </span>
             </>
@@ -600,14 +600,14 @@ function ImageUploadField({
             <>
               <Upload
                 size={20}
-                className="text-[#7a5650]"
+                className="text-[#2b3a55]"
               />
 
-              <span className="mt-3 text-xs font-medium uppercase tracking-[0.1em] text-[#70635d]">
+              <span className="mt-3 text-xs font-medium uppercase tracking-[0.1em] text-[#5b6270]">
                 Upload Image
               </span>
 
-              <span className="mt-1 text-[11px] text-[#958781]">
+              <span className="mt-1 text-[11px] text-[#737a8c]">
                 JPEG, PNG or WebP · Max 5MB
               </span>
             </>
@@ -645,7 +645,7 @@ function Field({
 }: FieldProps) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#70635d]">
+      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#5b6270]">
         {label}
       </span>
 
@@ -658,12 +658,12 @@ function Field({
           onChange(event.target.value)
         }
         className={[
-          "h-11 w-full border bg-[#fbf9f5] px-3 text-sm text-[#3f2d2a] outline-none transition placeholder:text-[#958781] focus:border-[#7a5650]",
+          "h-11 w-full border bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55]",
           error
             ? "border-red-400"
-            : "border-[#d8cec5]",
+            : "border-[#d3d7df]",
           disabled
-            ? "cursor-not-allowed bg-[#efe8df] text-[#958781]"
+            ? "cursor-not-allowed bg-[#eef0f4] text-[#737a8c]"
             : "",
         ].join(" ")}
       />
@@ -692,7 +692,7 @@ function TextArea({
 }: TextAreaProps) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#70635d]">
+      <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.15em] text-[#5b6270]">
         {label}
       </span>
 
@@ -703,7 +703,7 @@ function TextArea({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full resize-none border border-[#d8cec5] bg-[#fbf9f5] px-3 py-3 text-sm text-[#3f2d2a] outline-none transition placeholder:text-[#958781] focus:border-[#7a5650]"
+        className="w-full resize-none border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55]"
       />
     </label>
   );

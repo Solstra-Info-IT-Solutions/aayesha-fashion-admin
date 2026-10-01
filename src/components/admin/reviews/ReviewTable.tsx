@@ -63,7 +63,7 @@ export default function ReviewTable({
   onDelete,
 }: ReviewTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm lg:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1050px]">
           <thead>
@@ -179,7 +179,7 @@ export default function ReviewTable({
                     className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border transition ${
                       review.isFeatured
                         ? "border-amber-200 bg-amber-50 text-amber-500 hover:bg-amber-100"
-                        : "border-[var(--color-border)] bg-[#fbf9f5] text-gray-400 hover:bg-gray-50 hover:text-amber-500"
+                        : "border-[var(--color-border)] bg-[#ffffff] text-gray-400 hover:bg-gray-50 hover:text-amber-500"
                     }`}
                   >
                     {review.isFeatured ? (
@@ -201,7 +201,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="View review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#7a5650]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -209,7 +209,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="Edit review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#7a5650]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#2b3a55]"
                     >
                       <Pencil size={16} />
                     </Link>

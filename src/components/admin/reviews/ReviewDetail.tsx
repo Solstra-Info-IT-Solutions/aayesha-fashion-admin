@@ -149,14 +149,14 @@ export default function ReviewDetail({
         <div>
           <Link
             href="/admin/reviews"
-            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)] transition hover:text-[#7a5650]"
+            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
           >
             <ArrowLeft size={16} />
             Back to Reviews
           </Link>
 
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#7a5650]">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#2b3a55]">
               <MessageSquareText size={22} />
             </div>
 
@@ -178,7 +178,7 @@ export default function ReviewDetail({
               type="button"
               onClick={() => setEditing(true)}
               disabled={updating}
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:opacity-50"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:opacity-50"
             >
               <Edit3 size={16} />
               Edit
@@ -190,7 +190,7 @@ export default function ReviewDetail({
               type="button"
               onClick={() => setEditing(false)}
               disabled={updating}
-              className="inline-flex h-10 items-center rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:opacity-50"
+              className="inline-flex h-10 items-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:opacity-50"
             >
               Cancel
             </button>
@@ -200,7 +200,7 @@ export default function ReviewDetail({
             type="button"
             onClick={onDelete}
             disabled={deleting}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-100 bg-[#fbf9f5] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-100 bg-[#ffffff] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 size={16} />
             {deleting ? "Deleting..." : "Delete"}
@@ -211,7 +211,7 @@ export default function ReviewDetail({
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-6">
           {/* Review Content */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             {editing ? (
               <div className="space-y-5">
                 <div>
@@ -224,7 +224,7 @@ export default function ReviewDetail({
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     maxLength={180}
-                    className="h-11 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
+                    className="h-11 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
                   />
                 </div>
 
@@ -238,7 +238,7 @@ export default function ReviewDetail({
                     onChange={(event) =>
                       setRating(Number(event.target.value))
                     }
-                    className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#7a5650]"
+                    className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55]"
                   >
                     {[1, 2, 3, 4, 5].map((value) => (
                       <option key={value} value={value}>
@@ -258,7 +258,7 @@ export default function ReviewDetail({
                     onChange={(event) => setBody(event.target.value)}
                     maxLength={3000}
                     rows={8}
-                    className="w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
+                    className="w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
                   />
                 </div>
 
@@ -267,7 +267,7 @@ export default function ReviewDetail({
                     type="button"
                     onClick={handleSave}
                     disabled={updating}
-                    className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#7a5650] px-5 text-sm font-medium text-white transition hover:bg-[#543c38] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <Save size={16} />
                     {updating ? "Saving..." : "Save Changes"}
@@ -321,7 +321,7 @@ export default function ReviewDetail({
                     className={`inline-flex h-10 items-center gap-2 rounded-lg border px-4 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${
                       review.isFeatured
                         ? "border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100"
-                        : "border-[var(--color-border)] bg-[#fbf9f5] text-[var(--color-ink)] hover:bg-gray-50"
+                        : "border-[var(--color-border)] bg-[#ffffff] text-[var(--color-ink)] hover:bg-gray-50"
                     }`}
                   >
                     {review.isFeatured ? (
@@ -348,7 +348,7 @@ export default function ReviewDetail({
           </section>
 
           {/* Customer Media */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             <h2 className="text-base font-semibold text-[var(--color-ink)]">
               Customer Photos &amp; Video
               <span className="ml-2 text-sm font-normal text-[var(--color-secondary)]">
@@ -404,7 +404,7 @@ export default function ReviewDetail({
           </section>
 
           {/* Admin Note */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             <h2 className="text-base font-semibold text-[var(--color-ink)]">
               Admin Note
             </h2>
@@ -416,7 +416,7 @@ export default function ReviewDetail({
                 maxLength={1000}
                 rows={5}
                 placeholder="Add an internal admin note..."
-                className="mt-4 w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10"
+                className="mt-4 w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
               />
             ) : (
               <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[var(--color-secondary)]">
@@ -426,7 +426,7 @@ export default function ReviewDetail({
           </section>
 
           {/* Moderation */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 className="text-base font-semibold text-[var(--color-ink)]">
@@ -481,7 +481,7 @@ export default function ReviewDetail({
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             <h2 className="text-base font-semibold text-[var(--color-ink)]">
               Review Information
             </h2>
@@ -534,7 +534,7 @@ export default function ReviewDetail({
             </div>
           </section>
 
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-6 shadow-sm">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-6 shadow-sm">
             <h2 className="text-base font-semibold text-[var(--color-ink)]">
               Moderation Information
             </h2>
@@ -591,7 +591,7 @@ export default function ReviewDetail({
               rel="noreferrer"
               onClick={(event) => event.stopPropagation()}
               aria-label="Open original in a new tab"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fbf9f5]/15 text-white hover:bg-[#fbf9f5]/25"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ffffff]/15 text-white hover:bg-[#ffffff]/25"
             >
               <ExternalLink size={18} />
             </a>
@@ -600,7 +600,7 @@ export default function ReviewDetail({
               type="button"
               onClick={() => setPreviewIndex(null)}
               aria-label="Close preview"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fbf9f5]/15 text-white hover:bg-[#fbf9f5]/25"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ffffff]/15 text-white hover:bg-[#ffffff]/25"
             >
               <X size={20} />
             </button>

@@ -17,8 +17,8 @@ export default function DiscountEmptyState({
   onReset,
 }: DiscountEmptyStateProps) {
   return (
-    <div className="rounded-xl border border-dashed border-[var(--color-border)] bg-[#fbf9f5] px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#7a5650]">
+    <div className="rounded-xl border border-dashed border-[var(--color-border)] bg-[#ffffff] px-6 py-14 text-center shadow-sm">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#2b3a55]">
         <Percent size={26} />
       </div>
 
@@ -36,7 +36,7 @@ export default function DiscountEmptyState({
           <button
             type="button"
             onClick={onReset}
-            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50"
+            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50"
           >
             <RotateCcw size={16} />
             Clear Filters
@@ -55,7 +55,7 @@ export default function DiscountEmptyState({
 
           <Link
             href="/admin/discounts/create"
-            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-[#7a5650] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#543c38]"
+            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e2a40]"
           >
             <Plus size={17} />
             New Discount

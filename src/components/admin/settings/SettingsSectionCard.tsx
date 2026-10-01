@@ -30,7 +30,7 @@ export default function SettingsSectionCard({
   settings,
 }: SettingsSectionCardProps) {
   return (
-    <section className="rounded-2xl border border-gray-200 bg-[#fbf9f5] shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-[#ffffff] shadow-sm">
       <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100">

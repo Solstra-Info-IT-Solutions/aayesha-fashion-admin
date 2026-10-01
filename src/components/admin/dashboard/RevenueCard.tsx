@@ -18,14 +18,14 @@ export function RevenueCard({
   );
 
   return (
-    <section className="min-w-0 border border-[#e6ddd4] bg-[#fbf9f5] p-5 sm:p-6">
+    <section className="min-w-0 border border-[#e5e7ec] bg-[#ffffff] p-5 sm:p-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-[#958781]">
+          <p className="text-xs uppercase tracking-[0.14em] text-[#737a8c]">
             Revenue
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
             Sales overview
           </h2>
         </div>
@@ -33,20 +33,20 @@ export function RevenueCard({
         {!loading && revenue.length > 0 ? (
           <dl className="flex gap-6 text-right">
             <div>
-              <dt className="text-[10px] uppercase tracking-[0.14em] text-[#958781]">
+              <dt className="text-[10px] uppercase tracking-[0.14em] text-[#737a8c]">
                 Period total
               </dt>
-              <dd className="font-serif text-xl text-[#3f2d2a]">
+              <dd className="font-serif text-xl text-[#1a1d24]">
                 {money(total)}
               </dd>
             </div>
 
             {best ? (
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.14em] text-[#958781]">
+                <dt className="text-[10px] uppercase tracking-[0.14em] text-[#737a8c]">
                   Best day
                 </dt>
-                <dd className="font-serif text-xl text-[#7a5650]">
+                <dd className="font-serif text-xl text-[#2b3a55]">
                   {money(best.revenue)}
                 </dd>
               </div>
@@ -57,11 +57,11 @@ export function RevenueCard({
 
       <div className="mt-8 h-56">
         {loading ? (
-          <div className="flex h-full items-center justify-center text-sm text-[#958781]">
+          <div className="flex h-full items-center justify-center text-sm text-[#737a8c]">
             Loading revenue...
           </div>
         ) : revenue.length === 0 ? (
-          <div className="flex h-full items-center justify-center text-sm text-[#958781]">
+          <div className="flex h-full items-center justify-center text-sm text-[#737a8c]">
             No revenue data available.
           </div>
         ) : (
@@ -78,15 +78,15 @@ export function RevenueCard({
                   <div
                     className={`w-full transition-colors ${
                       isBest
-                        ? "bg-[#7a5650]"
-                        : "bg-[#d2bea0] group-hover:bg-[#a98282]"
+                        ? "bg-[#2b3a55]"
+                        : "bg-[#c7cedd] group-hover:bg-[#7d8aa6]"
                     }`}
                     style={{ height: `${height}%` }}
                     title={`${item.label}: ${money(item.revenue)}`}
                   />
 
                   <p
-                    className={`mt-2 truncate text-center text-[10px] text-[#958781] ${
+                    className={`mt-2 truncate text-center text-[10px] text-[#737a8c] ${
                       index % 2 ? "hidden sm:block" : ""
                     }`}
                   >

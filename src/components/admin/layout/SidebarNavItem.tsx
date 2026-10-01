@@ -22,14 +22,14 @@ export function SidebarNavItem({
       className={[
         "group relative flex items-center gap-3 px-3 py-2.5 text-[13px] tracking-[0.01em] transition-colors",
         active
-          ? "bg-[#7a5650] text-white"
-          : "text-[#d8cec5] hover:bg-[#fbf9f5]/10 hover:text-white",
+          ? "bg-white/10 text-white before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-[#8fa3cc]"
+          : "text-[#c3c9d6] hover:bg-white/5 hover:text-white",
       ].join(" ")}
     >
       <Icon
         size={17}
         strokeWidth={1.6}
-        className={active ? "text-white" : "text-[#b9aaa1] group-hover:text-white"}
+        className={active ? "text-white" : "text-[#9aa2b2] group-hover:text-white"}
       />
 
       <span className="truncate">{label}</span>

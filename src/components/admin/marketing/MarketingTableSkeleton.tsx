@@ -2,7 +2,7 @@
 
 export default function MarketingTableSkeleton() {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5]">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff]">
       {/* Desktop */}
       <div className="hidden overflow-hidden md:block">
         <div className="border-b border-[var(--color-border)] bg-gray-50/70 px-5 py-4">

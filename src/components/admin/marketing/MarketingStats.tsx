@@ -28,7 +28,7 @@ function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-sm font-medium text-[var(--color-secondary)]">
@@ -58,7 +58,7 @@ function StatsSkeleton() {
       {Array.from({ length: 4 }).map((_, index) => (
         <div
           key={index}
-          className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5"
+          className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5"
         >
           <div className="flex items-start justify-between gap-4">
             <div className="w-full">

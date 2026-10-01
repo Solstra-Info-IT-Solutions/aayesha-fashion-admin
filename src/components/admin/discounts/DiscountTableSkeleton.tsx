@@ -2,7 +2,7 @@
 
 export default function DiscountTableSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm">
       {/* Desktop */}
       <div className="hidden lg:block">
         <div className="border-b border-[var(--color-border)] bg-gray-50/80 px-5 py-4">

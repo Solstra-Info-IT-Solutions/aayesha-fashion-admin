@@ -12,21 +12,21 @@ export function RecentOrders({
   loading: boolean;
 }) {
   return (
-    <section className="border border-[#e6ddd4] bg-[#fbf9f5]">
-      <div className="flex items-center justify-between border-b border-[#e6ddd4] px-6 py-5">
+    <section className="border border-[#e5e7ec] bg-[#ffffff]">
+      <div className="flex items-center justify-between border-b border-[#e5e7ec] px-6 py-5">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
             Orders
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
             Recent orders
           </h2>
         </div>
 
         <Link
           href="/admin/orders"
-          className="text-xs font-medium text-[#70635d] hover:text-[#3f2d2a]"
+          className="text-xs font-medium text-[#5b6270] hover:text-[#1a1d24]"
         >
           View all
         </Link>
@@ -35,7 +35,7 @@ export function RecentOrders({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[640px]">
           <thead>
-            <tr className="border-b border-[#e6ddd4]">
+            <tr className="border-b border-[#e5e7ec]">
               {[
                 "Order",
                 "Customer",
@@ -44,7 +44,7 @@ export function RecentOrders({
               ].map((heading) => (
                 <th
                   key={heading}
-                  className="px-6 py-3 text-left text-[10px] uppercase tracking-[0.13em] text-[#958781]"
+                  className="px-6 py-3 text-left text-[10px] uppercase tracking-[0.13em] text-[#737a8c]"
                 >
                   {heading}
                 </th>
@@ -57,7 +57,7 @@ export function RecentOrders({
               <tr>
                 <td
                   colSpan={4}
-                  className="px-6 py-10 text-center text-sm text-[#958781]"
+                  className="px-6 py-10 text-center text-sm text-[#737a8c]"
                 >
                   Loading orders...
                 </td>
@@ -66,7 +66,7 @@ export function RecentOrders({
               <tr>
                 <td
                   colSpan={4}
-                  className="px-6 py-10 text-center text-sm text-[#958781]"
+                  className="px-6 py-10 text-center text-sm text-[#737a8c]"
                 >
                   No recent orders.
                 </td>
@@ -78,24 +78,24 @@ export function RecentOrders({
                     key={
                       order.orderNumber
                     }
-                    className="border-b border-[#e6ddd4] last:border-0"
+                    className="border-b border-[#e5e7ec] last:border-0"
                   >
-                    <td className="px-6 py-4 text-sm font-medium text-[#3f2d2a]">
+                    <td className="px-6 py-4 text-sm font-medium text-[#1a1d24]">
                       {order.orderNumber}
                     </td>
 
-                    <td className="px-6 py-4 text-sm text-[#70635d]">
+                    <td className="px-6 py-4 text-sm text-[#5b6270]">
                       {order.customerName}
                     </td>
 
-                    <td className="px-6 py-4 text-sm text-[#3f2d2a]">
+                    <td className="px-6 py-4 text-sm text-[#1a1d24]">
                       ₹
                       {order.total.toLocaleString(
                         "en-IN",
                       )}
                     </td>
 
-                    <td className="px-6 py-4 text-xs capitalize text-[#70635d]">
+                    <td className="px-6 py-4 text-xs capitalize text-[#5b6270]">
                       {order.status.replace(
                         /_/g,
                         " ",

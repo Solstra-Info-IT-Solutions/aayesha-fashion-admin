@@ -31,7 +31,7 @@ export default function SettingKeyField({
         maxLength={150}
         autoComplete="off"
         spellCheck={false}
-        className="h-11 w-full rounded-xl border border-gray-200 bg-[#fbf9f5] px-3.5 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#7a5650] focus:ring-2 focus:ring-[#7a5650]/10 disabled:cursor-not-allowed disabled:bg-gray-50"
+        className="h-11 w-full rounded-xl border border-gray-200 bg-[#ffffff] px-3.5 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10 disabled:cursor-not-allowed disabled:bg-gray-50"
       />
 
       <p className="text-right text-xs text-gray-400">

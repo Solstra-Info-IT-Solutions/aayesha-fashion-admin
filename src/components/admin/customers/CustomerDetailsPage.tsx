@@ -621,7 +621,7 @@ export default function CustomerDetailsPage({
                     (value) => !value,
                   )
                 }
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-slate-50 disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-slate-50 disabled:opacity-50"
               >
                 {editing ? (
                   <X size={16} />
@@ -643,7 +643,7 @@ export default function CustomerDetailsPage({
                       .value as Customer["status"],
                   )
                 }
-                className="h-10 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm font-medium text-[var(--color-ink)] outline-none"
+                className="h-10 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm font-medium text-[var(--color-ink)] outline-none"
               >
                 <option value="active">
                   Active
@@ -795,7 +795,7 @@ export default function CustomerDetailsPage({
                             .value as typeof gender,
                         )
                       }
-                      className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
+                      className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
                     >
                       <option value="">
                         Not specified
@@ -831,7 +831,7 @@ export default function CustomerDetailsPage({
                             .value,
                         )
                       }
-                      className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
+                      className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
                     />
                   </div>
 
@@ -1269,7 +1269,7 @@ export default function CustomerDetailsPage({
                           <div className="absolute left-[7px] top-5 h-full w-px bg-slate-200" />
                         )}
 
-                        <div className="relative z-10 mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-[var(--color-rose-dark)] bg-[#fbf9f5]" />
+                        <div className="relative z-10 mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-[var(--color-rose-dark)] bg-[#ffffff]" />
 
                         <div className="min-w-0">
                           <p className="text-sm font-medium capitalize text-[var(--color-ink)]">
@@ -1314,7 +1314,7 @@ function MetricCard({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-4 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
@@ -1344,7 +1344,7 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
+    <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm">
       <div className="mb-5 flex items-center gap-2">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[var(--color-rose-dark)]">
           {icon}
@@ -1407,7 +1407,7 @@ function Field({
             event.target.value,
           )
         }
-        className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
+        className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm outline-none focus:border-[var(--color-rose-dark)]"
       />
     </div>
   );

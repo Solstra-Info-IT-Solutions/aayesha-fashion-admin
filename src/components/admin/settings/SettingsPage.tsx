@@ -214,7 +214,7 @@ export default function SettingsPage() {
               <SettingsOverview settings={settings} />
             </div>
 
-            <div className="mb-5 rounded-2xl border border-gray-200 bg-[#fbf9f5] p-4 shadow-sm">
+            <div className="mb-5 rounded-2xl border border-gray-200 bg-[#ffffff] p-4 shadow-sm">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                 <SettingsSearch
                   value={search}
@@ -233,7 +233,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={clearFilters}
-                      className="h-10 rounded-lg border border-gray-200 bg-[#fbf9f5] px-4 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
+                      className="h-10 rounded-lg border border-gray-200 bg-[#ffffff] px-4 text-sm font-medium text-gray-600 transition hover:bg-gray-50"
                     >
                       Clear Filters
                     </button>

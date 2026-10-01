@@ -90,7 +90,7 @@ export function OrderDetailsPage({
   if (error || !order) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center px-6">
-        <div className="w-full max-w-lg rounded-2xl border border-neutral-200 bg-[#fbf9f5] p-8 text-center shadow-sm">
+        <div className="w-full max-w-lg rounded-2xl border border-neutral-200 bg-[#ffffff] p-8 text-center shadow-sm">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-lg font-semibold text-rose-600">
             !
           </div>
@@ -117,7 +117,7 @@ export function OrderDetailsPage({
             <button
               type="button"
               onClick={() => void refresh()}
-              className="inline-flex items-center justify-center rounded-xl bg-[#7a5650] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#7a5650]"
+              className="inline-flex items-center justify-center rounded-xl bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
             >
               Try Again
             </button>
@@ -142,7 +142,7 @@ export function OrderDetailsPage({
           type="button"
           onClick={() => router.back()}
           aria-label="Go back"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-[#fbf9f5] text-neutral-700 transition hover:bg-neutral-50"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-[#ffffff] text-neutral-700 transition hover:bg-neutral-50"
         >
           <ArrowLeft className="h-4 w-4" />
         </button>
@@ -155,7 +155,7 @@ export function OrderDetailsPage({
           type="button"
           onClick={() => void refresh()}
           disabled={actionLoading}
-          className="shrink-0 rounded-xl border border-neutral-200 bg-[#fbf9f5] px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="shrink-0 rounded-xl border border-neutral-200 bg-[#ffffff] px-4 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Refresh
         </button>

@@ -194,7 +194,7 @@ export function HomepagePage(): ReactElement {
   ======================================================= */
 
   return (
-    <div className="min-h-full bg-[#f7f3ed]">
+    <div className="min-h-full bg-[#f4f5f7]">
       {/* ===================================================
           HEADER
       =================================================== */}
@@ -260,8 +260,8 @@ export function HomepagePage(): ReactElement {
 
 function HomepageLoading(): ReactElement {
   return (
-    <div className="mt-6 flex min-h-[420px] items-center justify-center border border-[#e6ddd4] bg-[#fbf9f5]">
-      <div className="flex items-center gap-3 text-[#70635d]">
+    <div className="mt-6 flex min-h-[420px] items-center justify-center border border-[#e5e7ec] bg-[#ffffff]">
+      <div className="flex items-center gap-3 text-[#5b6270]">
         <Loader2
           size={18}
           className="animate-spin"
@@ -314,17 +314,17 @@ function HomepageTabContent({
 
   return (
     <section className="mt-6">
-      <div className="border border-[#e6ddd4] bg-[#fbf9f5]">
+      <div className="border border-[#e5e7ec] bg-[#ffffff]">
         {/* =================================================
             SECTION HEADER
         ================================================= */}
 
-        <div className="border-b border-[#e6ddd4] px-6 py-5">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[#958781]">
+        <div className="border-b border-[#e5e7ec] px-6 py-5">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#737a8c]">
             Homepage / {labels[activeTab]}
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
+          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
             {labels[activeTab]}
           </h2>
         </div>
@@ -560,23 +560,23 @@ function HomepagePlaceholder({
   data,
 }: HomepagePlaceholderProps): ReactElement {
   return (
-    <div className="border border-dashed border-[#d8cec5] bg-[#f7f3ed] px-6 py-10">
-      <p className="text-sm font-medium text-[#3f2d2a]">
+    <div className="border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-6 py-10">
+      <p className="text-sm font-medium text-[#1a1d24]">
         {title} editor
       </p>
 
-      <p className="mt-1 text-sm text-[#70635d]">
+      <p className="mt-1 text-sm text-[#5b6270]">
         CMS data loaded successfully.
         Editor controls will be added
         in the next step.
       </p>
 
-      <div className="mt-5 rounded border border-[#e6ddd4] bg-[#fbf9f5] p-4">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
+      <div className="mt-5 rounded border border-[#e5e7ec] bg-[#ffffff] p-4">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
           Current status
         </p>
 
-        <p className="mt-2 text-sm text-[#3f2d2a]">
+        <p className="mt-2 text-sm text-[#1a1d24]">
           {data
             ? "Configured"
             : "Not configured"}
@@ -596,12 +596,12 @@ function HomepageNotConfigured({
   title: string;
 }): ReactElement {
   return (
-    <div className="border border-dashed border-[#d8cec5] bg-[#f7f3ed] px-6 py-12 text-center">
-      <p className="text-sm font-medium text-[#3f2d2a]">
+    <div className="border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-6 py-12 text-center">
+      <p className="text-sm font-medium text-[#1a1d24]">
         {title} is not configured
       </p>
 
-      <p className="mt-1 text-xs text-[#70635d]">
+      <p className="mt-1 text-xs text-[#5b6270]">
         Create the homepage configuration
         before editing this section.
       </p>

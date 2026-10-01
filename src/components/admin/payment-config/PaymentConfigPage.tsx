@@ -65,7 +65,7 @@ export default function PaymentConfigPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 border-b border-[var(--color-border)] pb-6">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#7a5650]">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#2b3a55]">
           <Wallet size={22} />
         </div>
 
@@ -87,7 +87,7 @@ export default function PaymentConfigPage() {
         <p className="text-sm text-red-600">Unable to load payment settings.</p>
       ) : (
         <div className="grid gap-6 lg:grid-cols-2">
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
             <h2 className="text-lg font-semibold text-[var(--color-ink)]">
               Order payment timing
             </h2>
@@ -108,7 +108,7 @@ export default function PaymentConfigPage() {
             </p>
           </section>
 
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6">
             <h2 className="text-lg font-semibold text-[var(--color-ink)]">
               Payment methods
             </h2>
@@ -132,7 +132,7 @@ export default function PaymentConfigPage() {
             </dl>
           </section>
 
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6 lg:col-span-2">
+          <section className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm sm:p-6 lg:col-span-2">
             <h2 className="text-lg font-semibold text-[var(--color-ink)]">
               WhatsApp invoices &amp; bills
             </h2>

@@ -12,25 +12,25 @@ interface ProductContentSectionProps {
 }
 
 const inputClassName =
-  "box-border min-w-0 w-full max-w-full rounded-xl border border-[#d8cec5] bg-[#fbf9f5] px-3 text-sm text-[#3f2d2a] outline-none transition focus:border-[#a98282] focus:ring-2 focus:ring-[#e9dcd7]";
+  "box-border min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition focus:border-[#7d8aa6] focus:ring-2 focus:ring-[#e4e9f2]";
 
 const labelClassName =
-  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#3f2d2a]";
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#1a1d24]";
 
 export default function ProductContentSection({
   content,
   onChange,
 }: ProductContentSectionProps) {
   return (
-    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] p-4 sm:p-5">
+    <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
       {/* HEADER */}
 
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#3f2d2a]">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
           Content
         </h2>
 
-        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#70635d]">
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#5b6270]">
           Add the product description
           and customer-facing content.
         </p>
@@ -125,7 +125,7 @@ export default function ProductContentSection({
               className={`${inputClassName} resize-y py-3 leading-6`}
             />
 
-            <p className="mt-1.5 text-xs leading-5 text-[#958781]">
+            <p className="mt-1.5 text-xs leading-5 text-[#737a8c]">
               Optional. Use this field
               when you need formatted
               product content.

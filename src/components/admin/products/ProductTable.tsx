@@ -90,14 +90,14 @@ export default function ProductTable({
 }: ProductTableProps) {
   if (loading) {
     return (
-      <div className="rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5]">
+      <div className="rounded-2xl border border-[#e5e7ec] bg-[#ffffff]">
         <div className="space-y-2 p-4">
           {Array.from({
             length: 6,
           }).map((_, index) => (
             <div
               key={index}
-              className="h-16 animate-pulse rounded-xl bg-[#efe8df]"
+              className="h-16 animate-pulse rounded-xl bg-[#eef0f4]"
             />
           ))}
         </div>
@@ -107,19 +107,19 @@ export default function ProductTable({
 
   if (products.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5] px-6 py-14 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f3ed]">
+      <div className="rounded-2xl border border-[#e5e7ec] bg-[#ffffff] px-6 py-14 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#f4f5f7]">
           <Trash2
             size={20}
-            className="text-[#958781]"
+            className="text-[#737a8c]"
           />
         </div>
 
-        <h3 className="mt-4 text-sm font-semibold text-[#3f2d2a]">
+        <h3 className="mt-4 text-sm font-semibold text-[#1a1d24]">
           No products found
         </h3>
 
-        <p className="mt-1 text-xs text-[#958781]">
+        <p className="mt-1 text-xs text-[#737a8c]">
           Try changing your filters or
           add a new product.
         </p>
@@ -128,11 +128,11 @@ export default function ProductTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e6ddd4] bg-[#fbf9f5]">
+    <div className="overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff]">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1050px] text-left">
-          <thead className="border-b border-[#e6ddd4] bg-[#f7f3ed]">
-            <tr className="text-xs uppercase tracking-[0.1em] text-[#958781]">
+          <thead className="border-b border-[#e5e7ec] bg-[#f4f5f7]">
+            <tr className="text-xs uppercase tracking-[0.1em] text-[#737a8c]">
               <th className="px-5 py-4 font-medium">
                 Product
               </th>
@@ -159,7 +159,7 @@ export default function ProductTable({
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[#e6ddd4]">
+          <tbody className="divide-y divide-[#e5e7ec]">
             {products.map(
               (product) => {
                 const image =
@@ -185,7 +185,7 @@ export default function ProductTable({
                 return (
                   <tr
                     key={product.id}
-                    className="transition-colors hover:bg-[#f7f3ed]"
+                    className="transition-colors hover:bg-[#f4f5f7]"
                   >
                     {/* =================================================
                         PRODUCT
@@ -193,7 +193,7 @@ export default function ProductTable({
 
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-14 w-12 shrink-0 overflow-hidden rounded-lg border border-[#e6ddd4] bg-[#efe8df]">
+                        <div className="relative h-14 w-12 shrink-0 overflow-hidden rounded-lg border border-[#e5e7ec] bg-[#eef0f4]">
                           {image ? (
                             <Image
                               src={image}
@@ -205,7 +205,7 @@ export default function ProductTable({
                               className="object-cover"
                             />
                           ) : (
-                            <div className="flex h-full items-center justify-center px-1 text-center text-[10px] text-[#958781]">
+                            <div className="flex h-full items-center justify-center px-1 text-center text-[10px] text-[#737a8c]">
                               No image
                             </div>
                           )}
@@ -216,7 +216,7 @@ export default function ProductTable({
                             href={`/admin/products/${encodeURIComponent(
                               product.id,
                             )}`}
-                            className="block max-w-[260px] truncate text-sm font-semibold text-[#3f2d2a] transition-colors hover:text-[#a98282]"
+                            className="block max-w-[260px] truncate text-sm font-semibold text-[#1a1d24] transition-colors hover:text-[#7d8aa6]"
                             title={
                               product.name
                             }
@@ -227,7 +227,7 @@ export default function ProductTable({
                           </Link>
 
                           <p
-                            className="mt-0.5 max-w-[260px] truncate text-xs text-[#958781]"
+                            className="mt-0.5 max-w-[260px] truncate text-xs text-[#737a8c]"
                             title={
                               product.slug
                             }
@@ -244,7 +244,7 @@ export default function ProductTable({
                         CATEGORY
                     ================================================= */}
 
-                    <td className="px-5 py-4 text-sm text-[#70635d]">
+                    <td className="px-5 py-4 text-sm text-[#5b6270]">
                       <span className="inline-block max-w-[160px] truncate">
                         {product.categoryId ||
                           "—"}
@@ -256,7 +256,7 @@ export default function ProductTable({
                     ================================================= */}
 
                     <td className="px-5 py-4">
-                      <div className="text-sm font-semibold text-[#3f2d2a]">
+                      <div className="text-sm font-semibold text-[#1a1d24]">
                         ₹
                         {price.toLocaleString(
                           "en-IN",
@@ -266,7 +266,7 @@ export default function ProductTable({
                       {product.pricing
                         ?.mrp >
                         price && (
-                        <div className="mt-0.5 text-xs text-[#958781] line-through">
+                        <div className="mt-0.5 text-xs text-[#737a8c] line-through">
                           ₹
                           {product.pricing.mrp.toLocaleString(
                             "en-IN",
@@ -283,17 +283,17 @@ export default function ProductTable({
                       <div
                         className={`text-sm font-semibold ${
                           stock <= 0
-                            ? "text-[#955c56]"
+                            ? "text-[#b3261e]"
                             : stock <=
                                 lowStockThreshold
-                              ? "text-[#8a6a48]"
-                              : "text-[#3f2d2a]"
+                              ? "text-[#a15c07]"
+                              : "text-[#1a1d24]"
                         }`}
                       >
                         {stock}
                       </div>
 
-                      <p className="mt-0.5 text-xs text-[#958781]">
+                      <p className="mt-0.5 text-xs text-[#737a8c]">
                         {getStockLabel(
                           product,
                         )}
@@ -331,15 +331,15 @@ export default function ProductTable({
                             gap-1.5
                             rounded-lg
                             border
-                            border-[#d8cec5]
-                            bg-[#fbf9f5]
+                            border-[#d3d7df]
+                            bg-[#ffffff]
                             px-3
                             text-xs
                             font-medium
-                            text-[#3f2d2a]
+                            text-[#1a1d24]
                             transition
-                            hover:border-[#958781]
-                            hover:bg-[#f7f3ed]
+                            hover:border-[#737a8c]
+                            hover:bg-[#f4f5f7]
                           "
                         >
                           <Pencil
@@ -369,14 +369,14 @@ export default function ProductTable({
                               gap-1.5
                               rounded-lg
                               border
-                              border-[#f5eae6]
-                              bg-[#fbf9f5]
+                              border-[#fdecec]
+                              bg-[#ffffff]
                               px-3
                               text-xs
                               font-medium
-                              text-[#955c56]
+                              text-[#b3261e]
                               transition
-                              hover:bg-[#f5eae6]
+                              hover:bg-[#fdecec]
                             "
                           >
                             <Archive
@@ -405,15 +405,15 @@ export default function ProductTable({
                             gap-1.5
                             rounded-lg
                             border
-                            border-[#f5eae6]
-                            bg-[#f5eae6]
+                            border-[#fdecec]
+                            bg-[#fdecec]
                             px-3
                             text-xs
                             font-medium
-                            text-[#955c56]
+                            text-[#b3261e]
                             transition
-                            hover:border-[#f5eae6]
-                            hover:bg-[#543c38]
+                            hover:border-[#fdecec]
+                            hover:bg-[#1e2a40]
                           "
                           title="Permanently delete product"
                         >

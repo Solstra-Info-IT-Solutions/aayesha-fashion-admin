@@ -15,7 +15,7 @@ export function AdminShell({
 }: AdminShellProps) {
   return (
     <AdminGuard>
-      <div className="min-h-screen bg-[#f7f3ed]">
+      <div className="min-h-screen bg-[#f4f5f7]">
         <AdminSidebar />
 
         <div className="min-h-screen lg:pl-[250px]">

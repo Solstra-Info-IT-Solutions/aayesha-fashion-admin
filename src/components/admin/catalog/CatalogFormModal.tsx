@@ -106,7 +106,7 @@ function Input({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       />
     </div>
   );
@@ -136,7 +136,7 @@ function TextArea({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full resize-y rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full resize-y rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       />
     </div>
   );
@@ -164,7 +164,7 @@ function Select({
         onChange={(event) =>
           onChange(event.target.value)
         }
-        className="w-full rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+        className="w-full rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
       >
         {options.map((option) => (
           <option
@@ -321,7 +321,7 @@ function ImageField({
             onChange(event.target.value)
           }
           placeholder="https://..."
-          className="min-w-0 flex-1 rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
+          className="min-w-0 flex-1 rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm text-neutral-900 outline-none transition focus:border-neutral-400"
         />
 
         {isEditing ? (
@@ -330,7 +330,7 @@ function ImageField({
             onClick={onSelect}
             disabled={disabled}
             title={selectTitle}
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#fbf9f5] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#ffffff] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <ImageIcon className="h-4 w-4" />
             Select
@@ -338,7 +338,7 @@ function ImageField({
         ) : (
           <label
             className={[
-              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#fbf9f5]",
+              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-400 hover:bg-[#ffffff]",
               disabled
                 ? "pointer-events-none cursor-not-allowed opacity-50"
                 : "",
@@ -485,7 +485,7 @@ export default function CatalogFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 p-4">
-      <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-[#fbf9f5] shadow-2xl">
+      <div className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-[#ffffff] shadow-2xl">
         <div className="flex items-start justify-between border-b border-neutral-200 px-6 py-5">
           <div>
             <h2 className="text-lg font-semibold text-neutral-950">
@@ -1312,7 +1312,7 @@ export default function CatalogFormModal({
                   onChange={(value) =>
                     onChange("hex", value)
                   }
-                  placeholder="#d8bfb9"
+                  placeholder="#c9d1e0"
                 />
 
                 <Input
@@ -1399,7 +1399,7 @@ export default function CatalogFormModal({
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#7a5650] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#7a5650] disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#2b3a55] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {saving && (
                 <Loader2 className="h-4 w-4 animate-spin" />

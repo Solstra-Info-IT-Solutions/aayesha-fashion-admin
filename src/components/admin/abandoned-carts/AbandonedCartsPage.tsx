@@ -54,7 +54,7 @@ export default function AbandonedCartsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#7a5650]">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#2b3a55]">
             <ShoppingBag size={22} />
           </div>
 
@@ -78,7 +78,7 @@ export default function AbandonedCartsPage() {
             setReloadKey((key) => key + 1);
           }}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-gray-50 disabled:opacity-50"
+          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-gray-50 disabled:opacity-50"
         >
           <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
           Refresh
@@ -90,13 +90,13 @@ export default function AbandonedCartsPage() {
       ) : failed ? (
         <p className="text-sm text-red-600">Unable to load abandoned carts.</p>
       ) : data && data.carts.length === 0 ? (
-        <p className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-8 text-center text-sm text-[var(--color-secondary)]">
+        <p className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-8 text-center text-sm text-[var(--color-secondary)]">
           No abandoned carts right now.
         </p>
       ) : data ? (
         <>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
+            <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm">
               <p className="text-xs uppercase tracking-wide text-[var(--color-secondary)]">
                 Abandoned bags
               </p>
@@ -105,7 +105,7 @@ export default function AbandonedCartsPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
+            <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-5 shadow-sm">
               <p className="text-xs uppercase tracking-wide text-[var(--color-secondary)]">
                 Value waiting
               </p>
@@ -115,7 +115,7 @@ export default function AbandonedCartsPage() {
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] shadow-sm">
+          <div className="overflow-x-auto rounded-2xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm">
             <table className="w-full min-w-[760px] text-left text-sm">
               <thead className="border-b border-[var(--color-border)] text-xs uppercase tracking-wide text-[var(--color-secondary)]">
                 <tr>

@@ -17,7 +17,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className="border-b border-white/10 px-6 py-6"
       >
-        <p className="text-[9px] uppercase tracking-[0.3em] text-[#d2bea0]">
+        <p className="text-[9px] uppercase tracking-[0.3em] text-[#c7cedd]">
           Aayesha Fashion
         </p>
 
@@ -29,7 +29,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       <nav className="flex-1 overflow-y-auto px-3 py-5" aria-label="Admin">
         {navSections.map((section) => (
           <div key={section.title} className="mb-6">
-            <p className="mb-2 px-3 text-[10px] uppercase tracking-[0.2em] text-[#958781]">
+            <p className="mb-2 px-3 text-[10px] uppercase tracking-[0.2em] text-[#8d95a6]">
               {section.title}
             </p>
 
@@ -48,7 +48,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       </nav>
 
       <div className="border-t border-white/10 px-6 py-5">
-        <p className="text-[10px] uppercase tracking-[0.18em] text-[#958781]">
+        <p className="text-[10px] uppercase tracking-[0.18em] text-[#8d95a6]">
           Store administration
         </p>
       </div>

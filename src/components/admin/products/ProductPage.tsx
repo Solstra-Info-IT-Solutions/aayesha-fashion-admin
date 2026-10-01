@@ -171,7 +171,7 @@ export default function ProductPage() {
       ===================================================== */}
 
       {error && (
-        <div className="rounded-xl border border-[#f5eae6] bg-[#f5eae6] px-4 py-3 text-sm text-[#955c56]">
+        <div className="rounded-xl border border-[#fdecec] bg-[#fdecec] px-4 py-3 text-sm text-[#b3261e]">
           {error}
         </div>
       )}

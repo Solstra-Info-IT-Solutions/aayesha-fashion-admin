@@ -9,13 +9,13 @@ const styles: Record<
   string
 > = {
   draft:
-    "bg-[#efe8df] text-[#70635d]",
+    "bg-[#eef0f4] text-[#5b6270]",
   active:
-    "bg-[#edf1e9] text-[#65745f]",
+    "bg-[#e8f5ec] text-[#2f7d4f]",
   archived:
-    "bg-[#e6ddd4] text-[#70635d]",
+    "bg-[#e5e7ec] text-[#5b6270]",
   discontinued:
-    "bg-[#f5eae6] text-[#955c56]",
+    "bg-[#fdecec] text-[#b3261e]",
 };
 
 const labels: Record<

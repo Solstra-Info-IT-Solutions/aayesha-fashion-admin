@@ -114,7 +114,7 @@ export default function CategoryForm({
                   null,
               )
             }
-            className="w-full rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
+            className="w-full rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm outline-none focus:border-neutral-400"
           >
             <option value="">
               No Parent
