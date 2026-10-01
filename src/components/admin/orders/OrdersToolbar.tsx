@@ -37,7 +37,7 @@ export function OrdersToolbar({
   ) => void;
 }) {
   return (
-    <div className="border border-[#e5e7ec] bg-[#ffffff] p-4">
+    <div className="border border-[#e6dfcf] bg-[#fffdf8] p-4">
       <div className="grid gap-3 lg:grid-cols-[2fr_1fr_1fr_1fr_auto]">
         <input
           type="search"
@@ -50,7 +50,7 @@ export function OrdersToolbar({
             })
           }
           placeholder="Search order, customer, email or phone..."
-          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] px-4 text-sm text-[#2a2520] outline-none focus:border-[#2a2520]"
         />
 
         <select
@@ -64,7 +64,7 @@ export function OrdersToolbar({
                   | undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#2a2520]"
         >
           <option value="">
             All statuses
@@ -99,7 +99,7 @@ export function OrdersToolbar({
                   | undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#2a2520]"
         >
           <option value="">
             All payments
@@ -132,7 +132,7 @@ export function OrdersToolbar({
                 undefined,
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#2a2520]"
         >
           <option value="">
             All methods
@@ -163,7 +163,7 @@ export function OrdersToolbar({
                   .value as OrderListFilters["sort"],
             })
           }
-          className="h-11 border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none focus:border-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#2a2520]"
         >
           <option value="newest">
             Newest
@@ -199,7 +199,7 @@ export function OrdersToolbar({
               sort: "newest",
             })
           }
-          className="h-11 border border-[#d3d7df] px-4 text-sm text-[#5b6270] hover:border-[#0f172a] hover:text-[#0f172a]"
+          className="h-11 border border-[#d6ccb6] px-4 text-sm text-[#5f584d] hover:border-[#2a2520] hover:text-[#2a2520]"
         >
           Reset
         </button>

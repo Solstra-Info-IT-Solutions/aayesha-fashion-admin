@@ -8,7 +8,7 @@ export default function SettingsFormSkeleton() {
         <div className="h-4 w-72 rounded bg-gray-100" />
       </div>
 
-      <div className="rounded-2xl border border-gray-200 bg-[#ffffff] p-5 shadow-sm sm:p-6">
+      <div className="rounded-2xl border border-gray-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="mb-6 space-y-3">
           <div className="h-5 w-36 rounded bg-gray-200" />
           <div className="h-4 w-80 rounded bg-gray-100" />

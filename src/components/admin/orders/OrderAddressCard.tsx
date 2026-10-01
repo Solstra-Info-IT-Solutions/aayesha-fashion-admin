@@ -15,24 +15,24 @@ export function OrderAddressCard({
     order.shippingAddress;
 
   return (
-    <section className="border border-[#e5e7ec] bg-[#ffffff] p-6">
-      <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
+    <section className="border border-[#e6dfcf] bg-[#fffdf8] p-6">
+      <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
         Delivery
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
+      <h2 className="mt-1 font-serif text-2xl text-[#2a2520]">
         Shipping address
       </h2>
 
       <div className="mt-6 flex gap-3">
         <MapPin
           size={17}
-          className="mt-0.5 shrink-0 text-[#737a8c]"
+          className="mt-0.5 shrink-0 text-[#756d62]"
         />
 
-        <div className="text-sm leading-6 text-[#5b6270]">
+        <div className="text-sm leading-6 text-[#5f584d]">
           {address?.name && (
-            <p className="font-medium text-[#0f172a]">
+            <p className="font-medium text-[#2a2520]">
               {address.name}
             </p>
           )}

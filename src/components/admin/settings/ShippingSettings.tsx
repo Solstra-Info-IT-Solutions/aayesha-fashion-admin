@@ -80,7 +80,7 @@ export default function ShippingSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
       <div className="border-b border-slate-200 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
@@ -122,12 +122,12 @@ export default function ShippingSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               shippingEnabled
-                ? "bg-[#4338ca]"
+                ? "bg-[#26221d]"
                 : "bg-slate-300"
             }`}
           >
             <span
-              className={`inline-block h-4 w-4 rounded-full bg-[#ffffff] shadow-sm transition ${
+              className={`inline-block h-4 w-4 rounded-full bg-[#fffdf8] shadow-sm transition ${
                 shippingEnabled
                   ? "translate-x-6"
                   : "translate-x-1"
@@ -186,12 +186,12 @@ export default function ShippingSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               freeShippingEnabled
-                ? "bg-[#4338ca]"
+                ? "bg-[#26221d]"
                 : "bg-slate-300"
             }`}
           >
             <span
-              className={`inline-block h-4 w-4 rounded-full bg-[#ffffff] shadow-sm transition ${
+              className={`inline-block h-4 w-4 rounded-full bg-[#fffdf8] shadow-sm transition ${
                 freeShippingEnabled
                   ? "translate-x-6"
                   : "translate-x-1"

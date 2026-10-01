@@ -56,7 +56,7 @@ export default function StoreSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+    <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
       <div className="border-b border-slate-200 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">

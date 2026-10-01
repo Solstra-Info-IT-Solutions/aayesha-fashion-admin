@@ -8,7 +8,7 @@ export function NotificationBell() {
   return (
     <Link
       href="/admin"
-      className="relative inline-flex h-10 w-10 items-center justify-center border border-[#e5e7ec] bg-[#ffffff] text-[#5b6270] transition hover:border-[#b4bac6] hover:text-[#0f172a]"
+      className="relative inline-flex h-10 w-10 items-center justify-center border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#bdb199] hover:text-[#2a2520]"
       aria-label="Needs attention"
       title="Needs attention"
     >

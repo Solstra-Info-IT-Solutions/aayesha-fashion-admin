@@ -43,7 +43,7 @@ export default function SettingsStatsBar({
         return (
           <div
             key={stat.label}
-            className="rounded-xl border border-gray-200 bg-[#ffffff] px-3 py-3 sm:px-4"
+            className="rounded-xl border border-gray-200 bg-[#fffdf8] px-3 py-3 sm:px-4"
           >
             <div className="flex items-center gap-2">
               <Icon className="h-4 w-4 shrink-0 text-gray-400" />

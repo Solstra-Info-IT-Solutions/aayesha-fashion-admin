@@ -94,8 +94,8 @@ export function OrdersPage({
             }
             className={
               activeQuick === quick.id
-                ? "h-9 border border-[#4338ca] bg-[#4338ca] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
-                : "h-9 border border-[#d3d7df] bg-[#ffffff] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#0f172a] hover:border-[#0f172a]"
+                ? "h-9 border border-[#26221d] bg-[#26221d] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
+                : "h-9 border border-[#d6ccb6] bg-[#fffdf8] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#2a2520] hover:border-[#2a2520]"
             }
           >
             {quick.label}
@@ -104,8 +104,8 @@ export function OrdersPage({
       </div>
 
       {filters.from || filters.to ? (
-        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5b6270]">
-          <span className="inline-flex items-center gap-2 border border-[#d3d7df] bg-white px-3 py-1.5 font-medium text-[#0f172a]">
+        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5f584d]">
+          <span className="inline-flex items-center gap-2 border border-[#d6ccb6] bg-white px-3 py-1.5 font-medium text-[#2a2520]">
             {filters.from === filters.to
               ? filters.from
               : `${filters.from ?? "…"} → ${filters.to ?? "…"}`}
@@ -114,7 +114,7 @@ export function OrdersPage({
               type="button"
               aria-label="Clear date filter"
               onClick={() => updateFilters({ from: undefined, to: undefined })}
-              className="text-[#737a8c] hover:text-[#0f172a]"
+              className="text-[#756d62] hover:text-[#2a2520]"
             >
               ×
             </button>

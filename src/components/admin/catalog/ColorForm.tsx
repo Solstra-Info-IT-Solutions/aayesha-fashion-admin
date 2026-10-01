@@ -51,7 +51,7 @@ export default function ColorForm({
               hex: hex || null,
             })
           }
-          placeholder="#c7d2fe"
+          placeholder="#e4d8bd"
         />
 
         <Input
@@ -91,7 +91,7 @@ export default function ColorForm({
           style={{
             backgroundColor:
               value.hex ||
-              "#ffffff",
+              "#fffdf8",
           }}
         />
 

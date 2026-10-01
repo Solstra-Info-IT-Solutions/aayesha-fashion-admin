@@ -23,9 +23,9 @@ export function StatusDonut({
   return (
     <ChartCard eyebrow="Orders" title="Order status" href="/admin/orders" hrefLabel="All orders">
       {loading ? (
-        <div className="flex h-56 items-center justify-center text-sm text-[#737a8c]">Loading…</div>
+        <div className="flex h-56 items-center justify-center text-sm text-[#756d62]">Loading…</div>
       ) : total === 0 ? (
-        <div className="flex h-56 items-center justify-center text-sm text-[#737a8c]">No orders yet.</div>
+        <div className="flex h-56 items-center justify-center text-sm text-[#756d62]">No orders yet.</div>
       ) : (
         <>
           <div className="relative mx-auto h-44 w-44" role="img" aria-label="Orders by status">
@@ -38,7 +38,7 @@ export function StatusDonut({
                   innerRadius={56}
                   outerRadius={82}
                   paddingAngle={2}
-                  stroke="#ffffff"
+                  stroke="#fffdf8"
                   strokeWidth={2}
                   isAnimationActive={false}
                   onClick={(slice) => {
@@ -60,9 +60,9 @@ export function StatusDonut({
                     if (!active || !item) return null;
 
                     return (
-                      <div className="rounded-lg border border-[#e5e7ec] bg-white px-3 py-2 text-xs shadow-lg">
-                        <span className="font-semibold text-[#0f172a]">{labelOf(item.status)}</span>{" "}
-                        <span className="text-[#5b6270]">
+                      <div className="rounded-lg border border-[#e6dfcf] bg-white px-3 py-2 text-xs shadow-lg">
+                        <span className="font-semibold text-[#2a2520]">{labelOf(item.status)}</span>{" "}
+                        <span className="text-[#5f584d]">
                           {item.count} ({Math.round((item.count / total) * 100)}%)
                         </span>
                       </div>
@@ -73,8 +73,8 @@ export function StatusDonut({
             </ResponsiveContainer>
 
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-bold text-[#0f172a]">{total}</span>
-              <span className="text-[10px] uppercase tracking-[0.14em] text-[#737a8c]">orders</span>
+              <span className="text-2xl font-bold text-[#2a2520]">{total}</span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-[#756d62]">orders</span>
             </div>
           </div>
 
@@ -83,15 +83,15 @@ export function StatusDonut({
               <li key={item.status}>
                 <Link
                   href={`/admin/orders?status=${encodeURIComponent(item.status)}`}
-                  className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm hover:bg-[#f6f7fb]"
+                  className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm hover:bg-[#f7f2e7]"
                 >
-                  <span className="flex items-center gap-2 text-[#0f172a]">
+                  <span className="flex items-center gap-2 text-[#2a2520]">
                     <span className="h-2.5 w-2.5 rounded-full" style={{ background: statusColor(item.status) }} />
                     {labelOf(item.status)}
                   </span>
 
-                  <span className="text-[#5b6270]">
-                    <span className="font-semibold text-[#0f172a]">{item.count}</span>{" "}
+                  <span className="text-[#5f584d]">
+                    <span className="font-semibold text-[#2a2520]">{item.count}</span>{" "}
                     · {Math.round((item.count / total) * 100)}%
                   </span>
                 </Link>

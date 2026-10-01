@@ -232,7 +232,7 @@ export default function DiscountDetailPage() {
 
   if (!discount) {
     return (
-      <div className="mx-auto max-w-2xl rounded-xl border border-[var(--color-border)] bg-[#ffffff] px-6 py-12 text-center shadow-sm">
+      <div className="mx-auto max-w-2xl rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-12 text-center shadow-sm">
         <h1 className="text-lg font-semibold text-[var(--color-ink)]">
           Discount not found
         </h1>
@@ -248,7 +248,7 @@ export default function DiscountDetailPage() {
               "/admin/discounts",
             )
           }
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white transition hover:bg-[#3730a3]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white transition hover:bg-[#3d372f]"
         >
           Back to Discounts
         </button>

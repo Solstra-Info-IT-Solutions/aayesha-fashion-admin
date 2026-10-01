@@ -161,7 +161,7 @@ function renderExtraCell(
               style={{
                 backgroundColor:
                   color.hex ??
-                  "#ffffff",
+                  "#fffdf8",
               }}
             />
 

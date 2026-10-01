@@ -34,7 +34,7 @@ export default function CatalogEmptyState({
       <button
         type="button"
         onClick={onAction}
-        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
+        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
       >
         <Plus className="h-4 w-4" />
         {actionLabel}

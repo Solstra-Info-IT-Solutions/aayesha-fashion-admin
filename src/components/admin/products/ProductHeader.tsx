@@ -18,17 +18,17 @@ export default function ProductHeader({
   onRefresh,
 }: ProductHeaderProps) {
   return (
-    <div className="flex flex-col gap-4 border-b border-[#e5e7ec] pb-6 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col gap-4 border-b border-[#e6dfcf] pb-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#737a8c]">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#756d62]">
           Catalog
         </p>
 
-        <h1 className="mt-1 text-2xl font-semibold text-[#0f172a]">
+        <h1 className="mt-1 text-2xl font-semibold text-[#2a2520]">
           Products
         </h1>
 
-        <p className="mt-1 text-sm text-[#5b6270]">
+        <p className="mt-1 text-sm text-[#5f584d]">
           Manage products, content,
           pricing and publishing.
         </p>
@@ -39,7 +39,7 @@ export default function ProductHeader({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d3d7df] px-3.5 text-sm font-medium text-[#0f172a] hover:bg-[#f6f7fb] disabled:opacity-50"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d6ccb6] px-3.5 text-sm font-medium text-[#2a2520] hover:bg-[#f7f2e7] disabled:opacity-50"
         >
           <RefreshCw
             size={15}
@@ -54,7 +54,7 @@ export default function ProductHeader({
 
         <Link
           href="/admin/products/import"
-          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d3d7df] bg-white px-3.5 text-sm font-medium text-[#0f172a] hover:border-[#818cf8] hover:bg-[#eef2ff]"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl border border-[#d6ccb6] bg-white px-3.5 text-sm font-medium text-[#2a2520] hover:border-[#b08d57] hover:bg-[#f1ead9]"
         >
           <Upload size={16} />
           Import CSV
@@ -62,7 +62,7 @@ export default function ProductHeader({
 
         <Link
           href="/admin/products/new"
-          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl bg-[#4338ca] px-4 text-sm font-medium text-white hover:bg-[#3730a3]"
+          className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-xl bg-[#26221d] px-4 text-sm font-medium text-white hover:bg-[#3d372f]"
         >
           <Plus size={16} />
           Add Product

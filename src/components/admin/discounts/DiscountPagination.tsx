@@ -110,7 +110,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page - 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={16} />
@@ -145,8 +145,8 @@ export default function DiscountPagination({
                   }
                   className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition ${
                     isActive
-                      ? "bg-[#4338ca] text-white"
-                      : "border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] hover:bg-gray-50 hover:text-[var(--color-ink)]"
+                      ? "bg-[#26221d] text-white"
+                      : "border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] hover:bg-gray-50 hover:text-[var(--color-ink)]"
                   }`}
                   aria-current={
                     isActive
@@ -182,7 +182,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page + 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={16} />

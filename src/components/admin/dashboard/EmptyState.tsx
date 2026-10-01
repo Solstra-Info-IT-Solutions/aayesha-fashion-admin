@@ -6,12 +6,12 @@ export function EmptyState({
   message: string;
 }) {
   return (
-    <div className="border border-[#e5e7ec] bg-[#ffffff] px-6 py-14 text-center">
-      <h3 className="font-serif text-2xl text-[#0f172a]">
+    <div className="border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14 text-center">
+      <h3 className="font-serif text-2xl text-[#2a2520]">
         {title}
       </h3>
 
-      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5b6270]">
+      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5f584d]">
         {message}
       </p>
     </div>

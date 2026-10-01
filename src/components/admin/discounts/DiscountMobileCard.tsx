@@ -134,13 +134,13 @@ export default function DiscountMobileCard({
     );
 
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-4 shadow-sm">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Link
             href={`/admin/discounts/${discount._id}`}
-            className="inline-flex max-w-full items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#4338ca] transition hover:bg-pink-100"
+            className="inline-flex max-w-full items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#26221d] transition hover:bg-pink-100"
           >
             <span className="truncate">
               {discount.code}
@@ -264,7 +264,7 @@ export default function DiscountMobileCard({
 
         <Link
           href={`/admin/discounts/${discount._id}/edit`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] text-xs font-medium text-[#4338ca] transition hover:bg-[var(--color-rose-light)]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] text-xs font-medium text-[#26221d] transition hover:bg-[var(--color-rose-light)]"
         >
           <Pencil size={15} />
           Edit

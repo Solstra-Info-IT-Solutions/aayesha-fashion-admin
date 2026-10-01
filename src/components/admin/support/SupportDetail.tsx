@@ -208,7 +208,7 @@ export default function SupportDetail({
         <div className="flex items-center gap-3">
           <Link
             href="/admin/support"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-[#ffffff] text-slate-600 transition hover:bg-slate-50"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-[#fffdf8] text-slate-600 transition hover:bg-slate-50"
             aria-label="Back to support"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -248,7 +248,7 @@ export default function SupportDetail({
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#ffffff] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fffdf8] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
             >
               <Edit3 className="h-4 w-4" />
               Edit
@@ -259,7 +259,7 @@ export default function SupportDetail({
                 type="button"
                 onClick={handleCancel}
                 disabled={updating}
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#ffffff] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-[#fffdf8] px-4 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <X className="h-4 w-4" />
                 Cancel
@@ -269,7 +269,7 @@ export default function SupportDetail({
                 type="button"
                 onClick={handleSave}
                 disabled={updating}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Save className="h-4 w-4" />
                 {updating ? "Saving..." : "Save Changes"}
@@ -281,7 +281,7 @@ export default function SupportDetail({
             type="button"
             onClick={handleDelete}
             disabled={deleting}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-200 bg-[#ffffff] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-200 bg-[#fffdf8] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 className="h-4 w-4" />
             {deleting ? "Deleting..." : "Delete"}
@@ -293,7 +293,7 @@ export default function SupportDetail({
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
         {/* Conversation */}
         <div className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
             <div className="border-b border-slate-200 px-5 py-4">
               <div className="flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-rose-600" />
@@ -345,7 +345,7 @@ export default function SupportDetail({
           </section>
 
           {/* Resolution */}
-          <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
             <div className="border-b border-slate-200 px-5 py-4">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600" />
@@ -381,7 +381,7 @@ export default function SupportDetail({
           </section>
 
           {/* Customer */}
-          <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
             <div className="border-b border-slate-200 px-5 py-4">
               <div className="flex items-center gap-2">
                 <User className="h-5 w-5 text-slate-600" />
@@ -471,7 +471,7 @@ export default function SupportDetail({
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          <section className="rounded-2xl border border-slate-200 bg-[#ffffff] shadow-sm">
+          <section className="rounded-2xl border border-slate-200 bg-[#fffdf8] shadow-sm">
             <div className="border-b border-slate-200 px-5 py-4">
               <h2 className="font-semibold text-slate-900">
                 Ticket Management
@@ -492,7 +492,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setStatus(event.target.value as SupportStatus)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#ffffff] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
                       >
                         {STATUS_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -516,7 +516,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setPriority(event.target.value as SupportPriority)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#ffffff] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
                       >
                         {PRIORITY_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>
@@ -540,7 +540,7 @@ export default function SupportDetail({
                         onChange={(event) =>
                           setCategory(event.target.value as SupportCategory)
                         }
-                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#ffffff] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
+                        className="h-11 w-full appearance-none rounded-lg border border-slate-200 bg-[#fffdf8] px-3 pr-9 text-sm text-slate-900 outline-none transition focus:border-rose-400 focus:ring-2 focus:ring-rose-100"
                       >
                         {CATEGORY_OPTIONS.map((option) => (
                           <option key={option.value} value={option.value}>

@@ -177,14 +177,14 @@ export function HeroSectionEditor({
   return (
     <div className="space-y-6">
       {/* Hero Status */}
-      <section className="border border-[#e5e7ec] bg-[#ffffff]">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] px-6 py-5">
+      <section className="border border-[#e6dfcf] bg-[#fffdf8]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] px-6 py-5">
           <div>
-            <h3 className="text-sm font-medium text-[#0f172a]">
+            <h3 className="text-sm font-medium text-[#2a2520]">
               Hero Section
             </h3>
 
-            <p className="mt-1 text-xs leading-5 text-[#5b6270]">
+            <p className="mt-1 text-xs leading-5 text-[#5f584d]">
               Control the main visual section displayed at the
               top of the homepage.
             </p>
@@ -198,8 +198,8 @@ export function HeroSectionEditor({
             className={[
               "inline-flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] transition",
               hero.enabled
-                ? "bg-[#4338ca] text-white"
-                : "border border-[#d3d7df] bg-[#ffffff] text-[#5b6270]",
+                ? "bg-[#26221d] text-white"
+                : "border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d]",
             ].join(" ")}
           >
             {hero.enabled ? (
@@ -217,13 +217,13 @@ export function HeroSectionEditor({
         </div>
 
         <div className="px-6 py-5">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded border border-[#e5e7ec] bg-[#f6f7fb] px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded border border-[#e6dfcf] bg-[#f7f2e7] px-4 py-3">
             <div>
-              <p className="text-xs font-medium text-[#0f172a]">
+              <p className="text-xs font-medium text-[#2a2520]">
                 Homepage hero visibility
               </p>
 
-              <p className="mt-1 text-xs text-[#737a8c]">
+              <p className="mt-1 text-xs text-[#756d62]">
                 {hero.enabled
                   ? "The hero section is currently visible."
                   : "The hero section is currently hidden."}
@@ -234,8 +234,8 @@ export function HeroSectionEditor({
               className={[
                 "text-[10px] font-medium uppercase tracking-[0.15em]",
                 hero.enabled
-                  ? "text-[#4338ca]"
-                  : "text-[#737a8c]",
+                  ? "text-[#26221d]"
+                  : "text-[#756d62]",
               ].join(" ")}
             >
               {hero.enabled ? "Live" : "Hidden"}
@@ -245,14 +245,14 @@ export function HeroSectionEditor({
       </section>
 
       {/* Slides */}
-      <section className="border border-[#e5e7ec] bg-[#ffffff]">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e5e7ec] px-6 py-5">
+      <section className="border border-[#e6dfcf] bg-[#fffdf8]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] px-6 py-5">
           <div>
-            <h3 className="text-sm font-medium text-[#0f172a]">
+            <h3 className="text-sm font-medium text-[#2a2520]">
               Hero Slides
             </h3>
 
-            <p className="mt-1 text-xs text-[#5b6270]">
+            <p className="mt-1 text-xs text-[#5f584d]">
               Manage the slides shown in the homepage carousel.
             </p>
           </div>
@@ -263,7 +263,7 @@ export function HeroSectionEditor({
               setEditingSlideId(null);
               setShowForm(true);
             }}
-            className="inline-flex items-center gap-2 bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3730a3]"
+            className="inline-flex items-center gap-2 bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f]"
           >
             <Plus size={15} />
             Add Slide
@@ -272,7 +272,7 @@ export function HeroSectionEditor({
 
         <div className="p-6">
           {showForm && (
-            <div className="mb-6 border border-[#e5e7ec] bg-[#f6f7fb] p-6">
+            <div className="mb-6 border border-[#e6dfcf] bg-[#f7f2e7] p-6">
               <HeroSlideForm
                 mode="create"
                 onCancel={() => setShowForm(false)}
@@ -282,12 +282,12 @@ export function HeroSectionEditor({
           )}
 
           {hero.slides.length === 0 ? (
-            <div className="border border-dashed border-[#d3d7df] px-6 py-12 text-center">
-              <p className="text-sm text-[#5b6270]">
+            <div className="border border-dashed border-[#d6ccb6] px-6 py-12 text-center">
+              <p className="text-sm text-[#5f584d]">
                 No hero slides configured.
               </p>
 
-              <p className="mt-1 text-xs text-[#737a8c]">
+              <p className="mt-1 text-xs text-[#756d62]">
                 Add your first hero slide to display the
                 homepage hero.
               </p>
@@ -307,10 +307,10 @@ export function HeroSectionEditor({
                   return (
                     <div
                       key={slide.id}
-                      className="border border-[#e5e7ec] bg-[#ffffff]"
+                      className="border border-[#e6dfcf] bg-[#fffdf8]"
                     >
                       {editing ? (
-                        <div className="bg-[#f6f7fb] p-6">
+                        <div className="bg-[#f7f2e7] p-6">
                           <HeroSlideForm
                             mode="edit"
                             initialData={slide}
@@ -365,13 +365,13 @@ export function HeroSectionEditor({
       </section>
 
       {/* Save */}
-      <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-4 border border-[#d3d7df] bg-[#ffffff]/95 px-5 py-4 shadow-sm backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-4 border border-[#d6ccb6] bg-[#fffdf8]/95 px-5 py-4 shadow-sm backdrop-blur">
         <div>
-          <p className="text-xs font-medium text-[#0f172a]">
+          <p className="text-xs font-medium text-[#2a2520]">
             Hero changes
           </p>
 
-          <p className="mt-1 text-[11px] text-[#737a8c]">
+          <p className="mt-1 text-[11px] text-[#756d62]">
             Save to publish the updated hero configuration.
           </p>
         </div>
@@ -380,7 +380,7 @@ export function HeroSectionEditor({
           type="button"
           onClick={() => void handleSave()}
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-[#4338ca] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#26221d] px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Check size={15} />
 
@@ -415,7 +415,7 @@ function HeroSlideRow({
   return (
     <div className="flex flex-col gap-5 p-5 lg:flex-row lg:items-center">
       {/* Image */}
-      <div className="relative h-32 w-full shrink-0 overflow-hidden bg-[#e5e7ec] lg:w-52">
+      <div className="relative h-32 w-full shrink-0 overflow-hidden bg-[#e6dfcf] lg:w-52">
         {slide.image ? (
           <img
             src={slide.image}
@@ -423,7 +423,7 @@ function HeroSlideRow({
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-xs text-[#737a8c]">
+          <div className="flex h-full items-center justify-center text-xs text-[#756d62]">
             No image
           </div>
         )}
@@ -440,31 +440,31 @@ function HeroSlideRow({
             className={[
               "inline-flex px-2 py-1 text-[9px] font-medium uppercase tracking-[0.12em]",
               slide.isActive
-                ? "bg-[#eef2ff] text-[#4338ca]"
-                : "bg-[#e5e7ec] text-[#5b6270]",
+                ? "bg-[#f1ead9] text-[#26221d]"
+                : "bg-[#e6dfcf] text-[#5f584d]",
             ].join(" ")}
           >
             {slide.isActive ? "Active" : "Inactive"}
           </span>
 
           {slide.eyebrow && (
-            <span className="text-[10px] uppercase tracking-[0.14em] text-[#737a8c]">
+            <span className="text-[10px] uppercase tracking-[0.14em] text-[#756d62]">
               {slide.eyebrow}
             </span>
           )}
         </div>
 
-        <h4 className="mt-2 font-serif text-xl text-[#0f172a]">
+        <h4 className="mt-2 font-serif text-xl text-[#2a2520]">
           {slide.title}
         </h4>
 
         {slide.description && (
-          <p className="mt-1 line-clamp-2 max-w-2xl text-xs leading-5 text-[#5b6270]">
+          <p className="mt-1 line-clamp-2 max-w-2xl text-xs leading-5 text-[#5f584d]">
             {slide.description}
           </p>
         )}
 
-        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[10px] text-[#737a8c]">
+        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[10px] text-[#756d62]">
           <span>
             CTA: {slide.buttonLabel || "—"}
           </span>
@@ -483,7 +483,7 @@ function HeroSlideRow({
             onClick={onMoveUp}
             disabled={index === 0}
             title="Move up"
-            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d] disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronUp size={15} />
           </button>
@@ -493,7 +493,7 @@ function HeroSlideRow({
             onClick={onMoveDown}
             disabled={index === total - 1}
             title="Move down"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca] disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d] disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ChevronDown size={15} />
           </button>
@@ -504,7 +504,7 @@ function HeroSlideRow({
             type="button"
             onClick={onToggle}
             title={slide.isActive ? "Deactivate" : "Activate"}
-            className="flex h-8 w-8 items-center justify-center border border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca]"
+            className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d]"
           >
             {slide.isActive ? (
               <Eye size={14} />
@@ -517,7 +517,7 @@ function HeroSlideRow({
             type="button"
             onClick={onEdit}
             title="Edit"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-[#4338ca]"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d6ccb6] text-[#5f584d] hover:text-[#26221d]"
           >
             <Pencil size={14} />
           </button>
@@ -526,7 +526,7 @@ function HeroSlideRow({
             type="button"
             onClick={onDelete}
             title="Delete"
-            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d3d7df] text-[#5b6270] hover:text-red-700"
+            className="flex h-8 w-8 items-center justify-center border-y border-r border-[#d6ccb6] text-[#5f584d] hover:text-red-700"
           >
             <Trash2 size={14} />
           </button>

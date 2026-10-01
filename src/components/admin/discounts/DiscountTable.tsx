@@ -115,7 +115,7 @@ export default function DiscountTable({
   actionLoadingId = null,
 }: DiscountTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#ffffff] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm lg:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1000px] border-collapse">
           <thead>
@@ -171,7 +171,7 @@ export default function DiscountTable({
                     <div className="min-w-0">
                       <Link
                         href={`/admin/discounts/${discount._id}`}
-                        className="inline-flex max-w-[240px] items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#4338ca] transition hover:bg-pink-100"
+                        className="inline-flex max-w-[240px] items-center rounded-md bg-[var(--color-rose-light)] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#26221d] transition hover:bg-pink-100"
                       >
                         {discount.code}
                       </Link>
@@ -274,7 +274,7 @@ export default function DiscountTable({
                       <Link
                         href={`/admin/discounts/${discount._id}/edit`}
                         title="Edit discount"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-[var(--color-rose-light)] hover:text-[#4338ca]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[var(--color-secondary)] transition hover:bg-[var(--color-rose-light)] hover:text-[#26221d]"
                       >
                         <Pencil size={16} />
                       </Link>

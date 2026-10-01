@@ -52,7 +52,7 @@ export default function GeneralSettings({
       }}
       className="space-y-6"
     >
-      <div className="rounded-2xl border border-gray-200 bg-[#ffffff] p-5 shadow-sm sm:p-6">
+      <div className="rounded-2xl border border-gray-200 bg-[#fffdf8] p-5 shadow-sm sm:p-6">
         <div className="mb-6">
           <h2 className="text-base font-semibold text-gray-900">
             {isEdit ? "Edit Setting" : "Create Setting"}

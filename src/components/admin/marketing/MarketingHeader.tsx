@@ -61,7 +61,7 @@ export default function MarketingHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-rose-dark)] hover:text-[var(--color-rose-dark)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={16}
@@ -77,7 +77,7 @@ export default function MarketingHeader({
 
         <Link
   href="/admin/marketing/create"
-  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3730a3]"
+  className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3d372f]"
 >
   <Plus size={17} />
   New Campaign

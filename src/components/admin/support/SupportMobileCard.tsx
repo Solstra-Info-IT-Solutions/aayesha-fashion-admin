@@ -82,13 +82,13 @@ export default function SupportMobileCard({
   onDelete,
 }: SupportMobileCardProps) {
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-[#ffffff] p-4 shadow-sm lg:hidden">
+    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-4 shadow-sm lg:hidden">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <Link
             href={`/admin/support/${ticket._id}`}
-            className="text-sm font-semibold text-[#4338ca] hover:underline"
+            className="text-sm font-semibold text-[#26221d] hover:underline"
           >
             {ticket.ticketNumber}
           </Link>
@@ -143,7 +143,7 @@ export default function SupportMobileCard({
           {ticket.priority}
         </span>
 
-        <span className="rounded-full border border-[var(--color-border)] bg-[#ffffff] px-2.5 py-1 text-xs font-medium capitalize text-[var(--color-secondary)]">
+        <span className="rounded-full border border-[var(--color-border)] bg-[#fffdf8] px-2.5 py-1 text-xs font-medium capitalize text-[var(--color-secondary)]">
           {ticket.category}
         </span>
       </div>

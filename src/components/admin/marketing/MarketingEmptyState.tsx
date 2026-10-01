@@ -17,7 +17,7 @@ export default function MarketingEmptyState({
   onClearFilters,
 }: MarketingEmptyStateProps) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] px-6 py-14 text-center">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] px-6 py-14 text-center">
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-rose-light)] text-[var(--color-rose-dark)]">
         {filtered ? (
           <Search size={24} />

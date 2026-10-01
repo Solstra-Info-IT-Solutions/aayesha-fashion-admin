@@ -42,11 +42,11 @@ export function OrdersTable({
   loading: boolean;
 }) {
   return (
-    <div className="overflow-hidden border border-[#e5e7ec] bg-[#ffffff]">
+    <div className="overflow-hidden border border-[#e6dfcf] bg-[#fffdf8]">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[950px]">
           <thead>
-            <tr className="border-b border-[#e5e7ec] bg-[#f6f7fb]">
+            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]">
               {[
                 "Order",
                 "Customer",
@@ -59,7 +59,7 @@ export function OrdersTable({
                 (heading, index) => (
                   <th
                     key={`${heading}-${index}`}
-                    className="px-5 py-3 text-left text-[10px] uppercase tracking-[0.14em] text-[#737a8c]"
+                    className="px-5 py-3 text-left text-[10px] uppercase tracking-[0.14em] text-[#756d62]"
                   >
                     {heading}
                   </th>
@@ -76,13 +76,13 @@ export function OrdersTable({
                 (_, index) => (
                   <tr
                     key={index}
-                    className="border-b border-[#e5e7ec]"
+                    className="border-b border-[#e6dfcf]"
                   >
                     <td
                       colSpan={7}
                       className="px-5 py-5"
                     >
-                      <div className="h-4 animate-pulse bg-[#eef0f4]" />
+                      <div className="h-4 animate-pulse bg-[#efe8d8]" />
                     </td>
                   </tr>
                 ),
@@ -94,37 +94,37 @@ export function OrdersTable({
                     key={
                       order.orderNumber
                     }
-                    className="border-b border-[#e5e7ec] transition hover:bg-[#f6f7fb]"
+                    className="border-b border-[#e6dfcf] transition hover:bg-[#f7f2e7]"
                   >
                     <td className="px-5 py-4">
                       <Link
                         href={`/admin/orders/${encodeURIComponent(
                           order.orderNumber,
                         )}`}
-                        className="text-sm font-medium text-[#0f172a] hover:underline"
+                        className="text-sm font-medium text-[#2a2520] hover:underline"
                       >
                         {order.orderNumber}
                       </Link>
                     </td>
 
                     <td className="px-5 py-4">
-                      <p className="text-sm font-medium text-[#0f172a]">
+                      <p className="text-sm font-medium text-[#2a2520]">
                         {order.customerName ||
                           "Guest customer"}
                       </p>
 
-                      <p className="mt-1 text-xs text-[#737a8c]">
+                      <p className="mt-1 text-xs text-[#756d62]">
                         {order.customerEmail}
                       </p>
                     </td>
 
-                    <td className="px-5 py-4 text-sm text-[#5b6270]">
+                    <td className="px-5 py-4 text-sm text-[#5f584d]">
                       {formatDate(
                         order.createdAt,
                       )}
                     </td>
 
-                    <td className="px-5 py-4 text-sm font-medium text-[#0f172a]">
+                    <td className="px-5 py-4 text-sm font-medium text-[#2a2520]">
                       ₹
                       {order.total.toLocaleString(
                         "en-IN",
@@ -145,7 +145,7 @@ export function OrdersTable({
                         </p>
                       ) : null}
 
-                      <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#737a8c]">
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#756d62]">
                         {paymentMethodLabel(
                           order.paymentMethod,
                         )}
@@ -165,7 +165,7 @@ export function OrdersTable({
                         href={`/admin/orders/${encodeURIComponent(
                           order.orderNumber,
                         )}`}
-                        className="text-xs font-medium text-[#5b6270] hover:text-[#0f172a]"
+                        className="text-xs font-medium text-[#5f584d] hover:text-[#2a2520]"
                       >
                         View
                       </Link>

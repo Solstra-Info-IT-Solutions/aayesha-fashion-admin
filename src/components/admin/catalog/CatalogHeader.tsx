@@ -43,7 +43,7 @@ export default function CatalogHeader({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-[#ffffff] px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-[#fffdf8] px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <RefreshCw
             className={
@@ -59,7 +59,7 @@ export default function CatalogHeader({
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#26221d]"
         >
           <Plus className="h-4 w-4" />
 

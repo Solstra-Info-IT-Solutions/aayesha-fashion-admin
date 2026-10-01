@@ -109,7 +109,7 @@ export default function SupportPagination({
           }
           disabled={page <= 1}
           aria-label="Previous page"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronLeft size={17} />
         </button>
@@ -139,8 +139,8 @@ export default function SupportPagination({
                 }
                 className={`h-9 min-w-9 rounded-lg px-2 text-sm font-medium transition ${
                   isActive
-                    ? "bg-[#4338ca] text-white"
-                    : "border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-ink)] hover:bg-gray-50"
+                    ? "bg-[#26221d] text-white"
+                    : "border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-ink)] hover:bg-gray-50"
                 }`}
               >
                 {item}
@@ -150,7 +150,7 @@ export default function SupportPagination({
         </div>
 
         {/* Mobile */}
-        <div className="flex h-9 items-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm font-medium text-[var(--color-ink)] sm:hidden">
+        <div className="flex h-9 items-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm font-medium text-[var(--color-ink)] sm:hidden">
           {page} / {totalPages}
         </div>
 
@@ -162,7 +162,7 @@ export default function SupportPagination({
           }
           disabled={page >= totalPages}
           aria-label="Next page"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-secondary)] transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronRight size={17} />
         </button>

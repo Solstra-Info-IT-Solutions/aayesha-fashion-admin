@@ -58,7 +58,7 @@ export default function MarketingFilters({
     includeArchived;
 
   return (
-    <section className="rounded-xl border border-[var(--color-border)] bg-[#ffffff] p-4">
+    <section className="rounded-xl border border-[var(--color-border)] bg-[#fffdf8] p-4">
       <div className="flex flex-col gap-3 xl:flex-row xl:items-center">
         {/* Search */}
         <div className="relative min-w-0 flex-1">
@@ -74,7 +74,7 @@ export default function MarketingFilters({
               onSearchChange(event.target.value)
             }
             placeholder="Search campaigns..."
-            className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-10 pr-10 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color-rose-dark)]"
+            className="h-11 w-full rounded-lg border border-[var(--color-border)] bg-[#fffdf8] pl-10 pr-10 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[var(--color-rose-dark)]"
           />
 
           {search && (
@@ -97,7 +97,7 @@ export default function MarketingFilters({
               event.target.value as MarketingCampaignType | "",
             )
           }
-          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
         >
           <option value="">All Types</option>
 
@@ -116,7 +116,7 @@ export default function MarketingFilters({
               event.target.value as MarketingCampaignStatus | "",
             )
           }
-          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+          className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
         >
           <option value="">All Statuses</option>
 
@@ -141,7 +141,7 @@ export default function MarketingFilters({
                 event.target.value as MarketingCampaignSort,
               )
             }
-            className="h-11 rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-9 pr-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
+            className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] pl-9 pr-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-rose-dark)]"
           >
             {MARKETING_CAMPAIGN_SORTS.map((item) => (
               <option key={item} value={item}>
