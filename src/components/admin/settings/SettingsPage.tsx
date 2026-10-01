@@ -200,7 +200,7 @@ export default function SettingsPage() {
         refreshing={refreshing}
       />
 
-      <main className="mx-auto max-w-7xl py-6">
+      <div className="mx-auto max-w-7xl py-6">
         {loading ? (
           <SettingsSkeleton />
         ) : (
@@ -277,7 +277,7 @@ export default function SettingsPage() {
             )}
           </>
         )}
-      </main>
+      </div>
     </div>
   );
 }

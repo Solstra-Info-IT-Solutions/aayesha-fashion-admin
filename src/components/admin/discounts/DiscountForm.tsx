@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
@@ -412,7 +413,7 @@ export default function DiscountForm({
           `Discount ${created.code} created successfully.`,
         );
 
-        router.push(
+        router.replace(
           `/admin/discounts/${created._id}`,
         );
         return;
@@ -438,7 +439,7 @@ export default function DiscountForm({
         `Discount ${updated.code} updated successfully.`,
       );
 
-      router.push(
+      router.replace(
         `/admin/discounts/${updated._id}`,
       );
     } catch (error) {
@@ -504,13 +505,13 @@ export default function DiscountForm({
     <div className="mx-auto max-w-4xl">
       {/* Header */}
       <div className="mb-6">
-        <Link
+        <SmartBackLink
           href="/admin/discounts"
           className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#26221d]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
-        </Link>
+        </SmartBackLink>
 
         <h1 className="text-[#2a2520]">
           {mode === "create"

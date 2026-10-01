@@ -1,6 +1,8 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   CalendarDays,
@@ -141,6 +143,7 @@ function statusClass(
 export default function CustomerDetailsPage({
   userId,
 }: Props) {
+  const router = useRouter();
   const {
     accessToken,
     isAuthenticated,
@@ -496,8 +499,7 @@ export default function CustomerDetailsPage({
         "Customer deleted successfully.",
       );
 
-      window.location.href =
-        "/admin/customers";
+      router.replace("/admin/customers");
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -535,13 +537,13 @@ export default function CustomerDetailsPage({
           Customer not found
         </h1>
 
-        <Link
+        <SmartBackLink
           href="/admin/customers"
           className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#6f542f]"
         >
           <ArrowLeft size={16} />
           Back to Customers
-        </Link>
+        </SmartBackLink>
       </div>
     );
   }
@@ -567,13 +569,13 @@ export default function CustomerDetailsPage({
         {/* TOP */}
 
         <div className="mb-6">
-          <Link
+          <SmartBackLink
             href="/admin/customers"
             className="inline-flex items-center gap-2 text-sm font-medium text-[#5f584d] hover:text-[#6f542f]"
           >
             <ArrowLeft size={16} />
             Back to Customers
-          </Link>
+          </SmartBackLink>
 
           <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 

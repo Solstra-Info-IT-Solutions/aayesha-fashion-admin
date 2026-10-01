@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -454,7 +455,7 @@ export default function MarketingCampaignForm({
           "Campaign updated successfully.",
         );
 
-        router.push(
+        router.replace(
           `/admin/marketing/${loadedCampaign._id}`,
         );
 
@@ -474,7 +475,7 @@ export default function MarketingCampaignForm({
         "Campaign created successfully.",
       );
 
-      router.push(
+      router.replace(
         `/admin/marketing/${created._id}`,
       );
     } catch (error) {
@@ -526,17 +527,17 @@ export default function MarketingCampaignForm({
     loadingCampaign
   ) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-6">
-            <Link
+            <SmartBackLink
               href="/admin/marketing"
               className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
             >
               <ArrowLeft size={16} />
 
               Back to Marketing
-            </Link>
+            </SmartBackLink>
 
             <div className="h-8 w-64 animate-pulse rounded bg-[#efe8d8]" />
 
@@ -601,7 +602,7 @@ export default function MarketingCampaignForm({
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -613,16 +614,16 @@ export default function MarketingCampaignForm({
     loadError
   ) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-          <Link
+          <SmartBackLink
             href="/admin/marketing"
             className="mb-6 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
           >
             <ArrowLeft size={16} />
 
             Back to Marketing
-          </Link>
+          </SmartBackLink>
 
           <div className="rounded-[14px] border border-[#f5c2c0] bg-[#fdecec] p-8 text-center">
             <h1 className="text-lg font-semibold text-[#8f1f19]">
@@ -633,31 +634,31 @@ export default function MarketingCampaignForm({
               {loadError}
             </p>
 
-            <Link
+            <SmartBackLink
               href="/admin/marketing"
               className="mt-5 inline-flex h-10 items-center justify-center rounded-lg bg-[#6f542f] px-5 text-sm font-medium text-white transition hover:opacity-90"
             >
               Back to Campaigns
-            </Link>
+            </SmartBackLink>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="min-h-full">
+    <div className="min-h-full">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6">
-          <Link
+          <SmartBackLink
             href="/admin/marketing"
             className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
           >
             <ArrowLeft size={16} />
 
             Back to Marketing
-          </Link>
+          </SmartBackLink>
 
           <h1 className="text-2xl font-semibold tracking-tight text-[#2a2520] sm:text-3xl">
             {isEdit
@@ -992,6 +993,6 @@ export default function MarketingCampaignForm({
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 }

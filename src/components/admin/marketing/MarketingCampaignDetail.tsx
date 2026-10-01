@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import { useConfirm } from "@/components/ui/useConfirm";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -112,6 +114,7 @@ function DetailItem({
 export default function MarketingCampaignDetail({
   id,
 }: MarketingCampaignDetailProps) {
+  const router = useRouter();
   const { confirm, dialog: confirmDialog } = useConfirm();
   const {
     accessToken,
@@ -259,7 +262,7 @@ export default function MarketingCampaignDetail({
         "Campaign deleted successfully.",
       );
 
-      window.location.href = "/admin/marketing";
+      router.replace("/admin/marketing");
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -273,7 +276,7 @@ export default function MarketingCampaignDetail({
 
   if (!isInitialized) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-5">
             <div className="h-8 w-48 rounded bg-[#efe8d8]" />
@@ -281,7 +284,7 @@ export default function MarketingCampaignDetail({
             <div className="h-48 rounded-[14px] bg-[#efe8d8]" />
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -291,7 +294,7 @@ export default function MarketingCampaignDetail({
 
   if (loading) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="space-y-5">
             <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
@@ -312,13 +315,13 @@ export default function MarketingCampaignDetail({
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
   if (!campaign) {
     return (
-      <main className="min-h-full">
+      <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 text-center sm:px-6 lg:px-8">
           <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14">
             <h2 className="text-lg font-semibold text-[#2a2520]">
@@ -329,16 +332,16 @@ export default function MarketingCampaignDetail({
               The requested campaign could not be found.
             </p>
 
-            <Link
+            <SmartBackLink
               href="/admin/marketing"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#6f542f] px-4 py-2.5 text-sm font-medium text-white"
             >
               <ArrowLeft size={16} />
               Back to Marketing
-            </Link>
+            </SmartBackLink>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -346,17 +349,17 @@ export default function MarketingCampaignDetail({
     campaign.status === "archived";
 
   return (
-    <main className="min-h-full">
+    <div className="min-h-full">
       {confirmDialog}
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Back */}
-        <Link
+        <SmartBackLink
           href="/admin/marketing"
           className="mb-5 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
         >
           <ArrowLeft size={16} />
           Back to Marketing
-        </Link>
+        </SmartBackLink>
 
         {/* Main Card */}
         <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]">
@@ -538,6 +541,6 @@ export default function MarketingCampaignDetail({
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

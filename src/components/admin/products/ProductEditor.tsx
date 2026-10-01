@@ -1,5 +1,6 @@
 "use client";
 
+import { goBackTo } from "@/lib/nav-history";
 import {
   useEffect,
   useMemo,
@@ -352,7 +353,7 @@ export default function ProductEditor({
         <button
           type="button"
           onClick={() =>
-            router.push(
+            router.replace(
               "/admin/login",
             )
           }
@@ -397,7 +398,7 @@ export default function ProductEditor({
       <div className="min-w-0">
         <button
           type="button"
-          onClick={() => router.push("/admin/products")}
+          onClick={() => goBackTo(router, "/admin/products")}
           className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6a3b] hover:underline"
         >
           <ArrowLeft size={14} className="shrink-0" />

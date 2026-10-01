@@ -1,5 +1,6 @@
 "use client";
 
+import { SmartBackLink } from "@/components/navigation/smart-back-link";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import {
@@ -96,9 +97,9 @@ export default function ProductImportPage() {
   return (
     <div className="space-y-6">
       <div className="border-b border-[#e6dfcf] pb-6">
-        <Link href="/admin/products" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#26221d] hover:underline">
+        <SmartBackLink href="/admin/products" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#26221d] hover:underline">
           <ArrowLeft size={14} /> Back to products
-        </Link>
+        </SmartBackLink>
 
         <h1 className="mt-3 text-[#2a2520]">Import products from CSV</h1>
 
