@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 
+import { Toasters } from "@/components/ui/Toasters";
+
 import "./globals.css";
 
 const manrope = Manrope({
@@ -37,6 +39,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         {children}
+        <Toasters />
       </body>
     </html>
   );

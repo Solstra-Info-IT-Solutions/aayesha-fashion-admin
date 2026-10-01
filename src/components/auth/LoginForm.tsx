@@ -51,18 +51,27 @@ export function LoginForm() {
     setShowPassword,
   ] = useState(false);
 
+  const [
+    formError,
+    setFormError,
+  ] = useState("");
+
   async function handleSubmit(
     event: FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault();
 
+    setFormError("");
+
     if (
       !email.trim() ||
       !password
     ) {
-      toast.error(
-        "Email and password are required.",
-      );
+      const message =
+        "Email and password are required.";
+
+      setFormError(message);
+      toast.error(message);
 
       return;
     }
@@ -81,13 +90,24 @@ export function LoginForm() {
         "/admin",
       );
     } catch (error) {
-      const message =
-        error instanceof ApiError
+      let message =
+        error instanceof Error
           ? error.message
-          : error instanceof Error
-            ? error.message
-            : "Unable to sign in.";
+          : "Unable to sign in.";
 
+      if (error instanceof ApiError) {
+        if (error.code === "NETWORK_ERROR") {
+          message =
+            "Cannot reach the server. Check your connection, or that the API allows this admin site (CORS).";
+        } else if (
+          error.code === "API_CONFIG_ERROR"
+        ) {
+          message =
+            "The admin site is missing NEXT_PUBLIC_API_BASE_URL.";
+        }
+      }
+
+      setFormError(message);
       toast.error(message);
     }
   }
@@ -97,6 +117,15 @@ export function LoginForm() {
       onSubmit={handleSubmit}
       className="space-y-6"
     >
+      {formError ? (
+        <p
+          role="alert"
+          className="border border-[#e3c6bf] bg-[#f5eae6] px-4 py-3 text-sm text-[#7d4a45]"
+        >
+          {formError}
+        </p>
+      ) : null}
+
       <div className="relative">
         <Mail
           size={18}
