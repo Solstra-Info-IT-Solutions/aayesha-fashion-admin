@@ -105,7 +105,7 @@ export default function SettingValueField({
       required
       error={error}
     >
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white focus-within:border-[#9f1239] focus-within:ring-2 focus-within:ring-[#9f1239]/10">
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-[#fbf9f5] focus-within:border-[#7a5650] focus-within:ring-2 focus-within:ring-[#7a5650]/10">
         <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-2">
           <div className="flex items-center gap-1">
             <button
@@ -113,7 +113,7 @@ export default function SettingValueField({
               onClick={() => handleModeChange("text")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "text"
-                  ? "bg-white text-gray-800 shadow-sm"
+                  ? "bg-[#fbf9f5] text-gray-800 shadow-sm"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -126,7 +126,7 @@ export default function SettingValueField({
               onClick={() => handleModeChange("json")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "json"
-                  ? "bg-white text-gray-800 shadow-sm"
+                  ? "bg-[#fbf9f5] text-gray-800 shadow-sm"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -151,7 +151,7 @@ export default function SettingValueField({
               ? '{\n  "example": "value"\n}'
               : "Enter setting value..."
           }
-          className={`w-full resize-y border-0 bg-white px-4 py-3 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-400 ${
+          className={`w-full resize-y border-0 bg-[#fbf9f5] px-4 py-3 font-mono text-sm text-gray-800 outline-none placeholder:text-gray-400 ${
             mode === "json" ? "leading-6" : "leading-6"
           }`}
           spellCheck={false}

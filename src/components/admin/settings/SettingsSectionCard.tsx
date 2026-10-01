@@ -30,7 +30,7 @@ export default function SettingsSectionCard({
   settings,
 }: SettingsSectionCardProps) {
   return (
-    <section className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-[#fbf9f5] shadow-sm">
       <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100">
@@ -54,7 +54,7 @@ export default function SettingsSectionCard({
         {settings.map((setting) => (
           <div
             key={setting.key}
-            className="flex items-center justify-between gap-4 px-5 py-4"
+            className="flex flex-wrap items-center justify-between gap-4 px-5 py-4"
           >
             <div className="min-w-0">
               <p className="break-all text-sm font-medium text-gray-800">

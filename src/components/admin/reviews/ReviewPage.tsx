@@ -250,7 +250,7 @@ export default function ReviewPage() {
 
   if (!accessToken) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-white p-10 text-center shadow-sm">
+      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] p-10 text-center shadow-sm">
         <h2 className="text-lg font-semibold text-[var(--color-ink)]">
           Authentication required
         </h2>

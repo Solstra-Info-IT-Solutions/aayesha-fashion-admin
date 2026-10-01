@@ -175,7 +175,7 @@ export default function AdminSupportDetailPage() {
           <button
             type="button"
             onClick={() => router.push("/admin/support")}
-            className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#9f1239] px-4 text-sm font-medium text-white transition hover:bg-[#881337]"
+            className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#7a5650] px-4 text-sm font-medium text-white transition hover:bg-[#543c38]"
           >
             Back to Support
           </button>

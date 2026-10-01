@@ -148,7 +148,7 @@ export default function DiscountDetail({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/admin/discounts"
-          className="inline-flex w-fit items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#9f1239]"
+          className="inline-flex w-fit items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#7a5650]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
@@ -157,7 +157,7 @@ export default function DiscountDetail({
         <div className="flex flex-wrap gap-2">
           <Link
             href={`/admin/discounts/${discount._id}/edit`}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50"
           >
             <Pencil size={15} />
             Edit
@@ -167,7 +167,7 @@ export default function DiscountDetail({
             type="button"
             disabled={actionLoading}
             onClick={onToggleStatus}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-3 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {discount.isActive ? (
               <CircleOff size={15} />
@@ -184,7 +184,7 @@ export default function DiscountDetail({
             type="button"
             disabled={actionLoading}
             onClick={onDelete}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-red-200 bg-white px-3 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-red-200 bg-[#fbf9f5] px-3 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 size={15} />
             Delete
@@ -193,11 +193,11 @@ export default function DiscountDetail({
       </div>
 
       {/* Hero */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-light)] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#9f1239]">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-rose-light)] px-3 py-2 font-mono text-lg font-bold tracking-wider text-[#7a5650]">
                 <Tag size={18} />
                 {discount.code}
               </div>
@@ -222,7 +222,7 @@ export default function DiscountDetail({
               Discount
             </p>
 
-            <p className="mt-1 text-2xl font-bold text-[#9f1239]">
+            <p className="mt-1 text-2xl font-bold text-[#7a5650]">
               {getDiscountLabel(
                 discount,
               )}
@@ -233,7 +233,7 @@ export default function DiscountDetail({
 
       {/* Stats */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
           <div className="flex items-center gap-2 text-[var(--color-secondary)]">
             <ShoppingBag size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
@@ -253,7 +253,7 @@ export default function DiscountDetail({
             null && (
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-gray-100">
               <div
-                className="h-full rounded-full bg-[#9f1239]"
+                className="h-full rounded-full bg-[#7a5650]"
                 style={{
                   width: `${usagePercentage}%`,
                 }}
@@ -262,7 +262,7 @@ export default function DiscountDetail({
           )}
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
           <div className="flex items-center gap-2 text-[var(--color-secondary)]">
             <Percent size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
@@ -278,7 +278,7 @@ export default function DiscountDetail({
           </p>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
           <div className="flex items-center gap-2 text-[var(--color-secondary)]">
             <ShoppingBag size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
@@ -296,7 +296,7 @@ export default function DiscountDetail({
           </p>
         </div>
 
-        <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
           <div className="flex items-center gap-2 text-[var(--color-secondary)]">
             <Users size={17} />
             <span className="text-xs font-medium uppercase tracking-wide">
@@ -312,11 +312,11 @@ export default function DiscountDetail({
       </div>
 
       {/* Schedule */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
         <div className="flex items-center gap-2">
           <CalendarDays
             size={18}
-            className="text-[#9f1239]"
+            className="text-[#7a5650]"
           />
 
           <h2 className="text-base font-semibold text-[var(--color-ink)]">
@@ -352,7 +352,7 @@ export default function DiscountDetail({
       </section>
 
       {/* Additional settings */}
-      <section className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm sm:p-6">
+      <section className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm sm:p-6">
         <h2 className="text-base font-semibold text-[var(--color-ink)]">
           Additional Settings
         </h2>

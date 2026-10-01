@@ -100,7 +100,7 @@ export function LoginForm() {
       <div className="relative">
         <Mail
           size={18}
-          className="absolute left-4 top-[42px] z-10 text-[#969696]"
+          className="absolute left-4 top-[42px] z-10 text-[#958781]"
         />
 
         <Input
@@ -123,7 +123,7 @@ export function LoginForm() {
       <div className="relative">
         <LockKeyhole
           size={18}
-          className="absolute left-4 top-[42px] z-10 text-[#969696]"
+          className="absolute left-4 top-[42px] z-10 text-[#958781]"
         />
 
         <Input
@@ -155,7 +155,7 @@ export function LoginForm() {
             )
           }
           disabled={isLoading}
-          className="absolute right-3 top-[42px] p-2 text-[#969696] hover:text-[#171717]"
+          className="absolute right-3 top-[42px] p-2 text-[#958781] hover:text-[#3f2d2a]"
           aria-label={
             showPassword
               ? "Hide password"

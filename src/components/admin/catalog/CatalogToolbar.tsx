@@ -41,7 +41,7 @@ export default function CatalogToolbar({
   onSortChange,
 }: Props) {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-4">
+    <div className="rounded-2xl border border-neutral-200 bg-[#fbf9f5] p-4">
       <div className="flex flex-col gap-3 lg:flex-row">
         <div className="flex min-w-0 flex-1 gap-2">
           <div className="relative min-w-0 flex-1">
@@ -62,14 +62,14 @@ export default function CatalogToolbar({
                 }
               }}
               placeholder="Search..."
-              className="h-11 w-full rounded-xl border border-neutral-200 bg-white pl-9 pr-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-400"
+              className="h-11 w-full rounded-xl border border-neutral-200 bg-[#fbf9f5] pl-9 pr-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-neutral-400"
             />
           </div>
 
           <button
             type="button"
             onClick={onSearch}
-            className="h-11 shrink-0 rounded-xl bg-neutral-950 px-5 text-sm font-medium text-white transition hover:bg-neutral-800"
+            className="h-11 shrink-0 rounded-xl bg-[#7a5650] px-5 text-sm font-medium text-white transition hover:bg-[#7a5650]"
           >
             Search
           </button>
@@ -95,7 +95,7 @@ export default function CatalogToolbar({
                   event.target.value as CatalogStatusFilter,
                 )
               }
-              className="h-11 min-w-[145px] appearance-none rounded-xl border border-neutral-200 bg-white px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+              className="h-11 min-w-[145px] appearance-none rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
             >
               <option value="all">
                 All Status
@@ -121,7 +121,7 @@ export default function CatalogToolbar({
                   event.target.value as CatalogSort,
                 )
               }
-              className="h-11 min-w-[155px] appearance-none rounded-xl border border-neutral-200 bg-white px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
+              className="h-11 min-w-[155px] appearance-none rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3 pr-9 text-sm text-neutral-700 outline-none focus:border-neutral-400"
             >
               <option value="sort_order">
                 Sort Order

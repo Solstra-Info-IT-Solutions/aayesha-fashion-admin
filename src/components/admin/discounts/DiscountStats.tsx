@@ -35,7 +35,7 @@ function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="text-sm font-medium text-[var(--color-secondary)]">
@@ -51,7 +51,7 @@ function StatCard({
           </p>
         </div>
 
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[#9f1239]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--color-rose-light)] text-[#7a5650]">
           {icon}
         </div>
       </div>
@@ -61,7 +61,7 @@ function StatCard({
 
 function SkeletonCard() {
   return (
-    <div className="rounded-xl border border-[var(--color-border)] bg-white p-5 shadow-sm">
+    <div className="rounded-xl border border-[var(--color-border)] bg-[#fbf9f5] p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div className="w-full">
           <div className="h-4 w-28 animate-pulse rounded bg-gray-200" />

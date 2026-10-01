@@ -64,7 +64,7 @@ export default function NotificationSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <section className="rounded-2xl border border-slate-200 bg-[#fbf9f5] shadow-sm">
       <div className="border-b border-slate-200 px-5 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50">
@@ -168,7 +168,7 @@ function NotificationRow({
   onChange,
 }: NotificationRowProps) {
   return (
-    <div className="flex items-center justify-between gap-4 px-5 py-5">
+    <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-5">
       <div className="flex min-w-0 items-start gap-3">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-500">
           {icon}
@@ -192,7 +192,7 @@ function NotificationRow({
         }
         className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
           enabled
-            ? "bg-[#9f1239]"
+            ? "bg-[#7a5650]"
             : "bg-slate-300"
         }`}
         aria-label={
@@ -202,7 +202,7 @@ function NotificationRow({
         }
       >
         <span
-          className={`inline-block h-4 w-4 rounded-full bg-white shadow-sm transition ${
+          className={`inline-block h-4 w-4 rounded-full bg-[#fbf9f5] shadow-sm transition ${
             enabled
               ? "translate-x-6"
               : "translate-x-1"

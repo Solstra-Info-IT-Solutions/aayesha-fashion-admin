@@ -15,13 +15,13 @@ export function AdminShell({
 }: AdminShellProps) {
   return (
     <AdminGuard>
-      <div className="min-h-screen bg-[#fcfbf9]">
+      <div className="min-h-screen bg-[#f7f3ed]">
         <AdminSidebar />
 
         <div className="min-h-screen lg:pl-[250px]">
           <AdminHeader />
 
-          <main className="px-5 py-6 sm:px-7 lg:px-8">
+          <main className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
             <div className="mx-auto max-w-[1600px]">
               {children}
             </div>

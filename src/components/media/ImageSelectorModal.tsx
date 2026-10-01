@@ -431,22 +431,22 @@ export function ImageSelectorModal({
         }
       }}
     >
-      <div className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden bg-white shadow-2xl">
+      <div className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden bg-[#fbf9f5] shadow-2xl">
         {/* =================================================
             HEADER
         ================================================= */}
 
-        <div className="flex items-center justify-between border-b border-[#e3ded8] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-[#e6ddd4] px-5 py-4">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#9a928b]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#958781]">
               Media Library
             </p>
 
-            <h2 className="mt-1 font-serif text-xl text-[#292624]">
+            <h2 className="mt-1 font-serif text-xl text-[#3f2d2a]">
               {title}
             </h2>
 
-            <p className="mt-1 text-[11px] text-[#9a928b]">
+            <p className="mt-1 text-[11px] text-[#958781]">
               {resource} / {folder}
             </p>
           </div>
@@ -455,7 +455,7 @@ export function ImageSelectorModal({
             type="button"
             onClick={onClose}
             disabled={uploading}
-            className="flex h-9 w-9 items-center justify-center border border-[#ddd7d1] text-[#77736e] transition hover:border-[#9f1239] hover:text-[#9f1239] disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex h-9 w-9 items-center justify-center border border-[#d8cec5] text-[#70635d] transition hover:border-[#7a5650] hover:text-[#7a5650] disabled:cursor-not-allowed disabled:opacity-50"
             aria-label="Close image selector"
           >
             <X size={17} />
@@ -466,9 +466,9 @@ export function ImageSelectorModal({
             TOOLBAR
         ================================================= */}
 
-        <div className="flex flex-col gap-3 border-b border-[#e8e2dc] bg-[#fcfbf9] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-b border-[#e6ddd4] bg-[#f7f3ed] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-medium text-[#393532]">
+            <p className="text-xs font-medium text-[#3f2d2a]">
               {images.length}{" "}
               {images.length === 1
                 ? "image"
@@ -476,7 +476,7 @@ export function ImageSelectorModal({
               available
             </p>
 
-            <p className="mt-0.5 text-[11px] text-[#9a928b]">
+            <p className="mt-0.5 text-[11px] text-[#958781]">
               Upload images directly to this
               media folder.
             </p>
@@ -502,7 +502,7 @@ export function ImageSelectorModal({
                 !canUpload ||
                 uploading
               }
-              className="inline-flex items-center gap-2 bg-[#292624] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#9f1239] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2 bg-[#7a5650] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition hover:bg-[#7a5650] disabled:cursor-not-allowed disabled:opacity-50"
               title={
                 !canUpload
                   ? "Save this record first"
@@ -544,10 +544,10 @@ export function ImageSelectorModal({
             <div className="flex min-h-[280px] flex-col items-center justify-center">
               <Loader2
                 size={28}
-                className="animate-spin text-[#9f1239]"
+                className="animate-spin text-[#7a5650]"
               />
 
-              <p className="mt-3 text-xs text-[#77736e]">
+              <p className="mt-3 text-xs text-[#70635d]">
                 Loading images...
               </p>
             </div>
@@ -559,11 +559,11 @@ export function ImageSelectorModal({
                 <X size={20} />
               </div>
 
-              <p className="mt-4 text-sm font-medium text-[#393532]">
+              <p className="mt-4 text-sm font-medium text-[#3f2d2a]">
                 Unable to load images
               </p>
 
-              <p className="mt-1 max-w-md text-xs text-[#77736e]">
+              <p className="mt-1 max-w-md text-xs text-[#70635d]">
                 {error}
               </p>
 
@@ -572,7 +572,7 @@ export function ImageSelectorModal({
                 onClick={() =>
                   void loadImages()
                 }
-                className="mt-4 border border-[#d6d0ca] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#55504b] transition hover:border-[#9f1239] hover:text-[#9f1239]"
+                className="mt-4 border border-[#d8cec5] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#70635d] transition hover:border-[#7a5650] hover:text-[#7a5650]"
               >
                 Try Again
               </button>
@@ -583,15 +583,15 @@ export function ImageSelectorModal({
             !error &&
             images.length === 0 && (
               <div className="flex min-h-[280px] flex-col items-center justify-center text-center">
-                <div className="flex h-14 w-14 items-center justify-center border border-[#e1dbd5] bg-[#faf9f7] text-[#aaa39d]">
+                <div className="flex h-14 w-14 items-center justify-center border border-[#e6ddd4] bg-[#f7f3ed] text-[#958781]">
                   <ImageIcon size={24} />
                 </div>
 
-                <p className="mt-4 text-sm font-medium text-[#393532]">
+                <p className="mt-4 text-sm font-medium text-[#3f2d2a]">
                   No images found
                 </p>
 
-                <p className="mt-1 max-w-sm text-xs leading-5 text-[#77736e]">
+                <p className="mt-1 max-w-sm text-xs leading-5 text-[#70635d]">
                   {canUpload
                     ? "Upload your first image to this media folder."
                     : "Save this record first, then you can upload images to its media folder."}
@@ -606,7 +606,7 @@ export function ImageSelectorModal({
                     disabled={
                       uploading
                     }
-                    className="mt-5 inline-flex items-center gap-2 border border-[#292624] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#292624] transition hover:bg-[#292624] hover:text-white disabled:opacity-50"
+                    className="mt-5 inline-flex items-center gap-2 border border-[#7a5650] px-4 py-2.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#3f2d2a] transition hover:bg-[#7a5650] hover:text-white disabled:opacity-50"
                   >
                     <Upload size={14} />
 
@@ -636,14 +636,14 @@ export function ImageSelectorModal({
                           image.publicId
                         }
                         className={[
-                          "group relative overflow-hidden border bg-white transition",
+                          "group relative overflow-hidden border bg-[#fbf9f5] transition",
                           isSelected
-                            ? "border-[#9f1239] ring-2 ring-[#9f1239]/20"
-                            : "border-[#e1dbd5]",
+                            ? "border-[#7a5650] ring-2 ring-[#7a5650]/20"
+                            : "border-[#e6ddd4]",
                         ].join(" ")}
                       >
                         {/* Image */}
-                        <div className="relative aspect-square overflow-hidden bg-[#f3f0ed]">
+                        <div className="relative aspect-square overflow-hidden bg-[#efe8df]">
                           <img
                             src={
                               image.url
@@ -655,7 +655,7 @@ export function ImageSelectorModal({
 
                           {/* Selected indicator */}
                           {isSelected && (
-                            <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center bg-[#9f1239] text-white shadow">
+                            <div className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center bg-[#7a5650] text-white shadow">
                               <Check
                                 size={
                                   15
@@ -676,7 +676,7 @@ export function ImageSelectorModal({
                               isDeleting ||
                               uploading
                             }
-                            className="absolute left-2 top-2 flex h-7 w-7 items-center justify-center bg-white/95 text-[#55504b] shadow transition hover:bg-red-600 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                            className="absolute left-2 top-2 flex h-7 w-7 items-center justify-center bg-[#fbf9f5]/95 text-[#70635d] shadow transition hover:bg-red-600 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                             aria-label="Delete image"
                             title="Delete image"
                           >
@@ -698,8 +698,8 @@ export function ImageSelectorModal({
                         </div>
 
                         {/* Information */}
-                        <div className="border-t border-[#e8e2dc] px-2.5 py-2">
-                          <p className="truncate text-[10px] font-medium text-[#55504b]">
+                        <div className="border-t border-[#e6ddd4] px-2.5 py-2">
+                          <p className="truncate text-[10px] font-medium text-[#70635d]">
                             {image.format
                               ?.toUpperCase() ||
                               "IMAGE"}
@@ -707,7 +707,7 @@ export function ImageSelectorModal({
 
                           {image.width &&
                             image.height && (
-                              <p className="mt-0.5 text-[10px] text-[#9a928b]">
+                              <p className="mt-0.5 text-[10px] text-[#958781]">
                                 {
                                   image.width
                                 }{" "}
@@ -734,8 +734,8 @@ export function ImageSelectorModal({
                               className={[
                                 "flex-1 px-2 py-2 text-[9px] font-medium uppercase tracking-[0.08em] transition",
                                 isSelected
-                                  ? "bg-[#9f1239] text-white"
-                                  : "bg-[#292624] text-white hover:bg-[#9f1239]",
+                                  ? "bg-[#7a5650] text-white"
+                                  : "bg-[#7a5650] text-white hover:bg-[#7a5650]",
                               ].join(
                                 " ",
                               )}
@@ -755,7 +755,7 @@ export function ImageSelectorModal({
                                   uploading ||
                                   !canUpload
                                 }
-                                className="inline-flex items-center justify-center border border-[#d6d0ca] px-2 text-[#55504b] transition hover:border-[#9f1239] hover:text-[#9f1239] disabled:cursor-not-allowed disabled:opacity-50"
+                                className="inline-flex items-center justify-center border border-[#d8cec5] px-2 text-[#70635d] transition hover:border-[#7a5650] hover:text-[#7a5650] disabled:cursor-not-allowed disabled:opacity-50"
                                 title="Replace selected image"
                                 aria-label="Replace selected image"
                               >
@@ -789,8 +789,8 @@ export function ImageSelectorModal({
             FOOTER
         ================================================= */}
 
-        <div className="flex items-center justify-between border-t border-[#e3ded8] px-5 py-3">
-          <p className="text-[11px] text-[#9a928b]">
+        <div className="flex items-center justify-between border-t border-[#e6ddd4] px-5 py-3">
+          <p className="text-[11px] text-[#958781]">
             Images are stored in the selected
             Cloudinary media folder.
           </p>
@@ -799,7 +799,7 @@ export function ImageSelectorModal({
             type="button"
             onClick={onClose}
             disabled={uploading}
-            className="border border-[#d6d0ca] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#55504b] transition hover:border-[#9f1239] hover:text-[#9f1239] disabled:cursor-not-allowed disabled:opacity-50"
+            className="border border-[#d8cec5] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.12em] text-[#70635d] transition hover:border-[#7a5650] hover:text-[#7a5650] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Done
           </button>

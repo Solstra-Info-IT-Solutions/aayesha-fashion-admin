@@ -19,7 +19,7 @@ export default function SettingsTable({
   onDelete,
 }: SettingsTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
+    <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-[#fbf9f5] shadow-sm md:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] text-left">
           <thead className="border-b border-gray-200 bg-gray-50">

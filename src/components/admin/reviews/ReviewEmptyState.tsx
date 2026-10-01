@@ -13,8 +13,8 @@ export default function ReviewEmptyState({
   onReset,
 }: ReviewEmptyStateProps) {
   return (
-    <div className="rounded-2xl border border-[var(--color-border)] bg-white px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#9f1239]">
+    <div className="rounded-2xl border border-[var(--color-border)] bg-[#fbf9f5] px-6 py-14 text-center shadow-sm">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#7a5650]">
         <MessageSquareText size={26} />
       </div>
 
@@ -32,7 +32,7 @@ export default function ReviewEmptyState({
         <button
           type="button"
           onClick={onReset}
-          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50"
+          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fbf9f5] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50"
         >
           <RotateCcw size={16} />
           Clear Filters
@@ -42,7 +42,7 @@ export default function ReviewEmptyState({
       {!hasFilters && (
         <Link
           href="/admin"
-          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#9f1239] px-5 text-sm font-medium text-white transition hover:bg-[#881337]"
+          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#7a5650] px-5 text-sm font-medium text-white transition hover:bg-[#543c38]"
         >
           Back to Admin
         </Link>

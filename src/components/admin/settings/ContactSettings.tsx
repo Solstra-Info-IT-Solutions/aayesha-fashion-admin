@@ -54,7 +54,7 @@ export default function ContactSettings({
   };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <section className="rounded-2xl border border-slate-200 bg-[#fbf9f5] shadow-sm">
       <div className="border-b border-slate-200 px-5 py-4">
         <h2 className="text-base font-semibold text-slate-900">
           Contact Settings

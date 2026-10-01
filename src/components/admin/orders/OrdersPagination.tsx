@@ -20,8 +20,8 @@ export function OrdersPagination({
   }
 
   return (
-    <div className="flex flex-col justify-between gap-3 border-t border-[#e7e2dd] bg-white px-5 py-4 sm:flex-row sm:items-center">
-      <p className="text-xs text-[#969696]">
+    <div className="flex flex-col justify-between gap-3 border-t border-[#e6ddd4] bg-[#fbf9f5] px-5 py-4 sm:flex-row sm:items-center">
+      <p className="text-xs text-[#958781]">
         Page {pagination.page} of{" "}
         {pagination.totalPages}
       </p>
@@ -38,12 +38,12 @@ export function OrdersPagination({
                 1,
             )
           }
-          className="h-9 border border-[#d8d1ca] px-3 text-xs text-[#292c2c] disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-9 border border-[#d8cec5] px-3 text-xs text-[#3f2d2a] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Previous
         </button>
 
-        <span className="px-2 text-xs text-[#6f706f]">
+        <span className="px-2 text-xs text-[#70635d]">
           {pagination.page}
         </span>
 
@@ -58,7 +58,7 @@ export function OrdersPagination({
                 1,
             )
           }
-          className="h-9 border border-[#d8d1ca] px-3 text-xs text-[#292c2c] disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-9 border border-[#d8cec5] px-3 text-xs text-[#3f2d2a] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next
         </button>

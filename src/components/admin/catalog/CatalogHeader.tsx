@@ -25,8 +25,8 @@ export default function CatalogHeader({
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
       <div>
-        <p className="text-sm text-neutral-500">
-          Catalog / {title}
+        <p className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+          Catalog
         </p>
 
         <h1 className="mt-1 text-2xl font-semibold tracking-tight text-neutral-950">
@@ -43,7 +43,7 @@ export default function CatalogHeader({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-[#fbf9f5] px-3.5 py-2.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <RefreshCw
             className={
@@ -59,7 +59,7 @@ export default function CatalogHeader({
         <button
           type="button"
           onClick={onAdd}
-          className="inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#7a5650] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#7a5650]"
         >
           <Plus className="h-4 w-4" />
 

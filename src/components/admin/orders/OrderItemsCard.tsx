@@ -8,18 +8,18 @@ export function OrderItemsCard({
   order: AdminOrder;
 }) {
   return (
-    <section className="border border-[#e7e2dd] bg-white">
-      <div className="border-b border-[#eee9e4] px-6 py-5">
-        <p className="text-[10px] uppercase tracking-[0.16em] text-[#969696]">
+    <section className="border border-[#e6ddd4] bg-[#fbf9f5]">
+      <div className="border-b border-[#e6ddd4] px-6 py-5">
+        <p className="text-[10px] uppercase tracking-[0.16em] text-[#958781]">
           Order items
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#171717]">
+        <h2 className="mt-1 font-serif text-2xl text-[#3f2d2a]">
           Products
         </h2>
       </div>
 
-      <div className="divide-y divide-[#f0ece8]">
+      <div className="divide-y divide-[#e6ddd4]">
         {order.items.map(
           (item, index) => {
             const lineTotal =
@@ -34,26 +34,26 @@ export function OrderItemsCard({
                 className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div>
-                  <p className="text-sm font-medium text-[#171717]">
+                  <p className="text-sm font-medium text-[#3f2d2a]">
                     {item.productName ||
                       "Product"}
                   </p>
 
                   {item.sku && (
-                    <p className="mt-1 text-xs text-[#969696]">
+                    <p className="mt-1 text-xs text-[#958781]">
                       SKU:{" "}
                       {item.sku}
                     </p>
                   )}
 
-                  <p className="mt-1 text-xs text-[#6f706f]">
+                  <p className="mt-1 text-xs text-[#70635d]">
                     Qty:{" "}
                     {item.quantity}
                   </p>
                 </div>
 
                 <div className="text-left sm:text-right">
-                  <p className="text-sm font-medium text-[#171717]">
+                  <p className="text-sm font-medium text-[#3f2d2a]">
                     ₹
                     {lineTotal.toLocaleString(
                       "en-IN",
@@ -62,7 +62,7 @@ export function OrderItemsCard({
 
                   {item.sellingPrice !==
                     undefined && (
-                    <p className="mt-1 text-xs text-[#969696]">
+                    <p className="mt-1 text-xs text-[#958781]">
                       ₹
                       {item.sellingPrice.toLocaleString(
                         "en-IN",
