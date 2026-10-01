@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
@@ -32,6 +33,7 @@ import ReviewEmptyState from "./ReviewEmptyState";
 const DEFAULT_LIMIT = 10;
 
 export default function ReviewPage() {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const { accessToken, isInitialized } = useAdminAuth();
 
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -197,9 +199,11 @@ export default function ReviewPage() {
   const handleDelete = async (review: Review) => {
     if (!accessToken || actionId) return;
 
-    const confirmed = window.confirm(
-      `Delete review "${review.title || "Untitled Review"}"? This action cannot be undone.`,
-    );
+    const confirmed = await confirm({
+      title: "Delete this review?",
+      description: `"${review.title || "Untitled Review"}" will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete review",
+    });
 
     if (!confirmed) return;
 
@@ -250,12 +254,12 @@ export default function ReviewPage() {
 
   if (!accessToken) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[var(--color-ink)]">
+      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#2a2520]">
           Authentication required
         </h2>
 
-        <p className="mt-2 text-sm text-[var(--color-secondary)]">
+        <p className="mt-2 text-sm text-[#5f584d]">
           Please sign in again to manage reviews.
         </p>
       </div>
@@ -264,6 +268,7 @@ export default function ReviewPage() {
 
   return (
     <div className="space-y-6">
+      {confirmDialog}
       <ReviewHeader
         refreshing={refreshing}
         onRefresh={handleRefresh}

@@ -19,11 +19,11 @@ type ReviewTableProps = {
 function getStatusClasses(status: Review["status"]) {
   switch (status) {
     case "approved":
-      return "bg-emerald-50 text-emerald-700 border-emerald-200";
+      return "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]";
     case "rejected":
-      return "bg-red-50 text-red-700 border-red-200";
+      return "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]";
     default:
-      return "bg-amber-50 text-amber-700 border-amber-200";
+      return "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]";
   }
 }
 
@@ -48,8 +48,8 @@ function renderStars(rating: number) {
           size={14}
           className={
             index < rating
-              ? "fill-amber-400 text-amber-400"
-              : "text-gray-300"
+              ? "fill-[#b08d57] text-[#b08d57]"
+              : "text-[#d6ccb6]"
           }
         />
       ))}
@@ -63,65 +63,65 @@ export default function ReviewTable({
   onDelete,
 }: ReviewTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm lg:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1050px]">
           <thead>
-            <tr className="border-b border-[var(--color-border)] bg-gray-50/70">
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]/70">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Review
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Rating
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Product
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Status
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Featured
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Date
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Actions
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[var(--color-border)]">
+          <tbody className="divide-y divide-[#e6dfcf]">
             {reviews.map((review) => (
               <tr
                 key={review._id}
-                className="transition hover:bg-gray-50/50"
+                className="transition hover:bg-[#f7f2e7]/50"
               >
                 {/* Review */}
                 <td className="max-w-[360px] px-5 py-4">
                   <div>
-                    <p className="truncate font-medium text-[var(--color-ink)]">
+                    <p className="truncate font-medium text-[#2a2520]">
                       {review.title || "Untitled Review"}
                     </p>
 
-                    <p className="mt-1 line-clamp-2 text-sm text-[var(--color-secondary)]">
+                    <p className="mt-1 line-clamp-2 text-sm text-[#5f584d]">
                       {review.body || "No review text"}
                     </p>
 
-                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-[var(--color-secondary)]">
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-[#5f584d]">
                       <span>User: {review.userId}</span>
 
                       {(review.media?.length ?? 0) > 0 && (
                         <>
                           <span>•</span>
-                          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 font-medium text-[var(--color-ink)]">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#efe8d8] px-2 py-0.5 font-medium text-[#2a2520]">
                             {review.media?.length} media
                           </span>
                         </>
@@ -142,7 +142,7 @@ export default function ReviewTable({
                   <div className="flex flex-col gap-1">
                     {renderStars(review.rating)}
 
-                    <span className="text-xs font-medium text-[var(--color-secondary)]">
+                    <span className="text-xs font-medium text-[#5f584d]">
                       {review.rating}/5
                     </span>
                   </div>
@@ -150,7 +150,7 @@ export default function ReviewTable({
 
                 {/* Product */}
                 <td className="px-5 py-4">
-                  <span className="block max-w-[170px] truncate text-sm font-medium text-[var(--color-ink)]">
+                  <span className="block max-w-[170px] truncate text-sm font-medium text-[#2a2520]">
                     {review.productId}
                   </span>
                 </td>
@@ -178,8 +178,8 @@ export default function ReviewTable({
                     }
                     className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border transition ${
                       review.isFeatured
-                        ? "border-amber-200 bg-amber-50 text-amber-500 hover:bg-amber-100"
-                        : "border-[var(--color-border)] bg-[#fffdf8] text-gray-400 hover:bg-gray-50 hover:text-amber-500"
+                        ? "border-[#f6d08a] bg-[#fdf3e1] text-[#b08d57] hover:bg-[#fbe8c4]"
+                        : "border-[#e6dfcf] bg-[#fffdf8] text-[#756d62] hover:bg-[#f7f2e7] hover:text-[#b08d57]"
                     }`}
                   >
                     {review.isFeatured ? (
@@ -191,7 +191,7 @@ export default function ReviewTable({
                 </td>
 
                 {/* Date */}
-                <td className="whitespace-nowrap px-5 py-4 text-sm text-[var(--color-secondary)]">
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-[#5f584d]">
                   {formatDate(review.createdAt)}
                 </td>
 
@@ -201,7 +201,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="View review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#26221d]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -209,7 +209,7 @@ export default function ReviewTable({
                     <Link
                       href={`/admin/reviews/${review._id}`}
                       title="Edit review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#26221d]"
                     >
                       <Pencil size={16} />
                     </Link>
@@ -218,7 +218,7 @@ export default function ReviewTable({
                       type="button"
                       onClick={() => onDelete(review)}
                       title="Delete review"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-100 text-red-500 transition hover:bg-red-50"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] transition hover:bg-[#fdecec]"
                     >
                       <Trash2 size={16} />
                     </button>

@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+import { useConfirm } from "@/components/ui/useConfirm";
+
 import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 import {
@@ -32,6 +34,7 @@ export default function ReviewDetailPage({
   params,
 }: ReviewDetailPageProps) {
   const router = useRouter();
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const { accessToken, isInitialized } = useAdminAuth();
 
   const [reviewId, setReviewId] = useState<string | null>(null);
@@ -173,9 +176,11 @@ export default function ReviewDetailPage({
   const handleDelete = async () => {
     if (!accessToken || !review) return;
 
-    const confirmed = window.confirm(
-      `Delete review "${review.title || "Untitled Review"}"? This action cannot be undone.`,
-    );
+    const confirmed = await confirm({
+      title: "Delete this review?",
+      description: `"${review.title || "Untitled Review"}" will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete review",
+    });
 
     if (!confirmed) return;
 
@@ -202,14 +207,14 @@ export default function ReviewDetailPage({
   if (!isInitialized || loading) {
     return (
       <div className="space-y-6">
-        <div className="h-8 w-48 animate-pulse rounded bg-gray-100" />
+        <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="h-[420px] animate-pulse rounded-2xl bg-gray-100" />
+          <div className="h-[420px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
 
           <div className="space-y-6">
-            <div className="h-64 animate-pulse rounded-2xl bg-gray-100" />
-            <div className="h-48 animate-pulse rounded-2xl bg-gray-100" />
+            <div className="h-64 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-48 animate-pulse rounded-[14px] bg-[#efe8d8]" />
           </div>
         </div>
       </div>
@@ -218,12 +223,12 @@ export default function ReviewDetailPage({
 
   if (!accessToken) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[var(--color-ink)]">
+      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#2a2520]">
           Authentication required
         </h2>
 
-        <p className="mt-2 text-sm text-[var(--color-secondary)]">
+        <p className="mt-2 text-sm text-[#5f584d]">
           Please sign in again to manage this review.
         </p>
       </div>
@@ -232,12 +237,12 @@ export default function ReviewDetailPage({
 
   if (!review) {
     return (
-      <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[var(--color-ink)]">
+      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#2a2520]">
           Review not found
         </h2>
 
-        <p className="mt-2 text-sm text-[var(--color-secondary)]">
+        <p className="mt-2 text-sm text-[#5f584d]">
           The requested review could not be found.
         </p>
 
@@ -253,6 +258,8 @@ export default function ReviewDetailPage({
   }
 
   return (
+    <>
+    {confirmDialog}
     <ReviewDetail
       review={review}
       updating={updating}
@@ -262,5 +269,6 @@ export default function ReviewDetailPage({
       onToggleFeatured={handleToggleFeatured}
       onDelete={handleDelete}
     />
+    </>
   );
 }

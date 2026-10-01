@@ -7,7 +7,6 @@ import {
   Clock3,
   Edit3,
   ExternalLink,
-  MessageSquareText,
   Save,
   Star,
   StarOff,
@@ -57,11 +56,11 @@ function formatDate(value: string) {
 function getStatusClasses(status: ReviewStatus) {
   switch (status) {
     case "approved":
-      return "border-emerald-200 bg-emerald-50 text-emerald-700";
+      return "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]";
     case "rejected":
-      return "border-red-200 bg-red-50 text-red-700";
+      return "border-[#f5c2c0] bg-[#fdecec] text-[#8f1f19]";
     default:
-      return "border-amber-200 bg-amber-50 text-amber-700";
+      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
   }
 }
 
@@ -145,27 +144,25 @@ export default function ReviewDetail({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-b border-[#e6dfcf] pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link
             href="/admin/reviews"
-            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)] transition hover:text-[#26221d]"
+            className="mb-3 inline-flex items-center gap-2 text-sm font-medium text-[#5f584d] transition hover:text-[#26221d]"
           >
             <ArrowLeft size={16} />
             Back to Reviews
           </Link>
 
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#26221d]">
-              <MessageSquareText size={22} />
-            </div>
 
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Moderation</p>
+              <h1 className="mt-1 text-[#2a2520]">
                 Review Details
               </h1>
 
-              <p className="mt-1 text-sm text-[var(--color-secondary)]">
+              <p className="mt-1 text-sm text-[#5f584d]">
                 Review ID: {review._id}
               </p>
             </div>
@@ -178,7 +175,7 @@ export default function ReviewDetail({
               type="button"
               onClick={() => setEditing(true)}
               disabled={updating}
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] shadow-sm transition hover:bg-gray-50 disabled:opacity-50"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#2a2520] shadow-sm transition hover:bg-[#f7f2e7] disabled:opacity-50"
             >
               <Edit3 size={16} />
               Edit
@@ -190,7 +187,7 @@ export default function ReviewDetail({
               type="button"
               onClick={() => setEditing(false)}
               disabled={updating}
-              className="inline-flex h-10 items-center rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] transition hover:bg-gray-50 disabled:opacity-50"
+              className="inline-flex h-10 items-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7] disabled:opacity-50"
             >
               Cancel
             </button>
@@ -200,7 +197,7 @@ export default function ReviewDetail({
             type="button"
             onClick={onDelete}
             disabled={deleting}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-red-100 bg-[#fffdf8] px-4 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#f5c2c0] bg-[#fffdf8] px-4 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Trash2 size={16} />
             {deleting ? "Deleting..." : "Delete"}
@@ -211,11 +208,11 @@ export default function ReviewDetail({
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-6">
           {/* Review Content */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
             {editing ? (
               <div className="space-y-5">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Title
                   </label>
 
@@ -224,12 +221,12 @@ export default function ReviewDetail({
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     maxLength={180}
-                    className="h-11 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
+                    className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Rating
                   </label>
 
@@ -238,7 +235,7 @@ export default function ReviewDetail({
                     onChange={(event) =>
                       setRating(Number(event.target.value))
                     }
-                    className="h-11 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#26221d]"
+                    className="h-11 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d]"
                   >
                     {[1, 2, 3, 4, 5].map((value) => (
                       <option key={value} value={value}>
@@ -249,7 +246,7 @@ export default function ReviewDetail({
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
+                  <label className="mb-2 block text-sm font-medium text-[#2a2520]">
                     Review
                   </label>
 
@@ -258,7 +255,7 @@ export default function ReviewDetail({
                     onChange={(event) => setBody(event.target.value)}
                     maxLength={3000}
                     rows={8}
-                    className="w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
+                    className="w-full resize-y rounded-lg border border-[#e6dfcf] px-3 py-3 text-sm leading-6 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
                   />
                 </div>
 
@@ -279,7 +276,7 @@ export default function ReviewDetail({
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
-                      <h2 className="text-xl font-semibold text-[var(--color-ink)]">
+                      <h2 className="text-xl font-semibold text-[#2a2520]">
                         {review.title || "Untitled Review"}
                       </h2>
 
@@ -301,14 +298,14 @@ export default function ReviewDetail({
                             size={18}
                             className={
                               index < review.rating
-                                ? "fill-amber-400 text-amber-400"
-                                : "text-gray-300"
+                                ? "fill-[#b08d57] text-[#b08d57]"
+                                : "text-[#d6ccb6]"
                             }
                           />
                         ))}
                       </div>
 
-                      <span className="text-sm font-medium text-[var(--color-secondary)]">
+                      <span className="text-sm font-medium text-[#5f584d]">
                         {review.rating}/5
                       </span>
                     </div>
@@ -320,8 +317,8 @@ export default function ReviewDetail({
                     disabled={updating}
                     className={`inline-flex h-10 items-center gap-2 rounded-lg border px-4 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50 ${
                       review.isFeatured
-                        ? "border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100"
-                        : "border-[var(--color-border)] bg-[#fffdf8] text-[var(--color-ink)] hover:bg-gray-50"
+                        ? "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806] hover:bg-[#fbe8c4]"
+                        : "border-[#e6dfcf] bg-[#fffdf8] text-[#2a2520] hover:bg-[#f7f2e7]"
                     }`}
                   >
                     {review.isFeatured ? (
@@ -338,8 +335,8 @@ export default function ReviewDetail({
                   </button>
                 </div>
 
-                <div className="mt-6 border-t border-[var(--color-border)] pt-6">
-                  <p className="whitespace-pre-wrap text-[15px] leading-7 text-[var(--color-ink)]">
+                <div className="mt-6 border-t border-[#e6dfcf] pt-6">
+                  <p className="whitespace-pre-wrap text-[15px] leading-7 text-[#2a2520]">
                     {review.body || "No review content."}
                   </p>
                 </div>
@@ -348,16 +345,16 @@ export default function ReviewDetail({
           </section>
 
           {/* Customer Media */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[var(--color-ink)]">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Customer Photos &amp; Video
-              <span className="ml-2 text-sm font-normal text-[var(--color-secondary)]">
+              <span className="ml-2 text-sm font-normal text-[#5f584d]">
                 ({media.length})
               </span>
             </h2>
 
             {media.length === 0 ? (
-              <p className="mt-3 text-sm text-[var(--color-secondary)]">
+              <p className="mt-3 text-sm text-[#5f584d]">
                 The customer did not attach any photos or videos.
               </p>
             ) : (
@@ -372,7 +369,7 @@ export default function ReviewDetail({
                           ? "Play review video"
                           : "View review photo"
                       }
-                      className="group relative block aspect-square w-full overflow-hidden rounded-xl border border-[var(--color-border)] bg-gray-50"
+                      className="group relative block aspect-square w-full overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#f7f2e7]"
                     >
                       {item.type === "video" ? (
                         <>
@@ -404,8 +401,8 @@ export default function ReviewDetail({
           </section>
 
           {/* Admin Note */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[var(--color-ink)]">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Admin Note
             </h2>
 
@@ -416,30 +413,30 @@ export default function ReviewDetail({
                 maxLength={1000}
                 rows={5}
                 placeholder="Add an internal admin note..."
-                className="mt-4 w-full resize-y rounded-lg border border-[var(--color-border)] px-3 py-3 text-sm leading-6 text-[var(--color-ink)] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
+                className="mt-4 w-full resize-y rounded-lg border border-[#e6dfcf] px-3 py-3 text-sm leading-6 text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-2 focus:ring-[#26221d]/10"
               />
             ) : (
-              <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[var(--color-secondary)]">
+              <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-[#5f584d]">
                 {review.adminNote || "No admin note added."}
               </p>
             )}
           </section>
 
           {/* Moderation */}
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-base font-semibold text-[var(--color-ink)]">
+                <h2 className="text-base font-semibold text-[#2a2520]">
                   Moderation
                 </h2>
 
-                <p className="mt-1 text-sm text-[var(--color-secondary)]">
+                <p className="mt-1 text-sm text-[#5f584d]">
                   Change the moderation status of this review.
                 </p>
               </div>
 
               {updating && (
-                <span className="text-xs font-medium text-[var(--color-secondary)]">
+                <span className="text-xs font-medium text-[#5f584d]">
                   Updating...
                 </span>
               )}
@@ -450,7 +447,7 @@ export default function ReviewDetail({
                 type="button"
                 onClick={() => onModerate("approved")}
                 disabled={updating || review.status === "approved"}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-emerald-600 px-4 text-sm font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#276541] px-4 text-sm font-medium text-white transition hover:bg-[#1f5236] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <CheckCircle2 size={16} />
                 Approve
@@ -460,7 +457,7 @@ export default function ReviewDetail({
                 type="button"
                 onClick={() => onModerate("pending")}
                 disabled={updating || review.status === "pending"}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-amber-500 px-4 text-sm font-medium text-white transition hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#7f4806] px-4 text-sm font-medium text-white transition hover:bg-[#6a3c05] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Clock3 size={16} />
                 Pending
@@ -470,7 +467,7 @@ export default function ReviewDetail({
                 type="button"
                 onClick={() => onModerate("rejected")}
                 disabled={updating || review.status === "rejected"}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-red-600 px-4 text-sm font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#b3261e] px-4 text-sm font-medium text-white transition hover:bg-[#8f1f19] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <XCircle size={16} />
                 Reject
@@ -481,81 +478,81 @@ export default function ReviewDetail({
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[var(--color-ink)]">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Review Information
             </h2>
 
             <div className="mt-5 space-y-4">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Product ID
                 </p>
-                <p className="mt-1 break-all text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 break-all text-sm font-medium text-[#2a2520]">
                   {review.productId}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   User ID
                 </p>
-                <p className="mt-1 break-all text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 break-all text-sm font-medium text-[#2a2520]">
                   {review.userId}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Order Number
                 </p>
-                <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {review.orderNumber || "—"}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Submitted
                 </p>
-                <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {formatDate(review.createdAt)}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Last Updated
                 </p>
-                <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {formatDate(review.updatedAt)}
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[var(--color-ink)]">
+          <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6 shadow-sm">
+            <h2 className="text-base font-semibold text-[#2a2520]">
               Moderation Information
             </h2>
 
             <div className="mt-5 space-y-4">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Moderated By
                 </p>
 
-                <p className="mt-1 break-all text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 break-all text-sm font-medium text-[#2a2520]">
                   {review.moderatedBy || "Not moderated"}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Moderated At
                 </p>
 
-                <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {review.moderatedAt
                     ? formatDate(review.moderatedAt)
                     : "Not moderated"}
@@ -563,11 +560,11 @@ export default function ReviewDetail({
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-secondary)]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
                   Featured
                 </p>
 
-                <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">
+                <p className="mt-1 text-sm font-medium text-[#2a2520]">
                   {review.isFeatured ? "Yes" : "No"}
                 </p>
               </div>
