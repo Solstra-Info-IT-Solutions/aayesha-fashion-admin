@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 import {
   Archive,
@@ -16,6 +17,8 @@ import type {
 import ProductStatusBadge from "./ProductStatusBadge";
 
 interface ProductTableProps {
+  /** category id -> display name */
+  categoryNames?: Map<string, string>;
   products: Product[];
   loading: boolean;
 
@@ -26,6 +29,34 @@ interface ProductTableProps {
   onDelete: (
     product: Product,
   ) => void;
+}
+
+/** Thumbnail that falls back to a placeholder if the image cannot load. */
+function ProductThumb({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div className="flex h-full items-center justify-center px-1 text-center text-[10px] text-[#737a8c]">
+        No image
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="48px"
+      // Product media is hosted externally (Cloudinary); load it directly
+      // instead of through the Next.js optimiser, which needs every host
+      // whitelisted.
+      unoptimized
+      onError={() => setFailed(true)}
+      className="object-cover"
+    />
+  );
 }
 
 function getPrimaryImage(
@@ -83,6 +114,7 @@ function getStockLabel(
 }
 
 export default function ProductTable({
+  categoryNames,
   products,
   loading,
   onArchive,
@@ -194,21 +226,11 @@ export default function ProductTable({
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
                         <div className="relative h-14 w-12 shrink-0 overflow-hidden rounded-lg border border-[#e5e7ec] bg-[#eef0f4]">
-                          {image ? (
-                            <Image
-                              src={image}
-                              alt={
-                                product.name
-                              }
-                              fill
-                              sizes="48px"
-                              className="object-cover"
-                            />
-                          ) : (
-                            <div className="flex h-full items-center justify-center px-1 text-center text-[10px] text-[#737a8c]">
-                              No image
-                            </div>
-                          )}
+                          <ProductThumb
+                            key={image}
+                            src={image}
+                            alt={product.name}
+                          />
                         </div>
 
                         <div className="min-w-0">
@@ -246,7 +268,9 @@ export default function ProductTable({
 
                     <td className="px-5 py-4 text-sm text-[#5b6270]">
                       <span className="inline-block max-w-[160px] truncate">
-                        {product.categoryId ||
+                        {(product.categoryId &&
+                          categoryNames?.get(product.categoryId)) ||
+                          product.categoryId ||
                           "—"}
                       </span>
                     </td>

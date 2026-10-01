@@ -91,6 +91,7 @@ export default function ProductMediaSection({
                       src={item.src}
                       alt={item.alt ?? "Product media"}
                       fill
+                      unoptimized
                       className="object-cover"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                     />
