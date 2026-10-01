@@ -1,23 +1,46 @@
 import Link from "next/link";
+import { PackagePlus } from "lucide-react";
 
-export default function ProductEmptyState() {
+export default function ProductEmptyState({
+  filtered = false,
+  onReset,
+}: {
+  filtered?: boolean;
+  onReset?: () => void;
+}) {
   return (
-    <div className="rounded-2xl border border-dashed border-[#d6ccb6] bg-[#fffdf8] px-6 py-14 text-center">
-      <h3 className="text-base font-semibold text-[#2a2520]">
-        No products found
+    <div className="surface px-6 py-16 text-center">
+      <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#f1ead9] text-[#8a6a3b]">
+        <PackagePlus size={26} strokeWidth={1.5} />
+      </span>
+
+      <h3 className="display mt-4 text-3xl font-semibold text-[#2a2520]">
+        {filtered ? "No matching products" : "Your catalog is empty"}
       </h3>
 
       <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5f584d]">
-        Create your first product or
-        change the current filters.
+        {filtered
+          ? "Nothing matches these filters. Try a different search or clear the filters."
+          : "Add your first product, or import many at once from a CSV file."}
       </p>
 
-      <Link
-        href="/admin/products/new"
-        className="mt-5 inline-flex rounded-xl bg-[#26221d] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#3d372f]"
-      >
-        Add Product
-      </Link>
+      <div className="mt-5 flex flex-wrap justify-center gap-2">
+        {filtered && onReset ? (
+          <button type="button" onClick={onReset} className="inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] hover:bg-[#3d372f]">
+            Clear all filters
+          </button>
+        ) : (
+          <>
+            <Link href="/admin/products/new" className="inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] hover:bg-[#3d372f]">
+              Add product
+            </Link>
+
+            <Link href="/admin/products/import" className="inline-flex h-10 items-center rounded-lg border border-[#d6ccb6] px-5 text-sm font-semibold text-[#2a2520] hover:border-[#b08d57]">
+              Import CSV
+            </Link>
+          </>
+        )}
+      </div>
     </div>
   );
 }

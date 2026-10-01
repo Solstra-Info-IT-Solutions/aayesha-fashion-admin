@@ -1,41 +1,19 @@
 import type { ProductStatus } from "@/types/admin-product";
 
-interface ProductStatusBadgeProps {
-  status: ProductStatus;
-}
-
-const styles: Record<
-  ProductStatus,
-  string
-> = {
-  draft:
-    "bg-[#efe8d8] text-[#5f584d]",
-  active:
-    "bg-[#e8f5ec] text-[#2f7d4f]",
-  archived:
-    "bg-[#e6dfcf] text-[#5f584d]",
-  discontinued:
-    "bg-[#fdecec] text-[#b3261e]",
+const styles: Record<ProductStatus, { box: string; dot: string; label: string }> = {
+  draft: { box: "bg-[#efe8d8] text-[#5f584d] border-[#e6dfcf]", dot: "bg-[#a89f90]", label: "Draft" },
+  active: { box: "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]", dot: "bg-[#2a9a68]", label: "Active" },
+  archived: { box: "bg-[#e6dfcf] text-[#5f584d] border-[#d6ccb6]", dot: "bg-[#8a8275]", label: "Archived" },
+  discontinued: { box: "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]", dot: "bg-[#c2372e]", label: "Discontinued" },
 };
 
-const labels: Record<
-  ProductStatus,
-  string
-> = {
-  draft: "Draft",
-  active: "Active",
-  archived: "Archived",
-  discontinued: "Discontinued",
-};
+export default function ProductStatusBadge({ status }: { status: ProductStatus }) {
+  const tone = styles[status];
 
-export default function ProductStatusBadge({
-  status,
-}: ProductStatusBadgeProps) {
   return (
-    <span
-      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${styles[status]}`}
-    >
-      {labels[status]}
+    <span className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold ${tone.box}`}>
+      <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} />
+      {tone.label}
     </span>
   );
 }
