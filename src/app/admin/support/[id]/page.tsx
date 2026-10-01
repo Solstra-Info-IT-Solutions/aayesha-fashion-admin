@@ -146,15 +146,15 @@ export default function AdminSupportDetailPage() {
   if (authLoading || loading) {
     return (
       <div className="space-y-6">
-        <div className="h-10 w-48 animate-pulse rounded-lg bg-slate-200" />
+        <div className="h-10 w-48 animate-pulse rounded-lg bg-[#e6dfcf]" />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
           <div className="space-y-6">
-            <div className="h-[300px] animate-pulse rounded-2xl bg-slate-100" />
-            <div className="h-[220px] animate-pulse rounded-2xl bg-slate-100" />
+            <div className="h-[300px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-[220px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
           </div>
 
-          <div className="h-[500px] animate-pulse rounded-2xl bg-slate-100" />
+          <div className="h-[500px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
         </div>
       </div>
     );
@@ -164,11 +164,11 @@ export default function AdminSupportDetailPage() {
     return (
       <div className="flex min-h-[500px] items-center justify-center">
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-slate-900">
+          <h1 className="text-xl font-semibold text-[#2a2520]">
             Support ticket not found
           </h1>
 
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-[#756d62]">
             The ticket may have been deleted or you may not have access to it.
           </p>
 

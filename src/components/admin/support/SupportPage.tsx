@@ -1,5 +1,6 @@
 "use client";
 
+import { useConfirm } from "@/components/ui/useConfirm";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
@@ -33,6 +34,7 @@ import { useAdminAuth } from "@/hooks/useAdminAuth";
 const DEFAULT_LIMIT = 10;
 
 export default function SupportPage() {
+  const { confirm, dialog: confirmDialog } = useConfirm();
   const { accessToken, isLoading: authLoading } = useAdminAuth();
 
   const [tickets, setTickets] = useState<SupportTicket[]>([]);
@@ -211,9 +213,11 @@ export default function SupportPage() {
   const handleDelete = async (ticket: SupportTicket) => {
   if (!accessToken) return;
 
-  const confirmed = window.confirm(
-    `Are you sure you want to delete ticket ${ticket.ticketNumber}?`
-  );
+  const confirmed = await confirm({
+      title: "Delete this ticket?",
+      description: `Ticket ${ticket.ticketNumber} will be permanently deleted. This cannot be undone.`,
+      confirmLabel: "Delete ticket",
+    });
 
   if (!confirmed) return;
 
@@ -241,23 +245,24 @@ export default function SupportPage() {
   if (authLoading) {
     return (
       <div className="space-y-6">
-        <div className="h-24 animate-pulse rounded-2xl bg-slate-100" />
+        <div className="h-24 animate-pulse rounded-[14px] bg-[#efe8d8]" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="h-28 animate-pulse rounded-2xl bg-slate-100"
+              className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]"
             />
           ))}
         </div>
-        <div className="h-20 animate-pulse rounded-2xl bg-slate-100" />
-        <div className="h-96 animate-pulse rounded-2xl bg-slate-100" />
+        <div className="h-20 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-96 animate-pulse rounded-[14px] bg-[#efe8d8]" />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      {confirmDialog}
       <SupportHeader 
         onRefresh={handleRefresh}
         refreshing={loading || statsLoading}
@@ -290,14 +295,14 @@ export default function SupportPage() {
         />
       ) : (
         <>
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <SupportTable
               tickets={tickets}
               onDelete={handleDelete}
             />
           </div>
 
-          <div className="space-y-3 lg:hidden">
+          <div className="space-y-3 xl:hidden">
             {tickets.map((ticket) => (
               <SupportMobileCard
                 key={ticket._id}

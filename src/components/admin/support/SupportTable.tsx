@@ -21,41 +21,41 @@ type SupportTableProps = {
 function getStatusClasses(status: SupportStatus) {
   switch (status) {
     case "open":
-      return "border-blue-200 bg-blue-50 text-blue-700";
+      return "border-[#c7dcea] bg-[#e6f0f7] text-[#1f5f86]";
 
     case "in_progress":
-      return "border-amber-200 bg-amber-50 text-amber-700";
+      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
 
     case "waiting_customer":
-      return "border-orange-200 bg-orange-50 text-orange-700";
+      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
 
     case "resolved":
-      return "border-emerald-200 bg-emerald-50 text-emerald-700";
+      return "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]";
 
     case "closed":
-      return "border-gray-200 bg-gray-50 text-gray-600";
+      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
 
     default:
-      return "border-gray-200 bg-gray-50 text-gray-600";
+      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
   }
 }
 
 function getPriorityClasses(priority: SupportPriority) {
   switch (priority) {
     case "urgent":
-      return "border-red-200 bg-red-50 text-red-700";
+      return "border-[#f5c2c0] bg-[#fdecec] text-[#8f1f19]";
 
     case "high":
-      return "border-orange-200 bg-orange-50 text-orange-700";
+      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
 
     case "normal":
-      return "border-blue-200 bg-blue-50 text-blue-700";
+      return "border-[#c7dcea] bg-[#e6f0f7] text-[#1f5f86]";
 
     case "low":
-      return "border-gray-200 bg-gray-50 text-gray-600";
+      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
 
     default:
-      return "border-gray-200 bg-gray-50 text-gray-600";
+      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
   }
 }
 
@@ -82,57 +82,57 @@ export default function SupportTable({
   onDelete,
 }: SupportTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm xl:block">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[1150px]">
+        <table className="w-full min-w-[1100px]">
           <thead>
-            <tr className="border-b border-[var(--color-border)] bg-gray-50/70">
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]/70">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Ticket
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Customer
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Subject
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Category
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Priority
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Status
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Assigned To
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Date
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[var(--color-secondary)]">
+              <th className="px-4 py-4 text-right text-xs font-semibold uppercase tracking-wider text-[#5f584d]">
                 Actions
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[var(--color-border)]">
+          <tbody className="divide-y divide-[#e6dfcf]">
             {tickets.map((ticket) => (
               <tr
                 key={ticket._id}
-                className="transition hover:bg-gray-50/50"
+                className="transition hover:bg-[#f7f2e7]/50"
               >
                 {/* Ticket */}
-                <td className="px-5 py-4">
+                <td className="whitespace-nowrap px-4 py-4">
                   <Link
                     href={`/admin/support/${ticket._id}`}
                     className="font-semibold text-[#26221d] transition hover:underline"
@@ -141,43 +141,43 @@ export default function SupportTable({
                   </Link>
 
                   {ticket.orderNumber && (
-                    <p className="mt-1 text-xs text-[var(--color-secondary)]">
+                    <p className="mt-1 text-xs text-[#5f584d]">
                       Order: {ticket.orderNumber}
                     </p>
                   )}
                 </td>
 
                 {/* Customer */}
-                <td className="max-w-[190px] px-5 py-4">
-                  <p className="truncate text-sm font-medium text-[var(--color-ink)]">
+                <td className="max-w-[190px] px-4 py-4">
+                  <p className="truncate text-sm font-medium text-[#2a2520]">
                     {ticket.customerName}
                   </p>
 
-                  <p className="mt-1 truncate text-xs text-[var(--color-secondary)]">
+                  <p className="mt-1 truncate text-xs text-[#5f584d]">
                     {ticket.customerEmail}
                   </p>
                 </td>
 
                 {/* Subject */}
-                <td className="max-w-[250px] px-5 py-4">
-                  <p className="truncate text-sm font-medium text-[var(--color-ink)]">
+                <td className="max-w-[250px] px-4 py-4">
+                  <p className="truncate text-sm font-medium text-[#2a2520]">
                     {ticket.subject}
                   </p>
 
-                  <p className="mt-1 line-clamp-1 text-xs text-[var(--color-secondary)]">
+                  <p className="mt-1 line-clamp-1 text-xs text-[#5f584d]">
                     {ticket.message}
                   </p>
                 </td>
 
                 {/* Category */}
-                <td className="px-5 py-4">
-                  <span className="text-sm font-medium capitalize text-[var(--color-ink)]">
+                <td className="px-4 py-4">
+                  <span className="text-sm font-medium capitalize text-[#2a2520]">
                     {ticket.category}
                   </span>
                 </td>
 
                 {/* Priority */}
-                <td className="px-5 py-4">
+                <td className="px-4 py-4">
                   <span
                     className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold capitalize ${getPriorityClasses(
                       ticket.priority,
@@ -188,7 +188,7 @@ export default function SupportTable({
                 </td>
 
                 {/* Status */}
-                <td className="px-5 py-4">
+                <td className="px-4 py-4">
                   <span
                     className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold capitalize ${getStatusClasses(
                       ticket.status,
@@ -199,24 +199,24 @@ export default function SupportTable({
                 </td>
 
                 {/* Assigned */}
-                <td className="max-w-[150px] px-5 py-4">
-                  <span className="block truncate text-sm text-[var(--color-secondary)]">
+                <td className="max-w-[150px] px-4 py-4">
+                  <span className="block truncate text-sm text-[#5f584d]">
                     {ticket.assignedTo || "Unassigned"}
                   </span>
                 </td>
 
                 {/* Date */}
-                <td className="whitespace-nowrap px-5 py-4 text-sm text-[var(--color-secondary)]">
+                <td className="whitespace-nowrap px-4 py-4 text-sm text-[#5f584d]">
                   {formatDate(ticket.createdAt)}
                 </td>
 
                 {/* Actions */}
-                <td className="px-5 py-4">
+                <td className="px-4 py-4">
                   <div className="flex items-center justify-end gap-1.5">
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="View ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#26221d]"
                     >
                       <Eye size={16} />
                     </Link>
@@ -224,7 +224,7 @@ export default function SupportTable({
                     <Link
                       href={`/admin/support/${ticket._id}`}
                       title="Edit ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-border)] text-[var(--color-secondary)] transition hover:bg-gray-50 hover:text-[#26221d]"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#26221d]"
                     >
                       <Pencil size={16} />
                     </Link>
@@ -233,7 +233,7 @@ export default function SupportTable({
                       type="button"
                       onClick={() => onDelete(ticket)}
                       title="Delete ticket"
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-100 text-red-500 transition hover:bg-red-50"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] transition hover:bg-[#fdecec]"
                     >
                       <Trash2 size={16} />
                     </button>
