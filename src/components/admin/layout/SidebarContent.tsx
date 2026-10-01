@@ -17,7 +17,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className="border-b border-white/10 px-6 py-6"
       >
-        <p className="text-[9px] uppercase tracking-[0.3em] text-[#c7cedd]">
+        <p className="text-[9px] uppercase tracking-[0.3em] text-[#c7d2fe]">
           Aayesha Fashion
         </p>
 

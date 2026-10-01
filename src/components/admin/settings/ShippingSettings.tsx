@@ -122,7 +122,7 @@ export default function ShippingSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               shippingEnabled
-                ? "bg-[#2b3a55]"
+                ? "bg-[#4338ca]"
                 : "bg-slate-300"
             }`}
           >
@@ -186,7 +186,7 @@ export default function ShippingSettings({
             }
             className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
               freeShippingEnabled
-                ? "bg-[#2b3a55]"
+                ? "bg-[#4338ca]"
                 : "bg-slate-300"
             }`}
           >

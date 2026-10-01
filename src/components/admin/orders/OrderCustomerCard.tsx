@@ -19,7 +19,7 @@ export function OrderCustomerCard({
         Customer
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
         Customer details
       </h2>
 
@@ -31,7 +31,7 @@ export function OrderCustomerCard({
           />
 
           <div>
-            <p className="text-sm text-[#1a1d24]">
+            <p className="text-sm text-[#0f172a]">
               {order.customerName}
             </p>
 

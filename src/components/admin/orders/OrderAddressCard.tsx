@@ -20,7 +20,7 @@ export function OrderAddressCard({
         Delivery
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
         Shipping address
       </h2>
 
@@ -32,7 +32,7 @@ export function OrderAddressCard({
 
         <div className="text-sm leading-6 text-[#5b6270]">
           {address?.name && (
-            <p className="font-medium text-[#1a1d24]">
+            <p className="font-medium text-[#0f172a]">
               {address.name}
             </p>
           )}

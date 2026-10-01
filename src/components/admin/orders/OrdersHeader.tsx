@@ -16,7 +16,7 @@ export function OrdersHeader({
           Store operations
         </p>
 
-        <h1 className="mt-1 font-serif text-4xl text-[#1a1d24]">
+        <h1 className="mt-1 font-serif text-4xl text-[#0f172a]">
           Orders
         </h1>
 
@@ -35,7 +35,7 @@ export function OrdersHeader({
           type="button"
           onClick={onRefresh}
           disabled={loading}
-          className="inline-flex h-10 items-center gap-2 border border-[#d3d7df] bg-[#ffffff] px-4 text-sm text-[#1a1d24] hover:border-[#1a1d24] disabled:opacity-60"
+          className="inline-flex h-10 items-center gap-2 border border-[#d3d7df] bg-[#ffffff] px-4 text-sm text-[#0f172a] hover:border-[#0f172a] disabled:opacity-60"
         >
           <RefreshCw
             size={16}

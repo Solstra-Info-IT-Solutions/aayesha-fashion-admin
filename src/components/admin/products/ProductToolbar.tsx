@@ -91,13 +91,13 @@ export default function ProductToolbar({
               bg-[#ffffff]
               px-3.5
               text-sm
-              text-[#1a1d24]
+              text-[#0f172a]
               placeholder:text-[#737a8c]
               outline-none
               transition
-              focus:border-[#7d8aa6]
+              focus:border-[#818cf8]
               focus:ring-4
-              focus:ring-[#e4e9f2]
+              focus:ring-[#eef2ff]
             "
           />
         </div>
@@ -127,12 +127,12 @@ export default function ProductToolbar({
             bg-[#ffffff]
             px-3.5
             text-sm
-            text-[#1a1d24]
+            text-[#0f172a]
             outline-none
             transition
-            focus:border-[#7d8aa6]
+            focus:border-[#818cf8]
             focus:ring-4
-            focus:ring-[#e4e9f2]
+            focus:ring-[#eef2ff]
           "
         >
           <option value="">
@@ -173,13 +173,13 @@ export default function ProductToolbar({
             bg-[#ffffff]
             px-3.5
             text-sm
-            text-[#1a1d24]
+            text-[#0f172a]
             placeholder:text-[#737a8c]
             outline-none
             transition
-            focus:border-[#7d8aa6]
+            focus:border-[#818cf8]
             focus:ring-4
-            focus:ring-[#e4e9f2]
+            focus:ring-[#eef2ff]
           "
         >
           <option value="">All categories</option>
@@ -223,12 +223,12 @@ export default function ProductToolbar({
             bg-[#ffffff]
             px-3.5
             text-sm
-            text-[#1a1d24]
+            text-[#0f172a]
             outline-none
             transition
-            focus:border-[#7d8aa6]
+            focus:border-[#818cf8]
             focus:ring-4
-            focus:ring-[#e4e9f2]
+            focus:ring-[#eef2ff]
           "
         >
           <option value="">
@@ -265,12 +265,12 @@ export default function ProductToolbar({
             bg-[#ffffff]
             px-3.5
             text-sm
-            text-[#1a1d24]
+            text-[#0f172a]
             outline-none
             transition
-            focus:border-[#7d8aa6]
+            focus:border-[#818cf8]
             focus:ring-4
-            focus:ring-[#e4e9f2]
+            focus:ring-[#eef2ff]
           "
         >
           <option value="newest">
@@ -331,8 +331,8 @@ export default function ProductToolbar({
                 transition
                 ${
                   filters.isNew === true
-                    ? "border-[#7d8aa6] bg-[#fdecec] text-[#1e2a40]"
-                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f4f5f7]"
+                    ? "border-[#818cf8] bg-[#eef2ff] text-[#3730a3]"
+                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f6f7fb]"
                 }
               `}
             >
@@ -354,7 +354,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#7d8aa6]
+                  accent-[#818cf8]
                 "
               />
 
@@ -383,8 +383,8 @@ export default function ProductToolbar({
                 ${
                   filters.isFeatured ===
                   true
-                    ? "border-[#7d8aa6] bg-[#fdecec] text-[#1e2a40]"
-                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f4f5f7]"
+                    ? "border-[#818cf8] bg-[#eef2ff] text-[#3730a3]"
+                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f6f7fb]"
                 }
               `}
             >
@@ -408,7 +408,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#7d8aa6]
+                  accent-[#818cf8]
                 "
               />
 
@@ -437,8 +437,8 @@ export default function ProductToolbar({
                 ${
                   filters.isBestSeller ===
                   true
-                    ? "border-[#7d8aa6] bg-[#fdecec] text-[#1e2a40]"
-                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f4f5f7]"
+                    ? "border-[#818cf8] bg-[#eef2ff] text-[#3730a3]"
+                    : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:border-[#737a8c] hover:bg-[#f6f7fb]"
                 }
               `}
             >
@@ -462,7 +462,7 @@ export default function ProductToolbar({
                   w-4
                   shrink-0
                   cursor-pointer
-                  accent-[#7d8aa6]
+                  accent-[#818cf8]
                 "
               />
 

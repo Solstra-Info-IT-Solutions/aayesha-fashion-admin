@@ -124,6 +124,9 @@ export type OrderListFilters = {
   paymentClaimed?: boolean;
   customerEmail?: string;
   customerPhone?: string;
+  /** Inclusive day range, YYYY-MM-DD. */
+  from?: string;
+  to?: string;
   sort?:
     | "newest"
     | "oldest"

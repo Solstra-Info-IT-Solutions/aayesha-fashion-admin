@@ -23,13 +23,13 @@ export function OrderDetailHeader({
       <div>
         <Link
           href="/admin/orders"
-          className="text-xs text-[#5b6270] hover:text-[#1a1d24]"
+          className="text-xs text-[#5b6270] hover:text-[#0f172a]"
         >
           ← Back to orders
         </Link>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <h1 className="font-serif text-4xl text-[#1a1d24]">
+          <h1 className="font-serif text-4xl text-[#0f172a]">
             {order.orderNumber}
           </h1>
 

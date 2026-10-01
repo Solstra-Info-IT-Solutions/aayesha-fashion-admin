@@ -192,7 +192,7 @@ function NotificationRow({
         }
         className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition ${
           enabled
-            ? "bg-[#2b3a55]"
+            ? "bg-[#4338ca]"
             : "bg-slate-300"
         }`}
         aria-label={

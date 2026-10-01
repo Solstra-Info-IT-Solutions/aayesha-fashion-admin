@@ -66,7 +66,7 @@ function validate(values: PaymentSettings): Errors {
 ========================================================= */
 
 const inputClass =
-  "h-11 w-full border border-[#d3d7df] bg-white px-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#8d95a6] focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/15 disabled:bg-[#eef0f4]";
+  "h-11 w-full border border-[#d3d7df] bg-white px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#8d95a6] focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/15 disabled:bg-[#eef0f4]";
 
 function Field({
   label,
@@ -81,7 +81,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-semibold text-[#1a1d24]">{label}</span>
+      <span className="mb-1.5 block text-sm font-semibold text-[#0f172a]">{label}</span>
       {children}
       {error ? (
         <span className="mt-1.5 block text-xs font-medium text-[#b3261e]">{error}</span>
@@ -112,7 +112,7 @@ function Section({
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#737a8c]">
             {eyebrow}
           </p>
-          <h2 className="mt-1 text-lg font-bold text-[#1a1d24]">{title}</h2>
+          <h2 className="mt-1 text-lg font-bold text-[#0f172a]">{title}</h2>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-[#5b6270]">{description}</p>
         </div>
 
@@ -280,12 +280,12 @@ export default function PaymentConfigPage() {
   return (
     <div className="space-y-6 pb-24">
       <div className="flex items-center gap-3 border-b border-[#d3d7df] pb-6">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#e4e9f2] text-[#2b3a55]">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#eef2ff] text-[#4338ca]">
           <Wallet size={22} />
         </div>
 
         <div>
-          <h1 className="text-[#1a1d24]">Payments &amp; WhatsApp</h1>
+          <h1 className="text-[#0f172a]">Payments &amp; WhatsApp</h1>
 
           <p className="mt-1 text-sm text-[#5b6270]">
             Enter your payment, invoice and WhatsApp details here. Changes apply to new
@@ -458,7 +458,7 @@ export default function PaymentConfigPage() {
                 <button
                   type="button"
                   onClick={() => setShowToken((value) => !value)}
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[#d3d7df] bg-white text-[#5b6270] hover:text-[#1a1d24]"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[#d3d7df] bg-white text-[#5b6270] hover:text-[#0f172a]"
                   aria-label={showToken ? "Hide token" : "Show token"}
                 >
                   {showToken ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -501,12 +501,12 @@ export default function PaymentConfigPage() {
             </Field>
 
             <div className="sm:col-span-2">
-              <div className="flex flex-wrap items-center gap-3 border border-[#e5e7ec] bg-[#f4f5f7] p-4">
+              <div className="flex flex-wrap items-center gap-3 border border-[#e5e7ec] bg-[#f6f7fb] p-4">
                 <button
                   type="button"
                   onClick={handleVerify}
                   disabled={verifying || dirty || !view.status.whatsappCredentialsConfigured}
-                  className="inline-flex h-10 items-center gap-2 border border-[#2b3a55] bg-white px-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#2b3a55] hover:bg-[#e4e9f2] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 border border-[#4338ca] bg-white px-4 text-xs font-semibold uppercase tracking-[0.1em] text-[#4338ca] hover:bg-[#eef2ff] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {verifying ? <Loader2 size={14} className="animate-spin" /> : <ShieldCheck size={14} />}
                   Verify connection
@@ -556,7 +556,7 @@ export default function PaymentConfigPage() {
                     setRemoveToken(false);
                     setShowErrors(false);
                   }}
-                  className="h-10 border border-[#d3d7df] bg-white px-4 text-sm font-semibold text-[#1a1d24] hover:bg-[#f4f5f7] disabled:opacity-50"
+                  className="h-10 border border-[#d3d7df] bg-white px-4 text-sm font-semibold text-[#0f172a] hover:bg-[#f6f7fb] disabled:opacity-50"
                 >
                   Discard
                 </button>
@@ -565,7 +565,7 @@ export default function PaymentConfigPage() {
                   type="button"
                   disabled={!dirty || saving}
                   onClick={handleSave}
-                  className="inline-flex h-10 items-center gap-2 bg-[#2b3a55] px-5 text-sm font-semibold text-white hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 bg-[#4338ca] px-5 text-sm font-semibold text-white hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
                   Save changes

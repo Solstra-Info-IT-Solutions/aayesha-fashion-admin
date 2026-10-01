@@ -177,7 +177,7 @@ export function RichTextEditor({
         </label>
 
         {/* MODE SWITCH */}
-        <div className="flex border border-[#d3d7df] bg-[#f4f5f7] p-0.5">
+        <div className="flex border border-[#d3d7df] bg-[#f6f7fb] p-0.5">
           <button
             type="button"
             onClick={() =>
@@ -187,8 +187,8 @@ export function RichTextEditor({
             }
             className={`px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.14em] transition ${
               mode === "visual"
-                ? "bg-[#2b3a55] text-[#ffffff]"
-                : "text-[#5b6270] hover:text-[#1a1d24]"
+                ? "bg-[#4338ca] text-[#ffffff]"
+                : "text-[#5b6270] hover:text-[#0f172a]"
             }`}
           >
             Visual
@@ -203,8 +203,8 @@ export function RichTextEditor({
             }
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.14em] transition ${
               mode === "html"
-                ? "bg-[#2b3a55] text-[#ffffff]"
-                : "text-[#5b6270] hover:text-[#1a1d24]"
+                ? "bg-[#4338ca] text-[#ffffff]"
+                : "text-[#5b6270] hover:text-[#0f172a]"
             }`}
           >
             <Code2 size={12} />
@@ -219,7 +219,7 @@ export function RichTextEditor({
       =================================================== */}
 
       {mode === "visual" && (
-        <div className="mt-2 flex flex-wrap items-center gap-1 border-x border-t border-[#d3d7df] bg-[#f4f5f7] p-2">
+        <div className="mt-2 flex flex-wrap items-center gap-1 border-x border-t border-[#d3d7df] bg-[#f6f7fb] p-2">
           <ToolbarButton
             label="Bold"
             onClick={() =>
@@ -294,7 +294,7 @@ export function RichTextEditor({
 
               event.target.value = "";
             }}
-            className="ml-1 h-8 border border-[#d3d7df] bg-[#ffffff] px-2 text-[10px] uppercase tracking-[0.1em] text-[#5b6270] outline-none focus:border-[#2b3a55]"
+            className="ml-1 h-8 border border-[#d3d7df] bg-[#ffffff] px-2 text-[10px] uppercase tracking-[0.1em] text-[#5b6270] outline-none focus:border-[#4338ca]"
             aria-label="Text style"
           >
             <option value="">
@@ -327,7 +327,7 @@ export function RichTextEditor({
           suppressContentEditableWarning
           onInput={handleVisualChange}
           data-placeholder={placeholder}
-          className="rich-text-editor w-full overflow-y-auto border border-[#d3d7df] bg-[#ffffff] px-4 py-3 text-sm leading-7 text-[#1a1d24] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20 empty:before:pointer-events-none empty:before:text-[#737a8c] empty:before:content-[attr(data-placeholder)]"
+          className="rich-text-editor w-full overflow-y-auto border border-[#d3d7df] bg-[#ffffff] px-4 py-3 text-sm leading-7 text-[#0f172a] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20 empty:before:pointer-events-none empty:before:text-[#737a8c] empty:before:content-[attr(data-placeholder)]"
           style={{
             minHeight,
           }}
@@ -342,7 +342,7 @@ export function RichTextEditor({
           }
           placeholder={placeholder}
           spellCheck={false}
-          className="w-full resize-y border border-[#d3d7df] bg-[#ffffff] px-4 py-3 font-mono text-xs leading-6 text-[#1a1d24] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20"
+          className="w-full resize-y border border-[#d3d7df] bg-[#ffffff] px-4 py-3 font-mono text-xs leading-6 text-[#0f172a] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
           style={{
             minHeight,
           }}
@@ -380,7 +380,7 @@ function ToolbarButton({
       title={label}
       aria-label={label}
       onClick={onClick}
-      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#5b6270] transition hover:border-[#d3d7df] hover:bg-[#ffffff] hover:text-[#2b3a55]"
+      className="inline-flex h-8 w-8 items-center justify-center border border-transparent text-[#5b6270] transition hover:border-[#d3d7df] hover:bg-[#ffffff] hover:text-[#4338ca]"
     >
       {children}
     </button>

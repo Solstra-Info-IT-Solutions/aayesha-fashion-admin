@@ -88,7 +88,7 @@ export default function SupportMobileCard({
         <div className="min-w-0 flex-1">
           <Link
             href={`/admin/support/${ticket._id}`}
-            className="text-sm font-semibold text-[#2b3a55] hover:underline"
+            className="text-sm font-semibold text-[#4338ca] hover:underline"
           >
             {ticket.ticketNumber}
           </Link>

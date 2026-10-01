@@ -194,7 +194,7 @@ export function HomepagePage(): ReactElement {
   ======================================================= */
 
   return (
-    <div className="min-h-full bg-[#f4f5f7]">
+    <div className="min-h-full bg-[#f6f7fb]">
       {/* ===================================================
           HEADER
       =================================================== */}
@@ -324,7 +324,7 @@ function HomepageTabContent({
             Homepage / {labels[activeTab]}
           </p>
 
-          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+          <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
             {labels[activeTab]}
           </h2>
         </div>
@@ -560,8 +560,8 @@ function HomepagePlaceholder({
   data,
 }: HomepagePlaceholderProps): ReactElement {
   return (
-    <div className="border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-6 py-10">
-      <p className="text-sm font-medium text-[#1a1d24]">
+    <div className="border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-6 py-10">
+      <p className="text-sm font-medium text-[#0f172a]">
         {title} editor
       </p>
 
@@ -576,7 +576,7 @@ function HomepagePlaceholder({
           Current status
         </p>
 
-        <p className="mt-2 text-sm text-[#1a1d24]">
+        <p className="mt-2 text-sm text-[#0f172a]">
           {data
             ? "Configured"
             : "Not configured"}
@@ -596,8 +596,8 @@ function HomepageNotConfigured({
   title: string;
 }): ReactElement {
   return (
-    <div className="border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-6 py-12 text-center">
-      <p className="text-sm font-medium text-[#1a1d24]">
+    <div className="border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-6 py-12 text-center">
+      <p className="text-sm font-medium text-[#0f172a]">
         {title} is not configured
       </p>
 

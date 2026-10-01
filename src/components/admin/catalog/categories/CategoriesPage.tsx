@@ -461,7 +461,7 @@ export function CategoriesPage() {
           <button
             type="button"
             onClick={openCreate}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
           >
             <Plus className="h-4 w-4" />
 
@@ -503,7 +503,7 @@ export function CategoriesPage() {
             <button
               type="button"
               onClick={handleSearch}
-              className="h-11 shrink-0 rounded-xl bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#2b3a55]"
+              className="h-11 shrink-0 rounded-xl bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#4338ca]"
             >
               Search
             </button>
@@ -671,7 +671,7 @@ export function CategoriesPage() {
                     <button
                       type="button"
                       onClick={openCreate}
-                      className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#2b3a55] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#2b3a55]"
+                      className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#4338ca]"
                     >
                       <Plus className="h-4 w-4" />
 
@@ -1219,7 +1219,7 @@ export function CategoriesPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#2b3a55] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b3a55] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#4338ca] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#4338ca] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving && (
                     <Loader2 className="h-4 w-4 animate-spin" />

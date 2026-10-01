@@ -9,17 +9,17 @@
    ========================================================= */
 
 :root {
-  --color-primary: #2b3a55;
-  --color-primary-hover: #1e2a40;
-  --color-accent: #2b3a55;
-  --color-accent-soft: #e4e9f2;
+  --color-primary: #4338ca;
+  --color-primary-hover: #3730a3;
+  --color-accent: #4338ca;
+  --color-accent-soft: #eef2ff;
 
-  --color-canvas: #f4f5f7;
+  --color-canvas: #f6f7fb;
   --color-surface: #ffffff;
   --color-surface-soft: #eef0f4;
 
-  --color-ink: #1a1d24;
-  --color-text: #1a1d24;
+  --color-ink: #0f172a;
+  --color-text: #0f172a;
   --color-text-secondary: #5b6270;
   --color-text-muted: #737a8c;
 
@@ -34,12 +34,12 @@
 
   /* Legacy names used across admin screens */
   --color-secondary: #5b6270;
-  --color-rose-dark: #2b3a55;
-  --color-rose-light: #e4e9f2;
-  --color-background: #f4f5f7;
+  --color-rose-dark: #4338ca;
+  --color-rose-light: #eef2ff;
+  --color-background: #f6f7fb;
 
-  --background: #f4f5f7;
-  --foreground: #1a1d24;
+  --background: #f6f7fb;
+  --foreground: #0f172a;
 
   --focus-ring: rgba(43, 58, 85, 0.45);
 }
@@ -54,7 +54,7 @@
 
 @theme {
   --color-gray-50: #f9fafb;
-  --color-gray-100: #f4f5f7;
+  --color-gray-100: #f6f7fb;
   --color-gray-200: #e5e7ec;
   --color-gray-300: #d3d7df;
   --color-gray-400: #747b8d;
@@ -62,10 +62,10 @@
   --color-gray-600: #4f5666;
   --color-gray-700: #434a58;
   --color-gray-800: #2d333e;
-  --color-gray-900: #1a1d24;
-  --color-gray-950: #0f1218;
+  --color-gray-900: #0f172a;
+  --color-gray-950: #020617;
   --color-slate-50: #f9fafb;
-  --color-slate-100: #f4f5f7;
+  --color-slate-100: #f6f7fb;
   --color-slate-200: #e5e7ec;
   --color-slate-300: #d3d7df;
   --color-slate-400: #747b8d;
@@ -73,10 +73,10 @@
   --color-slate-600: #4f5666;
   --color-slate-700: #434a58;
   --color-slate-800: #2d333e;
-  --color-slate-900: #1a1d24;
-  --color-slate-950: #0f1218;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
   --color-neutral-50: #f9fafb;
-  --color-neutral-100: #f4f5f7;
+  --color-neutral-100: #f6f7fb;
   --color-neutral-200: #e5e7ec;
   --color-neutral-300: #d3d7df;
   --color-neutral-400: #747b8d;
@@ -84,10 +84,10 @@
   --color-neutral-600: #4f5666;
   --color-neutral-700: #434a58;
   --color-neutral-800: #2d333e;
-  --color-neutral-900: #1a1d24;
-  --color-neutral-950: #0f1218;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
   --color-zinc-50: #f9fafb;
-  --color-zinc-100: #f4f5f7;
+  --color-zinc-100: #f6f7fb;
   --color-zinc-200: #e5e7ec;
   --color-zinc-300: #d3d7df;
   --color-zinc-400: #747b8d;
@@ -95,10 +95,10 @@
   --color-zinc-600: #4f5666;
   --color-zinc-700: #434a58;
   --color-zinc-800: #2d333e;
-  --color-zinc-900: #1a1d24;
-  --color-zinc-950: #0f1218;
+  --color-zinc-900: #0f172a;
+  --color-zinc-950: #020617;
   --color-stone-50: #f9fafb;
-  --color-stone-100: #f4f5f7;
+  --color-stone-100: #f6f7fb;
   --color-stone-200: #e5e7ec;
   --color-stone-300: #d3d7df;
   --color-stone-400: #747b8d;
@@ -106,8 +106,8 @@
   --color-stone-600: #4f5666;
   --color-stone-700: #434a58;
   --color-stone-800: #2d333e;
-  --color-stone-900: #1a1d24;
-  --color-stone-950: #0f1218;
+  --color-stone-900: #0f172a;
+  --color-stone-950: #020617;
   --color-red-50: #fdecec;
   --color-red-100: #fbd9d7;
   --color-red-200: #f5b5b1;
@@ -119,72 +119,72 @@
   --color-red-800: #6e1814;
   --color-red-900: #53120f;
   --color-red-950: #3a0b09;
-  --color-rose-50: #f1f4f9;
-  --color-rose-100: #e4e9f2;
-  --color-rose-200: #c9d1e0;
-  --color-rose-300: #a3b0cb;
-  --color-rose-400: #7d8aa6;
-  --color-rose-500: #5a6a8c;
-  --color-rose-600: #2b3a55;
-  --color-rose-700: #243049;
-  --color-rose-800: #1e2a40;
-  --color-rose-900: #161f30;
-  --color-rose-950: #0f1520;
-  --color-pink-50: #f1f4f9;
-  --color-pink-100: #e4e9f2;
-  --color-pink-200: #c9d1e0;
-  --color-pink-300: #a3b0cb;
-  --color-pink-400: #7d8aa6;
-  --color-pink-500: #5a6a8c;
-  --color-pink-600: #2b3a55;
-  --color-pink-700: #243049;
-  --color-pink-800: #1e2a40;
-  --color-pink-900: #161f30;
-  --color-pink-950: #0f1520;
-  --color-fuchsia-50: #f1f4f9;
-  --color-fuchsia-100: #e4e9f2;
-  --color-fuchsia-200: #c9d1e0;
-  --color-fuchsia-300: #a3b0cb;
-  --color-fuchsia-400: #7d8aa6;
-  --color-fuchsia-500: #5a6a8c;
-  --color-fuchsia-600: #2b3a55;
-  --color-fuchsia-700: #243049;
-  --color-fuchsia-800: #1e2a40;
-  --color-fuchsia-900: #161f30;
-  --color-fuchsia-950: #0f1520;
-  --color-indigo-50: #f1f4f9;
-  --color-indigo-100: #e4e9f2;
-  --color-indigo-200: #c9d1e0;
-  --color-indigo-300: #a3b0cb;
-  --color-indigo-400: #7d8aa6;
-  --color-indigo-500: #5a6a8c;
-  --color-indigo-600: #2b3a55;
-  --color-indigo-700: #243049;
-  --color-indigo-800: #1e2a40;
-  --color-indigo-900: #161f30;
-  --color-indigo-950: #0f1520;
-  --color-violet-50: #f1f4f9;
-  --color-violet-100: #e4e9f2;
-  --color-violet-200: #c9d1e0;
-  --color-violet-300: #a3b0cb;
-  --color-violet-400: #7d8aa6;
-  --color-violet-500: #5a6a8c;
-  --color-violet-600: #2b3a55;
-  --color-violet-700: #243049;
-  --color-violet-800: #1e2a40;
-  --color-violet-900: #161f30;
-  --color-violet-950: #0f1520;
-  --color-purple-50: #f1f4f9;
-  --color-purple-100: #e4e9f2;
-  --color-purple-200: #c9d1e0;
-  --color-purple-300: #a3b0cb;
-  --color-purple-400: #7d8aa6;
-  --color-purple-500: #5a6a8c;
-  --color-purple-600: #2b3a55;
-  --color-purple-700: #243049;
-  --color-purple-800: #1e2a40;
-  --color-purple-900: #161f30;
-  --color-purple-950: #0f1520;
+  --color-rose-50: #eef2ff;
+  --color-rose-100: #e0e7ff;
+  --color-rose-200: #c7d2fe;
+  --color-rose-300: #a5b4fc;
+  --color-rose-400: #818cf8;
+  --color-rose-500: #6366f1;
+  --color-rose-600: #4338ca;
+  --color-rose-700: #3730a3;
+  --color-rose-800: #312e81;
+  --color-rose-900: #1e1b4b;
+  --color-rose-950: #14123a;
+  --color-pink-50: #eef2ff;
+  --color-pink-100: #e0e7ff;
+  --color-pink-200: #c7d2fe;
+  --color-pink-300: #a5b4fc;
+  --color-pink-400: #818cf8;
+  --color-pink-500: #6366f1;
+  --color-pink-600: #4338ca;
+  --color-pink-700: #3730a3;
+  --color-pink-800: #312e81;
+  --color-pink-900: #1e1b4b;
+  --color-pink-950: #14123a;
+  --color-fuchsia-50: #eef2ff;
+  --color-fuchsia-100: #e0e7ff;
+  --color-fuchsia-200: #c7d2fe;
+  --color-fuchsia-300: #a5b4fc;
+  --color-fuchsia-400: #818cf8;
+  --color-fuchsia-500: #6366f1;
+  --color-fuchsia-600: #4338ca;
+  --color-fuchsia-700: #3730a3;
+  --color-fuchsia-800: #312e81;
+  --color-fuchsia-900: #1e1b4b;
+  --color-fuchsia-950: #14123a;
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-300: #a5b4fc;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4338ca;
+  --color-indigo-700: #3730a3;
+  --color-indigo-800: #312e81;
+  --color-indigo-900: #1e1b4b;
+  --color-indigo-950: #14123a;
+  --color-violet-50: #eef2ff;
+  --color-violet-100: #e0e7ff;
+  --color-violet-200: #c7d2fe;
+  --color-violet-300: #a5b4fc;
+  --color-violet-400: #818cf8;
+  --color-violet-500: #6366f1;
+  --color-violet-600: #4338ca;
+  --color-violet-700: #3730a3;
+  --color-violet-800: #312e81;
+  --color-violet-900: #1e1b4b;
+  --color-violet-950: #14123a;
+  --color-purple-50: #eef2ff;
+  --color-purple-100: #e0e7ff;
+  --color-purple-200: #c7d2fe;
+  --color-purple-300: #a5b4fc;
+  --color-purple-400: #818cf8;
+  --color-purple-500: #6366f1;
+  --color-purple-600: #4338ca;
+  --color-purple-700: #3730a3;
+  --color-purple-800: #312e81;
+  --color-purple-900: #1e1b4b;
+  --color-purple-950: #14123a;
   --color-emerald-50: #e8f5ec;
   --color-emerald-100: #d3ecdb;
   --color-emerald-200: #bfe3cb;
@@ -380,4 +380,37 @@ main .flex > * {
 main dd,
 main dt {
   overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   ADVANCED SURFACES
+========================================================= */
+
+.surface {
+  background: #ffffff;
+  border: 1px solid #e5e7ec;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.10);
+}
+
+.surface-hover {
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.surface-hover:hover {
+  transform: translateY(-2px);
+  border-color: #c7d2fe;
+  box-shadow: 0 2px 4px rgb(15 23 42 / 0.05), 0 16px 32px -14px rgb(67 56 202 / 0.28);
+}
+
+.sidebar-surface {
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgb(99 102 241 / 0.22), transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #0b1020 100%);
+}
+
+.page-canvas {
+  background:
+    radial-gradient(70% 40% at 100% 0%, rgb(99 102 241 / 0.07), transparent 70%),
+    #f6f7fb;
 }

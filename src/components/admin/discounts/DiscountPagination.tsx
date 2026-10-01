@@ -145,7 +145,7 @@ export default function DiscountPagination({
                   }
                   className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition ${
                     isActive
-                      ? "bg-[#2b3a55] text-white"
+                      ? "bg-[#4338ca] text-white"
                       : "border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-secondary)] hover:bg-gray-50 hover:text-[var(--color-ink)]"
                   }`}
                   aria-current={

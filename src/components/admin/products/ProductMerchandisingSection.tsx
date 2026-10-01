@@ -57,7 +57,7 @@ export default function ProductMerchandisingSection({
     <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+        <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
           Merchandising
         </h2>
 
@@ -73,7 +73,7 @@ export default function ProductMerchandisingSection({
           ([key, label]) => (
             <label
               key={key}
-              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e5e7ec] bg-[#ffffff] px-3 py-2.5 transition hover:bg-[#f4f5f7]"
+              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e5e7ec] bg-[#ffffff] px-3 py-2.5 transition hover:bg-[#f6f7fb]"
             >
               <input
                 type="checkbox"
@@ -89,10 +89,10 @@ export default function ProductMerchandisingSection({
                       event.target.checked,
                   })
                 }
-                className="h-4 w-4 shrink-0 accent-[#1a1d24]"
+                className="h-4 w-4 shrink-0 accent-[#0f172a]"
               />
 
-              <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#1a1d24]">
+              <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#0f172a]">
                 {label}
               </span>
             </label>
@@ -102,7 +102,7 @@ export default function ProductMerchandisingSection({
 
       {/* BADGES */}
       <div className="mt-5 min-w-0">
-        <p className="mb-2 text-xs font-medium leading-5 text-[#1a1d24]">
+        <p className="mb-2 text-xs font-medium leading-5 text-[#0f172a]">
           Badges
         </p>
 
@@ -125,8 +125,8 @@ export default function ProductMerchandisingSection({
                   }
                   className={`inline-flex max-w-full items-center justify-center rounded-full border px-2.5 py-1.5 text-[11px] font-medium capitalize leading-4 transition ${
                     selected
-                      ? "border-[#2b3a55] bg-[#2b3a55] text-white"
-                      : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:bg-[#f4f5f7]"
+                      ? "border-[#4338ca] bg-[#4338ca] text-white"
+                      : "border-[#d3d7df] bg-[#ffffff] text-[#5b6270] hover:bg-[#f6f7fb]"
                   }`}
                 >
                   <span className="break-words">
@@ -145,7 +145,7 @@ export default function ProductMerchandisingSection({
       {/* RANKING */}
       <div className="mt-5 min-w-0 max-w-xs">
         <label className="block min-w-0">
-          <span className="mb-1.5 block break-words text-xs font-medium leading-5 text-[#1a1d24]">
+          <span className="mb-1.5 block break-words text-xs font-medium leading-5 text-[#0f172a]">
             Ranking
           </span>
 
@@ -171,7 +171,7 @@ export default function ProductMerchandisingSection({
                       ),
               })
             }
-            className="box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition focus:border-[#7d8aa6] focus:ring-2 focus:ring-[#e4e9f2]"
+            className="box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition focus:border-[#818cf8] focus:ring-2 focus:ring-[#eef2ff]"
           />
         </label>
       </div>

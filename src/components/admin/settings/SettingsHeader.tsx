@@ -74,7 +74,7 @@ export default function SettingsHeader({
 
         <Link
           href="/admin/settings/create"
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-4 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:bg-[#3730a3]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

@@ -184,7 +184,7 @@ export function LoginForm() {
             )
           }
           disabled={isLoading}
-          className="absolute right-3 top-[42px] p-2 text-[#737a8c] hover:text-[#1a1d24]"
+          className="absolute right-3 top-[42px] p-2 text-[#737a8c] hover:text-[#0f172a]"
           aria-label={
             showPassword
               ? "Hide password"

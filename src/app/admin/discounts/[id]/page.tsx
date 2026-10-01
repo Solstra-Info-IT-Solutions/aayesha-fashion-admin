@@ -248,7 +248,7 @@ export default function DiscountDetailPage() {
               "/admin/discounts",
             )
           }
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-4 text-sm font-semibold text-white transition hover:bg-[#1e2a40]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white transition hover:bg-[#3730a3]"
         >
           Back to Discounts
         </button>

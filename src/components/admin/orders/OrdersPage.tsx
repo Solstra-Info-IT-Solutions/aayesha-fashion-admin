@@ -31,10 +31,14 @@ import {
   useOrders,
 } from "@/hooks/useOrders";
 
+import type { OrderListFilters } from "@/types/order";
+
 export function OrdersPage({
   initialQuick = "all",
+  initialFilters = {},
 }: {
   initialQuick?: OrderQuickFilter;
+  initialFilters?: Partial<OrderListFilters>;
 }) {
   const {
     orders,
@@ -45,9 +49,10 @@ export function OrdersPage({
     updateFilters,
     setPage,
     refresh,
-  } = useOrders(
-    quickFilterToFilters(initialQuick),
-  );
+  } = useOrders({
+    ...quickFilterToFilters(initialQuick),
+    ...initialFilters,
+  });
 
   const activeQuick =
     activeQuickFilter(filters);
@@ -59,7 +64,9 @@ export function OrdersPage({
       filters.paymentMethod ||
       filters.paymentClaimed ||
       filters.customerEmail ||
-      filters.customerPhone,
+      filters.customerPhone ||
+      filters.from ||
+      filters.to,
   );
 
   return (
@@ -87,14 +94,33 @@ export function OrdersPage({
             }
             className={
               activeQuick === quick.id
-                ? "h-9 border border-[#2b3a55] bg-[#2b3a55] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
-                : "h-9 border border-[#d3d7df] bg-[#ffffff] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#1a1d24] hover:border-[#1a1d24]"
+                ? "h-9 border border-[#4338ca] bg-[#4338ca] px-4 text-xs font-medium uppercase tracking-[0.08em] text-white"
+                : "h-9 border border-[#d3d7df] bg-[#ffffff] px-4 text-xs font-medium uppercase tracking-[0.08em] text-[#0f172a] hover:border-[#0f172a]"
             }
           >
             {quick.label}
           </button>
         ))}
       </div>
+
+      {filters.from || filters.to ? (
+        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5b6270]">
+          <span className="inline-flex items-center gap-2 border border-[#d3d7df] bg-white px-3 py-1.5 font-medium text-[#0f172a]">
+            {filters.from === filters.to
+              ? filters.from
+              : `${filters.from ?? "…"} → ${filters.to ?? "…"}`}
+
+            <button
+              type="button"
+              aria-label="Clear date filter"
+              onClick={() => updateFilters({ from: undefined, to: undefined })}
+              className="text-[#737a8c] hover:text-[#0f172a]"
+            >
+              ×
+            </button>
+          </span>
+        </div>
+      ) : null}
 
       <OrdersToolbar
         filters={filters}

@@ -244,7 +244,7 @@ export default function ReviewDetailPage({
         <button
           type="button"
           onClick={() => router.push("/admin/reviews")}
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-5 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-5 text-sm font-medium text-white transition hover:bg-[#3730a3]"
         >
           Back to Reviews
         </button>

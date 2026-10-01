@@ -1,113 +1,68 @@
 import Link from "next/link";
 
-import type {
-  DashboardOrder,
-} from "@/types/dashboard";
+import type { DashboardOrder } from "@/types/dashboard";
+
+import { ChartCard } from "./ChartCard";
+import { labelOf, money } from "./format";
+
+const tone = (status: string) =>
+  status === "delivered"
+    ? "bg-[#e8f5ec] text-[#276541]"
+    : status === "cancelled"
+      ? "bg-[#fdecec] text-[#b3261e]"
+      : status === "pending"
+        ? "bg-[#fdf3e1] text-[#7f4806]"
+        : "bg-[#eef2ff] text-[#3730a3]";
 
 export function RecentOrders({
   orders,
   loading,
 }: {
   orders: DashboardOrder[];
-  loading: boolean;
+  loading?: boolean;
 }) {
   return (
-    <section className="border border-[#e5e7ec] bg-[#ffffff]">
-      <div className="flex items-center justify-between border-b border-[#e5e7ec] px-6 py-5">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.16em] text-[#737a8c]">
-            Orders
-          </p>
-
-          <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
-            Recent orders
-          </h2>
-        </div>
-
-        <Link
-          href="/admin/orders"
-          className="text-xs font-medium text-[#5b6270] hover:text-[#1a1d24]"
-        >
-          View all
-        </Link>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[640px]">
-          <thead>
-            <tr className="border-b border-[#e5e7ec]">
-              {[
-                "Order",
-                "Customer",
-                "Total",
-                "Status",
-              ].map((heading) => (
-                <th
-                  key={heading}
-                  className="px-6 py-3 text-left text-[10px] uppercase tracking-[0.13em] text-[#737a8c]"
-                >
-                  {heading}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          <tbody>
-            {loading ? (
+    <ChartCard eyebrow="Orders" title="Recent orders" href="/admin/orders" className="xl:col-span-2">
+      {loading ? (
+        <p className="py-10 text-center text-sm text-[#737a8c]">Loading…</p>
+      ) : orders.length === 0 ? (
+        <p className="py-10 text-center text-sm text-[#737a8c]">No orders yet.</p>
+      ) : (
+        <div className="-mx-2 overflow-x-auto">
+          <table className="w-full min-w-[520px] text-left text-sm">
+            <thead className="text-xs uppercase tracking-wide text-[#737a8c]">
               <tr>
-                <td
-                  colSpan={4}
-                  className="px-6 py-10 text-center text-sm text-[#737a8c]"
-                >
-                  Loading orders...
-                </td>
+                <th className="px-2 py-2 font-semibold">Order</th>
+                <th className="px-2 py-2 font-semibold">Customer</th>
+                <th className="px-2 py-2 font-semibold">Status</th>
+                <th className="px-2 py-2 text-right font-semibold">Total</th>
               </tr>
-            ) : orders.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={4}
-                  className="px-6 py-10 text-center text-sm text-[#737a8c]"
-                >
-                  No recent orders.
-                </td>
-              </tr>
-            ) : (
-              orders.map(
-                (order) => (
-                  <tr
-                    key={
-                      order.orderNumber
-                    }
-                    className="border-b border-[#e5e7ec] last:border-0"
-                  >
-                    <td className="px-6 py-4 text-sm font-medium text-[#1a1d24]">
+            </thead>
+
+            <tbody className="divide-y divide-[#e5e7ec]">
+              {orders.map((order) => (
+                <tr key={order.orderNumber} className="group">
+                  <td className="px-2 py-3">
+                    <Link
+                      href={`/admin/orders/${encodeURIComponent(order.orderNumber)}`}
+                      className="font-semibold text-[#4338ca] hover:underline"
+                    >
                       {order.orderNumber}
-                    </td>
-
-                    <td className="px-6 py-4 text-sm text-[#5b6270]">
-                      {order.customerName}
-                    </td>
-
-                    <td className="px-6 py-4 text-sm text-[#1a1d24]">
-                      ₹
-                      {order.total.toLocaleString(
-                        "en-IN",
-                      )}
-                    </td>
-
-                    <td className="px-6 py-4 text-xs capitalize text-[#5b6270]">
-                      {order.status.replace(
-                        /_/g,
-                        " ",
-                      )}
-                    </td>
-                  </tr>
-                ),
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
-    </section>
+                    </Link>
+                  </td>
+                  <td className="px-2 py-3 text-[#0f172a]">{order.customerName || "—"}</td>
+                  <td className="px-2 py-3">
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${tone(order.status)}`}>
+                      {labelOf(order.status)}
+                    </span>
+                  </td>
+                  <td className="px-2 py-3 text-right font-semibold text-[#0f172a]">{money(order.total)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </ChartCard>
   );
 }

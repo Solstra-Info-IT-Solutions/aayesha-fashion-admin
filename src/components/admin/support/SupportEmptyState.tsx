@@ -42,7 +42,7 @@ export default function SupportEmptyState({
 
         <Link
           href="/admin"
-          className="inline-flex h-10 items-center rounded-lg bg-[#2b3a55] px-4 text-sm font-medium text-white transition hover:bg-[#1e2a40]"
+          className="inline-flex h-10 items-center rounded-lg bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:bg-[#3730a3]"
         >
           Back to Dashboard
         </Link>

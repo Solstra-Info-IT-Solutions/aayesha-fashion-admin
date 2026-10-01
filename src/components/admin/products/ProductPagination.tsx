@@ -46,7 +46,7 @@ export default function ProductPagination({
               page - 1,
             )
           }
-          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#1a1d24] disabled:opacity-40"
+          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#0f172a] disabled:opacity-40"
         >
           <ChevronLeft
             size={14}
@@ -65,7 +65,7 @@ export default function ProductPagination({
               page + 1,
             )
           }
-          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#1a1d24] disabled:opacity-40"
+          className="inline-flex h-9 items-center gap-1 rounded-lg border border-[#d3d7df] px-3 text-xs font-medium text-[#0f172a] disabled:opacity-40"
         >
           Next
           <ChevronRight

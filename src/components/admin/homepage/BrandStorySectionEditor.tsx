@@ -302,13 +302,13 @@ export function BrandStorySectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f4f5f7] px-5 py-4">
+      <div className="flex items-center justify-between border border-[#e5e7ec] bg-[#f6f7fb] px-5 py-4">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5b6270]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#1a1d24]">
+          <p className="mt-1 text-sm text-[#0f172a]">
             {form.enabled
               ? "Brand Story is visible on the homepage."
               : "Brand Story is hidden from the homepage."}
@@ -330,9 +330,9 @@ export function BrandStorySectionEditor({
               !form.enabled,
             )
           }
-          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#7d8aa6]/25 focus:ring-offset-2 ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#818cf8]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#2b3a55]"
+              ? "bg-[#4338ca]"
               : "bg-[#d3d7df]"
           }`}
         >
@@ -399,7 +399,7 @@ export function BrandStorySectionEditor({
       <div>
         <Label text="Brand Story Image" />
 
-        <div className="mt-2 border border-[#e5e7ec] bg-[#f4f5f7] p-4">
+        <div className="mt-2 border border-[#e5e7ec] bg-[#f6f7fb] p-4">
           {form.image ? (
             <div className="relative overflow-hidden border border-[#e5e7ec] bg-[#ffffff]">
               <img
@@ -434,7 +434,7 @@ export function BrandStorySectionEditor({
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <label
-              className={`inline-flex cursor-pointer items-center gap-2 border border-[#2b3a55] bg-[#2b3a55] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#1e2a40] hover:bg-[#1e2a40] ${
+              className={`inline-flex cursor-pointer items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] ${
                 uploading
                   ? "pointer-events-none opacity-60"
                   : ""
@@ -540,7 +540,7 @@ export function BrandStorySectionEditor({
             saving ||
             uploading !== null
           }
-          className="inline-flex items-center gap-2 border border-[#2b3a55] bg-[#2b3a55] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#1e2a40] hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center gap-2 border border-[#4338ca] bg-[#4338ca] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#ffffff] transition hover:border-[#3730a3] hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? (
             <>
@@ -590,7 +590,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20"
+        className="mt-2 h-11 w-full border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
       />
     </div>
   );
@@ -622,7 +622,7 @@ function TextAreaField({
         }
         placeholder={placeholder}
         rows={6}
-        className="mt-2 w-full resize-y border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm leading-7 text-[#1a1d24] outline-none transition placeholder:text-[#737a8c] focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]/20"
+        className="mt-2 w-full resize-y border border-[#d3d7df] bg-[#ffffff] px-3 py-3 text-sm leading-7 text-[#0f172a] outline-none transition placeholder:text-[#737a8c] focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]/20"
       />
     </div>
   );

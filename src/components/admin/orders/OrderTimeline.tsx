@@ -17,7 +17,7 @@ export function OrderTimeline({
           Activity
         </p>
 
-        <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+        <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
           Order timeline
         </h2>
 
@@ -34,7 +34,7 @@ export function OrderTimeline({
         Activity
       </p>
 
-      <h2 className="mt-1 font-serif text-2xl text-[#1a1d24]">
+      <h2 className="mt-1 font-serif text-2xl text-[#0f172a]">
         Order timeline
       </h2>
 
@@ -49,7 +49,7 @@ export function OrderTimeline({
                 className="relative flex gap-4"
               >
                 <div className="flex flex-col items-center">
-                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#1a1d24]" />
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#0f172a]" />
 
                   {index <
                     history.length -
@@ -59,7 +59,7 @@ export function OrderTimeline({
                 </div>
 
                 <div className="pb-2">
-                  <p className="text-sm font-medium capitalize text-[#1a1d24]">
+                  <p className="text-sm font-medium capitalize text-[#0f172a]">
                     {item.status.replace(
                       /_/g,
                       " ",

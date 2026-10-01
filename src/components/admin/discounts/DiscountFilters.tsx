@@ -84,7 +84,7 @@ export default function DiscountFilters({
         <div className="flex items-center gap-2">
           <Filter
             size={18}
-            className="text-[#2b3a55]"
+            className="text-[#4338ca]"
           />
 
           <h2 className="text-sm font-semibold text-[var(--color-ink)]">
@@ -96,7 +96,7 @@ export default function DiscountFilters({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-secondary)] transition hover:text-[#4338ca]"
           >
             <RotateCcw size={14} />
             Reset
@@ -121,7 +121,7 @@ export default function DiscountFilters({
               )
             }
             placeholder="Search coupon code..."
-            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-9 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+            className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] pl-9 pr-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
           />
         </div>
 
@@ -134,7 +134,7 @@ export default function DiscountFilters({
                 .value as CouponDiscountType | "",
             )
           }
-          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
         >
           <option value="">
             All Discount Types
@@ -161,7 +161,7 @@ export default function DiscountFilters({
                 .value as CouponStatus | "",
             )
           }
-          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
         >
           <option value="">
             All Statuses
@@ -188,7 +188,7 @@ export default function DiscountFilters({
                 .value as CouponSort,
             )
           }
-          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+          className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none transition focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
         >
           {COUPON_SORTS.map(
             (item) => (

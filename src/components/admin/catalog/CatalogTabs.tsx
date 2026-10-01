@@ -80,7 +80,7 @@ export default function CatalogTabs({
               className={[
                 "inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition",
                 isActive
-                  ? "bg-[#2b3a55] text-white"
+                  ? "bg-[#4338ca] text-white"
                   : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-950",
               ].join(" ")}
             >

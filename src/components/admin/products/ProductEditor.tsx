@@ -38,7 +38,7 @@ interface ProductEditorProps {
 ========================================================= */
 
 const inputClassName =
-  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#1a1d24] outline-none transition focus:border-[#7d8aa6] focus:ring-2 focus:ring-[#e4e9f2]";
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm text-[#0f172a] outline-none transition focus:border-[#818cf8] focus:ring-2 focus:ring-[#eef2ff]";
 
 /* =========================================================
    PRODUCT EDITOR
@@ -289,7 +289,7 @@ export default function ProductEditor({
               "/admin/login",
             )
           }
-          className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-[#2b3a55] px-4 text-sm font-medium text-white transition hover:opacity-90"
+          className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:opacity-90"
         >
           Login Again
         </button>
@@ -338,7 +338,7 @@ export default function ProductEditor({
                 "/admin/products",
               )
             }
-            className="mb-3 inline-flex max-w-full items-center gap-1.5 text-xs font-medium text-[#5b6270] transition hover:text-[#1a1d24]"
+            className="mb-3 inline-flex max-w-full items-center gap-1.5 text-xs font-medium text-[#5b6270] transition hover:text-[#0f172a]"
           >
             <ArrowLeft
               size={13}
@@ -356,7 +356,7 @@ export default function ProductEditor({
               : "New Product"}
           </p>
 
-          <h1 className="mt-1 max-w-full break-words text-xl font-semibold leading-7 text-[#1a1d24] sm:text-2xl">
+          <h1 className="mt-1 max-w-full break-words text-xl font-semibold leading-7 text-[#0f172a] sm:text-2xl">
             {product.name ||
               "Untitled Product"}
           </h1>
@@ -374,7 +374,7 @@ export default function ProductEditor({
             void saveMain()
           }
           disabled={saving}
-          className="inline-flex h-10 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#2b3a55] px-4 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="inline-flex h-10 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-[#4338ca] px-4 text-sm font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           <Save
             size={15}
@@ -476,7 +476,7 @@ export default function ProductEditor({
           <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
 
             <div>
-              <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+              <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
                 Pricing
               </h2>
 
@@ -491,7 +491,7 @@ export default function ProductEditor({
               {/* MRP */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+                <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                   Price / MRP
                 </span>
 
@@ -529,7 +529,7 @@ export default function ProductEditor({
               {/* SELLING PRICE */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+                <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                   Sale Price
                 </span>
 
@@ -579,7 +579,7 @@ export default function ProductEditor({
                     Discount
                   </p>
 
-                  <p className="mt-1 text-lg font-semibold text-[#1a1d24]">
+                  <p className="mt-1 text-lg font-semibold text-[#0f172a]">
                     {Math.round(
                       ((product
                         .pricing
@@ -605,7 +605,7 @@ export default function ProductEditor({
           <section className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
 
             <div>
-              <h2 className="break-words text-base font-semibold leading-6 text-[#1a1d24]">
+              <h2 className="break-words text-base font-semibold leading-6 text-[#0f172a]">
                 Stock
               </h2>
 
@@ -620,7 +620,7 @@ export default function ProductEditor({
               {/* TOTAL STOCK */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+                <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                   Total Quantity
                 </span>
 
@@ -665,7 +665,7 @@ export default function ProductEditor({
               {/* LOW STOCK THRESHOLD */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+                <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                   Low Stock Alert
                 </span>
 
@@ -710,13 +710,13 @@ export default function ProductEditor({
 
             {/* STOCK STATUS */}
 
-            <div className="mt-4 rounded-xl border border-[#e5e7ec] bg-[#f4f5f7] px-4 py-3">
+            <div className="mt-4 rounded-xl border border-[#e5e7ec] bg-[#f6f7fb] px-4 py-3">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <span className="text-sm text-[#5b6270]">
                   Current Stock
                 </span>
 
-                <span className="text-sm font-semibold text-[#1a1d24]">
+                <span className="text-sm font-semibold text-[#0f172a]">
                   {Math.max(
                     0,
                     product
@@ -858,7 +858,7 @@ export default function ProductEditor({
 
           {!isEdit && (
             <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#ffffff] p-4 sm:p-5">
-              <p className="break-words text-sm font-semibold leading-5 text-[#1a1d24]">
+              <p className="break-words text-sm font-semibold leading-5 text-[#0f172a]">
                 Product Setup
               </p>
 
@@ -875,12 +875,12 @@ export default function ProductEditor({
               PRODUCT STATE
           =============================================== */}
 
-          <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#f4f5f7] p-4 sm:p-5">
+          <div className="min-w-0 overflow-hidden rounded-2xl border border-[#e5e7ec] bg-[#f6f7fb] p-4 sm:p-5">
             <p className="break-words text-[11px] font-semibold uppercase tracking-[0.14em] text-[#737a8c]">
               Product State
             </p>
 
-            <p className="mt-2 max-w-full break-words text-base font-semibold capitalize leading-6 text-[#1a1d24]">
+            <p className="mt-2 max-w-full break-words text-base font-semibold capitalize leading-6 text-[#0f172a]">
               {
                 product.status
               }

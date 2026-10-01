@@ -22,7 +22,7 @@ export function SidebarNavItem({
       className={[
         "group relative flex items-center gap-3 px-3 py-2.5 text-[13px] tracking-[0.01em] transition-colors",
         active
-          ? "bg-white/10 text-white before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-[#8fa3cc]"
+          ? "bg-white/10 text-white before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-[#a5b4fc]"
           : "text-[#c3c9d6] hover:bg-white/5 hover:text-white",
       ].join(" ")}
     >

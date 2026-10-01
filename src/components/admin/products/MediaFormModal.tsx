@@ -338,7 +338,7 @@ export default function MediaFormModal({
 
         <div className="flex items-center justify-between border-b border-[#e5e7ec] px-6 py-5">
           <div>
-            <h2 className="text-lg font-semibold text-[#1a1d24]">
+            <h2 className="text-lg font-semibold text-[#0f172a]">
               {media
                 ? "Edit Media"
                 : "Add Media"}
@@ -375,7 +375,7 @@ export default function MediaFormModal({
           ================================================= */}
 
           <div>
-            <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+            <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
               Product Image
             </span>
 
@@ -400,7 +400,7 @@ export default function MediaFormModal({
               onClick={
                 openFilePicker
               }
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#d3d7df] bg-[#f4f5f7] px-4 py-7 text-sm font-medium text-[#1a1d24] transition hover:border-[#7d8aa6] hover:bg-[#fdecec] disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#d3d7df] bg-[#f6f7fb] px-4 py-7 text-sm font-medium text-[#0f172a] transition hover:border-[#818cf8] hover:bg-[#fdecec] disabled:opacity-50"
             >
               {uploading ? (
                 <>
@@ -429,7 +429,7 @@ export default function MediaFormModal({
             </p>
 
             {selectedFile && (
-              <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#eef0f4] px-3 py-2 text-xs text-[#1a1d24]">
+              <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#eef0f4] px-3 py-2 text-xs text-[#0f172a]">
                 <Check
                   size={14}
                 />
@@ -454,7 +454,7 @@ export default function MediaFormModal({
           ================================================= */}
 
           {src && (
-            <div className="flex items-center gap-4 rounded-xl border border-[#e5e7ec] bg-[#f4f5f7] p-3">
+            <div className="flex items-center gap-4 rounded-xl border border-[#e5e7ec] bg-[#f6f7fb] p-3">
               <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-[#e5e7ec] bg-[#eef0f4]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -466,7 +466,7 @@ export default function MediaFormModal({
                   className="h-full w-full object-cover"
                 />
 
-                <div className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-[#ffffff]/90 px-1.5 py-1 text-[9px] font-medium text-[#1a1d24] shadow-sm">
+                <div className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-[#ffffff]/90 px-1.5 py-1 text-[9px] font-medium text-[#0f172a] shadow-sm">
                   <ImageIcon
                     size={10}
                   />
@@ -476,7 +476,7 @@ export default function MediaFormModal({
               </div>
 
               <div className="min-w-0">
-                <p className="text-sm font-medium text-[#1a1d24]">
+                <p className="text-sm font-medium text-[#0f172a]">
                   Image uploaded
                 </p>
 
@@ -494,7 +494,7 @@ export default function MediaFormModal({
           ================================================= */}
 
           <label>
-            <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+            <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
               Source URL
             </span>
 
@@ -506,7 +506,7 @@ export default function MediaFormModal({
                 )
               }
               placeholder="https://..."
-              className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#7d8aa6]"
+              className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
             />
 
             <p className="mt-1.5 text-xs text-[#737a8c]">
@@ -521,7 +521,7 @@ export default function MediaFormModal({
           ================================================= */}
 
           <label>
-            <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+            <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
               Media Type
             </span>
 
@@ -533,7 +533,7 @@ export default function MediaFormModal({
                     .value as ProductMedia["type"],
                 )
               }
-              className="h-11 w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm outline-none focus:border-[#7d8aa6]"
+              className="h-11 w-full rounded-xl border border-[#d3d7df] bg-[#ffffff] px-3 text-sm outline-none focus:border-[#818cf8]"
             >
               <option value="image">
                 Image
@@ -551,7 +551,7 @@ export default function MediaFormModal({
 
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="sm:col-span-2">
-              <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+              <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                 Alt Text
               </span>
 
@@ -563,12 +563,12 @@ export default function MediaFormModal({
                   )
                 }
                 placeholder="Ivory embroidered suit"
-                className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#7d8aa6]"
+                className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
               />
             </label>
 
             <label>
-              <span className="mb-1.5 block text-sm font-medium text-[#1a1d24]">
+              <span className="mb-1.5 block text-sm font-medium text-[#0f172a]">
                 Sort Order
               </span>
 
@@ -581,7 +581,7 @@ export default function MediaFormModal({
                     event.target.value,
                   )
                 }
-                className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#7d8aa6]"
+                className="h-11 w-full rounded-xl border border-[#d3d7df] px-3 text-sm outline-none focus:border-[#818cf8]"
               />
             </label>
           </div>
@@ -599,10 +599,10 @@ export default function MediaFormModal({
                   event.target.checked,
                 )
               }
-              className="h-4 w-4 rounded border-[#d3d7df] accent-[#1a1d24]"
+              className="h-4 w-4 rounded border-[#d3d7df] accent-[#0f172a]"
             />
 
-            <span className="text-sm text-[#1a1d24]">
+            <span className="text-sm text-[#0f172a]">
               Make this the
               primary media
             </span>
@@ -621,7 +621,7 @@ export default function MediaFormModal({
               saving ||
               uploading
             }
-            className="rounded-xl border border-[#d3d7df] px-4 py-2.5 text-sm font-medium text-[#1a1d24] disabled:opacity-50"
+            className="rounded-xl border border-[#d3d7df] px-4 py-2.5 text-sm font-medium text-[#0f172a] disabled:opacity-50"
           >
             Cancel
           </button>
@@ -636,7 +636,7 @@ export default function MediaFormModal({
               uploading ||
               !src.trim()
             }
-            className="rounded-xl bg-[#2b3a55] px-5 py-2.5 text-sm font-medium text-white disabled:opacity-50"
+            className="rounded-xl bg-[#4338ca] px-5 py-2.5 text-sm font-medium text-white disabled:opacity-50"
           >
             {saving
               ? "Saving..."

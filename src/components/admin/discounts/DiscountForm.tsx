@@ -506,7 +506,7 @@ export default function DiscountForm({
       <div className="mb-6">
         <Link
           href="/admin/discounts"
-          className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#2b3a55]"
+          className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-secondary)] transition hover:text-[#4338ca]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
@@ -561,7 +561,7 @@ export default function DiscountForm({
                 }
                 placeholder="e.g. WELCOME10"
                 maxLength={40}
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 font-mono text-sm uppercase text-[var(--color-ink)] outline-none transition placeholder:normal-case placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 font-mono text-sm uppercase text-[var(--color-ink)] outline-none transition placeholder:normal-case placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
 
               <p className="mt-1.5 text-xs text-[var(--color-secondary)]">
@@ -589,7 +589,7 @@ export default function DiscountForm({
                       .value as CouponDiscountType,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] bg-[#ffffff] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               >
                 <option value="percentage">
                   Percentage
@@ -624,7 +624,7 @@ export default function DiscountForm({
                 placeholder="Describe this discount..."
                 maxLength={500}
                 rows={3}
-                className="w-full resize-none rounded-lg border border-[var(--color-border)] px-3 py-2.5 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="w-full resize-none rounded-lg border border-[var(--color-border)] px-3 py-2.5 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
           </div>
@@ -670,7 +670,7 @@ export default function DiscountForm({
                       event.target.value,
                     )
                   }
-                  className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 pr-12 text-sm text-[var(--color-ink)] outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                  className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 pr-12 text-sm text-[var(--color-ink)] outline-none transition disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
                 />
 
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-[var(--color-secondary)]">
@@ -710,7 +710,7 @@ export default function DiscountForm({
                     ? "e.g. 500"
                     : "Only for percentage"
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-gray-400 disabled:bg-gray-50 disabled:text-gray-400 focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
 
@@ -734,7 +734,7 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="0"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
           </div>
@@ -767,7 +767,7 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
 
@@ -791,7 +791,7 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
 
@@ -808,7 +808,7 @@ export default function DiscountForm({
                     event.target.checked,
                   )
                 }
-                className="h-4 w-4 accent-[#2b3a55]"
+                className="h-4 w-4 accent-[#4338ca]"
               />
 
               <span>
@@ -851,7 +851,7 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
             </div>
 
@@ -872,7 +872,7 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#2b3a55] focus:ring-1 focus:ring-[#2b3a55]"
+                className="h-10 w-full rounded-lg border border-[var(--color-border)] px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[#4338ca] focus:ring-1 focus:ring-[#4338ca]"
               />
 
               <p className="mt-1.5 text-xs text-[var(--color-secondary)]">
@@ -894,7 +894,7 @@ export default function DiscountForm({
                   event.target.checked,
                 )
               }
-              className="mt-0.5 h-4 w-4 accent-[#2b3a55]"
+              className="mt-0.5 h-4 w-4 accent-[#4338ca]"
             />
 
             <span>
@@ -921,7 +921,7 @@ export default function DiscountForm({
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#2b3a55] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e2a40] disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#4338ca] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3730a3] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save
               size={17}

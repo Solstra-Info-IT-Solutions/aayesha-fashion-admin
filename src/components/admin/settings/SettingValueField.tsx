@@ -105,7 +105,7 @@ export default function SettingValueField({
       required
       error={error}
     >
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-[#ffffff] focus-within:border-[#2b3a55] focus-within:ring-2 focus-within:ring-[#2b3a55]/10">
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-[#ffffff] focus-within:border-[#4338ca] focus-within:ring-2 focus-within:ring-[#4338ca]/10">
         <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-2">
           <div className="flex items-center gap-1">
             <button

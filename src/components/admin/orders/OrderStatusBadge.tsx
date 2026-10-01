@@ -14,7 +14,7 @@ export function OrderStatusBadge({
     );
 
   return (
-    <span className="inline-flex rounded-full border border-[#e5e7ec] bg-[#f4f5f7] px-2.5 py-1 text-[11px] font-medium capitalize text-[#5b6270]">
+    <span className="inline-flex rounded-full border border-[#e5e7ec] bg-[#f6f7fb] px-2.5 py-1 text-[11px] font-medium capitalize text-[#5b6270]">
       {label}
     </span>
   );

@@ -28,7 +28,7 @@ export default function SettingGroupField({
         maxLength={80}
         autoComplete="off"
         spellCheck={false}
-        className="h-11 w-full rounded-xl border border-gray-200 bg-[#ffffff] px-3.5 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#2b3a55] focus:ring-2 focus:ring-[#2b3a55]/10"
+        className="h-11 w-full rounded-xl border border-gray-200 bg-[#ffffff] px-3.5 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#4338ca] focus:ring-2 focus:ring-[#4338ca]/10"
       />
 
       <p className="text-right text-xs text-gray-400">

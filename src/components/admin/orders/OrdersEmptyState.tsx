@@ -5,7 +5,7 @@ export function OrdersEmptyState({
 }) {
   return (
     <div className="border border-[#e5e7ec] bg-[#ffffff] px-6 py-16 text-center">
-      <h2 className="font-serif text-2xl text-[#1a1d24]">
+      <h2 className="font-serif text-2xl text-[#0f172a]">
         {filtered
           ? "No matching orders"
           : "No orders yet"}

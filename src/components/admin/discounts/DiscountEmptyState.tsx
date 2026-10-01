@@ -18,7 +18,7 @@ export default function DiscountEmptyState({
 }: DiscountEmptyStateProps) {
   return (
     <div className="rounded-xl border border-dashed border-[var(--color-border)] bg-[#ffffff] px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#2b3a55]">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-rose-light)] text-[#4338ca]">
         <Percent size={26} />
       </div>
 
@@ -55,7 +55,7 @@ export default function DiscountEmptyState({
 
           <Link
             href="/admin/discounts/create"
-            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-[#2b3a55] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e2a40]"
+            className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg bg-[#4338ca] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3730a3]"
           >
             <Plus size={17} />
             New Discount

@@ -113,7 +113,7 @@ export default function ReviewPagination({
                 onClick={() => onPageChange(item)}
                 className={`h-9 min-w-9 rounded-lg px-2 text-sm font-medium transition ${
                   isActive
-                    ? "bg-[#2b3a55] text-white"
+                    ? "bg-[#4338ca] text-white"
                     : "border border-[var(--color-border)] bg-[#ffffff] text-[var(--color-ink)] hover:bg-gray-50"
                 }`}
               >

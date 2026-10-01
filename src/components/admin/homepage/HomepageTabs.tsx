@@ -78,8 +78,8 @@ export function HomepageTabs({
               className={[
                 "relative flex items-center gap-2 px-4 py-3 text-xs font-medium uppercase tracking-[0.12em] transition",
                 active
-                  ? "bg-[#2b3a55] text-white"
-                  : "text-[#5b6270] hover:bg-[#ffffff] hover:text-[#1a1d24]",
+                  ? "bg-[#4338ca] text-white"
+                  : "text-[#5b6270] hover:bg-[#ffffff] hover:text-[#0f172a]",
               ].join(" ")}
             >
               <Icon size={15} strokeWidth={1.7} />

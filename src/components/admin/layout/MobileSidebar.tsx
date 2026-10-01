@@ -37,11 +37,11 @@ export function MobileSidebar({
       <button
         type="button"
         onClick={onClose}
-        className="absolute inset-0 bg-[#1a1d24]/50"
+        className="absolute inset-0 bg-[#0f172a]/50"
         aria-label="Close navigation"
       />
 
-      <aside className="relative h-full w-[290px] max-w-[85vw] bg-[#1a1d24] text-white shadow-xl">
+      <aside className="relative h-full w-[290px] max-w-[85vw] sidebar-surface text-white shadow-xl">
         <button
           type="button"
           onClick={onClose}
