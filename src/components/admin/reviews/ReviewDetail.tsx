@@ -6,11 +6,13 @@ import {
   CheckCircle2,
   Clock3,
   Edit3,
+  ExternalLink,
   MessageSquareText,
   Save,
   Star,
   StarOff,
   Trash2,
+  X,
   XCircle,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -85,6 +87,22 @@ export default function ReviewDetail({
   onUpdate,
 }: ReviewDetailProps) {
   const [editing, setEditing] = useState(false);
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+
+  const media = review.media ?? [];
+  const preview = previewIndex === null ? null : media[previewIndex];
+
+  useEffect(() => {
+    if (previewIndex === null) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPreviewIndex(null);
+    };
+
+    document.addEventListener("keydown", onKey);
+
+    return () => document.removeEventListener("keydown", onKey);
+  }, [previewIndex]);
 
   const [title, setTitle] = useState(review.title || "");
   const [body, setBody] = useState(review.body || "");
@@ -329,6 +347,62 @@ export default function ReviewDetail({
             )}
           </section>
 
+          {/* Customer Media */}
+          <section className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
+            <h2 className="text-base font-semibold text-[var(--color-ink)]">
+              Customer Photos &amp; Video
+              <span className="ml-2 text-sm font-normal text-[var(--color-secondary)]">
+                ({media.length})
+              </span>
+            </h2>
+
+            {media.length === 0 ? (
+              <p className="mt-3 text-sm text-[var(--color-secondary)]">
+                The customer did not attach any photos or videos.
+              </p>
+            ) : (
+              <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                {media.map((item, index) => (
+                  <li key={item.publicId || item.url}>
+                    <button
+                      type="button"
+                      onClick={() => setPreviewIndex(index)}
+                      aria-label={
+                        item.type === "video"
+                          ? "Play review video"
+                          : "View review photo"
+                      }
+                      className="group relative block aspect-square w-full overflow-hidden rounded-xl border border-[var(--color-border)] bg-gray-50"
+                    >
+                      {item.type === "video" ? (
+                        <>
+                          <video
+                            src={item.url}
+                            muted
+                            preload="metadata"
+                            className="h-full w-full object-cover"
+                          />
+
+                          <span className="absolute inset-0 flex items-center justify-center bg-black/30 text-xs font-semibold uppercase tracking-wide text-white">
+                            Video
+                          </span>
+                        </>
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={item.url}
+                          alt="Customer review"
+                          loading="lazy"
+                          className="h-full w-full object-cover transition group-hover:scale-105"
+                        />
+                      )}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
           {/* Admin Note */}
           <section className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
             <h2 className="text-base font-semibold text-[var(--color-ink)]">
@@ -501,6 +575,57 @@ export default function ReviewDetail({
           </section>
         </aside>
       </div>
+
+      {preview ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Review media preview"
+          onClick={() => setPreviewIndex(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4"
+        >
+          <div className="absolute right-4 top-4 flex gap-2">
+            <a
+              href={preview.url}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => event.stopPropagation()}
+              aria-label="Open original in a new tab"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25"
+            >
+              <ExternalLink size={18} />
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setPreviewIndex(null)}
+              aria-label="Close preview"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <div onClick={(event) => event.stopPropagation()}>
+            {preview.type === "video" ? (
+              <video
+                src={preview.url}
+                controls
+                autoPlay
+                playsInline
+                className="max-h-[85vh] max-w-[92vw] rounded-lg"
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={preview.url}
+                alt="Customer review"
+                className="max-h-[85vh] max-w-[92vw] rounded-lg object-contain"
+              />
+            )}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -17,6 +17,12 @@ export type ReviewStatus =
 export type ReviewSort =
   (typeof REVIEW_SORTS)[number];
 
+export type ReviewMedia = {
+  type: "image" | "video";
+  url: string;
+  publicId: string;
+};
+
 export type Review = {
   _id: string;
 
@@ -27,6 +33,11 @@ export type Review = {
   rating: number;
   title: string;
   body: string;
+
+  /** Customer-uploaded photos / video (may be absent on older reviews). */
+  media?: ReviewMedia[];
+  userName?: string;
+  verifiedPurchase?: boolean;
 
   status: ReviewStatus;
   isFeatured: boolean;
