@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageCircle, RefreshCw, ShoppingBag } from "lucide-react";
+import { MessageCircle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminAuth } from "@/hooks/useAdminAuth";
@@ -52,18 +52,15 @@ export default function AbandonedCartsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 pb-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-rose-light)] text-[#26221d]">
-            <ShoppingBag size={22} />
-          </div>
-
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Recovery</p>
+            <h1 className="mt-1 text-[#2a2520]">
               Abandoned carts
             </h1>
 
-            <p className="mt-1 text-sm text-[var(--color-secondary)]">
+            <p className="mt-1 text-sm text-[#5f584d]">
               Bags left untouched for 24 hours or more. Customers get an in-app
               reminder after 24 h and again after 72 h (plus an email if they
               opted in).
@@ -78,7 +75,7 @@ export default function AbandonedCartsPage() {
             setReloadKey((key) => key + 1);
           }}
           disabled={refreshing}
-          className="inline-flex h-10 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[#fffdf8] px-4 text-sm font-medium text-[var(--color-ink)] hover:bg-gray-50 disabled:opacity-50"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-50"
         >
           <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
           Refresh
@@ -86,38 +83,90 @@ export default function AbandonedCartsPage() {
       </div>
 
       {data === null && !failed ? (
-        <p className="text-sm text-[var(--color-secondary)]">Loading…</p>
+        <p className="text-sm text-[#5f584d]">Loading…</p>
       ) : failed ? (
-        <p className="text-sm text-red-600">Unable to load abandoned carts.</p>
+        <p className="text-sm text-[#b3261e]">Unable to load abandoned carts.</p>
       ) : data && data.carts.length === 0 ? (
-        <p className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-8 text-center text-sm text-[var(--color-secondary)]">
+        <p className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-8 text-center text-sm text-[#5f584d]">
           No abandoned carts right now.
         </p>
       ) : data ? (
         <>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-              <p className="text-xs uppercase tracking-wide text-[var(--color-secondary)]">
+            <div className="surface p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
                 Abandoned bags
               </p>
-              <p className="mt-2 text-3xl font-semibold text-[var(--color-ink)]">
+              <p className="display mt-1 text-4xl font-semibold text-[#2a2520]">
                 {data.summary.carts}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] p-5 shadow-sm">
-              <p className="text-xs uppercase tracking-wide text-[var(--color-secondary)]">
+            <div className="surface p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
                 Value waiting
               </p>
-              <p className="mt-2 text-3xl font-semibold text-[var(--color-ink)]">
+              <p className="display mt-1 text-4xl font-semibold text-[#2a2520]">
                 {money(data.summary.value)}
               </p>
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-[var(--color-border)] bg-[#fffdf8] shadow-sm">
+          <div className="space-y-3 md:hidden">
+            {data.carts.map((cart) => {
+              const digits = cart.phone.replace(/\D/g, "");
+              const wa = digits
+                ? `https://wa.me/${digits.length === 10 ? `91${digits}` : digits}?text=${encodeURIComponent(
+                    `Hi ${cart.customerName}, you left some lovely pieces in your Aayesha Fashion bag. Need any help completing your order?`,
+                  )}`
+                : "";
+
+              return (
+                <div key={cart.cartId} className="surface p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="truncate font-semibold text-[#2a2520]">{cart.customerName}</p>
+                      <p className="truncate text-xs text-[#756d62]">{cart.email}</p>
+                    </div>
+                    <p className="shrink-0 font-semibold text-[#2a2520]">{money(cart.total)}</p>
+                  </div>
+
+                  <div className="mt-3 space-y-0.5 text-sm text-[#5f584d]">
+                    {cart.items.slice(0, 3).map((item) => (
+                      <p key={item.name}>
+                        {item.name} × {item.quantity}
+                      </p>
+                    ))}
+                    {cart.items.length > 3 ? (
+                      <p className="text-xs">+{cart.items.length - 3} more</p>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#e6dfcf] pt-3 text-xs text-[#5f584d]">
+                    <span>
+                      Idle {idleLabel(cart.idleHours)} ·{" "}
+                      {cart.remindersSent === 0 ? "no reminders yet" : `${cart.remindersSent} of 2 sent`}
+                    </span>
+                    {wa ? (
+                      <a
+                        href={wa}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d6ccb6] px-3 text-xs font-semibold text-[#2a2520] hover:bg-[#f1ead9]"
+                      >
+                        <MessageCircle size={14} />
+                        WhatsApp
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="hidden overflow-x-auto surface md:block">
             <table className="w-full min-w-[760px] text-left text-sm">
-              <thead className="border-b border-[var(--color-border)] text-xs uppercase tracking-wide text-[var(--color-secondary)]">
+              <thead className="border-b border-[#e6dfcf] text-xs uppercase tracking-wide text-[#5f584d]">
                 <tr>
                   <th className="px-5 py-3 font-medium">Customer</th>
                   <th className="px-5 py-3 font-medium">Bag</th>
@@ -128,7 +177,7 @@ export default function AbandonedCartsPage() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-[var(--color-border)]">
+              <tbody className="divide-y divide-[#e6dfcf]">
                 {data.carts.map((cart) => {
                   const digits = cart.phone.replace(/\D/g, "");
                   const wa = digits
@@ -140,15 +189,15 @@ export default function AbandonedCartsPage() {
                   return (
                     <tr key={cart.cartId} className="align-top">
                       <td className="px-5 py-4">
-                        <p className="font-medium text-[var(--color-ink)]">
+                        <p className="font-medium text-[#2a2520]">
                           {cart.customerName}
                         </p>
-                        <p className="text-xs text-[var(--color-secondary)]">
+                        <p className="text-xs text-[#5f584d]">
                           {cart.email}
                         </p>
                       </td>
 
-                      <td className="px-5 py-4 text-[var(--color-secondary)]">
+                      <td className="px-5 py-4 text-[#5f584d]">
                         {cart.items.slice(0, 3).map((item) => (
                           <p key={item.name}>
                             {item.name} × {item.quantity}
@@ -160,15 +209,15 @@ export default function AbandonedCartsPage() {
                         ) : null}
                       </td>
 
-                      <td className="px-5 py-4 font-semibold text-[var(--color-ink)]">
+                      <td className="px-5 py-4 font-semibold text-[#2a2520]">
                         {money(cart.total)}
                       </td>
 
-                      <td className="px-5 py-4 text-[var(--color-secondary)]">
+                      <td className="px-5 py-4 text-[#5f584d]">
                         {idleLabel(cart.idleHours)}
                       </td>
 
-                      <td className="px-5 py-4 text-[var(--color-secondary)]">
+                      <td className="px-5 py-4 text-[#5f584d]">
                         {cart.remindersSent === 0
                           ? "None yet"
                           : `${cart.remindersSent} of 2 sent`}
@@ -180,7 +229,7 @@ export default function AbandonedCartsPage() {
                             href={wa}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] px-3 py-2 text-xs font-medium text-[var(--color-ink)] hover:bg-gray-50"
+                            className="inline-flex items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 py-2 text-xs font-medium text-[#2a2520] hover:bg-[#f7f2e7]"
                           >
                             <MessageCircle size={14} />
                             WhatsApp
