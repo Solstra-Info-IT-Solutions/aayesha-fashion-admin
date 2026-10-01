@@ -1,477 +1,184 @@
 "use client";
 
-import type {
-  ProductListParams,
-  ProductSort,
-  ProductStatus,
-} from "@/types/admin-product";
+import { useEffect, useRef, useState } from "react";
+import { LayoutGrid, List, Search, SlidersHorizontal } from "lucide-react";
+
+import type { ProductListParams, ProductSort } from "@/types/admin-product";
 
 interface ProductToolbarProps {
   categories?: Array<{ id: string; name: string }>;
   filters: ProductListParams;
-  onChange: (
-    filters: ProductListParams,
-  ) => void;
+  onChange: (filters: ProductListParams) => void;
+  view: "table" | "grid";
+  onViewChange: (view: "table" | "grid") => void;
 }
 
-const statuses: Array<{
-  value: ProductStatus;
-  label: string;
-}> = [
-  {
-    value: "draft",
-    label: "Draft",
-  },
-  {
-    value: "active",
-    label: "Active",
-  },
-  {
-    value: "archived",
-    label: "Archived",
-  },
-  {
-    value: "discontinued",
-    label: "Discontinued",
-  },
+const control =
+  "h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#9a9184] focus:border-[#b08d57] focus:ring-2 focus:ring-[#b08d57]/20";
+
+const FACETS: Array<{ key: "isNew" | "isFeatured" | "isBestSeller"; label: string }> = [
+  { key: "isNew", label: "New" },
+  { key: "isFeatured", label: "Featured" },
+  { key: "isBestSeller", label: "Best seller" },
 ];
 
 export default function ProductToolbar({
   categories = [],
   filters,
   onChange,
+  view,
+  onViewChange,
 }: ProductToolbarProps) {
-  const update = (
-    patch: Partial<ProductListParams>,
-  ) => {
-    onChange({
-      ...filters,
-      ...patch,
-      page: 1,
-    });
-  };
+  const [text, setText] = useState(filters.search ?? "");
+  const [open, setOpen] = useState(false);
+  const lastSent = useRef(filters.search ?? "");
+  const filtersRef = useRef(filters);
+
+  useEffect(() => {
+    filtersRef.current = filters;
+  });
+
+  const update = (patch: Partial<ProductListParams>) => onChange({ ...filtersRef.current, ...patch, page: 1 });
+
+  // Debounced search: one request after typing stops.
+  useEffect(() => {
+    if (text === lastSent.current) return;
+
+    const timer = window.setTimeout(() => {
+      lastSent.current = text;
+      onChange({ ...filtersRef.current, search: text.trim() || undefined, page: 1 });
+    }, 350);
+
+    return () => window.clearTimeout(timer);
+  }, [text, onChange]);
+
+  const facetsOn = FACETS.filter((facet) => filters[facet.key] === true).length;
+  const advanced = Boolean(filters.categoryId || filters.inStockOnly || filters.sort !== "newest" || facetsOn);
 
   return (
-    <div className="w-full rounded-2xl border border-[#e6dfcf] bg-[#fffdf8] p-3 sm:p-4">
-      {/* =====================================================
-          FILTER GRID
-      ===================================================== */}
+    <div className="surface p-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative min-w-[220px] flex-1">
+          <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8a8275]" />
 
-      <div
-        className="
-          grid
-          grid-cols-1
-          gap-3
-          sm:grid-cols-2
-          lg:grid-cols-4
-          xl:grid-cols-[1.7fr_1fr_1.2fr_1fr_1.25fr]
-        "
-      >
-        {/* ===================================================
-            SEARCH
-        =================================================== */}
-
-        <div className="relative sm:col-span-2 lg:col-span-4 xl:col-span-1">
           <input
-            type="text"
-            value={filters.search ?? ""}
-            onChange={(event) =>
-              update({
-                search:
-                  event.target.value,
-              })
-            }
-            placeholder="Search products..."
-            className="
-              h-11
-              w-full
-              rounded-xl
-              border
-              border-[#d6ccb6]
-              bg-[#fffdf8]
-              px-3.5
-              text-sm
-              text-[#2a2520]
-              placeholder:text-[#756d62]
-              outline-none
-              transition
-              focus:border-[#b08d57]
-              focus:ring-4
-              focus:ring-[#f1ead9]
-            "
+            type="search"
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            placeholder="Search by product name"
+            aria-label="Search products"
+            className={`${control} pl-10`}
           />
         </div>
 
-        {/* ===================================================
-            STATUS
-        =================================================== */}
-
-        <select
-          value={filters.status ?? ""}
-          onChange={(event) =>
-            update({
-              status: event.target
-                .value
-                ? (event.target
-                    .value as ProductStatus)
-                : undefined,
-            })
-          }
-          className="
-            h-11
-            w-full
-            min-w-0
-            rounded-xl
-            border
-            border-[#d6ccb6]
-            bg-[#fffdf8]
-            px-3.5
-            text-sm
-            text-[#2a2520]
-            outline-none
-            transition
-            focus:border-[#b08d57]
-            focus:ring-4
-            focus:ring-[#f1ead9]
-          "
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57] lg:hidden"
         >
-          <option value="">
-            All Status
-          </option>
+          <SlidersHorizontal size={15} />
+          Filters{advanced ? " •" : ""}
+        </button>
 
-          {statuses.map((status) => (
-            <option
-              key={status.value}
-              value={status.value}
+        <div className="inline-flex rounded-lg border border-[#d6ccb6] bg-[#fffdf8] p-0.5" role="group" aria-label="View">
+          {(
+            [
+              ["table", List, "Table view"],
+              ["grid", LayoutGrid, "Grid view"],
+            ] as const
+          ).map(([key, Icon, label]) => (
+            <button
+              key={key}
+              type="button"
+              aria-label={label}
+              aria-pressed={view === key}
+              onClick={() => onViewChange(key)}
+              className={`flex h-10 w-10 items-center justify-center rounded-md transition ${
+                view === key ? "bg-[#26221d] text-[#fffdf8]" : "text-[#5f584d] hover:text-[#2a2520]"
+              }`}
             >
-              {status.label}
-            </option>
+              <Icon size={16} />
+            </button>
           ))}
-        </select>
+        </div>
+      </div>
 
-        {/* ===================================================
-            CATEGORY
-        =================================================== */}
-
+      <div className={`${open ? "grid" : "hidden"} mt-3 gap-3 sm:grid-cols-3 lg:grid`}>
         <select
           value={filters.categoryId ?? ""}
-          onChange={(event) =>
-            update({
-              categoryId:
-                event.target.value ||
-                undefined,
-            })
-          }
+          onChange={(event) => update({ categoryId: event.target.value || undefined })}
           aria-label="Category"
-          className="
-            h-11
-            w-full
-            min-w-0
-            rounded-xl
-            border
-            border-[#d6ccb6]
-            bg-[#fffdf8]
-            px-3.5
-            text-sm
-            text-[#2a2520]
-            placeholder:text-[#756d62]
-            outline-none
-            transition
-            focus:border-[#b08d57]
-            focus:ring-4
-            focus:ring-[#f1ead9]
-          "
+          className={control}
         >
           <option value="">All categories</option>
-
           {categories.map((category) => (
-            <option
-              key={category.id}
-              value={category.id}
-            >
+            <option key={category.id} value={category.id}>
               {category.name}
             </option>
           ))}
         </select>
 
-        {/* ===================================================
-            STOCK
-        =================================================== */}
-
         <select
-          value={
-            filters.inStockOnly
-              ? "in-stock"
-              : ""
-          }
-          onChange={(event) =>
-            update({
-              inStockOnly:
-                event.target.value ===
-                "in-stock"
-                  ? true
-                  : undefined,
-            })
-          }
-          className="
-            h-11
-            w-full
-            min-w-0
-            rounded-xl
-            border
-            border-[#d6ccb6]
-            bg-[#fffdf8]
-            px-3.5
-            text-sm
-            text-[#2a2520]
-            outline-none
-            transition
-            focus:border-[#b08d57]
-            focus:ring-4
-            focus:ring-[#f1ead9]
-          "
+          value={filters.inStockOnly ? "in-stock" : ""}
+          onChange={(event) => update({ inStockOnly: event.target.value === "in-stock" ? true : undefined })}
+          aria-label="Stock"
+          className={control}
         >
-          <option value="">
-            All Stock
-          </option>
-
-          <option value="in-stock">
-            In Stock
-          </option>
+          <option value="">All stock levels</option>
+          <option value="in-stock">In stock only</option>
         </select>
 
-        {/* ===================================================
-            SORT
-        =================================================== */}
-
         <select
-          value={
-            filters.sort ?? "newest"
-          }
-          onChange={(event) =>
-            update({
-              sort:
-                event.target
-                  .value as ProductSort,
-            })
-          }
-          className="
-            h-11
-            w-full
-            min-w-0
-            rounded-xl
-            border
-            border-[#d6ccb6]
-            bg-[#fffdf8]
-            px-3.5
-            text-sm
-            text-[#2a2520]
-            outline-none
-            transition
-            focus:border-[#b08d57]
-            focus:ring-4
-            focus:ring-[#f1ead9]
-          "
+          value={filters.sort ?? "newest"}
+          onChange={(event) => update({ sort: event.target.value as ProductSort })}
+          aria-label="Sort"
+          className={control}
         >
-          <option value="newest">
-            Newest
-          </option>
-
-          <option value="price-low">
-            Price: Low to High
-          </option>
-
-          <option value="price-high">
-            Price: High to Low
-          </option>
-
-          <option value="featured">
-            Featured
-          </option>
-
-          <option value="best-selling">
-            Best Selling
-          </option>
+          <option value="newest">Newest first</option>
+          <option value="price-low">Price: low to high</option>
+          <option value="price-high">Price: high to low</option>
+          <option value="featured">Featured first</option>
+          <option value="best-selling">Best selling</option>
         </select>
       </div>
 
-      {/* =====================================================
-          MERCHANDISING FILTERS
-      ===================================================== */}
+      <div className={`${open ? "flex" : "hidden"} mt-3 flex-wrap items-center gap-2 lg:flex`}>
+        <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#756d62]">Merchandising</span>
 
-      <div className="mt-3 border-t border-[#e6dfcf] pt-3">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          {/* LABEL */}
+        {FACETS.map((facet) => {
+          const on = filters[facet.key] === true;
 
-          <div className="shrink-0">
-            <span className="text-xs font-medium uppercase tracking-[0.08em] text-[#756d62]">
-              Quick Filters
-            </span>
-          </div>
-
-          {/* OPTIONS */}
-
-          <div className="grid w-full grid-cols-3 gap-2 sm:flex sm:w-auto">
-            {/* NEW */}
-
-            <label
-              className={`
-                flex
-                min-w-0
-                cursor-pointer
-                items-center
-                justify-center
-                gap-2
-                rounded-xl
-                border
-                px-3
-                py-2.5
-                text-xs
-                font-medium
-                transition
-                ${
-                  filters.isNew === true
-                    ? "border-[#b08d57] bg-[#f1ead9] text-[#3d372f]"
-                    : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:border-[#756d62] hover:bg-[#f7f2e7]"
-                }
-              `}
+          return (
+            <button
+              key={facet.key}
+              type="button"
+              aria-pressed={on}
+              onClick={() => update({ [facet.key]: on ? undefined : true })}
+              className={`h-8 rounded-full border px-3.5 text-xs font-semibold transition ${
+                on
+                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8]"
+                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:border-[#b08d57]"
+              }`}
             >
-              <input
-                type="checkbox"
-                checked={
-                  filters.isNew === true
-                }
-                onChange={(event) =>
-                  update({
-                    isNew: event.target
-                      .checked
-                      ? true
-                      : undefined,
-                  })
-                }
-                className="
-                  h-4
-                  w-4
-                  shrink-0
-                  cursor-pointer
-                  accent-[#b08d57]
-                "
-              />
+              {facet.label}
+            </button>
+          );
+        })}
 
-              <span className="truncate">
-                New
-              </span>
-            </label>
-
-            {/* FEATURED */}
-
-            <label
-              className={`
-                flex
-                min-w-0
-                cursor-pointer
-                items-center
-                justify-center
-                gap-2
-                rounded-xl
-                border
-                px-3
-                py-2.5
-                text-xs
-                font-medium
-                transition
-                ${
-                  filters.isFeatured ===
-                  true
-                    ? "border-[#b08d57] bg-[#f1ead9] text-[#3d372f]"
-                    : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:border-[#756d62] hover:bg-[#f7f2e7]"
-                }
-              `}
-            >
-              <input
-                type="checkbox"
-                checked={
-                  filters.isFeatured ===
-                  true
-                }
-                onChange={(event) =>
-                  update({
-                    isFeatured:
-                      event.target
-                        .checked
-                        ? true
-                        : undefined,
-                  })
-                }
-                className="
-                  h-4
-                  w-4
-                  shrink-0
-                  cursor-pointer
-                  accent-[#b08d57]
-                "
-              />
-
-              <span className="truncate">
-                Featured
-              </span>
-            </label>
-
-            {/* BEST SELLER */}
-
-            <label
-              className={`
-                flex
-                min-w-0
-                cursor-pointer
-                items-center
-                justify-center
-                gap-2
-                rounded-xl
-                border
-                px-3
-                py-2.5
-                text-xs
-                font-medium
-                transition
-                ${
-                  filters.isBestSeller ===
-                  true
-                    ? "border-[#b08d57] bg-[#f1ead9] text-[#3d372f]"
-                    : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:border-[#756d62] hover:bg-[#f7f2e7]"
-                }
-              `}
-            >
-              <input
-                type="checkbox"
-                checked={
-                  filters.isBestSeller ===
-                  true
-                }
-                onChange={(event) =>
-                  update({
-                    isBestSeller:
-                      event.target
-                        .checked
-                        ? true
-                        : undefined,
-                  })
-                }
-                className="
-                  h-4
-                  w-4
-                  shrink-0
-                  cursor-pointer
-                  accent-[#b08d57]
-                "
-              />
-
-              <span className="truncate">
-                Best Seller
-              </span>
-            </label>
-          </div>
-        </div>
+        {advanced || filters.search || filters.status ? (
+          <button
+            type="button"
+            onClick={() => {
+              lastSent.current = "";
+              setText("");
+              onChange({ page: 1, limit: filters.limit ?? 25, sort: "newest" });
+            }}
+            className="ml-auto h-8 rounded-lg px-3 text-sm font-semibold text-[#8a6a3b] hover:bg-[#f1ead9]"
+          >
+            Reset all
+          </button>
+        ) : null}
       </div>
     </div>
   );
