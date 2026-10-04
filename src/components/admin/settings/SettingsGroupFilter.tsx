@@ -19,6 +19,7 @@ export default function SettingsGroupFilter({
         <Filter className="h-4 w-4 text-[#9a9185]" />
 
         <select
+          aria-label="Filter by group"
           value={value}
           onChange={(event) => onChange(event.target.value)}
           className="bg-transparent text-sm font-medium text-[#e6dfd4] outline-none"

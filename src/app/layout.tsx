@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: "Aayesha Fashion Admin",
   description:
     "Aayesha Fashion administration panel",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
 };
 
 type RootLayoutProps = {

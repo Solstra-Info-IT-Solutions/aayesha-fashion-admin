@@ -75,7 +75,7 @@ export function KpiCard({
       {spark && spark.length > 1 && !loading ? (
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-9 opacity-80" aria-hidden="true">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={spark.map((v, i) => ({ i, v }))} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+            <AreaChart accessibilityLayer={false} data={spark.map((v, i) => ({ i, v }))} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
               <Area
                 type="monotone"
                 dataKey="v"

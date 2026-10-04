@@ -528,6 +528,7 @@ export function CategoriesPage() {
               </span>
 
               <select
+                aria-label="Filter by status"
                 value={isActive}
                 onChange={(event) => {
                   setPage(1);
