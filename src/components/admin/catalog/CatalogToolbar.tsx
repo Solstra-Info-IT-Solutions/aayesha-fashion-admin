@@ -89,6 +89,7 @@ export default function CatalogToolbar({
         <div className="flex gap-3">
           <div className="relative">
             <select
+          aria-label="Filter by status"
               value={isActive}
               onChange={(event) =>
                 onStatusChange(
@@ -115,6 +116,7 @@ export default function CatalogToolbar({
 
           <div className="relative">
             <select
+          aria-label="Sort order"
               value={sort}
               onChange={(event) =>
                 onSortChange(

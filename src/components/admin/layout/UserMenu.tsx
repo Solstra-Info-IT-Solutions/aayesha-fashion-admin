@@ -27,6 +27,7 @@ export function UserMenu() {
         onClick={() =>
           setOpen((value) => !value)
         }
+        aria-label="Account menu"
         className="flex h-10 items-center gap-2 border border-[#2e2a26] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] hover:border-[#4a443d]"
       >
         <UserCircle

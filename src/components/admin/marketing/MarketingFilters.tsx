@@ -91,6 +91,7 @@ export default function MarketingFilters({
 
         {/* Type */}
         <select
+          aria-label="Filter by type"
           value={type}
           onChange={(event) =>
             onTypeChange(
@@ -110,6 +111,7 @@ export default function MarketingFilters({
 
         {/* Status */}
         <select
+          aria-label="Filter by status"
           value={status}
           onChange={(event) =>
             onStatusChange(
@@ -135,6 +137,7 @@ export default function MarketingFilters({
           />
 
           <select
+          aria-label="Sort campaigns"
             value={sort}
             onChange={(event) =>
               onSortChange(

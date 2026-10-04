@@ -252,10 +252,10 @@ export async function apiFetch<T>(
       },
     );
   } catch (error) {
+    console.error("Admin API request failed:", error);
+
     throw new ApiError(
-      error instanceof Error
-        ? error.message
-        : "Network request failed.",
+      "We could not reach the server. Check your connection and try again.",
       0,
       "NETWORK_ERROR",
     );
