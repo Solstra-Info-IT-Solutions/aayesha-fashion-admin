@@ -59,7 +59,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-[#e6f0f7] text-[#1f5f86]";
+      return "bg-[#16222b] text-[#8fbfdc]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -68,11 +68,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-[#efe8d8] text-[#5f584d]";
+      return "bg-[#211e1b] text-[#cfc7bb]";
 
     case "draft":
     default:
-      return "bg-[#f7f2e7] text-[#3d372f]";
+      return "bg-[#111111] text-[#e6dfd4]";
   }
 }
 
@@ -85,23 +85,23 @@ export default function MarketingCampaignMobileCard({
   const isArchived = campaign.status === "archived";
 
   return (
-    <article className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4">
+    <article className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <Link
             href={`/admin/marketing/${campaign._id}`}
-            className="block truncate text-base font-semibold text-[#2a2520] transition hover:text-[#6f542f]"
+            className="block truncate text-base font-semibold text-[#f8f3f1] transition hover:text-[#d9c7a3]"
           >
             {campaign.name}
           </Link>
 
           {campaign.description ? (
-            <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#5f584d]">
+            <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#cfc7bb]">
               {campaign.description}
             </p>
           ) : (
-            <p className="mt-1 text-xs text-[#756d62]">
+            <p className="mt-1 text-xs text-[#9a9185]">
               No description
             </p>
           )}
@@ -118,52 +118,52 @@ export default function MarketingCampaignMobileCard({
 
       {/* Type */}
       <div className="mt-4">
-        <span className="inline-flex rounded-md bg-[#f7f2e7] px-2.5 py-1 text-xs font-medium text-[#5f584d]">
+        <span className="inline-flex rounded-md bg-[#111111] px-2.5 py-1 text-xs font-medium text-[#cfc7bb]">
           {formatLabel(campaign.type)}
         </span>
       </div>
 
       {/* Details */}
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <div className="rounded-lg border border-[#e6dfcf] p-3">
-          <div className="flex items-center gap-1.5 text-xs text-[#5f584d]">
+        <div className="rounded-lg border border-[#2e2a26] p-3">
+          <div className="flex items-center gap-1.5 text-xs text-[#cfc7bb]">
             <CircleDollarSign size={14} />
             Budget
           </div>
 
-          <p className="mt-1 text-sm font-semibold text-[#2a2520]">
+          <p className="mt-1 text-sm font-semibold text-[#f8f3f1]">
             {formatCurrency(campaign.budget)}
           </p>
         </div>
 
-        <div className="rounded-lg border border-[#e6dfcf] p-3">
-          <div className="flex items-center gap-1.5 text-xs text-[#5f584d]">
+        <div className="rounded-lg border border-[#2e2a26] p-3">
+          <div className="flex items-center gap-1.5 text-xs text-[#cfc7bb]">
             <CalendarDays size={14} />
             Start Date
           </div>
 
-          <p className="mt-1 text-sm font-semibold text-[#2a2520]">
+          <p className="mt-1 text-sm font-semibold text-[#f8f3f1]">
             {formatDate(campaign.startsAt)}
           </p>
         </div>
       </div>
 
       {/* End Date */}
-      <div className="mt-3 flex items-center justify-between border-t border-[#e6dfcf] pt-3">
-        <span className="text-xs text-[#5f584d]">
+      <div className="mt-3 flex items-center justify-between border-t border-[#2e2a26] pt-3">
+        <span className="text-xs text-[#cfc7bb]">
           End Date
         </span>
 
-        <span className="text-sm font-medium text-[#2a2520]">
+        <span className="text-sm font-medium text-[#f8f3f1]">
           {formatDate(campaign.endsAt)}
         </span>
       </div>
 
       {/* Actions */}
-      <div className="mt-4 flex items-center gap-2 border-t border-[#e6dfcf] pt-4">
+      <div className="mt-4 flex items-center gap-2 border-t border-[#2e2a26] pt-4">
         <Link
           href={`/admin/marketing/${campaign._id}`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#e6dfcf] text-xs font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#2e2a26] text-xs font-medium text-[#f8f3f1] transition hover:border-[#d9c7a3] hover:text-[#d9c7a3]"
         >
           <Eye size={15} />
           View
@@ -172,7 +172,7 @@ export default function MarketingCampaignMobileCard({
         {!isArchived && (
           <Link
             href={`/admin/marketing/${campaign._id}/edit`}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#6f542f] hover:text-[#6f542f]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-[#d9c7a3] hover:text-[#d9c7a3]"
             title="Edit campaign"
           >
             <Pencil size={15} />
@@ -184,7 +184,7 @@ export default function MarketingCampaignMobileCard({
             type="button"
             onClick={() => onRestore(campaign)}
             title="Restore campaign"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-green-600 hover:text-green-700"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-green-600 hover:text-green-700"
           >
             <RotateCcw size={15} />
           </button>
@@ -193,7 +193,7 @@ export default function MarketingCampaignMobileCard({
             type="button"
             onClick={() => onArchive(campaign)}
             title="Archive campaign"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-yellow-600 hover:text-yellow-700"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-yellow-600 hover:text-yellow-700"
           >
             <Archive size={15} />
           </button>
@@ -203,7 +203,7 @@ export default function MarketingCampaignMobileCard({
           type="button"
           onClick={() => onDelete(campaign)}
           title="Delete campaign"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#b3261e] hover:text-[#b3261e]"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-[#e08b84] hover:text-[#e08b84]"
         >
           <Trash2 size={15} />
         </button>

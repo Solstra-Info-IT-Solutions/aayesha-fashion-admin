@@ -25,23 +25,23 @@ export default function SettingRow({
       : String(setting.value ?? "");
 
   return (
-    <tr className="border-b border-[#e6dfcf] last:border-b-0 hover:bg-[#f7f2e7]/70">
+    <tr className="border-b border-[#2e2a26] last:border-b-0 hover:bg-[#111111]/70">
       <td className="px-5 py-4">
-        <div className="font-medium text-[#2a2520]">{setting.key}</div>
-        <div className="mt-1 text-xs text-[#756d62]">
+        <div className="font-medium text-[#f8f3f1]">{setting.key}</div>
+        <div className="mt-1 text-xs text-[#9a9185]">
           Updated {new Date(setting.updatedAt).toLocaleDateString()}
         </div>
       </td>
 
       <td className="px-5 py-4">
-        <span className="inline-flex rounded-full bg-[#efe8d8] px-2.5 py-1 text-xs font-medium capitalize text-[#5f584d]">
+        <span className="inline-flex rounded-full bg-[#211e1b] px-2.5 py-1 text-xs font-medium capitalize text-[#cfc7bb]">
           {setting.group}
         </span>
       </td>
 
       <td className="max-w-md px-5 py-4">
         <div
-          className="truncate text-sm text-[#5f584d]"
+          className="truncate text-sm text-[#cfc7bb]"
           title={displayValue}
         >
           {displayValue || "—"}
@@ -73,7 +73,7 @@ export default function SettingRow({
         <div className="flex items-center gap-2">
           <Link
             href={`/admin/settings/${encodeURIComponent(setting.key)}`}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#d6ccb6] hover:bg-[#f7f2e7]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-[#3a352f] hover:bg-[#111111]"
             title="Edit setting"
           >
             <Edit3 className="h-4 w-4" />
@@ -83,7 +83,7 @@ export default function SettingRow({
             type="button"
             onClick={() => onDelete(setting)}
             disabled={deleting}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] transition hover:bg-[#fdecec] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#5a2a27] text-[#e08b84] transition hover:bg-[#2b1a18] disabled:cursor-not-allowed disabled:opacity-50"
             title="Delete setting"
           >
             <Trash2 className="h-4 w-4" />

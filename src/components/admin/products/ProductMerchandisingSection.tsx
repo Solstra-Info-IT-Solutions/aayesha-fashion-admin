@@ -57,11 +57,11 @@ export default function ProductMerchandisingSection({
     <section className="surface min-w-0 overflow-hidden p-5 sm:p-6">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#2a2520]">
+        <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#f8f3f1]">
           Merchandising
         </h2>
 
-        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#5f584d]">
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#cfc7bb]">
           Storefront visibility and commercial
           positioning.
         </p>
@@ -73,7 +73,7 @@ export default function ProductMerchandisingSection({
           ([key, label]) => (
             <label
               key={key}
-              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e6dfcf] bg-[#fffdf8] px-3 py-2.5 transition hover:bg-[#f7f2e7]"
+              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-[#2e2a26] bg-[#1a1816] px-3 py-2.5 transition hover:bg-[#111111]"
             >
               <input
                 type="checkbox"
@@ -89,10 +89,10 @@ export default function ProductMerchandisingSection({
                       event.target.checked,
                   })
                 }
-                className="h-4 w-4 shrink-0 accent-[#2a2520]"
+                className="h-4 w-4 shrink-0 accent-[#f8f3f1]"
               />
 
-              <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#2a2520]">
+              <span className="min-w-0 break-words text-xs font-medium leading-5 text-[#f8f3f1]">
                 {label}
               </span>
             </label>
@@ -102,7 +102,7 @@ export default function ProductMerchandisingSection({
 
       {/* BADGES */}
       <div className="mt-5 min-w-0">
-        <p className="mb-2 text-xs font-medium leading-5 text-[#2a2520]">
+        <p className="mb-2 text-xs font-medium leading-5 text-[#f8f3f1]">
           Badges
         </p>
 
@@ -125,8 +125,8 @@ export default function ProductMerchandisingSection({
                   }
                   className={`inline-flex max-w-full items-center justify-center rounded-full border px-2.5 py-1.5 text-[11px] font-medium capitalize leading-4 transition ${
                     selected
-                      ? "border-[#26221d] bg-[#26221d] text-white"
-                      : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f7f2e7]"
+                      ? "border-[#f8f3f1] bg-[#b79a6a] text-[#111111]"
+                      : "border-[#3a352f] bg-[#1a1816] text-[#cfc7bb] hover:bg-[#111111]"
                   }`}
                 >
                   <span className="break-words">
@@ -145,7 +145,7 @@ export default function ProductMerchandisingSection({
       {/* RANKING */}
       <div className="mt-5 min-w-0 max-w-xs">
         <label className="block min-w-0">
-          <span className="mb-1.5 block break-words text-xs font-medium leading-5 text-[#2a2520]">
+          <span className="mb-1.5 block break-words text-xs font-medium leading-5 text-[#f8f3f1]">
             Ranking
           </span>
 
@@ -171,7 +171,7 @@ export default function ProductMerchandisingSection({
                       ),
               })
             }
-            className="box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#f1ead9]"
+            className="box-border h-10 min-w-0 w-full max-w-full rounded-xl border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2a241b]"
           />
         </label>
       </div>

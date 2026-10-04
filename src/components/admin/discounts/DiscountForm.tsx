@@ -465,9 +465,9 @@ export default function DiscountForm({
   ) {
     return (
       <div className="space-y-6">
-        <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
+        <div className="h-8 w-48 animate-pulse rounded bg-[#211e1b]" />
 
-        <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6">
+        <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-6">
           <div className="space-y-5">
             {Array.from({
               length: 8,
@@ -476,8 +476,8 @@ export default function DiscountForm({
                 key={index}
                 className="space-y-2"
               >
-                <div className="h-3 w-28 animate-pulse rounded bg-[#e6dfcf]" />
-                <div className="h-10 w-full animate-pulse rounded-lg bg-[#efe8d8]" />
+                <div className="h-3 w-28 animate-pulse rounded bg-[#2e2a26]" />
+                <div className="h-10 w-full animate-pulse rounded-lg bg-[#211e1b]" />
               </div>
             ))}
           </div>
@@ -507,19 +507,19 @@ export default function DiscountForm({
       <div className="mb-6">
         <SmartBackLink
           href="/admin/discounts"
-          className="mb-4 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#26221d]"
+          className="mb-4 inline-flex items-center gap-2 text-sm text-[#cfc7bb] transition hover:text-[#f8f3f1]"
         >
           <ArrowLeft size={16} />
           Back to Discounts
         </SmartBackLink>
 
-        <h1 className="text-[#2a2520]">
+        <h1 className="text-[#f8f3f1]">
           {mode === "create"
             ? "Create Discount"
             : "Edit Discount"}
         </h1>
 
-        <p className="mt-1 text-sm text-[#5f584d]">
+        <p className="mt-1 text-sm text-[#cfc7bb]">
           {mode === "create"
             ? "Create a new promotional discount coupon."
             : "Update the settings and availability of this discount coupon."}
@@ -531,21 +531,21 @@ export default function DiscountForm({
         className="space-y-6"
       >
         {/* Basic Information */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-semibold text-[#2a2520]">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-semibold text-[#f8f3f1]">
             Basic Information
           </h2>
 
-          <p className="mt-1 text-xs text-[#5f584d]">
+          <p className="mt-1 text-xs text-[#cfc7bb]">
             Configure the coupon code and discount type.
           </p>
 
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* Code */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Coupon Code
-                <span className="ml-1 text-[#b3261e]">
+                <span className="ml-1 text-[#e08b84]">
                   *
                 </span>
               </label>
@@ -562,19 +562,19 @@ export default function DiscountForm({
                 }
                 placeholder="e.g. WELCOME10"
                 maxLength={40}
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 font-mono text-sm uppercase text-[#2a2520] outline-none transition placeholder:normal-case placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 font-mono text-sm uppercase text-[#f8f3f1] outline-none transition placeholder:normal-case placeholder:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
 
-              <p className="mt-1.5 text-xs text-[#5f584d]">
+              <p className="mt-1.5 text-xs text-[#cfc7bb]">
                 Maximum 40 characters.
               </p>
             </div>
 
             {/* Type */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Discount Type
-                <span className="ml-1 text-[#b3261e]">
+                <span className="ml-1 text-[#e08b84]">
                   *
                 </span>
               </label>
@@ -590,7 +590,7 @@ export default function DiscountForm({
                       .value as CouponDiscountType,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               >
                 <option value="percentage">
                   Percentage
@@ -608,7 +608,7 @@ export default function DiscountForm({
 
             {/* Description */}
             <div className="md:col-span-2">
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Description
               </label>
 
@@ -625,24 +625,24 @@ export default function DiscountForm({
                 placeholder="Describe this discount..."
                 maxLength={500}
                 rows={3}
-                className="w-full resize-none rounded-lg border border-[#e6dfcf] px-3 py-2.5 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="w-full resize-none rounded-lg border border-[#2e2a26] px-3 py-2.5 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
           </div>
         </section>
 
         {/* Discount Rules */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-semibold text-[#2a2520]">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-semibold text-[#f8f3f1]">
             Discount Rules
           </h2>
 
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* Discount Value */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Discount Value
-                <span className="ml-1 text-[#b3261e]">
+                <span className="ml-1 text-[#e08b84]">
                   *
                 </span>
               </label>
@@ -671,10 +671,10 @@ export default function DiscountForm({
                       event.target.value,
                     )
                   }
-                  className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 pr-12 text-sm text-[#2a2520] outline-none transition disabled:bg-[#f7f2e7] disabled:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                  className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 pr-12 text-sm text-[#f8f3f1] outline-none transition disabled:bg-[#111111] disabled:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
                 />
 
-                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-[#5f584d]">
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-[#cfc7bb]">
                   {isPercentage
                     ? "%"
                     : isFreeShipping
@@ -686,7 +686,7 @@ export default function DiscountForm({
 
             {/* Maximum Discount */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Maximum Discount Amount
               </label>
 
@@ -711,13 +711,13 @@ export default function DiscountForm({
                     ? "e.g. 500"
                     : "Only for percentage"
                 }
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] disabled:bg-[#f7f2e7] disabled:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] disabled:bg-[#111111] disabled:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
 
             {/* Minimum Order */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Minimum Order Value
               </label>
 
@@ -735,22 +735,22 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="0"
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
           </div>
         </section>
 
         {/* Usage */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-semibold text-[#2a2520]">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-semibold text-[#f8f3f1]">
             Usage Limits
           </h2>
 
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* Total usage */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Total Usage Limit
               </label>
 
@@ -768,13 +768,13 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
 
             {/* Customer usage */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Usage Limit Per Customer
               </label>
 
@@ -792,12 +792,12 @@ export default function DiscountForm({
                   )
                 }
                 placeholder="Unlimited"
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
 
             {/* First order */}
-            <label className="md:col-span-2 flex cursor-pointer items-center gap-3 rounded-lg border border-[#e6dfcf] p-3 transition hover:bg-[#f7f2e7]">
+            <label className="md:col-span-2 flex cursor-pointer items-center gap-3 rounded-lg border border-[#2e2a26] p-3 transition hover:bg-[#111111]">
               <input
                 type="checkbox"
                 checked={
@@ -809,15 +809,15 @@ export default function DiscountForm({
                     event.target.checked,
                   )
                 }
-                className="h-4 w-4 accent-[#26221d]"
+                className="h-4 w-4 accent-[#f8f3f1]"
               />
 
               <span>
-                <span className="block text-sm font-medium text-[#2a2520]">
+                <span className="block text-sm font-medium text-[#f8f3f1]">
                   First Order Only
                 </span>
 
-                <span className="block text-xs text-[#5f584d]">
+                <span className="block text-xs text-[#cfc7bb]">
                   Allow this coupon only for a customer's first order.
                 </span>
               </span>
@@ -826,17 +826,17 @@ export default function DiscountForm({
         </section>
 
         {/* Schedule */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
-          <h2 className="text-base font-semibold text-[#2a2520]">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm sm:p-6">
+          <h2 className="text-base font-semibold text-[#f8f3f1]">
             Schedule
           </h2>
 
           <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* Start */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 Start Date
-                <span className="ml-1 text-[#b3261e]">
+                <span className="ml-1 text-[#e08b84]">
                   *
                 </span>
               </label>
@@ -852,13 +852,13 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
             </div>
 
             {/* End */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+              <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
                 End Date
               </label>
 
@@ -873,10 +873,10 @@ export default function DiscountForm({
                     event.target.value,
                   )
                 }
-                className="h-10 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]"
+                className="h-10 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]"
               />
 
-              <p className="mt-1.5 text-xs text-[#5f584d]">
+              <p className="mt-1.5 text-xs text-[#cfc7bb]">
                 Leave empty for no expiry.
               </p>
             </div>
@@ -884,7 +884,7 @@ export default function DiscountForm({
         </section>
 
         {/* Status */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm sm:p-6">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm sm:p-6">
           <label className="flex cursor-pointer items-start gap-3">
             <input
               type="checkbox"
@@ -895,15 +895,15 @@ export default function DiscountForm({
                   event.target.checked,
                 )
               }
-              className="mt-0.5 h-4 w-4 accent-[#26221d]"
+              className="mt-0.5 h-4 w-4 accent-[#f8f3f1]"
             />
 
             <span>
-              <span className="block text-sm font-medium text-[#2a2520]">
+              <span className="block text-sm font-medium text-[#f8f3f1]">
                 Active Discount
               </span>
 
-              <span className="mt-1 block text-xs leading-5 text-[#5f584d]">
+              <span className="mt-1 block text-xs leading-5 text-[#cfc7bb]">
                 When enabled, the coupon can become active according to its schedule.
               </span>
             </span>
@@ -914,7 +914,7 @@ export default function DiscountForm({
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <Link
             href="/admin/discounts"
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-5 text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7]"
+            className="inline-flex h-10 items-center justify-center rounded-lg border border-[#2e2a26] bg-[#1a1816] px-5 text-sm font-medium text-[#f8f3f1] transition hover:bg-[#111111]"
           >
             Cancel
           </Link>
@@ -922,7 +922,7 @@ export default function DiscountForm({
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#b79a6a] px-5 text-sm font-semibold text-[#111111] shadow-sm transition hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save
               size={17}

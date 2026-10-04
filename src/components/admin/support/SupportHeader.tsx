@@ -18,17 +18,17 @@ export default function SupportHeader({
     <div className="flex flex-col gap-5 pb-2 lg:flex-row lg:items-center lg:justify-between">
       <div>
         {/* Breadcrumb */}
-        <div className="mb-2 hidden items-center gap-2 text-xs text-[#5f584d]">
+        <div className="mb-2 hidden items-center gap-2 text-xs text-[#cfc7bb]">
           <Link
             href="/admin"
-            className="transition hover:text-[#26221d]"
+            className="transition hover:text-[#f8f3f1]"
           >
             Admin
           </Link>
 
           <span>/</span>
 
-          <span className="text-[#2a2520]">
+          <span className="text-[#f8f3f1]">
             Support
           </span>
         </div>
@@ -37,12 +37,12 @@ export default function SupportHeader({
         <div className="flex items-center gap-3">
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Help desk</p>
-            <h1 className="mt-1 text-[#2a2520]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">Help desk</p>
+            <h1 className="mt-1 text-[#f8f3f1]">
               Support
             </h1>
 
-            <p className="mt-1 text-sm text-[#5f584d]">
+            <p className="mt-1 text-sm text-[#cfc7bb]">
               Manage customer support tickets, priorities and resolutions.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function SupportHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] transition hover:bg-[#f1ead9] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] transition hover:bg-[#2a241b] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             size={17}

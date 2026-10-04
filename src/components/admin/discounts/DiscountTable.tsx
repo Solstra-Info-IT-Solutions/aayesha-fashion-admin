@@ -31,22 +31,22 @@ const statusConfig: Record<
   active: {
     label: "Active",
     className:
-      "bg-[#e8f5ec] text-[#276541]",
+      "bg-[#1a2419] text-[#8fb08a]",
   },
   inactive: {
     label: "Inactive",
     className:
-      "bg-[#efe8d8] text-[#5f584d]",
+      "bg-[#211e1b] text-[#cfc7bb]",
   },
   scheduled: {
     label: "Scheduled",
     className:
-      "bg-[#e6f0f7] text-[#1f5f86]",
+      "bg-[#16222b] text-[#8fbfdc]",
   },
   expired: {
     label: "Expired",
     className:
-      "bg-[#fdecec] text-[#8f1f19]",
+      "bg-[#2b1a18] text-[#f0a39d]",
   },
 };
 
@@ -115,36 +115,36 @@ export default function DiscountTable({
   actionLoadingId = null,
 }: DiscountTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm lg:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#2e2a26] bg-[#1a1816] shadow-sm lg:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1000px] border-collapse">
           <thead>
-            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]/80">
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+            <tr className="border-b border-[#2e2a26] bg-[#111111]/80">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Coupon
               </th>
 
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Discount
               </th>
 
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Usage
               </th>
 
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Start Date
               </th>
 
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 End Date
               </th>
 
-              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Status
               </th>
 
-              <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-3.5 text-right text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Actions
               </th>
             </tr>
@@ -164,20 +164,20 @@ export default function DiscountTable({
               return (
                 <tr
                   key={discount._id}
-                  className="border-b border-[#e6dfcf] last:border-b-0 transition hover:bg-[#f7f2e7]/60"
+                  className="border-b border-[#2e2a26] last:border-b-0 transition hover:bg-[#111111]/60"
                 >
                   {/* Coupon */}
                   <td className="px-5 py-4">
                     <div className="min-w-0">
                       <Link
                         href={`/admin/discounts/${discount._id}`}
-                        className="inline-flex max-w-[240px] items-center rounded-md bg-[#f1ead9] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#26221d] transition hover:bg-pink-100"
+                        className="inline-flex max-w-[240px] items-center rounded-md bg-[#2a241b] px-2.5 py-1 font-mono text-sm font-semibold tracking-wide text-[#f8f3f1] transition hover:bg-pink-100"
                       >
                         {discount.code}
                       </Link>
 
                       {discount.description && (
-                        <p className="mt-1.5 max-w-[260px] truncate text-xs text-[#5f584d]">
+                        <p className="mt-1.5 max-w-[260px] truncate text-xs text-[#cfc7bb]">
                           {discount.description}
                         </p>
                       )}
@@ -192,7 +192,7 @@ export default function DiscountTable({
 
                   {/* Discount */}
                   <td className="px-5 py-4">
-                    <div className="text-sm font-semibold text-[#2a2520]">
+                    <div className="text-sm font-semibold text-[#f8f3f1]">
                       {formatDiscount(
                         discount,
                       )}
@@ -200,7 +200,7 @@ export default function DiscountTable({
 
                     {discount.minimumOrderValue >
                       0 && (
-                      <p className="mt-1 text-xs text-[#5f584d]">
+                      <p className="mt-1 text-xs text-[#cfc7bb]">
                         Min. order{" "}
                         {new Intl.NumberFormat(
                           "en-IN",
@@ -220,7 +220,7 @@ export default function DiscountTable({
 
                   {/* Usage */}
                   <td className="px-5 py-4">
-                    <span className="text-sm font-medium text-[#2a2520]">
+                    <span className="text-sm font-medium text-[#f8f3f1]">
                       {usageText(
                         discount,
                       )}
@@ -228,7 +228,7 @@ export default function DiscountTable({
 
                     {discount.usageLimitPerCustomer !==
                       null && (
-                      <p className="mt-1 text-xs text-[#5f584d]">
+                      <p className="mt-1 text-xs text-[#cfc7bb]">
                         {discount.usageLimitPerCustomer}{" "}
                         per customer
                       </p>
@@ -236,14 +236,14 @@ export default function DiscountTable({
                   </td>
 
                   {/* Start */}
-                  <td className="px-5 py-4 text-sm text-[#2a2520]">
+                  <td className="px-5 py-4 text-sm text-[#f8f3f1]">
                     {formatDate(
                       discount.startsAt,
                     )}
                   </td>
 
                   {/* End */}
-                  <td className="px-5 py-4 text-sm text-[#2a2520]">
+                  <td className="px-5 py-4 text-sm text-[#f8f3f1]">
                     {formatDate(
                       discount.endsAt,
                     )}
@@ -265,7 +265,7 @@ export default function DiscountTable({
                       <Link
                         href={`/admin/discounts/${discount._id}`}
                         title="View discount"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#211e1b] hover:text-[#f8f3f1]"
                       >
                         <Eye size={16} />
                       </Link>
@@ -274,7 +274,7 @@ export default function DiscountTable({
                       <Link
                         href={`/admin/discounts/${discount._id}/edit`}
                         title="Edit discount"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#f1ead9] hover:text-[#26221d]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#2a241b] hover:text-[#f8f3f1]"
                       >
                         <Pencil size={16} />
                       </Link>
@@ -293,7 +293,7 @@ export default function DiscountTable({
                             discount,
                           )
                         }
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#efe8d8] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#211e1b] hover:text-[#f8f3f1] disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <Power
                           size={16}
@@ -310,7 +310,7 @@ export default function DiscountTable({
                             discount,
                           )
                         }
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#fdecec] hover:text-[#b3261e] disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#2b1a18] hover:text-[#e08b84] disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <Trash2
                           size={16}

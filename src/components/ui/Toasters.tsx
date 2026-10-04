@@ -16,8 +16,8 @@ export function Toasters() {
         toastOptions={{
           style: {
             borderRadius: 2,
-            background: "#2a2520",
-            color: "#fffdf8",
+            background: "#f8f3f1",
+            color: "#1a1816",
             fontSize: 13,
           },
         }}

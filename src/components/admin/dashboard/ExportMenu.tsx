@@ -50,19 +50,19 @@ export function ExportMenu({ from, to }: { from?: string | undefined; to?: strin
         onClick={() => setOpen((value) => !value)}
         disabled={!from || !to}
         aria-expanded={open}
-        className="inline-flex h-10 items-center gap-2 bg-[#26221d] px-4 text-sm font-semibold text-white transition hover:bg-[#3d372f] disabled:opacity-50"
+        className="inline-flex h-10 items-center gap-2 bg-[#b79a6a] px-4 text-sm font-semibold text-[#111111] transition hover:bg-[#c8ad7f] disabled:opacity-50"
       >
         <Download size={15} />
         Download revenue
       </button>
 
       {open ? (
-        <div className="absolute right-0 z-20 mt-2 w-72 rounded-xl border border-[#e6dfcf] bg-white p-3 shadow-xl">
-          <p className="px-1 text-xs text-[#5f584d]">
+        <div className="absolute right-0 z-20 mt-2 w-72 rounded-xl border border-[#2e2a26] bg-[#1a1816] p-3 shadow-xl">
+          <p className="px-1 text-xs text-[#cfc7bb]">
             {from} → {to}
           </p>
 
-          <label className="mt-3 flex items-center gap-2 px-1 text-sm text-[#2a2520]">
+          <label className="mt-3 flex items-center gap-2 px-1 text-sm text-[#f8f3f1]">
             <input
               type="checkbox"
               checked={scope === "all"}
@@ -83,14 +83,14 @@ export function ExportMenu({ from, to }: { from?: string | undefined; to?: strin
                 type="button"
                 onClick={() => run(type)}
                 disabled={Boolean(busy)}
-                className="flex items-center justify-between rounded-lg border border-[#e6dfcf] px-3 py-2.5 text-left hover:border-[#b08d57] hover:bg-[#f1ead9] disabled:opacity-60"
+                className="flex items-center justify-between rounded-lg border border-[#2e2a26] px-3 py-2.5 text-left hover:border-[#b79a6a] hover:bg-[#2a241b] disabled:opacity-60"
               >
                 <span>
-                  <span className="block text-sm font-semibold text-[#2a2520]">{title}</span>
-                  <span className="block text-xs text-[#5f584d]">{hint} · CSV</span>
+                  <span className="block text-sm font-semibold text-[#f8f3f1]">{title}</span>
+                  <span className="block text-xs text-[#cfc7bb]">{hint} · CSV</span>
                 </span>
 
-                {busy === type ? <Loader2 size={16} className="animate-spin text-[#8a6a3b]" /> : <Download size={16} className="text-[#8a6a3b]" />}
+                {busy === type ? <Loader2 size={16} className="animate-spin text-[#d9c7a3]" /> : <Download size={16} className="text-[#d9c7a3]" />}
               </button>
             ))}
           </div>

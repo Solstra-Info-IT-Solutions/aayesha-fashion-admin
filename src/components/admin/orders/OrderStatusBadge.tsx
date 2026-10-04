@@ -1,19 +1,19 @@
 import type { OrderStatus } from "@/types/order";
 
 const TONES: Record<string, { box: string; dot: string }> = {
-  confirmed: { box: "bg-[#f1ead9] text-[#6f542f] border-[#e4d8bd]", dot: "bg-[#b08d57]" },
-  processing: { box: "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]", dot: "bg-[#d29a0a]" },
-  packed: { box: "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]", dot: "bg-[#d29a0a]" },
-  shipped: { box: "bg-[#e6f0f7] text-[#1f5f86] border-[#c4dbea]", dot: "bg-[#1f77a8]" },
-  in_transit: { box: "bg-[#e6f0f7] text-[#1f5f86] border-[#c4dbea]", dot: "bg-[#1f77a8]" },
-  out_for_delivery: { box: "bg-[#e6f0f7] text-[#1f5f86] border-[#c4dbea]", dot: "bg-[#1f77a8]" },
-  delivered: { box: "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]", dot: "bg-[#2a9a68]" },
-  cancelled: { box: "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]", dot: "bg-[#c2372e]" },
-  returned: { box: "bg-[#efebf8] text-[#4f43a0] border-[#d8d1f0]", dot: "bg-[#6a58c4]" },
-  exchanged: { box: "bg-[#efebf8] text-[#4f43a0] border-[#d8d1f0]", dot: "bg-[#6a58c4]" },
+  confirmed: { box: "bg-[#2a241b] text-[#d9c7a3] border-[#3a352f]", dot: "bg-[#b79a6a]" },
+  processing: { box: "bg-[#2b2216] text-[#e0b56a] border-[#5a4420]", dot: "bg-[#e0b56a]" },
+  packed: { box: "bg-[#2b2216] text-[#e0b56a] border-[#5a4420]", dot: "bg-[#e0b56a]" },
+  shipped: { box: "bg-[#16222b] text-[#8fbfdc] border-[#2c4658]", dot: "bg-[#8fbfdc]" },
+  in_transit: { box: "bg-[#16222b] text-[#8fbfdc] border-[#2c4658]", dot: "bg-[#8fbfdc]" },
+  out_for_delivery: { box: "bg-[#16222b] text-[#8fbfdc] border-[#2c4658]", dot: "bg-[#8fbfdc]" },
+  delivered: { box: "bg-[#1a2419] text-[#8fb08a] border-[#2c4a33]", dot: "bg-[#8fb08a]" },
+  cancelled: { box: "bg-[#2b1a18] text-[#f0a39d] border-[#5a2a27]", dot: "bg-[#e08b84]" },
+  returned: { box: "bg-[#221f33] text-[#c4baf5] border-[#3d3660]", dot: "bg-[#b4a8f0]" },
+  exchanged: { box: "bg-[#221f33] text-[#c4baf5] border-[#3d3660]", dot: "bg-[#b4a8f0]" },
 };
 
-const FALLBACK = { box: "bg-[#efe8d8] text-[#5f584d] border-[#e6dfcf]", dot: "bg-[#a89f90]" };
+const FALLBACK = { box: "bg-[#211e1b] text-[#cfc7bb] border-[#2e2a26]", dot: "bg-[#8c847d]" };
 
 export function OrderStatusBadge({ status }: { status: OrderStatus }) {
   const tone = TONES[status] ?? FALLBACK;

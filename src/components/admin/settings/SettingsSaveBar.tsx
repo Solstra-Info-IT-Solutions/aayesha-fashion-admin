@@ -14,9 +14,9 @@ export default function SettingsSaveBar({
   onSave,
 }: SettingsSaveBarProps) {
   return (
-    <div className="sticky bottom-4 z-20 rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]/95 p-4 shadow-lg backdrop-blur">
+    <div className="sticky bottom-4 z-20 rounded-[14px] border border-[#2e2a26] bg-[#1a1816]/95 p-4 shadow-lg backdrop-blur">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-[#756d62]">
+        <p className="text-sm text-[#9a9185]">
           Save your changes before leaving this page.
         </p>
 
@@ -24,7 +24,7 @@ export default function SettingsSaveBar({
           type="button"
           onClick={onSave}
           disabled={saving || disabled}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#b79a6a] px-5 text-sm font-medium text-[#111111] transition hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save
             className={`h-4 w-4 ${

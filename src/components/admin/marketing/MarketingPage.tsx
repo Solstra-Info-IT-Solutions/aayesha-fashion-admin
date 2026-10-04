@@ -416,22 +416,22 @@ export default function MarketingPage() {
       <div className="min-h-full">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-6">
-            <div className="h-20 rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-20 rounded-[14px] bg-[#211e1b]" />
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {Array.from({ length: 4 }).map(
                 (_, index) => (
                   <div
                     key={index}
-                    className="h-32 rounded-[14px] bg-[#efe8d8]"
+                    className="h-32 rounded-[14px] bg-[#211e1b]"
                   />
                 ),
               )}
             </div>
 
-            <div className="h-16 rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-16 rounded-[14px] bg-[#211e1b]" />
 
-            <div className="h-96 rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-96 rounded-[14px] bg-[#211e1b]" />
           </div>
         </div>
       </div>

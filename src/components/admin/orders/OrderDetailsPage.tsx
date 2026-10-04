@@ -75,12 +75,12 @@ export function OrderDetailsPage({
   if (loading) {
     return (
       <div className="space-y-6" aria-busy="true">
-        <div className="h-24 animate-pulse rounded-xl bg-[#efe8d8]" />
-        <div className="h-24 animate-pulse rounded-xl bg-[#efe8d8]" />
+        <div className="h-24 animate-pulse rounded-xl bg-[#211e1b]" />
+        <div className="h-24 animate-pulse rounded-xl bg-[#211e1b]" />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
-          <div className="h-80 animate-pulse rounded-xl bg-[#efe8d8]" />
-          <div className="h-80 animate-pulse rounded-xl bg-[#efe8d8]" />
+          <div className="h-80 animate-pulse rounded-xl bg-[#211e1b]" />
+          <div className="h-80 animate-pulse rounded-xl bg-[#211e1b]" />
         </div>
       </div>
     );
@@ -94,13 +94,13 @@ export function OrderDetailsPage({
     return (
       <div className="flex min-h-[60vh] items-center justify-center px-2">
         <div className="surface w-full max-w-lg p-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#fdecec] text-lg font-bold text-[#b3261e]">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#2b1a18] text-lg font-bold text-[#e08b84]">
             !
           </div>
 
-          <h2 className="display text-3xl font-semibold text-[#2a2520]">Unable to load order</h2>
+          <h2 className="display text-3xl font-semibold text-[#f8f3f1]">Unable to load order</h2>
 
-          <p className="mt-2 text-sm leading-6 text-[#5f584d]">
+          <p className="mt-2 text-sm leading-6 text-[#cfc7bb]">
             {error || "The requested order could not be found."}
           </p>
 
@@ -108,7 +108,7 @@ export function OrderDetailsPage({
             <button
               type="button"
               onClick={() => router.back()}
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#d6ccb6] px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57]"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#3a352f] px-4 text-sm font-semibold text-[#f8f3f1] transition hover:border-[#b79a6a]"
             >
               <ArrowLeft className="h-4 w-4" />
               Go back
@@ -117,7 +117,7 @@ export function OrderDetailsPage({
             <button
               type="button"
               onClick={() => void refresh()}
-              className="inline-flex h-10 items-center justify-center rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] transition hover:bg-[#3d372f]"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-[#b79a6a] px-5 text-sm font-semibold text-[#1a1816] transition hover:bg-[#c8ad7f]"
             >
               Try again
             </button>

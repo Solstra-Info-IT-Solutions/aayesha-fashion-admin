@@ -77,19 +77,19 @@ export function AdminDashboard({
     <div className="space-y-6">
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">{today}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">{today}</p>
 
-          <h1 className="mt-1 text-[#2a2520]">
+          <h1 className="mt-1 text-[#f8f3f1]">
             {greeting}{first ? `, ${first}` : ""}
           </h1>
 
-          <p className="mt-2 text-sm text-[#5f584d]">
+          <p className="mt-2 text-sm text-[#cfc7bb]">
             Here is how the store is doing. Every card, chart and row opens its details.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex rounded-lg border border-[#e6dfcf] bg-white p-0.5 text-xs font-semibold" role="tablist" aria-label="Date range">
+          <div className="inline-flex rounded-lg border border-[#2e2a26] bg-[#1a1816] p-0.5 text-xs font-semibold" role="tablist" aria-label="Date range">
             {RANGES.map((value) => (
               <button
                 key={value}
@@ -98,7 +98,7 @@ export function AdminDashboard({
                 aria-selected={days === value}
                 onClick={() => setDays(value)}
                 className={`rounded-md px-3.5 py-2 transition ${
-                  days === value ? "bg-[#26221d] text-white" : "text-[#5f584d] hover:text-[#2a2520]"
+                  days === value ? "bg-[#b79a6a] text-[#111111]" : "text-[#cfc7bb] hover:text-[#f8f3f1]"
                 }`}
               >
                 {value}D
@@ -110,7 +110,7 @@ export function AdminDashboard({
             type="button"
             onClick={onRefresh}
             disabled={loading}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-white px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57] disabled:opacity-60"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] transition hover:border-[#b79a6a] disabled:opacity-60"
           >
             <RefreshCw size={15} className={loading ? "animate-spin" : ""} />
             Refresh
@@ -121,7 +121,7 @@ export function AdminDashboard({
       </div>
 
       {error ? (
-        <div className="rounded-lg border border-[#f5b5b1] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">{error}</div>
+        <div className="rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm text-[#f0a39d]">{error}</div>
       ) : null}
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-6">
@@ -211,7 +211,7 @@ export function AdminDashboard({
         <LowStockProducts products={lowStockProducts} loading={loading} />
       </div>
 
-      <p className="pb-2 text-center text-xs text-[#756d62]">
+      <p className="pb-2 text-center text-xs text-[#9a9185]">
         Revenue counts paid, non-cancelled orders. Period: {range ? `${range.from} → ${range.to}` : "—"}.
       </p>
     </div>

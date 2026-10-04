@@ -57,7 +57,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-[#e6f0f7] text-[#1f5f86]";
+      return "bg-[#16222b] text-[#8fbfdc]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -66,11 +66,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-[#efe8d8] text-[#5f584d]";
+      return "bg-[#211e1b] text-[#cfc7bb]";
 
     case "draft":
     default:
-      return "bg-[#f7f2e7] text-[#3d372f]";
+      return "bg-[#111111] text-[#e6dfd4]";
   }
 }
 
@@ -81,36 +81,36 @@ export default function MarketingCampaignTable({
   onDelete,
 }: MarketingCampaignTableProps) {
   return (
-    <div className="hidden overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] md:block">
+    <div className="hidden overflow-hidden rounded-[14px] border border-[#2e2a26] bg-[#1a1816] md:block">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px] border-collapse">
           <thead>
-            <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]/70">
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+            <tr className="border-b border-[#2e2a26] bg-[#111111]/70">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Campaign
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Type
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Status
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Budget
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Start Date
               </th>
 
-              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 End Date
               </th>
 
-              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#5f584d]">
+              <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[#cfc7bb]">
                 Actions
               </th>
             </tr>
@@ -124,24 +124,24 @@ export default function MarketingCampaignTable({
               return (
                 <tr
                   key={campaign._id}
-                  className="border-b border-[#e6dfcf] last:border-b-0 hover:bg-[#f7f2e7]/50"
+                  className="border-b border-[#2e2a26] last:border-b-0 hover:bg-[#111111]/50"
                 >
                   {/* Campaign */}
                   <td className="px-5 py-4">
                     <div className="max-w-[280px]">
                       <Link
                         href={`/admin/marketing/${campaign._id}`}
-                        className="block truncate text-sm font-semibold text-[#2a2520] transition hover:text-[#6f542f]"
+                        className="block truncate text-sm font-semibold text-[#f8f3f1] transition hover:text-[#d9c7a3]"
                       >
                         {campaign.name}
                       </Link>
 
                       {campaign.description ? (
-                        <p className="mt-1 truncate text-xs text-[#5f584d]">
+                        <p className="mt-1 truncate text-xs text-[#cfc7bb]">
                           {campaign.description}
                         </p>
                       ) : (
-                        <p className="mt-1 text-xs text-[#756d62]">
+                        <p className="mt-1 text-xs text-[#9a9185]">
                           No description
                         </p>
                       )}
@@ -150,7 +150,7 @@ export default function MarketingCampaignTable({
 
                   {/* Type */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[#2a2520]">
+                    <span className="text-sm text-[#f8f3f1]">
                       {formatLabel(campaign.type)}
                     </span>
                   </td>
@@ -168,21 +168,21 @@ export default function MarketingCampaignTable({
 
                   {/* Budget */}
                   <td className="px-5 py-4 text-right">
-                    <span className="text-sm font-medium text-[#2a2520]">
+                    <span className="text-sm font-medium text-[#f8f3f1]">
                       {formatCurrency(campaign.budget)}
                     </span>
                   </td>
 
                   {/* Start Date */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[#2a2520]">
+                    <span className="text-sm text-[#f8f3f1]">
                       {formatDate(campaign.startsAt)}
                     </span>
                   </td>
 
                   {/* End Date */}
                   <td className="px-5 py-4">
-                    <span className="text-sm text-[#2a2520]">
+                    <span className="text-sm text-[#f8f3f1]">
                       {formatDate(campaign.endsAt)}
                     </span>
                   </td>
@@ -194,7 +194,7 @@ export default function MarketingCampaignTable({
                       <Link
                         href={`/admin/marketing/${campaign._id}`}
                         title="View campaign"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#211e1b] hover:text-[#f8f3f1]"
                       >
                         <Eye size={16} />
                       </Link>
@@ -204,7 +204,7 @@ export default function MarketingCampaignTable({
                         <Link
                           href={`/admin/marketing/${campaign._id}/edit`}
                           title="Edit campaign"
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#f1ead9] hover:text-[#6f542f]"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#2a241b] hover:text-[#d9c7a3]"
                         >
                           <Pencil size={15} />
                         </Link>
@@ -218,7 +218,7 @@ export default function MarketingCampaignTable({
                           onClick={() =>
                             onRestore(campaign)
                           }
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-green-50 hover:text-green-700"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-green-50 hover:text-green-700"
                         >
                           <RotateCcw size={15} />
                         </button>
@@ -229,7 +229,7 @@ export default function MarketingCampaignTable({
                           onClick={() =>
                             onArchive(campaign)
                           }
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-yellow-50 hover:text-yellow-700"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-yellow-50 hover:text-yellow-700"
                         >
                           <Archive size={15} />
                         </button>
@@ -242,7 +242,7 @@ export default function MarketingCampaignTable({
                         onClick={() =>
                           onDelete(campaign)
                         }
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5f584d] transition hover:bg-[#fdecec] hover:text-[#b3261e]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#cfc7bb] transition hover:bg-[#2b1a18] hover:text-[#e08b84]"
                       >
                         <Trash2 size={15} />
                       </button>

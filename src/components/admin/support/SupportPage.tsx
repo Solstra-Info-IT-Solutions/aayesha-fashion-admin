@@ -245,17 +245,17 @@ export default function SupportPage() {
   if (authLoading) {
     return (
       <div className="space-y-6">
-        <div className="h-24 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-24 animate-pulse rounded-[14px] bg-[#211e1b]" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]"
+              className="h-28 animate-pulse rounded-[14px] bg-[#211e1b]"
             />
           ))}
         </div>
-        <div className="h-20 animate-pulse rounded-[14px] bg-[#efe8d8]" />
-        <div className="h-96 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-20 animate-pulse rounded-[14px] bg-[#211e1b]" />
+        <div className="h-96 animate-pulse rounded-[14px] bg-[#211e1b]" />
       </div>
     );
   }

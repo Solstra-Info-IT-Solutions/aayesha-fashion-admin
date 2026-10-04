@@ -1,10 +1,10 @@
 import type { ProductStatus } from "@/types/admin-product";
 
 const styles: Record<ProductStatus, { box: string; dot: string; label: string }> = {
-  draft: { box: "bg-[#efe8d8] text-[#5f584d] border-[#e6dfcf]", dot: "bg-[#a89f90]", label: "Draft" },
-  active: { box: "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]", dot: "bg-[#2a9a68]", label: "Active" },
-  archived: { box: "bg-[#e6dfcf] text-[#5f584d] border-[#d6ccb6]", dot: "bg-[#8a8275]", label: "Archived" },
-  discontinued: { box: "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]", dot: "bg-[#c2372e]", label: "Discontinued" },
+  draft: { box: "bg-[#211e1b] text-[#cfc7bb] border-[#2e2a26]", dot: "bg-[#8c847d]", label: "Draft" },
+  active: { box: "bg-[#1a2419] text-[#8fb08a] border-[#2c4a33]", dot: "bg-[#8fb08a]", label: "Active" },
+  archived: { box: "bg-[#2e2a26] text-[#cfc7bb] border-[#3a352f]", dot: "bg-[#9a9185]", label: "Archived" },
+  discontinued: { box: "bg-[#2b1a18] text-[#f0a39d] border-[#5a2a27]", dot: "bg-[#e08b84]", label: "Discontinued" },
 };
 
 export default function ProductStatusBadge({ status }: { status: ProductStatus }) {

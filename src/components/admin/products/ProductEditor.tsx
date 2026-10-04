@@ -42,7 +42,7 @@ interface ProductEditorProps {
 ========================================================= */
 
 const inputClassName =
-  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#f1ead9]";
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2a241b]";
 
 /* =========================================================
    PRODUCT EDITOR
@@ -323,7 +323,7 @@ export default function ProductEditor({
         }).map((_, index) => (
           <div
             key={index}
-            className="h-24 min-w-0 animate-pulse rounded-2xl bg-[#efe8d8]"
+            className="h-24 min-w-0 animate-pulse rounded-2xl bg-[#211e1b]"
           />
         ))}
       </div>
@@ -339,12 +339,12 @@ export default function ProductEditor({
     !accessToken
   ) {
     return (
-      <div className="min-w-0 overflow-hidden rounded-2xl border border-[#fdecec] bg-[#fdecec] p-4 sm:p-5">
-        <p className="break-words text-sm font-semibold leading-5 text-[#b3261e]">
+      <div className="min-w-0 overflow-hidden rounded-2xl border border-[#2b1a18] bg-[#2b1a18] p-4 sm:p-5">
+        <p className="break-words text-sm font-semibold leading-5 text-[#e08b84]">
           Authentication is required.
         </p>
 
-        <p className="mt-2 break-words text-sm leading-5 text-[#5f584d]">
+        <p className="mt-2 break-words text-sm leading-5 text-[#cfc7bb]">
           Your admin session is no longer
           available. Please login again to
           continue.
@@ -357,7 +357,7 @@ export default function ProductEditor({
               "/admin/login",
             )
           }
-          className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-[#26221d] px-4 text-sm font-medium text-white transition hover:opacity-90"
+          className="mt-4 inline-flex h-10 items-center justify-center rounded-xl bg-[#b79a6a] px-4 text-sm font-medium text-[#111111] transition hover:opacity-90"
         >
           Login Again
         </button>
@@ -377,7 +377,7 @@ export default function ProductEditor({
         }).map((_, index) => (
           <div
             key={index}
-            className="h-24 min-w-0 animate-pulse rounded-2xl bg-[#efe8d8]"
+            className="h-24 min-w-0 animate-pulse rounded-2xl bg-[#211e1b]"
           />
         ))}
       </div>
@@ -399,18 +399,18 @@ export default function ProductEditor({
         <button
           type="button"
           onClick={() => goBackTo(router, "/admin/products")}
-          className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6a3b] hover:underline"
+          className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c7a3] hover:underline"
         >
           <ArrowLeft size={14} className="shrink-0" />
           Products
         </button>
 
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#756d62]">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9a9185]">
           {isEdit ? "Edit product" : "New product"}
         </p>
 
         <div className="mt-1 flex flex-wrap items-center gap-3">
-          <h1 className="min-w-0 max-w-full break-words text-[#2a2520]">
+          <h1 className="min-w-0 max-w-full break-words text-[#f8f3f1]">
             {product.name || "Untitled product"}
           </h1>
 
@@ -418,22 +418,22 @@ export default function ProductEditor({
         </div>
 
         {product.id ? (
-          <p className="mt-2 inline-flex max-w-full break-all rounded-full bg-[#efe8d8] px-3 py-1 text-[11px] font-semibold text-[#5f584d]">
+          <p className="mt-2 inline-flex max-w-full break-all rounded-full bg-[#211e1b] px-3 py-1 text-[11px] font-semibold text-[#cfc7bb]">
             ID · {product.id}
           </p>
         ) : null}
       </div>
 
       {/* Sticky save bar: always reachable, shows unsaved changes. */}
-      <div className="sticky top-[72px] z-20 -mx-4 border-y border-[#e6dfcf] bg-[#f7f2e7]/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="sticky top-[72px] z-20 -mx-4 border-y border-[#2e2a26] bg-[#111111]/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-3">
           <p
             className={`flex items-center gap-2 text-sm ${
-              dirty ? "font-semibold text-[#a15c07]" : "text-[#5f584d]"
+              dirty ? "font-semibold text-[#d0a566]" : "text-[#cfc7bb]"
             }`}
             aria-live="polite"
           >
-            <span className={`h-2 w-2 rounded-full ${dirty ? "bg-[#d29a0a]" : "bg-[#2a9a68]"}`} />
+            <span className={`h-2 w-2 rounded-full ${dirty ? "bg-[#e0b56a]" : "bg-[#8fb08a]"}`} />
             {dirty
               ? "You have unsaved changes"
               : isEdit
@@ -445,7 +445,7 @@ export default function ProductEditor({
             type="button"
             onClick={() => void saveMain()}
             disabled={saving || (isEdit && !dirty)}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#b79a6a] px-5 text-sm font-semibold text-[#1a1816] transition hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Save size={15} className="shrink-0" />
             {saving ? "Saving..." : isEdit ? "Save changes" : "Create product"}
@@ -458,7 +458,7 @@ export default function ProductEditor({
       =================================================== */}
 
       {formError && (
-        <div className="min-w-0 overflow-hidden rounded-lg border border-[#f5b5b1] bg-[#fdecec] px-4 py-3 text-sm leading-5 text-[#8f1f19]">
+        <div className="min-w-0 overflow-hidden rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm leading-5 text-[#f0a39d]">
           <p className="break-words">
             {formError}
           </p>
@@ -538,11 +538,11 @@ export default function ProductEditor({
           <section className="surface min-w-0 overflow-hidden p-5 sm:p-6">
 
             <div>
-              <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#2a2520]">
+              <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#f8f3f1]">
                 Pricing
               </h2>
 
-              <p className="mt-1 break-words text-sm leading-5 text-[#5f584d]">
+              <p className="mt-1 break-words text-sm leading-5 text-[#cfc7bb]">
                 Set the product MRP and
                 selling price.
               </p>
@@ -553,7 +553,7 @@ export default function ProductEditor({
               {/* MRP */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
+                <span className="mb-1.5 block text-sm font-medium text-[#f8f3f1]">
                   Price / MRP
                 </span>
 
@@ -591,7 +591,7 @@ export default function ProductEditor({
               {/* SELLING PRICE */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
+                <span className="mb-1.5 block text-sm font-medium text-[#f8f3f1]">
                   Sale Price
                 </span>
 
@@ -633,27 +633,27 @@ export default function ProductEditor({
             product.pricing.mrp > 0 ? (
               <p
                 role="alert"
-                className="mt-4 rounded-lg border border-[#f5b5b1] bg-[#fdecec] px-4 py-3 text-sm font-medium text-[#8f1f19]"
+                className="mt-4 rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm font-medium text-[#f0a39d]"
               >
                 The sale price is higher than the MRP. Customers will not see a discount.
               </p>
             ) : null}
 
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e6dfcf] bg-[#f7f2e7] px-4 py-3">
-              <span className="text-sm text-[#5f584d]">Customers will see</span>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#2e2a26] bg-[#111111] px-4 py-3">
+              <span className="text-sm text-[#cfc7bb]">Customers will see</span>
 
               <span className="flex items-baseline gap-2">
-                <span className="text-xl font-bold text-[#2a2520]">
+                <span className="text-xl font-bold text-[#f8f3f1]">
                   ₹{Math.round(product.pricing.sellingPrice).toLocaleString("en-IN")}
                 </span>
 
                 {product.pricing.mrp > product.pricing.sellingPrice ? (
                   <>
-                    <span className="text-sm text-[#756d62] line-through">
+                    <span className="text-sm text-[#9a9185] line-through">
                       ₹{Math.round(product.pricing.mrp).toLocaleString("en-IN")}
                     </span>
 
-                    <span className="rounded-full bg-[#e8f5ec] px-2 py-0.5 text-xs font-bold text-[#276541]">
+                    <span className="rounded-full bg-[#1a2419] px-2 py-0.5 text-xs font-bold text-[#8fb08a]">
                       {Math.round(
                         ((product.pricing.mrp - product.pricing.sellingPrice) /
                           product.pricing.mrp) *
@@ -674,11 +674,11 @@ export default function ProductEditor({
           <section className="surface min-w-0 overflow-hidden p-5 sm:p-6">
 
             <div>
-              <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#2a2520]">
+              <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#f8f3f1]">
                 Stock
               </h2>
 
-              <p className="mt-1 break-words text-sm leading-5 text-[#5f584d]">
+              <p className="mt-1 break-words text-sm leading-5 text-[#cfc7bb]">
                 Manage the available product
                 quantity.
               </p>
@@ -689,7 +689,7 @@ export default function ProductEditor({
               {/* TOTAL STOCK */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
+                <span className="mb-1.5 block text-sm font-medium text-[#f8f3f1]">
                   Total Quantity
                 </span>
 
@@ -734,7 +734,7 @@ export default function ProductEditor({
               {/* LOW STOCK THRESHOLD */}
 
               <label className="block min-w-0">
-                <span className="mb-1.5 block text-sm font-medium text-[#2a2520]">
+                <span className="mb-1.5 block text-sm font-medium text-[#f8f3f1]">
                   Low Stock Alert
                 </span>
 
@@ -788,10 +788,10 @@ export default function ProductEditor({
 
               const tone =
                 available <= 0
-                  ? "border-[#f5c2c0] bg-[#fdecec] text-[#8f1f19]"
+                  ? "border-[#5a2a27] bg-[#2b1a18] text-[#f0a39d]"
                   : low
-                    ? "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]"
-                    : "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]";
+                    ? "border-[#5a4420] bg-[#2b2216] text-[#e0b56a]"
+                    : "border-[#2c4a33] bg-[#1a2419] text-[#8fb08a]";
 
               return (
                 <div className={`mt-4 rounded-xl border px-4 py-3 ${tone}`}>
@@ -852,7 +852,7 @@ export default function ProductEditor({
               STOREFRONT PREVIEW
           =============================================== */}
           <section className="surface min-w-0 overflow-hidden">
-            <div className="flex h-56 items-center justify-center bg-[#f1ead9]">
+            <div className="flex h-56 items-center justify-center bg-[#2a241b]">
               {(() => {
                 const image =
                   product.media?.find((item) => item.type === "image" && item.isPrimary)?.src ??
@@ -862,7 +862,7 @@ export default function ProductEditor({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={image} alt="" className="h-full w-full object-cover" />
                 ) : (
-                  <span className="px-6 text-center text-xs font-semibold uppercase tracking-wide text-[#8a6a3b]">
+                  <span className="px-6 text-center text-xs font-semibold uppercase tracking-wide text-[#d9c7a3]">
                     {isEdit ? "Add an image in Media" : "Images can be added after creating"}
                   </span>
                 );
@@ -870,21 +870,21 @@ export default function ProductEditor({
             </div>
 
             <div className="p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9a9185]">
                 Storefront preview
               </p>
 
-              <p className="mt-1 line-clamp-2 text-base font-semibold text-[#2a2520]">
+              <p className="mt-1 line-clamp-2 text-base font-semibold text-[#f8f3f1]">
                 {product.name || "Untitled product"}
               </p>
 
               <p className="mt-1 flex items-baseline gap-2">
-                <span className="text-lg font-bold text-[#2a2520]">
+                <span className="text-lg font-bold text-[#f8f3f1]">
                   ₹{Math.round(product.pricing.sellingPrice).toLocaleString("en-IN")}
                 </span>
 
                 {product.pricing.mrp > product.pricing.sellingPrice ? (
-                  <span className="text-sm text-[#756d62] line-through">
+                  <span className="text-sm text-[#9a9185] line-through">
                     ₹{Math.round(product.pricing.mrp).toLocaleString("en-IN")}
                   </span>
                 ) : null}
@@ -972,11 +972,11 @@ export default function ProductEditor({
 
           {!isEdit && (
             <div className="surface min-w-0 overflow-hidden p-5 sm:p-6">
-              <p className="break-words text-sm font-semibold leading-5 text-[#2a2520]">
+              <p className="break-words text-sm font-semibold leading-5 text-[#f8f3f1]">
                 Product Setup
               </p>
 
-              <p className="mt-2 break-words text-sm leading-5 text-[#5f584d]">
+              <p className="mt-2 break-words text-sm leading-5 text-[#cfc7bb]">
                 Save the product to generate
                 its product ID. You can then
                 add product media and publish

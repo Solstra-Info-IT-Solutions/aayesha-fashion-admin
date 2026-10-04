@@ -74,7 +74,7 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-green-50 text-green-700";
 
     case "scheduled":
-      return "bg-[#e6f0f7] text-[#1f5f86]";
+      return "bg-[#16222b] text-[#8fbfdc]";
 
     case "paused":
       return "bg-yellow-50 text-yellow-700";
@@ -83,11 +83,11 @@ function getStatusClasses(status: MarketingCampaignStatus) {
       return "bg-purple-50 text-purple-700";
 
     case "archived":
-      return "bg-[#efe8d8] text-[#5f584d]";
+      return "bg-[#211e1b] text-[#cfc7bb]";
 
     case "draft":
     default:
-      return "bg-[#f7f2e7] text-[#3d372f]";
+      return "bg-[#111111] text-[#e6dfd4]";
   }
 }
 
@@ -99,12 +99,12 @@ function DetailItem({
   value: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-[#e6dfcf] p-4">
-      <p className="text-xs font-medium text-[#5f584d]">
+    <div className="rounded-lg border border-[#2e2a26] p-4">
+      <p className="text-xs font-medium text-[#cfc7bb]">
         {label}
       </p>
 
-      <div className="mt-1.5 text-sm font-semibold text-[#2a2520]">
+      <div className="mt-1.5 text-sm font-semibold text-[#f8f3f1]">
         {value}
       </div>
     </div>
@@ -279,9 +279,9 @@ export default function MarketingCampaignDetail({
       <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-pulse space-y-5">
-            <div className="h-8 w-48 rounded bg-[#efe8d8]" />
-            <div className="h-72 rounded-[14px] bg-[#efe8d8]" />
-            <div className="h-48 rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-8 w-48 rounded bg-[#211e1b]" />
+            <div className="h-72 rounded-[14px] bg-[#211e1b]" />
+            <div className="h-48 rounded-[14px] bg-[#211e1b]" />
           </div>
         </div>
       </div>
@@ -297,17 +297,17 @@ export default function MarketingCampaignDetail({
       <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="space-y-5">
-            <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
+            <div className="h-8 w-48 animate-pulse rounded bg-[#211e1b]" />
 
-            <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-6">
-              <div className="h-7 w-72 animate-pulse rounded bg-[#efe8d8]" />
-              <div className="mt-3 h-4 w-full max-w-lg animate-pulse rounded bg-[#efe8d8]" />
+            <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-6">
+              <div className="h-7 w-72 animate-pulse rounded bg-[#211e1b]" />
+              <div className="mt-3 h-4 w-full max-w-lg animate-pulse rounded bg-[#211e1b]" />
               <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
                 {Array.from({ length: 4 }).map(
                   (_, index) => (
                     <div
                       key={index}
-                      className="h-20 animate-pulse rounded-lg bg-[#efe8d8]"
+                      className="h-20 animate-pulse rounded-lg bg-[#211e1b]"
                     />
                   ),
                 )}
@@ -323,18 +323,18 @@ export default function MarketingCampaignDetail({
     return (
       <div className="min-h-full">
         <div className="mx-auto max-w-5xl px-4 py-8 text-center sm:px-6 lg:px-8">
-          <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14">
-            <h2 className="text-lg font-semibold text-[#2a2520]">
+          <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] px-6 py-14">
+            <h2 className="text-lg font-semibold text-[#f8f3f1]">
               Campaign not found
             </h2>
 
-            <p className="mt-2 text-sm text-[#5f584d]">
+            <p className="mt-2 text-sm text-[#cfc7bb]">
               The requested campaign could not be found.
             </p>
 
             <SmartBackLink
               href="/admin/marketing"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#6f542f] px-4 py-2.5 text-sm font-medium text-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#b79a6a] px-4 py-2.5 text-sm font-medium text-[#111111]"
             >
               <ArrowLeft size={16} />
               Back to Marketing
@@ -355,16 +355,16 @@ export default function MarketingCampaignDetail({
         {/* Back */}
         <SmartBackLink
           href="/admin/marketing"
-          className="mb-5 inline-flex items-center gap-2 text-sm text-[#5f584d] transition hover:text-[#6f542f]"
+          className="mb-5 inline-flex items-center gap-2 text-sm text-[#cfc7bb] transition hover:text-[#d9c7a3]"
         >
           <ArrowLeft size={16} />
           Back to Marketing
         </SmartBackLink>
 
         {/* Main Card */}
-        <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8]">
+        <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816]">
           {/* Header */}
-          <div className="flex flex-col gap-5 border-b border-[#e6dfcf] p-5 sm:p-7 lg:flex-row lg:items-start lg:justify-between">
+          <div className="flex flex-col gap-5 border-b border-[#2e2a26] p-5 sm:p-7 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span
@@ -375,16 +375,16 @@ export default function MarketingCampaignDetail({
                   {formatLabel(campaign.status)}
                 </span>
 
-                <span className="rounded-full bg-[#f7f2e7] px-2.5 py-1 text-xs font-medium text-[#5f584d]">
+                <span className="rounded-full bg-[#111111] px-2.5 py-1 text-xs font-medium text-[#cfc7bb]">
                   {formatLabel(campaign.type)}
                 </span>
               </div>
 
-              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[#2a2520] sm:text-3xl">
+              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[#f8f3f1] sm:text-3xl">
                 {campaign.name}
               </h1>
 
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5f584d]">
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#cfc7bb]">
                 {campaign.description ||
                   "No description provided."}
               </p>
@@ -395,7 +395,7 @@ export default function MarketingCampaignDetail({
               {!isArchived && (
                 <Link
                   href={`/admin/marketing/${campaign._id}/edit`}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-[#6f542f] hover:text-[#6f542f]"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] px-4 text-sm font-medium text-[#f8f3f1] transition hover:border-[#d9c7a3] hover:text-[#d9c7a3]"
                 >
                   <Pencil size={15} />
                   Edit
@@ -407,7 +407,7 @@ export default function MarketingCampaignDetail({
                   type="button"
                   disabled={actionLoading}
                   onClick={handleRestore}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-green-600 hover:text-green-700 disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] px-4 text-sm font-medium text-[#f8f3f1] transition hover:border-green-600 hover:text-green-700 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <Loader2
@@ -424,7 +424,7 @@ export default function MarketingCampaignDetail({
                   type="button"
                   disabled={actionLoading}
                   onClick={handleArchive}
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#2a2520] transition hover:border-yellow-600 hover:text-yellow-700 disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] px-4 text-sm font-medium text-[#f8f3f1] transition hover:border-yellow-600 hover:text-yellow-700 disabled:opacity-50"
                 >
                   {actionLoading ? (
                     <Loader2
@@ -442,7 +442,7 @@ export default function MarketingCampaignDetail({
                 type="button"
                 disabled={actionLoading}
                 onClick={handleDelete}
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] px-4 text-sm font-medium text-[#b3261e] transition hover:border-[#b3261e] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] px-4 text-sm font-medium text-[#e08b84] transition hover:border-[#e08b84] disabled:opacity-50"
               >
                 <Trash2 size={15} />
                 Delete
@@ -495,44 +495,44 @@ export default function MarketingCampaignDetail({
             </div>
 
             {/* Metadata */}
-            <div className="mt-6 border-t border-[#e6dfcf] pt-6">
-              <h2 className="text-sm font-semibold text-[#2a2520]">
+            <div className="mt-6 border-t border-[#2e2a26] pt-6">
+              <h2 className="text-sm font-semibold text-[#f8f3f1]">
                 Campaign Information
               </h2>
 
               <dl className="mt-4 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                 <div>
-                  <dt className="text-xs text-[#5f584d]">
+                  <dt className="text-xs text-[#cfc7bb]">
                     Created At
                   </dt>
-                  <dd className="mt-1 text-sm text-[#2a2520]">
+                  <dd className="mt-1 text-sm text-[#f8f3f1]">
                     {formatDate(campaign.createdAt)}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[#5f584d]">
+                  <dt className="text-xs text-[#cfc7bb]">
                     Last Updated
                   </dt>
-                  <dd className="mt-1 text-sm text-[#2a2520]">
+                  <dd className="mt-1 text-sm text-[#f8f3f1]">
                     {formatDate(campaign.updatedAt)}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[#5f584d]">
+                  <dt className="text-xs text-[#cfc7bb]">
                     Created By
                   </dt>
-                  <dd className="mt-1 break-all text-sm text-[#2a2520]">
+                  <dd className="mt-1 break-all text-sm text-[#f8f3f1]">
                     {campaign.createdBy || "—"}
                   </dd>
                 </div>
 
                 <div>
-                  <dt className="text-xs text-[#5f584d]">
+                  <dt className="text-xs text-[#cfc7bb]">
                     Updated By
                   </dt>
-                  <dd className="mt-1 break-all text-sm text-[#2a2520]">
+                  <dd className="mt-1 break-all text-sm text-[#f8f3f1]">
                     {campaign.updatedBy || "—"}
                   </dd>
                 </div>

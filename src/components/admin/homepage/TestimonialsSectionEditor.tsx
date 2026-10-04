@@ -280,14 +280,14 @@ export function TestimonialsSectionEditor({
         minHeight={180}
       />
 
-      <div className="border-t border-[#e6dfcf] pt-6">
+      <div className="border-t border-[#2e2a26] pt-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+            <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
               Customer Testimonials
             </p>
 
-            <p className="mt-1 text-sm text-[#2a2520]">
+            <p className="mt-1 text-sm text-[#f8f3f1]">
               Add customer reviews and experiences.
             </p>
           </div>
@@ -295,7 +295,7 @@ export function TestimonialsSectionEditor({
           <button
             type="button"
             onClick={handleAddItem}
-            className="inline-flex shrink-0 items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] rounded-lg"
+            className="inline-flex shrink-0 items-center gap-2 border border-[#f8f3f1] bg-[#b79a6a] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1816] transition hover:border-[#e6dfd4] hover:bg-[#c8ad7f] rounded-lg"
           >
             <Plus size={15} />
             Add Testimonial
@@ -365,19 +365,19 @@ function TestimonialCard({
   ) => void;
 }): ReactElement {
   return (
-    <div className="border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4">
+    <div className="border border-[#2e2a26] bg-[#1a1816] rounded-lg">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2e2a26] bg-[#111111] px-5 py-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-xs font-medium text-[#5f584d] rounded-lg">
+          <span className="flex h-8 w-8 items-center justify-center border border-[#3a352f] bg-[#1a1816] text-xs font-medium text-[#cfc7bb] rounded-lg">
             {String(index + 1).padStart(2, "0")}
           </span>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.16em] text-[#756d62]">
+            <p className="text-[10px] uppercase tracking-[0.16em] text-[#9a9185]">
               Testimonial
             </p>
 
-            <p className="mt-0.5 text-sm font-medium text-[#2a2520]">
+            <p className="mt-0.5 text-sm font-medium text-[#f8f3f1]">
               {item.name || "Untitled testimonial"}
             </p>
           </div>
@@ -403,7 +403,7 @@ function TestimonialCard({
           <button
             type="button"
             onClick={() => onDelete(item.id)}
-            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#fdecec] bg-[#fffdf8] text-[#b08d57] transition hover:border-[#b08d57] hover:bg-[#fdecec] rounded-lg"
+            className="ml-2 inline-flex h-8 w-8 items-center justify-center border border-[#2b1a18] bg-[#1a1816] text-[#b79a6a] transition hover:border-[#b79a6a] hover:bg-[#2b1a18] rounded-lg"
             aria-label="Delete testimonial"
           >
             <Trash2 size={15} />
@@ -481,11 +481,11 @@ function RatingField({
 }): ReactElement {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
         Rating
       </label>
 
-      <div className="mt-2 flex h-11 items-center gap-1 border border-[#d6ccb6] bg-[#fffdf8] px-3 rounded-lg">
+      <div className="mt-2 flex h-11 items-center gap-1 border border-[#3a352f] bg-[#1a1816] px-3 rounded-lg">
         {[1, 2, 3, 4, 5].map((rating) => (
           <button
             key={rating}
@@ -498,8 +498,8 @@ function RatingField({
               size={17}
               className={
                 rating <= value
-                  ? "fill-[#26221d] text-[#26221d]"
-                  : "text-[#d6ccb6]"
+                  ? "fill-[#f8f3f1] text-[#f8f3f1]"
+                  : "text-[#8c847d]"
               }
             />
           </button>
@@ -521,13 +521,13 @@ function SectionStatus({
   onChange: (value: boolean) => void;
 }): ReactElement {
   return (
-    <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
+    <div className="flex items-center justify-between border border-[#2e2a26] bg-[#111111] px-5 py-4 rounded-[14px]">
       <div>
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
           Section Status
         </p>
 
-        <p className="mt-1 text-sm text-[#2a2520]">
+        <p className="mt-1 text-sm text-[#f8f3f1]">
           {enabled
             ? "Testimonials are visible on the homepage."
             : "Testimonials are hidden from the homepage."}
@@ -541,12 +541,12 @@ function SectionStatus({
         onClick={() => onChange(!enabled)}
         className={`relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all ${
           enabled
-            ? "bg-[#26221d]"
-            : "bg-[#d6ccb6]"
+            ? "bg-[#b79a6a]"
+            : "bg-[#3a352f]"
         }`}
       >
         <span
-          className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow transition-transform ${
+          className={`block h-5 w-5 rounded-full bg-[#1a1816] shadow transition-transform ${
             enabled
               ? "translate-x-5"
               : "translate-x-0"
@@ -567,13 +567,13 @@ function StatusToggle({
   onChange: (value: boolean) => void;
 }): ReactElement {
   return (
-    <div className="flex items-center justify-between border-t border-[#e6dfcf] pt-4">
+    <div className="flex items-center justify-between border-t border-[#2e2a26] pt-4">
       <div>
-        <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#5f584d]">
+        <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#cfc7bb]">
           {label}
         </p>
 
-        <p className="mt-1 text-xs text-[#756d62]">
+        <p className="mt-1 text-xs text-[#9a9185]">
           {enabled ? "Visible" : "Hidden"}
         </p>
       </div>
@@ -585,12 +585,12 @@ function StatusToggle({
         onClick={() => onChange(!enabled)}
         className={`relative flex h-7 w-12 items-center rounded-full p-1 transition-all ${
           enabled
-            ? "bg-[#26221d]"
-            : "bg-[#d6ccb6]"
+            ? "bg-[#b79a6a]"
+            : "bg-[#3a352f]"
         }`}
       >
         <span
-          className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow transition-transform ${
+          className={`block h-5 w-5 rounded-full bg-[#1a1816] shadow transition-transform ${
             enabled
               ? "translate-x-5"
               : "translate-x-0"
@@ -614,7 +614,7 @@ function Field({
 }): ReactElement {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
         {label}
       </label>
 
@@ -625,7 +625,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
+        className="mt-2 h-11 w-full border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]/20 rounded-lg"
       />
     </div>
   );
@@ -648,7 +648,7 @@ function IconButton({
       disabled={disabled}
       onClick={onClick}
       aria-label={label}
-      className="inline-flex h-8 w-8 items-center justify-center border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#756d62] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-30 rounded-lg"
+      className="inline-flex h-8 w-8 items-center justify-center border border-[#3a352f] bg-[#1a1816] text-[#cfc7bb] transition hover:border-[#9a9185] hover:text-[#f8f3f1] disabled:cursor-not-allowed disabled:opacity-30 rounded-lg"
     >
       {children}
     </button>
@@ -667,19 +667,19 @@ function EmptyState({
   onClick: () => void;
 }): ReactElement {
   return (
-    <div className="border border-dashed border-[#d6ccb6] bg-[#f7f2e7] px-6 py-12 text-center rounded-[14px]">
-      <p className="text-sm font-medium text-[#2a2520]">
+    <div className="border border-dashed border-[#3a352f] bg-[#111111] px-6 py-12 text-center rounded-[14px]">
+      <p className="text-sm font-medium text-[#f8f3f1]">
         {title}
       </p>
 
-      <p className="mt-1 text-xs text-[#5f584d]">
+      <p className="mt-1 text-xs text-[#cfc7bb]">
         {description}
       </p>
 
       <button
         type="button"
         onClick={onClick}
-        className="mt-5 inline-flex items-center gap-2 border border-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#26221d] transition hover:bg-[#26221d] hover:text-[#fffdf8] rounded-lg"
+        className="mt-5 inline-flex items-center gap-2 border border-[#f8f3f1] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#f8f3f1] transition hover:bg-[#b79a6a] hover:text-[#1a1816] rounded-lg"
       >
         <Plus size={15} />
         {buttonLabel}
@@ -697,8 +697,8 @@ function Messages({
 }): ReactElement | null {
   if (error) {
     return (
-      <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
-        <p className="text-sm text-[#8f1f19]">
+      <div className="border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 rounded-lg">
+        <p className="text-sm text-[#f0a39d]">
           {error}
         </p>
       </div>
@@ -707,8 +707,8 @@ function Messages({
 
   if (success) {
     return (
-      <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
-        <p className="text-sm text-[#2f7d4f]">
+      <div className="border border-[#2c4a33] bg-[#1a2419] px-4 py-3 rounded-lg">
+        <p className="text-sm text-[#8fb08a]">
           {success}
         </p>
       </div>
@@ -724,11 +724,11 @@ function SaveButton({
   saving: boolean;
 }): ReactElement {
   return (
-    <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
+    <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#2e2a26] bg-[#1a1816]/95 px-1 py-4 backdrop-blur">
       <button
         type="submit"
         disabled={saving}
-        className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
+        className="inline-flex items-center gap-2 border border-[#f8f3f1] bg-[#b79a6a] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#1a1816] transition hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
       >
         {saving ? (
           <>

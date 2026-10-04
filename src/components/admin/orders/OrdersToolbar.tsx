@@ -23,7 +23,7 @@ const paymentStatuses: PaymentStatus[] = ["pending", "paid", "failed", "refunded
 const label = (value: string) => value.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
 const control =
-  "h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#9a9184] focus:border-[#b08d57] focus:ring-2 focus:ring-[#b08d57]/20";
+  "h-11 w-full rounded-lg border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#8c847d] focus:border-[#b79a6a] focus:ring-2 focus:ring-[#b79a6a]/20";
 
 export const EMPTY_FILTERS: Partial<OrderListFilters> = {
   search: undefined,
@@ -84,7 +84,7 @@ export function OrdersToolbar({
     <div className="surface p-4">
       <div className="grid gap-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div className="relative">
-          <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8a8275]" />
+          <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9a9185]" />
 
           <input
             type="search"
@@ -100,7 +100,7 @@ export function OrdersToolbar({
           type="button"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] text-sm font-semibold text-[#2a2520] lg:hidden"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] text-sm font-semibold text-[#f8f3f1] lg:hidden"
         >
           <SlidersHorizontal size={15} />
           {open ? "Hide filters" : `Filters${chips.length || filters.from || filters.to ? " •" : ""}`}
@@ -150,8 +150,8 @@ export function OrdersToolbar({
       </div>
 
       <div className={`${open ? "flex" : "hidden"} mt-3 flex-wrap items-center gap-3 lg:flex`}>
-        <div className="flex flex-wrap items-center gap-2 text-sm text-[#5f584d]">
-          <CalendarDays size={16} className="text-[#8a8275]" />
+        <div className="flex flex-wrap items-center gap-2 text-sm text-[#cfc7bb]">
+          <CalendarDays size={16} className="text-[#9a9185]" />
 
           <input
             type="date"
@@ -175,7 +175,7 @@ export function OrdersToolbar({
         </div>
 
         <div className="ml-auto flex items-center gap-2">
-          <label className="flex items-center gap-2 text-sm text-[#5f584d]">
+          <label className="flex items-center gap-2 text-sm text-[#cfc7bb]">
             Sort
             <select
               value={filters.sort ?? "newest"}
@@ -194,7 +194,7 @@ export function OrdersToolbar({
             <button
               type="button"
               onClick={() => onChange(EMPTY_FILTERS)}
-              className="h-10 rounded-lg px-3 text-sm font-semibold text-[#8a6a3b] hover:bg-[#f1ead9]"
+              className="h-10 rounded-lg px-3 text-sm font-semibold text-[#d9c7a3] hover:bg-[#2a241b]"
             >
               Reset
             </button>
@@ -203,18 +203,18 @@ export function OrdersToolbar({
       </div>
 
       {chips.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2 border-t border-[#e6dfcf] pt-3">
+        <div className="mt-3 flex flex-wrap gap-2 border-t border-[#2e2a26] pt-3">
           {chips.map((chip) => (
             <span
               key={chip.key}
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#f1ead9] py-1 pl-3 pr-1.5 text-xs font-semibold text-[#6f542f]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#2a241b] py-1 pl-3 pr-1.5 text-xs font-semibold text-[#d9c7a3]"
             >
               {chip.text}
               <button
                 type="button"
                 onClick={() => onChange(chip.clear)}
                 aria-label={`Remove filter ${chip.text}`}
-                className="flex h-5 w-5 items-center justify-center rounded-full hover:bg-[#e4d8bd]"
+                className="flex h-5 w-5 items-center justify-center rounded-full hover:bg-[#3a352f]"
               >
                 <X size={12} />
               </button>

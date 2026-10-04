@@ -144,12 +144,12 @@ export default function EditSettingPage() {
         {loading ? (
           <SettingsFormSkeleton />
         ) : !setting ? (
-          <div className="rounded-[14px] border border-[#f5c2c0] bg-[#fffdf8] p-8 text-center shadow-sm">
-            <h2 className="text-lg font-semibold text-[#2a2520]">
+          <div className="rounded-[14px] border border-[#5a2a27] bg-[#1a1816] p-8 text-center shadow-sm">
+            <h2 className="text-lg font-semibold text-[#f8f3f1]">
               Setting not found
             </h2>
 
-            <p className="mt-2 text-sm text-[#756d62]">
+            <p className="mt-2 text-sm text-[#9a9185]">
               The requested setting could not be loaded.
             </p>
           </div>

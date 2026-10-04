@@ -63,19 +63,19 @@ export default function MarketingPagination({
   const pages = getPageNumbers();
 
   return (
-    <div className="flex flex-col gap-3 border-t border-[#e6dfcf] pt-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-3 border-t border-[#2e2a26] pt-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Result count */}
-      <p className="text-xs text-[#5f584d]">
+      <p className="text-xs text-[#cfc7bb]">
         Showing{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {start}
         </span>{" "}
         to{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {end}
         </span>{" "}
         of{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {total}
         </span>{" "}
         campaigns
@@ -88,7 +88,7 @@ export default function MarketingPagination({
           type="button"
           disabled={page <= 1}
           onClick={() => onPageChange(page - 1)}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#6f542f] hover:text-[#6f542f] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-[#d9c7a3] hover:text-[#d9c7a3] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={16} />
@@ -100,7 +100,7 @@ export default function MarketingPagination({
             item === "..." ? (
               <span
                 key={`ellipsis-${index}`}
-                className="flex h-9 w-9 items-center justify-center text-sm text-[#5f584d]"
+                className="flex h-9 w-9 items-center justify-center text-sm text-[#cfc7bb]"
               >
                 ...
               </span>
@@ -111,8 +111,8 @@ export default function MarketingPagination({
                 onClick={() => onPageChange(item)}
                 className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-sm font-medium transition ${
                   item === page
-                    ? "bg-[#6f542f] text-white"
-                    : "border border-[#e6dfcf] text-[#5f584d] hover:border-[#6f542f] hover:text-[#6f542f]"
+                    ? "bg-[#b79a6a] text-[#111111]"
+                    : "border border-[#2e2a26] text-[#cfc7bb] hover:border-[#d9c7a3] hover:text-[#d9c7a3]"
                 }`}
               >
                 {item}
@@ -122,9 +122,9 @@ export default function MarketingPagination({
         </div>
 
         {/* Mobile page indicator */}
-        <div className="flex h-9 items-center rounded-lg border border-[#e6dfcf] px-3 text-xs text-[#5f584d] sm:hidden">
+        <div className="flex h-9 items-center rounded-lg border border-[#2e2a26] px-3 text-xs text-[#cfc7bb] sm:hidden">
           Page{" "}
-          <span className="mx-1 font-semibold text-[#2a2520]">
+          <span className="mx-1 font-semibold text-[#f8f3f1]">
             {page}
           </span>
           of {totalPages}
@@ -135,7 +135,7 @@ export default function MarketingPagination({
           type="button"
           disabled={page >= totalPages}
           onClick={() => onPageChange(page + 1)}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] text-[#5f584d] transition hover:border-[#6f542f] hover:text-[#6f542f] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] text-[#cfc7bb] transition hover:border-[#d9c7a3] hover:text-[#d9c7a3] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={16} />

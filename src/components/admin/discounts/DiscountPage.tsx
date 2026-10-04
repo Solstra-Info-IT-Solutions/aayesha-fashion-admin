@@ -395,7 +395,7 @@ export default function DiscountPage() {
   ) {
     return (
       <div className="space-y-6">
-        <div className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-28 animate-pulse rounded-[14px] bg-[#211e1b]" />
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {Array.from({
@@ -403,7 +403,7 @@ export default function DiscountPage() {
           }).map((_, index) => (
             <div
               key={index}
-              className="h-32 animate-pulse rounded-[14px] bg-[#efe8d8]"
+              className="h-32 animate-pulse rounded-[14px] bg-[#211e1b]"
             />
           ))}
         </div>

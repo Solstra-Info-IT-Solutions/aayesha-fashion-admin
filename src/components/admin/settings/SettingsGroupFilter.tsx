@@ -15,13 +15,13 @@ export default function SettingsGroupFilter({
 }: SettingsGroupFilterProps) {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3">
-        <Filter className="h-4 w-4 text-[#756d62]" />
+      <div className="flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3">
+        <Filter className="h-4 w-4 text-[#9a9185]" />
 
         <select
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className="bg-transparent text-sm font-medium text-[#3d372f] outline-none"
+          className="bg-transparent text-sm font-medium text-[#e6dfd4] outline-none"
         >
           <option value="">All groups</option>
 

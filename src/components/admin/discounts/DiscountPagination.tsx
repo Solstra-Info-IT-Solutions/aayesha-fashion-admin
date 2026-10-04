@@ -83,19 +83,19 @@ export default function DiscountPagination({
   };
 
   return (
-    <div className="flex flex-col gap-3 border-t border-[#e6dfcf] pt-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-3 border-t border-[#2e2a26] pt-4 sm:flex-row sm:items-center sm:justify-between">
       {/* Result count */}
-      <p className="text-xs text-[#5f584d]">
+      <p className="text-xs text-[#cfc7bb]">
         Showing{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {start}
         </span>{" "}
         to{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {end}
         </span>{" "}
         of{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {total}
         </span>{" "}
         discounts
@@ -110,7 +110,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page - 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] bg-[#1a1816] text-[#cfc7bb] transition hover:bg-[#111111] hover:text-[#f8f3f1] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={16} />
@@ -126,7 +126,7 @@ export default function DiscountPagination({
                 return (
                   <span
                     key={`ellipsis-${index}`}
-                    className="flex h-9 w-9 items-center justify-center text-xs text-[#5f584d]"
+                    className="flex h-9 w-9 items-center justify-center text-xs text-[#cfc7bb]"
                   >
                     ...
                   </span>
@@ -145,8 +145,8 @@ export default function DiscountPagination({
                   }
                   className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition ${
                     isActive
-                      ? "bg-[#26221d] text-white"
-                      : "border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f7f2e7] hover:text-[#2a2520]"
+                      ? "bg-[#b79a6a] text-[#111111]"
+                      : "border border-[#2e2a26] bg-[#1a1816] text-[#cfc7bb] hover:bg-[#111111] hover:text-[#f8f3f1]"
                   }`}
                   aria-current={
                     isActive
@@ -162,13 +162,13 @@ export default function DiscountPagination({
         </div>
 
         {/* Mobile page indicator */}
-        <span className="px-3 text-xs text-[#5f584d] sm:hidden">
+        <span className="px-3 text-xs text-[#cfc7bb] sm:hidden">
           Page{" "}
-          <span className="font-medium text-[#2a2520]">
+          <span className="font-medium text-[#f8f3f1]">
             {page}
           </span>{" "}
           of{" "}
-          <span className="font-medium text-[#2a2520]">
+          <span className="font-medium text-[#f8f3f1]">
             {totalPages}
           </span>
         </span>
@@ -182,7 +182,7 @@ export default function DiscountPagination({
           onClick={() =>
             onPageChange(page + 1)
           }
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] hover:text-[#2a2520] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] bg-[#1a1816] text-[#cfc7bb] transition hover:bg-[#111111] hover:text-[#f8f3f1] disabled:cursor-not-allowed disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={16} />

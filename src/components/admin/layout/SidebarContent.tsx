@@ -13,21 +13,21 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col">
       <Link href="/admin" onClick={onNavigate} className="px-6 pb-5 pt-7">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#8a6a3b]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#d9c7a3]">
           Aayesha Fashion
         </p>
 
-        <p className="display mt-1 text-[34px] font-semibold leading-none text-[#26221d]">
+        <p className="display mt-1 text-[34px] font-semibold leading-none text-[#f8f3f1]">
           Admin
         </p>
 
-        <span className="mt-4 block h-px w-10 bg-[#b08d57]" />
+        <span className="mt-4 block h-px w-10 bg-[#b79a6a]" />
       </Link>
 
       <nav className="flex-1 overflow-y-auto px-3 pb-4" aria-label="Admin">
         {navSections.map((section) => (
           <div key={section.title} className="mb-5">
-            <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#756d62]">
+            <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9a9185]">
               {section.title}
             </p>
 
@@ -45,8 +45,8 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </nav>
 
-      <div className="border-t border-[#e6dfcf] px-6 py-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#756d62]">
+      <div className="border-t border-[#2e2a26] px-6 py-4">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9a9185]">
           Store administration
         </p>
       </div>

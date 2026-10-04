@@ -1660,12 +1660,12 @@ async function handleDelete(
       />
 
       {(error || formError) && (
-        <div className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
+        <div className="rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm text-[#f0a39d]">
           {error || formError}
         </div>
       )}
 
-      <div className="overflow-hidden rounded-[14px] border border-[#d6ccb6] bg-[#fffdf8]">
+      <div className="overflow-hidden rounded-[14px] border border-[#3a352f] bg-[#1a1816]">
         {loading ||
         items.length > 0 ? (
           <CatalogTable

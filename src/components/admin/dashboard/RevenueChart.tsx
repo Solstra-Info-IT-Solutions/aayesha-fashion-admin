@@ -55,7 +55,7 @@ export function RevenueChart({
       className="xl:col-span-2"
       actions={
         <div className="flex items-center gap-2">
-          <div className="inline-flex rounded-lg border border-[#e6dfcf] bg-[#f7f2e7] p-0.5 text-xs font-semibold" role="tablist">
+          <div className="inline-flex rounded-lg border border-[#2e2a26] bg-[#111111] p-0.5 text-xs font-semibold" role="tablist">
             {(["revenue", "orders"] as const).map((key) => (
               <button
                 key={key}
@@ -64,7 +64,7 @@ export function RevenueChart({
                 aria-selected={measure === key}
                 onClick={() => setMeasure(key)}
                 className={`rounded-md px-3 py-1.5 capitalize transition ${
-                  measure === key ? "bg-[#fffdf8] text-[#8a6a3b] shadow-sm" : "text-[#5f584d] hover:text-[#2a2520]"
+                  measure === key ? "bg-[#1a1816] text-[#d9c7a3] shadow-sm" : "text-[#cfc7bb] hover:text-[#f8f3f1]"
                 }`}
               >
                 {key}
@@ -75,37 +75,37 @@ export function RevenueChart({
           <button
             type="button"
             onClick={() => setTable((value) => !value)}
-            className="rounded-lg border border-[#e6dfcf] px-3 py-1.5 text-xs font-semibold text-[#5f584d] hover:text-[#2a2520]"
+            className="rounded-lg border border-[#2e2a26] px-3 py-1.5 text-xs font-semibold text-[#cfc7bb] hover:text-[#f8f3f1]"
           >
             {table ? "Chart" : "Table"}
           </button>
         </div>
       }
     >
-      <p className="mb-3 text-sm text-[#5f584d]">
-        <span className="display text-4xl font-semibold text-[#2a2520]">{fmt(total)}</span>{" "}
+      <p className="mb-3 text-sm text-[#cfc7bb]">
+        <span className="display text-4xl font-semibold text-[#f8f3f1]">{fmt(total)}</span>{" "}
         in this period · click a day to open its orders
       </p>
 
       {loading ? (
-        <div className="flex h-72 items-center justify-center text-sm text-[#756d62]">Loading…</div>
+        <div className="flex h-72 items-center justify-center text-sm text-[#9a9185]">Loading…</div>
       ) : !hasData ? (
-        <div className="flex h-72 items-center justify-center text-sm text-[#756d62]">
+        <div className="flex h-72 items-center justify-center text-sm text-[#9a9185]">
           No sales in this period yet.
         </div>
       ) : table ? (
         <div className="max-h-72 overflow-auto">
           <table className="w-full text-left text-sm">
-            <thead className="sticky top-0 bg-white text-xs uppercase tracking-wide text-[#756d62]">
+            <thead className="sticky top-0 bg-[#1a1816] text-xs uppercase tracking-wide text-[#9a9185]">
               <tr>
                 <th className="py-2 font-semibold">Date</th>
                 <th className="py-2 text-right font-semibold">Revenue</th>
                 <th className="py-2 text-right font-semibold">Orders</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#e6dfcf]">
+            <tbody className="divide-y divide-[#2e2a26]">
               {trend.map((point) => (
-                <tr key={point.date} className="cursor-pointer hover:bg-[#f7f2e7]" onClick={() => openDay(point.date)}>
+                <tr key={point.date} className="cursor-pointer hover:bg-[#111111]" onClick={() => openDay(point.date)}>
                   <td className="py-2">{point.date}</td>
                   <td className="py-2 text-right font-medium">{money(point.revenue)}</td>
                   <td className="py-2 text-right">{point.orders}</td>
@@ -130,18 +130,18 @@ export function RevenueChart({
             >
               <defs>
                 <linearGradient id="revFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#8a6a3b" stopOpacity={0.28} />
-                  <stop offset="100%" stopColor="#8a6a3b" stopOpacity={0.02} />
+                  <stop offset="0%" stopColor="#d9c7a3" stopOpacity={0.28} />
+                  <stop offset="100%" stopColor="#d9c7a3" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
 
-              <CartesianGrid stroke="#e6dfcf" strokeDasharray="3 5" vertical={false} />
+              <CartesianGrid stroke="#2e2a26" strokeDasharray="3 5" vertical={false} />
 
               <XAxis
                 dataKey="label"
                 tickLine={false}
                 axisLine={false}
-                tick={{ fill: "#5f584d", fontSize: 11 }}
+                tick={{ fill: "#cfc7bb", fontSize: 11 }}
                 interval="preserveStartEnd"
                 minTickGap={24}
               />
@@ -150,28 +150,28 @@ export function RevenueChart({
                 tickLine={false}
                 axisLine={false}
                 width={48}
-                tick={{ fill: "#5f584d", fontSize: 11 }}
+                tick={{ fill: "#cfc7bb", fontSize: 11 }}
                 tickFormatter={(value: number) => (measure === "revenue" ? compactMoney(value) : `${value}`)}
                 allowDecimals={false}
               />
 
               <Tooltip
-                cursor={{ stroke: "#b08d57", strokeWidth: 1 }}
+                cursor={{ stroke: "#b79a6a", strokeWidth: 1 }}
                 content={({ active, payload }) => {
                   const point = payload?.[0]?.payload as TrendPoint | undefined;
 
                   if (!active || !point) return null;
 
                   return (
-                    <div className="rounded-lg border border-[#e6dfcf] bg-white px-3 py-2 text-xs shadow-lg">
-                      <p className="font-semibold text-[#2a2520]">{point.date}</p>
-                      <p className="mt-1 text-[#5f584d]">
-                        Revenue <span className="font-semibold text-[#2a2520]">{money(point.revenue)}</span>
+                    <div className="rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 py-2 text-xs shadow-lg">
+                      <p className="font-semibold text-[#f8f3f1]">{point.date}</p>
+                      <p className="mt-1 text-[#cfc7bb]">
+                        Revenue <span className="font-semibold text-[#f8f3f1]">{money(point.revenue)}</span>
                       </p>
-                      <p className="text-[#5f584d]">
-                        Orders <span className="font-semibold text-[#2a2520]">{point.orders}</span>
+                      <p className="text-[#cfc7bb]">
+                        Orders <span className="font-semibold text-[#f8f3f1]">{point.orders}</span>
                       </p>
-                      <p className="mt-1 text-[#8a6a3b]">Click to open orders</p>
+                      <p className="mt-1 text-[#d9c7a3]">Click to open orders</p>
                     </div>
                   );
                 }}
@@ -180,11 +180,11 @@ export function RevenueChart({
               <Area
                 type="monotone"
                 dataKey={measure}
-                stroke="#8a6a3b"
+                stroke="#d9c7a3"
                 strokeWidth={2}
                 fill="url(#revFill)"
                 dot={false}
-                activeDot={{ r: 5, stroke: "#fffdf8", strokeWidth: 2, fill: "#8a6a3b" }}
+                activeDot={{ r: 5, stroke: "#1a1816", strokeWidth: 2, fill: "#d9c7a3" }}
                 isAnimationActive={false}
               />
             </AreaChart>

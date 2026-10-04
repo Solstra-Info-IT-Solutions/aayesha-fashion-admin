@@ -13,8 +13,8 @@ export default function SettingsVisibilityBadge({
     <span
       className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${
         isPublic
-          ? "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]"
-          : "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]"
+          ? "border-[#2c4a33] bg-[#1a2419] text-[#8fb08a]"
+          : "border-[#2e2a26] bg-[#111111] text-[#cfc7bb]"
       }`}
     >
       {isPublic ? (

@@ -1,18 +1,18 @@
 import type { PaymentStatus } from "@/types/order";
 
 const TONES: Record<string, string> = {
-  paid: "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]",
-  pending: "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]",
-  failed: "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]",
-  refunded: "bg-[#efebf8] text-[#4f43a0] border-[#d8d1f0]",
-  partially_refunded: "bg-[#efebf8] text-[#4f43a0] border-[#d8d1f0]",
+  paid: "bg-[#1a2419] text-[#8fb08a] border-[#2c4a33]",
+  pending: "bg-[#2b2216] text-[#e0b56a] border-[#5a4420]",
+  failed: "bg-[#2b1a18] text-[#f0a39d] border-[#5a2a27]",
+  refunded: "bg-[#221f33] text-[#c4baf5] border-[#3d3660]",
+  partially_refunded: "bg-[#221f33] text-[#c4baf5] border-[#3d3660]",
 };
 
 export function PaymentStatusBadge({ status }: { status: PaymentStatus }) {
   return (
     <span
       className={`inline-flex whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold capitalize ${
-        TONES[status] ?? "bg-[#efe8d8] text-[#5f584d] border-[#e6dfcf]"
+        TONES[status] ?? "bg-[#211e1b] text-[#cfc7bb] border-[#2e2a26]"
       }`}
     >
       {status.replace(/_/g, " ")}

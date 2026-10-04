@@ -17,13 +17,13 @@ interface ProductBasicSectionProps {
 }
 
 const inputClassName =
-  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#f1ead9]";
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2a241b]";
 
 const selectClassName =
-  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition focus:border-[#b08d57] focus:ring-2 focus:ring-[#f1ead9] disabled:cursor-not-allowed disabled:bg-[#f7f2e7] disabled:text-[#756d62]";
+  "box-border h-11 min-w-0 w-full max-w-full rounded-xl border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2a241b] disabled:cursor-not-allowed disabled:bg-[#111111] disabled:text-[#9a9185]";
 
 const labelClassName =
-  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#2a2520]";
+  "mb-1.5 block break-words text-sm font-medium leading-5 text-[#f8f3f1]";
 
 export default function ProductBasicSection({
   name,
@@ -97,11 +97,11 @@ export default function ProductBasicSection({
     <section className="surface min-w-0 overflow-hidden p-5 sm:p-6">
       {/* HEADER */}
       <div className="min-w-0">
-        <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#2a2520]">
+        <h2 className="display break-words text-[26px] font-semibold leading-tight text-[#f8f3f1]">
           Product Basics
         </h2>
 
-        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#5f584d]">
+        <p className="mt-1 max-w-full break-words text-sm leading-5 text-[#cfc7bb]">
           Add the basic information for this product.
         </p>
       </div>
@@ -159,7 +159,7 @@ export default function ProductBasicSection({
           </select>
 
           {categoryError && (
-            <p className="mt-1.5 break-words text-xs leading-5 text-[#b3261e]">
+            <p className="mt-1.5 break-words text-xs leading-5 text-[#e08b84]">
               {categoryError}
             </p>
           )}
@@ -167,7 +167,7 @@ export default function ProductBasicSection({
           {!loadingCategories &&
             !categoryError &&
             categories.length === 0 && (
-              <p className="mt-1.5 break-words text-xs leading-5 text-[#756d62]">
+              <p className="mt-1.5 break-words text-xs leading-5 text-[#9a9185]">
                 No active categories available. Create a
                 category first.
               </p>

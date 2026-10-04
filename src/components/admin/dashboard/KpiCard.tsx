@@ -32,35 +32,35 @@ export function KpiCard({
   return (
     <Link
       href={href}
-      className={`surface surface-hover group relative block overflow-hidden p-5 outline-none focus-visible:ring-2 focus-visible:ring-[#b08d57] ${spark && spark.length > 1 ? "pb-14" : ""}`}
+      className={`surface surface-hover group relative block overflow-hidden p-5 outline-none focus-visible:ring-2 focus-visible:ring-[#b79a6a] ${spark && spark.length > 1 ? "pb-14" : ""}`}
       aria-label={`${label}: ${value}. Open details`}
     >
       <div className="flex items-center justify-between">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5f584d]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#cfc7bb]">
           {label}
         </p>
 
-        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9] text-[#8a6a3b] transition group-hover:bg-[#26221d] group-hover:text-[#fffdf8]">
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2a241b] text-[#d9c7a3] transition group-hover:bg-[#b79a6a] group-hover:text-[#1a1816]">
           <Icon size={17} strokeWidth={1.8} />
         </span>
       </div>
 
-      <p className="mt-3 display text-[40px] font-semibold leading-none text-[#2a2520]">
+      <p className="mt-3 display text-[40px] font-semibold leading-none text-[#f8f3f1]">
         {loading ? "—" : value}
       </p>
 
       <div className="mt-3 flex items-center gap-2 text-xs">
         {change !== undefined && !loading ? (
           change === null ? (
-            <span className="text-[#756d62]">New activity</span>
+            <span className="text-[#9a9185]">New activity</span>
           ) : (
             <span
               className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 font-semibold ${
                 up
-                  ? "bg-[#e8f5ec] text-[#276541]"
+                  ? "bg-[#1a2419] text-[#8fb08a]"
                   : down
-                    ? "bg-[#fdecec] text-[#b3261e]"
-                    : "bg-[#efe8d8] text-[#5f584d]"
+                    ? "bg-[#2b1a18] text-[#e08b84]"
+                    : "bg-[#211e1b] text-[#cfc7bb]"
               }`}
             >
               {up ? <ArrowUpRight size={12} /> : down ? <ArrowDownRight size={12} /> : <Minus size={12} />}
@@ -69,7 +69,7 @@ export function KpiCard({
           )
         ) : null}
 
-        {caption ? <span className="text-[#756d62]">{caption}</span> : null}
+        {caption ? <span className="text-[#9a9185]">{caption}</span> : null}
       </div>
 
       {spark && spark.length > 1 && !loading ? (
@@ -79,9 +79,9 @@ export function KpiCard({
               <Area
                 type="monotone"
                 dataKey="v"
-                stroke="#b08d57"
+                stroke="#b79a6a"
                 strokeWidth={1.5}
-                fill="#b08d57"
+                fill="#b79a6a"
                 fillOpacity={0.15}
                 isAnimationActive={false}
               />

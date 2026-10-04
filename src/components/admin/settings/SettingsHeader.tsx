@@ -18,17 +18,17 @@ export default function SettingsHeader({
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <div className="mb-2 hidden items-center gap-2 text-sm text-[#756d62]">
+        <div className="mb-2 hidden items-center gap-2 text-sm text-[#9a9185]">
           <Link
             href="/admin"
-            className="transition hover:text-[#2a2520]"
+            className="transition hover:text-[#f8f3f1]"
           >
             Admin
           </Link>
 
           <span>/</span>
 
-          <span className="text-[#3d372f]">
+          <span className="text-[#e6dfd4]">
             Settings
           </span>
         </div>
@@ -36,12 +36,12 @@ export default function SettingsHeader({
         <div className="flex items-center gap-3">
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Configuration</p>
-            <h1 className="mt-1 text-[#2a2520]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">Configuration</p>
+            <h1 className="mt-1 text-[#f8f3f1]">
               Settings
             </h1>
 
-            <p className="mt-1 text-sm text-[#756d62]">
+            <p className="mt-1 text-sm text-[#9a9185]">
               Manage your store configuration
               and settings.
             </p>
@@ -54,7 +54,7 @@ export default function SettingsHeader({
           type="button"
           onClick={onRefresh}
           disabled={refreshing}
-          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] transition hover:bg-[#f1ead9] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] transition hover:bg-[#2a241b] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <RefreshCw
             className={`h-4 w-4 ${
@@ -71,7 +71,7 @@ export default function SettingsHeader({
 
         <Link
           href="/admin/settings/create"
-          className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-[#fffdf8] transition hover:bg-[#3d372f]"
+          className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#b79a6a] px-4 text-sm font-semibold text-[#1a1816] transition hover:bg-[#c8ad7f]"
         >
           <Plus className="h-4 w-4" />
           Add Setting

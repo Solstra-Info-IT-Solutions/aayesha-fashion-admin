@@ -302,13 +302,13 @@ export function BrandStorySectionEditor({
           SECTION STATUS
       ===================================================== */}
 
-      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
+      <div className="flex items-center justify-between border border-[#2e2a26] bg-[#111111] px-5 py-4 rounded-[14px]">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#2a2520]">
+          <p className="mt-1 text-sm text-[#f8f3f1]">
             {form.enabled
               ? "Brand Story is visible on the homepage."
               : "Brand Story is hidden from the homepage."}
@@ -330,14 +330,14 @@ export function BrandStorySectionEditor({
               !form.enabled,
             )
           }
-          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b08d57]/25 focus:ring-offset-2 ${
+          className={`group relative flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#b79a6a]/25 focus:ring-offset-2 ${
             form.enabled
-              ? "bg-[#26221d]"
-              : "bg-[#d6ccb6]"
+              ? "bg-[#b79a6a]"
+              : "bg-[#3a352f]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow-[0_1px_3px_rgba(70,55,45,0.18)] transition-transform duration-200 ease-out ${
+            className={`block h-5 w-5 rounded-full bg-[#1a1816] shadow-[0_1px_3px_rgba(0,0,0,0.5)] transition-transform duration-200 ease-out ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -399,9 +399,9 @@ export function BrandStorySectionEditor({
       <div>
         <Label text="Brand Story Image" />
 
-        <div className="mt-2 border border-[#e6dfcf] bg-[#f7f2e7] p-4 rounded-[14px]">
+        <div className="mt-2 border border-[#2e2a26] bg-[#111111] p-4 rounded-[14px]">
           {form.image ? (
-            <div className="relative overflow-hidden border border-[#e6dfcf] bg-[#fffdf8] rounded-lg">
+            <div className="relative overflow-hidden border border-[#2e2a26] bg-[#1a1816] rounded-lg">
               <img
                 src={form.image}
                 alt="Brand Story preview"
@@ -419,13 +419,13 @@ export function BrandStorySectionEditor({
               </button>
             </div>
           ) : (
-            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#d6ccb6] bg-[#fffdf8] rounded-lg">
+            <div className="flex h-[260px] items-center justify-center border border-dashed border-[#3a352f] bg-[#1a1816] rounded-lg">
               <div className="text-center">
-                <p className="text-sm text-[#5f584d]">
+                <p className="text-sm text-[#cfc7bb]">
                   No image selected
                 </p>
 
-                <p className="mt-1 text-xs text-[#756d62]">
+                <p className="mt-1 text-xs text-[#9a9185]">
                   JPEG, PNG or WebP · Max 5MB
                 </p>
               </div>
@@ -434,7 +434,7 @@ export function BrandStorySectionEditor({
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <label
-              className={`inline-flex cursor-pointer items-center gap-2 border border-[#26221d] bg-[#26221d] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] ${
+              className={`inline-flex cursor-pointer items-center gap-2 border border-[#f8f3f1] bg-[#b79a6a] px-4 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#1a1816] transition hover:border-[#e6dfd4] hover:bg-[#c8ad7f] ${
                 uploading
                   ? "pointer-events-none opacity-60"
                   : ""
@@ -471,7 +471,7 @@ export function BrandStorySectionEditor({
             </label>
 
             {form.image && (
-              <p className="text-xs text-[#5f584d]">
+              <p className="text-xs text-[#cfc7bb]">
                 Image uploaded to Cloudinary.
               </p>
             )}
@@ -514,16 +514,16 @@ export function BrandStorySectionEditor({
       ===================================================== */}
 
       {error && (
-        <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
-          <p className="text-sm text-[#8f1f19]">
+        <div className="border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#f0a39d]">
             {error}
           </p>
         </div>
       )}
 
       {success && !error && (
-        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
-          <p className="text-sm text-[#2f7d4f]">
+        <div className="border border-[#2c4a33] bg-[#1a2419] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#8fb08a]">
             {success}
           </p>
         </div>
@@ -533,14 +533,14 @@ export function BrandStorySectionEditor({
           SAVE
       ===================================================== */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#2e2a26] bg-[#1a1816]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={
             saving ||
             uploading !== null
           }
-          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:border-[#3d372f] hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
+          className="inline-flex items-center gap-2 border border-[#f8f3f1] bg-[#b79a6a] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#1a1816] transition hover:border-[#e6dfd4] hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           {saving ? (
             <>
@@ -590,7 +590,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
+        className="mt-2 h-11 w-full border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]/20 rounded-lg"
       />
     </div>
   );
@@ -622,7 +622,7 @@ function TextAreaField({
         }
         placeholder={placeholder}
         rows={6}
-        className="mt-2 w-full resize-y border border-[#d6ccb6] bg-[#fffdf8] px-3 py-3 text-sm leading-7 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
+        className="mt-2 w-full resize-y border border-[#3a352f] bg-[#1a1816] px-3 py-3 text-sm leading-7 text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]/20 rounded-lg"
       />
     </div>
   );
@@ -638,7 +638,7 @@ function Label({
   text: string;
 }): ReactElement {
   return (
-    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+    <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
       {text}
     </label>
   );

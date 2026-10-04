@@ -1,15 +1,15 @@
 import type { AdminOrder } from "@/types/order";
 
 const DOT: Record<string, string> = {
-  delivered: "bg-[#2a9a68]",
-  cancelled: "bg-[#c2372e]",
-  returned: "bg-[#6a58c4]",
-  exchanged: "bg-[#6a58c4]",
-  shipped: "bg-[#1f77a8]",
-  in_transit: "bg-[#1f77a8]",
-  out_for_delivery: "bg-[#1f77a8]",
-  processing: "bg-[#d29a0a]",
-  packed: "bg-[#d29a0a]",
+  delivered: "bg-[#8fb08a]",
+  cancelled: "bg-[#e08b84]",
+  returned: "bg-[#b4a8f0]",
+  exchanged: "bg-[#b4a8f0]",
+  shipped: "bg-[#8fbfdc]",
+  in_transit: "bg-[#8fbfdc]",
+  out_for_delivery: "bg-[#8fbfdc]",
+  processing: "bg-[#e0b56a]",
+  packed: "bg-[#e0b56a]",
 };
 
 const stamp = (value?: string) =>
@@ -20,31 +20,31 @@ export function OrderTimeline({ order }: { order: AdminOrder }) {
 
   return (
     <section className="surface p-5 sm:p-6">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">Activity</p>
-      <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#2a2520]">Order timeline</h2>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9a9185]">Activity</p>
+      <h2 className="display mt-1 text-[26px] font-semibold leading-none text-[#f8f3f1]">Order timeline</h2>
 
       {history.length === 0 ? (
-        <p className="mt-6 text-sm text-[#756d62]">No status history available.</p>
+        <p className="mt-6 text-sm text-[#9a9185]">No status history available.</p>
       ) : (
         <ol className="mt-6">
           {history.map((item, index) => (
             <li key={`${item.status}-${item.changedAt}-${index}`} className="relative flex gap-4 pb-6 last:pb-0">
               {index < history.length - 1 ? (
-                <span className="absolute left-[5px] top-4 h-full w-px bg-[#e6dfcf]" aria-hidden="true" />
+                <span className="absolute left-[5px] top-4 h-full w-px bg-[#2e2a26]" aria-hidden="true" />
               ) : null}
 
               <span
-                className={`relative mt-1.5 h-[11px] w-[11px] shrink-0 rounded-full ring-4 ring-[#fffdf8] ${
-                  DOT[item.status] ?? "bg-[#b08d57]"
+                className={`relative mt-1.5 h-[11px] w-[11px] shrink-0 rounded-full ring-4 ring-[#1a1816] ${
+                  DOT[item.status] ?? "bg-[#b79a6a]"
                 }`}
               />
 
               <div className="min-w-0">
-                <p className="text-sm font-semibold capitalize text-[#2a2520]">{item.status.replace(/_/g, " ")}</p>
+                <p className="text-sm font-semibold capitalize text-[#f8f3f1]">{item.status.replace(/_/g, " ")}</p>
 
-                {item.note ? <p className="mt-0.5 text-sm leading-6 text-[#5f584d]">{item.note}</p> : null}
+                {item.note ? <p className="mt-0.5 text-sm leading-6 text-[#cfc7bb]">{item.note}</p> : null}
 
-                <p className="mt-0.5 text-xs text-[#756d62]">{stamp(item.changedAt)}</p>
+                <p className="mt-0.5 text-xs text-[#9a9185]">{stamp(item.changedAt)}</p>
               </div>
             </li>
           ))}

@@ -14,7 +14,7 @@ export function AdminHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-[#e6dfcf] bg-[#f7f2e7]/95 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-[#2e2a26] bg-[#111111]/95 backdrop-blur">
         <div className="flex h-[72px] items-center justify-between px-5 sm:px-7 lg:px-8">
           <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <button
@@ -22,7 +22,7 @@ export function AdminHeader() {
               onClick={() =>
                 setMobileOpen(true)
               }
-              className="inline-flex h-10 w-10 items-center justify-center border border-[#e6dfcf] bg-[#fffdf8] text-[#2a2520] lg:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center border border-[#2e2a26] bg-[#1a1816] text-[#f8f3f1] lg:hidden"
               aria-label="Open navigation"
             >
               <Menu size={19} />

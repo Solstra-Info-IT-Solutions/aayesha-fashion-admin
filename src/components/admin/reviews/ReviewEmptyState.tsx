@@ -13,16 +13,16 @@ export default function ReviewEmptyState({
   onReset,
 }: ReviewEmptyStateProps) {
   return (
-    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-14 text-center shadow-sm">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#f1ead9] text-[#26221d]">
+    <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] px-6 py-14 text-center shadow-sm">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#2a241b] text-[#f8f3f1]">
         <MessageSquareText size={26} />
       </div>
 
-      <h3 className="mt-5 text-lg font-semibold text-[#2a2520]">
+      <h3 className="mt-5 text-lg font-semibold text-[#f8f3f1]">
         {hasFilters ? "No reviews found" : "No reviews yet"}
       </h3>
 
-      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5f584d]">
+      <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#cfc7bb]">
         {hasFilters
           ? "No reviews match your current search or filters. Try changing the filters or clearing them."
           : "Customer reviews will appear here once customers start submitting reviews."}
@@ -32,7 +32,7 @@ export default function ReviewEmptyState({
         <button
           type="button"
           onClick={onReset}
-          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7]"
+          className="mt-6 inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] bg-[#1a1816] px-4 text-sm font-medium text-[#f8f3f1] transition hover:bg-[#111111]"
         >
           <RotateCcw size={16} />
           Clear Filters
@@ -42,7 +42,7 @@ export default function ReviewEmptyState({
       {!hasFilters && (
         <Link
           href="/admin"
-          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
+          className="mt-6 inline-flex h-10 items-center rounded-lg bg-[#b79a6a] px-5 text-sm font-medium text-[#111111] transition hover:bg-[#c8ad7f]"
         >
           Back to Admin
         </Link>

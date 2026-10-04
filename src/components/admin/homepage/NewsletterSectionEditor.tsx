@@ -136,13 +136,13 @@ export function NewsletterSectionEditor({
     >
       {/* SECTION STATUS */}
 
-      <div className="flex items-center justify-between border border-[#e6dfcf] bg-[#f7f2e7] px-5 py-4 rounded-[14px]">
+      <div className="flex items-center justify-between border border-[#2e2a26] bg-[#111111] px-5 py-4 rounded-[14px]">
         <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
             Section Status
           </p>
 
-          <p className="mt-1 text-sm text-[#2a2520]">
+          <p className="mt-1 text-sm text-[#f8f3f1]">
             {form.enabled
               ? "Newsletter is visible on the homepage."
               : "Newsletter is hidden from the homepage."}
@@ -161,12 +161,12 @@ export function NewsletterSectionEditor({
           }
           className={`relative flex h-7 w-12 items-center rounded-full p-1 transition-all ${
             form.enabled
-              ? "bg-[#26221d]"
-              : "bg-[#d6ccb6]"
+              ? "bg-[#b79a6a]"
+              : "bg-[#3a352f]"
           }`}
         >
           <span
-            className={`block h-5 w-5 rounded-full bg-[#fffdf8] shadow transition-transform ${
+            className={`block h-5 w-5 rounded-full bg-[#1a1816] shadow transition-transform ${
               form.enabled
                 ? "translate-x-5"
                 : "translate-x-0"
@@ -211,12 +211,12 @@ export function NewsletterSectionEditor({
 
       {/* FORM SETTINGS */}
 
-      <div className="border-t border-[#e6dfcf] pt-6">
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+      <div className="border-t border-[#2e2a26] pt-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
           Signup Form
         </p>
 
-        <p className="mt-1 text-sm text-[#2a2520]">
+        <p className="mt-1 text-sm text-[#f8f3f1]">
           Configure the newsletter input and button.
         </p>
       </div>
@@ -250,16 +250,16 @@ export function NewsletterSectionEditor({
       {/* MESSAGES */}
 
       {error && (
-        <div className="border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 rounded-lg">
-          <p className="text-sm text-[#8f1f19]">
+        <div className="border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#f0a39d]">
             {error}
           </p>
         </div>
       )}
 
       {success && !error && (
-        <div className="border border-[#bfe3cb] bg-[#e8f5ec] px-4 py-3 rounded-lg">
-          <p className="text-sm text-[#2f7d4f]">
+        <div className="border border-[#2c4a33] bg-[#1a2419] px-4 py-3 rounded-lg">
+          <p className="text-sm text-[#8fb08a]">
             {success}
           </p>
         </div>
@@ -267,11 +267,11 @@ export function NewsletterSectionEditor({
 
       {/* SAVE */}
 
-      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#e6dfcf] bg-[#fffdf8]/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-4 z-20 flex justify-end border-t border-[#2e2a26] bg-[#1a1816]/95 px-1 py-4 backdrop-blur">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 border border-[#26221d] bg-[#26221d] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#fffdf8] transition hover:bg-[#3d372f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
+          className="inline-flex items-center gap-2 border border-[#f8f3f1] bg-[#b79a6a] px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-[#1a1816] transition hover:bg-[#c8ad7f] disabled:cursor-not-allowed disabled:opacity-50 rounded-lg"
         >
           {saving ? (
             <>
@@ -306,7 +306,7 @@ function Field({
 }): ReactElement {
   return (
     <div>
-      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#5f584d]">
+      <label className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#cfc7bb]">
         {label}
       </label>
 
@@ -317,7 +317,7 @@ function Field({
           onChange(event.target.value)
         }
         placeholder={placeholder}
-        className="mt-2 h-11 w-full border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#26221d] focus:ring-1 focus:ring-[#26221d]/20 rounded-lg"
+        className="mt-2 h-11 w-full border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#f8f3f1] focus:ring-1 focus:ring-[#f8f3f1]/20 rounded-lg"
       />
     </div>
   );
