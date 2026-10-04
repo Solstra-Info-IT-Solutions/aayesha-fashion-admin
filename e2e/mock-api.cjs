@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* Throw-away API stand-in for the end-to-end tests. Never deployed. */
 const http=require('http');
 const now=Date.now(),iso=(d=0)=>new Date(now-d*864e5).toISOString();
 const pg=(n)=>({page:1,limit:20,total:n,totalPages:1,hasNextPage:false,hasPreviousPage:false});
