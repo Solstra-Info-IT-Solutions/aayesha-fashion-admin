@@ -69,15 +69,15 @@ export default function CatalogPage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">
           Catalog
         </p>
 
-        <h1 className="mt-1 text-[#2a2520]">
+        <h1 className="mt-1 text-[#f8f3f1]">
           Catalog Management
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#756d62]">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#9a9185]">
           Manage the master data that powers
           products, merchandising and
           storefront discovery.
@@ -95,18 +95,18 @@ export default function CatalogPage() {
               className="group surface surface-hover p-5"
             >
               <div className="flex items-start justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f1ead9] text-[#6f542f]">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#2a241b] text-[#d9c7a3]">
                   <Icon className="h-5 w-5" />
                 </div>
 
-                <ChevronRight className="h-5 w-5 text-[#bdb199] transition group-hover:translate-x-0.5 group-hover:text-[#756d62]" />
+                <ChevronRight className="h-5 w-5 text-[#8c847d] transition group-hover:translate-x-0.5 group-hover:text-[#9a9185]" />
               </div>
 
-              <h2 className="display mt-5 text-2xl font-semibold text-[#2a2520]">
+              <h2 className="display mt-5 text-2xl font-semibold text-[#f8f3f1]">
                 {item.title}
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-[#756d62]">
+              <p className="mt-2 text-sm leading-6 text-[#9a9185]">
                 {item.description}
               </p>
             </Link>

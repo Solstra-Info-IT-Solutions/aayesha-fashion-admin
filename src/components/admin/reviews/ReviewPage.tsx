@@ -254,12 +254,12 @@ export default function ReviewPage() {
 
   if (!accessToken) {
     return (
-      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[#2a2520]">
+      <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#f8f3f1]">
           Authentication required
         </h2>
 
-        <p className="mt-2 text-sm text-[#5f584d]">
+        <p className="mt-2 text-sm text-[#cfc7bb]">
           Please sign in again to manage reviews.
         </p>
       </div>

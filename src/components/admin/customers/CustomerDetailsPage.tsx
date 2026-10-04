@@ -124,19 +124,19 @@ function statusClass(
 ) {
   switch (status) {
     case "active":
-      return "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]";
+      return "bg-[#1a2419] text-[#8fb08a] border-[#2c4a33]";
 
     case "inactive":
-      return "bg-[#efe8d8] text-[#5f584d] border-[#d6ccb6]";
+      return "bg-[#211e1b] text-[#cfc7bb] border-[#3a352f]";
 
     case "suspended":
-      return "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]";
+      return "bg-[#2b2216] text-[#e0b56a] border-[#5a4420]";
 
     case "blocked":
-      return "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]";
+      return "bg-[#2b1a18] text-[#f0a39d] border-[#5a2a27]";
 
     default:
-      return "bg-[#efe8d8] text-[#5f584d] border-[#d6ccb6]";
+      return "bg-[#211e1b] text-[#cfc7bb] border-[#3a352f]";
   }
 }
 
@@ -519,12 +519,12 @@ export default function CustomerDetailsPage({
   ) {
     return (
       <div className="mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 lg:px-8">
-        <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
+        <div className="h-8 w-48 animate-pulse rounded bg-[#211e1b]" />
 
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
-          <div className="h-72 animate-pulse rounded-[14px] bg-[#efe8d8] lg:col-span-2" />
+          <div className="h-72 animate-pulse rounded-[14px] bg-[#211e1b] lg:col-span-2" />
 
-          <div className="h-72 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+          <div className="h-72 animate-pulse rounded-[14px] bg-[#211e1b]" />
         </div>
       </div>
     );
@@ -539,7 +539,7 @@ export default function CustomerDetailsPage({
 
         <SmartBackLink
           href="/admin/customers"
-          className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#6f542f]"
+          className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#d9c7a3]"
         >
           <ArrowLeft size={16} />
           Back to Customers
@@ -571,7 +571,7 @@ export default function CustomerDetailsPage({
         <div className="mb-6">
           <SmartBackLink
             href="/admin/customers"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#5f584d] hover:text-[#6f542f]"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#cfc7bb] hover:text-[#d9c7a3]"
           >
             <ArrowLeft size={16} />
             Back to Customers
@@ -580,7 +580,7 @@ export default function CustomerDetailsPage({
           <div className="mt-4 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
             <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#f1ead9] text-lg font-semibold text-[#6f542f]">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#2a241b] text-lg font-semibold text-[#d9c7a3]">
                 {initials(
                   customer.name ||
                     "Customer",
@@ -589,7 +589,7 @@ export default function CustomerDetailsPage({
 
               <div>
                 <div className="flex flex-wrap items-center gap-3">
-                  <h1 className="text-2xl font-semibold text-[#2a2520]">
+                  <h1 className="text-2xl font-semibold text-[#f8f3f1]">
                     {customer.name ||
                       "Unnamed Customer"}
                   </h1>
@@ -603,13 +603,13 @@ export default function CustomerDetailsPage({
                   </span>
 
                   {customer.isArchived && (
-                    <span className="rounded-full border border-[#d6ccb6] bg-[#efe8d8] px-2.5 py-1 text-xs font-medium text-[#5f584d]">
+                    <span className="rounded-full border border-[#3a352f] bg-[#211e1b] px-2.5 py-1 text-xs font-medium text-[#cfc7bb]">
                       Archived
                     </span>
                   )}
                 </div>
 
-                <p className="mt-1 text-sm text-[#5f584d]">
+                <p className="mt-1 text-sm text-[#cfc7bb]">
                   Customer since{" "}
                   {formatDate(
                     customer.createdAt,
@@ -627,7 +627,7 @@ export default function CustomerDetailsPage({
                     (value) => !value,
                   )
                 }
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#2a2520] hover:bg-[#f7f2e7] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2e2a26] bg-[#1a1816] px-4 text-sm font-medium text-[#f8f3f1] hover:bg-[#111111] disabled:opacity-50"
               >
                 {editing ? (
                   <X size={16} />
@@ -649,7 +649,7 @@ export default function CustomerDetailsPage({
                       .value as Customer["status"],
                   )
                 }
-                className="h-10 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm font-medium text-[#2a2520] outline-none"
+                className="h-10 rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm font-medium text-[#f8f3f1] outline-none"
               >
                 <option value="active">
                   Active
@@ -675,7 +675,7 @@ export default function CustomerDetailsPage({
                   onClick={() =>
                     void handleRestore()
                   }
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#bfe3cb] bg-[#e8f5ec] px-4 text-sm font-medium text-[#276541] hover:bg-[#d7eede] disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#2c4a33] bg-[#1a2419] px-4 text-sm font-medium text-[#8fb08a] hover:bg-[#1a2419] disabled:opacity-50"
                 >
                   <Check size={16} />
                   Restore
@@ -687,7 +687,7 @@ export default function CustomerDetailsPage({
                   onClick={() =>
                     setConfirm("archive")
                   }
-                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#f6d08a] bg-[#fdf3e1] px-4 text-sm font-medium text-[#7f4806] hover:bg-[#fbe8c4] disabled:opacity-50"
+                  className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#5a4420] bg-[#2b2216] px-4 text-sm font-medium text-[#e0b56a] hover:bg-[#3b2f1a] disabled:opacity-50"
                 >
                   Archive
                 </button>
@@ -699,7 +699,7 @@ export default function CustomerDetailsPage({
                 onClick={() =>
                   setConfirm("delete")
                 }
-                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 text-sm font-medium text-[#8f1f19] hover:bg-[#f9d9d8] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 text-sm font-medium text-[#f0a39d] hover:bg-[#2b1a18] disabled:opacity-50"
               >
                 <Trash2 size={16} />
                 Delete
@@ -789,7 +789,7 @@ export default function CustomerDetailsPage({
                   />
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-[#756d62]">
+                    <label className="mb-1.5 block text-xs font-medium text-[#9a9185]">
                       Gender
                     </label>
 
@@ -801,7 +801,7 @@ export default function CustomerDetailsPage({
                             .value as typeof gender,
                         )
                       }
-                      className="h-10 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm outline-none focus:border-[#b08d57]"
+                      className="h-10 w-full rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm outline-none focus:border-[#b79a6a]"
                     >
                       <option value="">
                         Not specified
@@ -822,7 +822,7 @@ export default function CustomerDetailsPage({
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-[#756d62]">
+                    <label className="mb-1.5 block text-xs font-medium text-[#9a9185]">
                       Date of Birth
                     </label>
 
@@ -837,13 +837,13 @@ export default function CustomerDetailsPage({
                             .value,
                         )
                       }
-                      className="h-10 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm outline-none focus:border-[#b08d57]"
+                      className="h-10 w-full rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm outline-none focus:border-[#b79a6a]"
                     />
                   </div>
 
                   <div className="md:col-span-2">
                     <div className="flex flex-wrap gap-2">
-                      <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 py-2 text-sm">
+                      <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#2e2a26] px-3 py-2 text-sm">
                         <input
                           type="checkbox"
                           checked={
@@ -862,7 +862,7 @@ export default function CustomerDetailsPage({
                         Email Updates
                       </label>
 
-                      <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 py-2 text-sm">
+                      <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#2e2a26] px-3 py-2 text-sm">
                         <input
                           type="checkbox"
                           checked={
@@ -890,7 +890,7 @@ export default function CustomerDetailsPage({
                       onClick={() =>
                         void handleSave()
                       }
-                      className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
+                      className="inline-flex h-10 items-center gap-2 rounded-lg bg-[#b79a6a] px-5 text-sm font-medium text-[#111111] hover:opacity-90 disabled:opacity-50"
                     >
                       <Check size={16} />
 
@@ -1025,22 +1025,22 @@ export default function CustomerDetailsPage({
                           address.id ||
                           index
                         }
-                        className="rounded-lg border border-[#e6dfcf] p-4"
+                        className="rounded-lg border border-[#2e2a26] p-4"
                       >
                         <div className="mb-3 flex items-center justify-between">
-                          <p className="text-sm font-semibold text-[#2a2520]">
+                          <p className="text-sm font-semibold text-[#f8f3f1]">
                             Address{" "}
                             {index + 1}
                           </p>
 
                           {address.isDefault && (
-                            <span className="rounded-full bg-[#e8f5ec] px-2 py-1 text-[11px] font-medium text-[#276541]">
+                            <span className="rounded-full bg-[#1a2419] px-2 py-1 text-[11px] font-medium text-[#8fb08a]">
                               Default
                             </span>
                           )}
                         </div>
 
-                        <p className="text-sm leading-6 text-[#5f584d]">
+                        <p className="text-sm leading-6 text-[#cfc7bb]">
                           {[
                             `${address.firstName || ""} ${address.lastName || ""}`.trim(),
                             address.addressLine1,
@@ -1057,7 +1057,7 @@ export default function CustomerDetailsPage({
                         </p>
 
                         {address.phone && (
-                          <p className="mt-3 flex items-center gap-2 text-xs text-[#756d62]">
+                          <p className="mt-3 flex items-center gap-2 text-xs text-[#9a9185]">
                             <Phone
                               size={13}
                             />
@@ -1088,20 +1088,20 @@ export default function CustomerDetailsPage({
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[600px]">
                     <thead>
-                      <tr className="border-b border-[#e6dfcf]">
-                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+                      <tr className="border-b border-[#2e2a26]">
+                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                           Order
                         </th>
 
-                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                           Date
                         </th>
 
-                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+                        <th className="pb-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                           Status
                         </th>
 
-                        <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+                        <th className="pb-3 text-right text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                           Amount
                         </th>
 
@@ -1120,23 +1120,23 @@ export default function CustomerDetailsPage({
                               order.orderNumber ||
                               index
                             }
-                            className="border-b border-[#e6dfcf] last:border-0"
+                            className="border-b border-[#2e2a26] last:border-0"
                           >
-                            <td className="py-3 text-sm font-medium text-[#2a2520]">
+                            <td className="py-3 text-sm font-medium text-[#f8f3f1]">
                               #
                               {
                                 order.orderNumber
                               }
                             </td>
 
-                            <td className="py-3 text-sm text-[#756d62]">
+                            <td className="py-3 text-sm text-[#9a9185]">
                               {formatDate(
                                 order.createdAt,
                               )}
                             </td>
 
                             <td className="py-3">
-                              <span className="rounded-full bg-[#efe8d8] px-2.5 py-1 text-xs font-medium capitalize text-[#5f584d]">
+                              <span className="rounded-full bg-[#211e1b] px-2.5 py-1 text-xs font-medium capitalize text-[#cfc7bb]">
                                 {
                                   order.status ||
                                   "—"
@@ -1144,7 +1144,7 @@ export default function CustomerDetailsPage({
                               </span>
                             </td>
 
-                            <td className="py-3 text-right text-sm font-medium text-[#2a2520]">
+                            <td className="py-3 text-right text-sm font-medium text-[#f8f3f1]">
                               {formatCurrency(
                                 order.grandTotal ??
                                   order.total ??
@@ -1155,7 +1155,7 @@ export default function CustomerDetailsPage({
                             <td className="py-3 text-right">
                               <Link
                                 href={`/admin/orders/${order.orderNumber}`}
-                                className="inline-flex h-8 items-center justify-center rounded-lg border border-[#e6dfcf] px-2.5 text-xs font-medium hover:border-[#b08d57] hover:text-[#6f542f]"
+                                className="inline-flex h-8 items-center justify-center rounded-lg border border-[#2e2a26] px-2.5 text-xs font-medium hover:border-[#b79a6a] hover:text-[#d9c7a3]"
                               >
                                 View
 
@@ -1272,26 +1272,26 @@ export default function CustomerDetailsPage({
                         {index <
                           activities.length -
                             1 && (
-                          <div className="absolute left-[7px] top-5 h-full w-px bg-[#e6dfcf]" />
+                          <div className="absolute left-[7px] top-5 h-full w-px bg-[#2e2a26]" />
                         )}
 
-                        <div className="relative z-10 mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-[#b08d57] bg-[#fffdf8]" />
+                        <div className="relative z-10 mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-[#b79a6a] bg-[#1a1816]" />
 
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-[#2a2520] [&:not(:has(a))]:first-letter:uppercase">
+                          <p className="text-sm font-medium text-[#f8f3f1] [&:not(:has(a))]:first-letter:uppercase">
                             {activity.action.replace(
                               /_/g,
                               " ",
                             )}
                           </p>
 
-                          <p className="mt-1 text-xs leading-5 text-[#756d62]">
+                          <p className="mt-1 text-xs leading-5 text-[#9a9185]">
                             {
                               activity.description
                             }
                           </p>
 
-                          <p className="mt-1 text-[11px] text-[#756d62]">
+                          <p className="mt-1 text-[11px] text-[#9a9185]">
                             {formatDateTime(
                               activity.createdAt,
                             )}
@@ -1320,19 +1320,19 @@ function MetricCard({
   icon: ReactNode;
 }) {
   return (
-    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm">
+    <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
+          <p className="text-xs font-medium uppercase tracking-wide text-[#9a9185]">
             {title}
           </p>
 
-          <p className="display mt-2 text-2xl font-semibold text-[#2a2520]">
+          <p className="display mt-2 text-2xl font-semibold text-[#f8f3f1]">
             {value}
           </p>
         </div>
 
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9] text-[#6f542f]">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2a241b] text-[#d9c7a3]">
           {icon}
         </div>
       </div>
@@ -1352,11 +1352,11 @@ function SectionCard({
   return (
     <section className="surface p-5">
       <div className="mb-5 flex items-center gap-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f1ead9] text-[#6f542f]">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2a241b] text-[#d9c7a3]">
           {icon}
         </div>
 
-        <h2 className="display text-xl font-semibold text-[#2a2520]">
+        <h2 className="display text-xl font-semibold text-[#f8f3f1]">
           {title}
         </h2>
       </div>
@@ -1377,11 +1377,11 @@ function InfoItem({
 }) {
   return (
     <div>
-      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#756d62]">
+      <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#9a9185]">
         {label}
       </p>
 
-      <p className="flex items-center gap-2 text-sm font-medium text-[#2a2520] [&:not(:has(a))]:first-letter:uppercase">
+      <p className="flex items-center gap-2 text-sm font-medium text-[#f8f3f1] [&:not(:has(a))]:first-letter:uppercase">
         {icon}
         {value}
       </p>
@@ -1402,7 +1402,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-medium text-[#756d62]">
+      <label className="mb-1.5 block text-xs font-medium text-[#9a9185]">
         {label}
       </label>
 
@@ -1413,7 +1413,7 @@ function Field({
             event.target.value,
           )
         }
-        className="h-10 w-full rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm outline-none focus:border-[#b08d57]"
+        className="h-10 w-full rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm outline-none focus:border-[#b79a6a]"
       />
     </div>
   );
@@ -1428,12 +1428,12 @@ function TagGroup({
 }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#756d62]">
+      <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#9a9185]">
         {title}
       </p>
 
       {values.length === 0 ? (
-        <p className="text-sm text-[#756d62]">
+        <p className="text-sm text-[#9a9185]">
           Not specified
         </p>
       ) : (
@@ -1442,7 +1442,7 @@ function TagGroup({
             (value) => (
               <span
                 key={value}
-                className="rounded-full border border-[#e6dfcf] bg-[#f7f2e7] px-2.5 py-1 text-xs font-medium text-[#5f584d]"
+                className="rounded-full border border-[#2e2a26] bg-[#111111] px-2.5 py-1 text-xs font-medium text-[#cfc7bb]"
               >
                 {value}
               </span>
@@ -1462,16 +1462,16 @@ function PreferenceRow({
   enabled: boolean;
 }) {
   return (
-    <div className="flex items-center justify-between rounded-lg border border-[#e6dfcf] px-3 py-2.5">
-      <span className="text-sm text-[#2a2520]">
+    <div className="flex items-center justify-between rounded-lg border border-[#2e2a26] px-3 py-2.5">
+      <span className="text-sm text-[#f8f3f1]">
         {label}
       </span>
 
       <span
         className={`flex h-6 w-6 items-center justify-center rounded-full ${
           enabled
-            ? "bg-[#e8f5ec] text-emerald-600"
-            : "bg-[#efe8d8] text-[#756d62]"
+            ? "bg-[#1a2419] text-emerald-600"
+            : "bg-[#211e1b] text-[#9a9185]"
         }`}
       >
         {enabled ? (
@@ -1490,7 +1490,7 @@ function EmptyState({
   text: string;
 }) {
   return (
-    <div className="rounded-lg border border-dashed border-[#e6dfcf] px-4 py-8 text-center text-sm text-[#756d62]">
+    <div className="rounded-lg border border-dashed border-[#2e2a26] px-4 py-8 text-center text-sm text-[#9a9185]">
       {text}
     </div>
   );

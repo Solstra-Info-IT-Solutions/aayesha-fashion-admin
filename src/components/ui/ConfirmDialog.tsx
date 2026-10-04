@@ -43,22 +43,22 @@ export function ConfirmDialog({
         type="button"
         aria-label="Close"
         onClick={() => !busy && onCancel()}
-        className="absolute inset-0 bg-[#2a2520]/45"
+        className="absolute inset-0 bg-black/65"
       />
 
       <div className="surface relative w-full max-w-md p-6 shadow-2xl">
-        <h2 id="confirm-title" className="display text-3xl font-semibold leading-tight text-[#2a2520]">
+        <h2 id="confirm-title" className="display text-3xl font-semibold leading-tight text-[#f8f3f1]">
           {title}
         </h2>
 
-        <p className="mt-2 whitespace-pre-line text-sm leading-6 text-[#5f584d]">{description}</p>
+        <p className="mt-2 whitespace-pre-line text-sm leading-6 text-[#cfc7bb]">{description}</p>
 
         <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onCancel}
             disabled={busy}
-            className="h-10 rounded-lg border border-[#d6ccb6] px-4 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57] disabled:opacity-50"
+            className="h-10 rounded-lg border border-[#3a352f] px-4 text-sm font-semibold text-[#f8f3f1] transition hover:border-[#b79a6a] disabled:opacity-50"
           >
             Cancel
           </button>
@@ -67,8 +67,8 @@ export function ConfirmDialog({
             type="button"
             onClick={onConfirm}
             disabled={busy}
-            className={`inline-flex h-10 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold text-white transition disabled:opacity-60 ${
-              tone === "danger" ? "bg-[#b3261e] hover:bg-[#8f1f19]" : "bg-[#26221d] hover:bg-[#3d372f]"
+            className={`inline-flex h-10 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold text-[#111111] transition disabled:opacity-60 ${
+              tone === "danger" ? "bg-[#e08b84] hover:bg-[#f0a39d]" : "bg-[#b79a6a] hover:bg-[#c8ad7f]"
             }`}
           >
             {busy ? <Loader2 size={15} className="animate-spin" /> : null}

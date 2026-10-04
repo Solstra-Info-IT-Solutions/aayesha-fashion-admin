@@ -18,8 +18,8 @@ export default function CatalogPagination({
   onNext,
 }: Props) {
   return (
-    <div className="flex flex-col gap-3 border-t border-[#d6ccb6] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-sm text-[#756d62]">
+    <div className="flex flex-col gap-3 border-t border-[#3a352f] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-sm text-[#9a9185]">
         {total} {total === 1 ? "entry" : "entries"}
       </p>
 
@@ -30,12 +30,12 @@ export default function CatalogPagination({
             loading || page <= 1
           }
           onClick={onPrevious}
-          className="rounded-lg border border-[#d6ccb6] px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-lg border border-[#3a352f] px-3 py-2 text-sm font-medium text-[#e6dfd4] transition hover:bg-[#111111] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Previous
         </button>
 
-        <span className="text-sm text-[#756d62]">
+        <span className="text-sm text-[#9a9185]">
           Page {page} of{" "}
           {Math.max(
             1,
@@ -51,7 +51,7 @@ export default function CatalogPagination({
             page >= totalPages
           }
           onClick={onNext}
-          className="rounded-lg border border-[#d6ccb6] px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-lg border border-[#3a352f] px-3 py-2 text-sm font-medium text-[#e6dfd4] transition hover:bg-[#111111] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next
         </button>

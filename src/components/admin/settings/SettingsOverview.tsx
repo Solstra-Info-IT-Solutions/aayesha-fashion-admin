@@ -57,21 +57,21 @@ export default function SettingsOverview({
         return (
           <div
             key={card.label}
-            className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm"
+            className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4 shadow-sm"
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[#756d62]">
+                <p className="text-xs font-medium uppercase tracking-wide text-[#9a9185]">
                   {card.label}
                 </p>
 
-                <p className="mt-2 text-2xl font-semibold text-[#2a2520]">
+                <p className="mt-2 text-2xl font-semibold text-[#f8f3f1]">
                   {card.value}
                 </p>
               </div>
 
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#efe8d8]">
-                <Icon className="h-5 w-5 text-[#756d62]" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#211e1b]">
+                <Icon className="h-5 w-5 text-[#9a9185]" />
               </div>
             </div>
           </div>

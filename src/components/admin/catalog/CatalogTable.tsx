@@ -89,7 +89,7 @@ function StatusBadge({
         "inline-flex rounded-full px-2.5 py-1 text-xs font-medium",
         active
           ? "bg-emerald-50 text-emerald-700"
-          : "bg-[#efe8d8] text-[#756d62]",
+          : "bg-[#211e1b] text-[#9a9185]",
       ].join(" ")}
     >
       {active
@@ -106,7 +106,7 @@ function renderExtraCell(
   switch (resource) {
     case "categories": {
       return (
-        <td className="px-5 py-4 text-sm text-[#5f584d]">
+        <td className="px-5 py-4 text-sm text-[#cfc7bb]">
           {(item as Category).parentId
             ? "Nested"
             : "Root"}
@@ -119,7 +119,7 @@ function renderExtraCell(
         item as Collection;
 
       return (
-        <td className="px-5 py-4 text-sm text-[#5f584d]">
+        <td className="px-5 py-4 text-sm text-[#cfc7bb]">
           {collection.isFeatured
             ? "Yes"
             : "No"}
@@ -132,7 +132,7 @@ function renderExtraCell(
         item as Badge;
 
       return (
-        <td className="px-5 py-4 text-sm capitalize text-[#5f584d]">
+        <td className="px-5 py-4 text-sm capitalize text-[#cfc7bb]">
           {badge.tone}
         </td>
       );
@@ -143,7 +143,7 @@ function renderExtraCell(
         item as AttributeMaster;
 
       return (
-        <td className="px-5 py-4 text-sm text-[#5f584d]">
+        <td className="px-5 py-4 text-sm text-[#cfc7bb]">
           {attribute.type}
         </td>
       );
@@ -157,15 +157,15 @@ function renderExtraCell(
         <td className="px-5 py-4">
           <div className="flex items-center gap-2">
             <span
-              className="h-6 w-6 rounded-full border border-[#d6ccb6]"
+              className="h-6 w-6 rounded-full border border-[#3a352f]"
               style={{
                 backgroundColor:
                   color.hex ??
-                  "#fffdf8",
+                  "#1a1816",
               }}
             />
 
-            <span className="text-sm text-[#5f584d]">
+            <span className="text-sm text-[#cfc7bb]">
               {color.hex ??
                 "—"}
             </span>
@@ -208,19 +208,19 @@ export default function CatalogTable({
     getColumnCount(resource);
 
   const cards = !loading && (
-    <div className="divide-y divide-[#e6dfcf] md:hidden">
+    <div className="divide-y divide-[#2e2a26] md:hidden">
       {items.map((item) => (
         <div key={item.id} className="flex items-center justify-between gap-3 p-4">
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-[#2a2520]">{getName(item)}</p>
-            <p className="truncate text-xs text-[#756d62]">{getIdentifier(item)}</p>
+            <p className="truncate text-sm font-semibold text-[#f8f3f1]">{getName(item)}</p>
+            <p className="truncate text-xs text-[#9a9185]">{getIdentifier(item)}</p>
             <div className="mt-2"><StatusBadge active={item.isActive} /></div>
           </div>
           <div className="flex shrink-0 gap-1">
-            <button type="button" aria-label="Edit" onClick={() => onEdit(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#d6ccb6] text-[#3d372f] hover:bg-[#f1ead9]">
+            <button type="button" aria-label="Edit" onClick={() => onEdit(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#3a352f] text-[#e6dfd4] hover:bg-[#2a241b]">
               <Pencil className="h-4 w-4" />
             </button>
-            <button type="button" aria-label="Delete" onClick={() => onDelete(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] hover:bg-[#fdecec]">
+            <button type="button" aria-label="Delete" onClick={() => onDelete(item)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#5a2a27] text-[#e08b84] hover:bg-[#2b1a18]">
               <Trash2 className="h-4 w-4" />
             </button>
           </div>
@@ -234,20 +234,20 @@ export default function CatalogTable({
       {cards}
       <div className={loading ? "overflow-x-auto" : "hidden overflow-x-auto md:block"}>
         <table className="min-w-full">
-          <thead className="border-b border-[#d6ccb6] bg-[#f7f2e7]">
+          <thead className="border-b border-[#3a352f] bg-[#111111]">
             <tr>
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                 Name
               </th>
 
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                 Identifier
               </th>
 
               {resource !== "tags" &&
                 resource !==
                   "sizes" && (
-                  <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+                  <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                     {resource ===
                     "categories"
                       ? "Hierarchy"
@@ -264,24 +264,24 @@ export default function CatalogTable({
                   </th>
                 )}
 
-              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+              <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                 Status
               </th>
 
-              <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-[#756d62]">
+              <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-[#9a9185]">
                 Action
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-[#e6dfcf]">
+          <tbody className="divide-y divide-[#2e2a26]">
             {loading ? (
               <tr>
                 <td
                   colSpan={columnCount}
                   className="px-5 py-16 text-center"
                 >
-                  <span className="inline-flex items-center gap-2 text-sm text-[#756d62]">
+                  <span className="inline-flex items-center gap-2 text-sm text-[#9a9185]">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     Loading...
                   </span>
@@ -294,17 +294,17 @@ export default function CatalogTable({
                     key={
                       item.id
                     }
-                    className="transition hover:bg-[#f7f2e7]"
+                    className="transition hover:bg-[#111111]"
                   >
                     <td className="px-5 py-4">
-                      <p className="text-sm font-semibold text-[#2a2520]">
+                      <p className="text-sm font-semibold text-[#f8f3f1]">
                         {getName(
                           item,
                         )}
                       </p>
                     </td>
 
-                    <td className="px-5 py-4 text-sm text-[#756d62]">
+                    <td className="px-5 py-4 text-sm text-[#9a9185]">
                       {getIdentifier(
                         item,
                       )}
@@ -330,7 +330,7 @@ export default function CatalogTable({
       onClick={() =>
         onEdit(item)
       }
-      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#3d372f] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#e6dfd4] transition hover:bg-[#211e1b] hover:text-[#f8f3f1]"
     >
       <Pencil className="h-3.5 w-3.5" />
       Edit
@@ -341,7 +341,7 @@ export default function CatalogTable({
       onClick={() =>
         onDelete(item)
       }
-      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#b3261e] transition hover:bg-[#fdecec] hover:text-[#8f1f19]"
+      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-[#e08b84] transition hover:bg-[#2b1a18] hover:text-[#f0a39d]"
     >
       <Trash2 className="h-3.5 w-3.5" />
       Delete

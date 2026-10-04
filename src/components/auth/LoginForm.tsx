@@ -120,7 +120,7 @@ export function LoginForm() {
       {formError ? (
         <p
           role="alert"
-          className="rounded-lg border border-[#f5c2c0] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]"
+          className="rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm text-[#f0a39d]"
         >
           {formError}
         </p>
@@ -129,7 +129,7 @@ export function LoginForm() {
       <div className="relative">
         <Mail
           size={18}
-          className="absolute left-4 top-[42px] z-10 text-[#756d62]"
+          className="absolute left-4 top-[42px] z-10 text-[#9a9185]"
         />
 
         <Input
@@ -152,7 +152,7 @@ export function LoginForm() {
       <div className="relative">
         <LockKeyhole
           size={18}
-          className="absolute left-4 top-[42px] z-10 text-[#756d62]"
+          className="absolute left-4 top-[42px] z-10 text-[#9a9185]"
         />
 
         <Input
@@ -184,7 +184,7 @@ export function LoginForm() {
             )
           }
           disabled={isLoading}
-          className="absolute right-3 top-[42px] p-2 text-[#756d62] hover:text-[#2a2520]"
+          className="absolute right-3 top-[42px] p-2 text-[#9a9185] hover:text-[#f8f3f1]"
           aria-label={
             showPassword
               ? "Hide password"

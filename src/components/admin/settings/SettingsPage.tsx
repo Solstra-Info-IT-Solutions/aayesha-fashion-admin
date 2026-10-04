@@ -207,11 +207,11 @@ export default function SettingsPage() {
           <>
             <div className="mb-6">
               <div className="mb-5">
-                <h2 className="display text-2xl font-semibold text-[#2a2520]">
+                <h2 className="display text-2xl font-semibold text-[#f8f3f1]">
                   Store Settings
                 </h2>
 
-                <p className="mt-1 text-sm text-[#756d62]">
+                <p className="mt-1 text-sm text-[#9a9185]">
                   Manage your store configuration and visibility.
                 </p>
               </div>
@@ -219,7 +219,7 @@ export default function SettingsPage() {
               <SettingsOverview settings={settings} />
             </div>
 
-            <div className="mb-5 rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm">
+            <div className="mb-5 rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4 shadow-sm">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                 <SettingsSearch
                   value={search}
@@ -238,7 +238,7 @@ export default function SettingsPage() {
                     <button
                       type="button"
                       onClick={clearFilters}
-                      className="h-10 rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-4 text-sm font-medium text-[#5f584d] transition hover:bg-[#f7f2e7]"
+                      className="h-10 rounded-lg border border-[#2e2a26] bg-[#1a1816] px-4 text-sm font-medium text-[#cfc7bb] transition hover:bg-[#111111]"
                     >
                       Clear Filters
                     </button>
@@ -247,7 +247,7 @@ export default function SettingsPage() {
               </div>
 
               {hasFilters && (
-                <div className="mt-3 text-xs text-[#756d62]">
+                <div className="mt-3 text-xs text-[#9a9185]">
                   Showing {filteredSettings.length} of {settings.length}{" "}
                   settings
                 </div>

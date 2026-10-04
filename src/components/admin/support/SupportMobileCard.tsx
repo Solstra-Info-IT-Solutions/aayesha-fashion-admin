@@ -21,41 +21,41 @@ type SupportMobileCardProps = {
 function getStatusClasses(status: SupportStatus) {
   switch (status) {
     case "open":
-      return "border-[#c7dcea] bg-[#e6f0f7] text-[#1f5f86]";
+      return "border-[#2c4658] bg-[#16222b] text-[#8fbfdc]";
 
     case "in_progress":
-      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
+      return "border-[#5a4420] bg-[#2b2216] text-[#e0b56a]";
 
     case "waiting_customer":
-      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
+      return "border-[#5a4420] bg-[#2b2216] text-[#e0b56a]";
 
     case "resolved":
-      return "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]";
+      return "border-[#2c4a33] bg-[#1a2419] text-[#8fb08a]";
 
     case "closed":
-      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
+      return "border-[#2e2a26] bg-[#111111] text-[#cfc7bb]";
 
     default:
-      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
+      return "border-[#2e2a26] bg-[#111111] text-[#cfc7bb]";
   }
 }
 
 function getPriorityClasses(priority: SupportPriority) {
   switch (priority) {
     case "urgent":
-      return "border-[#f5c2c0] bg-[#fdecec] text-[#8f1f19]";
+      return "border-[#5a2a27] bg-[#2b1a18] text-[#f0a39d]";
 
     case "high":
-      return "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]";
+      return "border-[#5a4420] bg-[#2b2216] text-[#e0b56a]";
 
     case "normal":
-      return "border-[#c7dcea] bg-[#e6f0f7] text-[#1f5f86]";
+      return "border-[#2c4658] bg-[#16222b] text-[#8fbfdc]";
 
     case "low":
-      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
+      return "border-[#2e2a26] bg-[#111111] text-[#cfc7bb]";
 
     default:
-      return "border-[#e6dfcf] bg-[#f7f2e7] text-[#5f584d]";
+      return "border-[#2e2a26] bg-[#111111] text-[#cfc7bb]";
   }
 }
 
@@ -82,22 +82,22 @@ export default function SupportMobileCard({
   onDelete,
 }: SupportMobileCardProps) {
   return (
-    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm xl:hidden">
+    <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4 shadow-sm xl:hidden">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <Link
             href={`/admin/support/${ticket._id}`}
-            className="text-sm font-semibold text-[#26221d] hover:underline"
+            className="text-sm font-semibold text-[#f8f3f1] hover:underline"
           >
             {ticket.ticketNumber}
           </Link>
 
-          <h3 className="mt-1 line-clamp-2 text-base font-semibold text-[#2a2520]">
+          <h3 className="mt-1 line-clamp-2 text-base font-semibold text-[#f8f3f1]">
             {ticket.subject}
           </h3>
 
-          <p className="mt-1 text-xs text-[#5f584d]">
+          <p className="mt-1 text-xs text-[#cfc7bb]">
             {formatDate(ticket.createdAt)}
           </p>
         </div>
@@ -112,23 +112,23 @@ export default function SupportMobileCard({
       </div>
 
       {/* Customer */}
-      <div className="mt-4 rounded-[14px] bg-[#f7f2e7] p-3">
-        <p className="text-xs font-medium uppercase tracking-wide text-[#5f584d]">
+      <div className="mt-4 rounded-[14px] bg-[#111111] p-3">
+        <p className="text-xs font-medium uppercase tracking-wide text-[#cfc7bb]">
           Customer
         </p>
 
-        <p className="mt-1 text-sm font-semibold text-[#2a2520]">
+        <p className="mt-1 text-sm font-semibold text-[#f8f3f1]">
           {ticket.customerName}
         </p>
 
-        <p className="mt-1 truncate text-xs text-[#5f584d]">
+        <p className="mt-1 truncate text-xs text-[#cfc7bb]">
           {ticket.customerEmail}
         </p>
       </div>
 
       {/* Message */}
       <div className="mt-4">
-        <p className="line-clamp-3 text-sm leading-6 text-[#5f584d]">
+        <p className="line-clamp-3 text-sm leading-6 text-[#cfc7bb]">
           {ticket.message}
         </p>
       </div>
@@ -143,29 +143,29 @@ export default function SupportMobileCard({
           {ticket.priority}
         </span>
 
-        <span className="rounded-full border border-[#e6dfcf] bg-[#fffdf8] px-2.5 py-1 text-xs font-medium capitalize text-[#5f584d]">
+        <span className="rounded-full border border-[#2e2a26] bg-[#1a1816] px-2.5 py-1 text-xs font-medium capitalize text-[#cfc7bb]">
           {ticket.category}
         </span>
       </div>
 
       {/* Meta */}
-      <div className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] border border-[#e6dfcf] p-3">
+      <div className="mt-4 grid grid-cols-2 gap-3 rounded-[14px] border border-[#2e2a26] p-3">
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-[#5f584d]">
+          <p className="text-[11px] font-medium uppercase tracking-wide text-[#cfc7bb]">
             Order
           </p>
 
-          <p className="mt-1 truncate text-sm font-medium text-[#2a2520]">
+          <p className="mt-1 truncate text-sm font-medium text-[#f8f3f1]">
             {ticket.orderNumber || "—"}
           </p>
         </div>
 
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-[#5f584d]">
+          <p className="text-[11px] font-medium uppercase tracking-wide text-[#cfc7bb]">
             Assigned
           </p>
 
-          <p className="mt-1 truncate text-sm font-medium text-[#2a2520]">
+          <p className="mt-1 truncate text-sm font-medium text-[#f8f3f1]">
             {ticket.assignedTo || "Unassigned"}
           </p>
         </div>
@@ -175,7 +175,7 @@ export default function SupportMobileCard({
       <div className="mt-4 flex items-center gap-2">
         <Link
           href={`/admin/support/${ticket._id}`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#e6dfcf] text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#2e2a26] text-sm font-medium text-[#f8f3f1] transition hover:bg-[#111111]"
         >
           <Eye size={16} />
           View
@@ -183,7 +183,7 @@ export default function SupportMobileCard({
 
         <Link
           href={`/admin/support/${ticket._id}`}
-          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#e6dfcf] text-sm font-medium text-[#2a2520] transition hover:bg-[#f7f2e7]"
+          className="inline-flex h-9 flex-1 items-center justify-center gap-2 rounded-lg border border-[#2e2a26] text-sm font-medium text-[#f8f3f1] transition hover:bg-[#111111]"
         >
           <Pencil size={16} />
           Edit
@@ -192,7 +192,7 @@ export default function SupportMobileCard({
         <button
           type="button"
           onClick={() => onDelete(ticket)}
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] transition hover:bg-[#fdecec]"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#5a2a27] text-[#e08b84] transition hover:bg-[#2b1a18]"
           title="Delete ticket"
         >
           <Trash2 size={16} />

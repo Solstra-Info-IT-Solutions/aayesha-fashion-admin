@@ -174,14 +174,14 @@ export default function ProductPage() {
               onClick={() => setFilters((current) => ({ ...current, status: tab.id === "all" ? undefined : tab.id, page: 1 }))}
               className={`inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition ${
                 active
-                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8] shadow-[0_6px_14px_-8px_rgba(38,34,29,0.7)]"
-                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#2a2520] hover:border-[#b08d57]"
+                  ? "border-[#f8f3f1] bg-[#b79a6a] text-[#1a1816] shadow-[0_6px_14px_-8px_rgba(0,0,0,0.7)]"
+                  : "border-[#3a352f] bg-[#1a1816] text-[#f8f3f1] hover:border-[#b79a6a]"
               }`}
             >
               {tab.label}
 
               {count !== undefined ? (
-                <span className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${active ? "bg-white/15 text-[#fffdf8]" : "bg-[#efe8d8] text-[#5f584d]"}`}>
+                <span className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${active ? "bg-[#1a1816]/15 text-[#1a1816]" : "bg-[#211e1b] text-[#cfc7bb]"}`}>
                   {count}
                 </span>
               ) : null}
@@ -199,7 +199,7 @@ export default function ProductPage() {
       />
 
       {error ? (
-        <div role="alert" className="rounded-lg border border-[#f5b5b1] bg-[#fdecec] px-4 py-3 text-sm text-[#8f1f19]">
+        <div role="alert" className="rounded-lg border border-[#5a2a27] bg-[#2b1a18] px-4 py-3 text-sm text-[#f0a39d]">
           {error}
         </div>
       ) : null}

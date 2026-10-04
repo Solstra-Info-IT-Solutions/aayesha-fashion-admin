@@ -51,7 +51,7 @@ export default function ColorForm({
               hex: hex || null,
             })
           }
-          placeholder="#e4d8bd"
+          placeholder="#3a352f"
         />
 
         <Input
@@ -85,29 +85,29 @@ export default function ColorForm({
         }
       />
 
-      <div className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] p-4">
+      <div className="flex items-center gap-3 rounded-lg border border-[#3a352f] p-4">
         <span
-          className="h-10 w-10 rounded-full border border-[#d6ccb6]"
+          className="h-10 w-10 rounded-full border border-[#3a352f]"
           style={{
             backgroundColor:
               value.hex ||
-              "#fffdf8",
+              "#1a1816",
           }}
         />
 
         <div>
-          <p className="text-sm font-medium text-[#2a2520]">
+          <p className="text-sm font-medium text-[#f8f3f1]">
             Color Preview
           </p>
 
-          <p className="text-xs text-[#756d62]">
+          <p className="text-xs text-[#9a9185]">
             {value.hex ||
               "No hex value"}
           </p>
         </div>
       </div>
 
-      <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-[#3a352f] px-4 py-3">
         <input
           type="checkbox"
           checked={
@@ -123,7 +123,7 @@ export default function ColorForm({
           className="h-4 w-4"
         />
 
-        <span className="text-sm font-medium text-[#2a2520]">
+        <span className="text-sm font-medium text-[#f8f3f1]">
           Active
         </span>
       </label>
@@ -146,7 +146,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+      <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
         {label}
       </label>
 
@@ -157,7 +157,7 @@ function Input({
         onChange={(e) =>
           onChange(e.target.value)
         }
-        className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
+        className="w-full rounded-lg border border-[#3a352f] px-3.5 py-2.5 text-sm outline-none focus:border-[#9a9185]"
       />
     </div>
   );

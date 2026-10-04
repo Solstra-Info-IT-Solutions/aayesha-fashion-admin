@@ -75,12 +75,12 @@ export default function StockAlertsPage() {
       <div className="flex flex-col gap-4 pb-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">Inventory</p>
-            <h1 className="mt-1 text-[#2a2520]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">Inventory</p>
+            <h1 className="mt-1 text-[#f8f3f1]">
               Back-in-stock requests
             </h1>
 
-            <p className="mt-1 text-sm text-[#5f584d]">
+            <p className="mt-1 text-sm text-[#cfc7bb]">
               Customers who asked to be told when a sold-out product returns.
               They are emailed automatically when you restock it.
             </p>
@@ -91,7 +91,7 @@ export default function StockAlertsPage() {
           type="button"
           onClick={() => void refresh()}
           disabled={refreshing}
-          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-50"
+          className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] hover:bg-[#2a241b] disabled:opacity-50"
         >
           <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
           Refresh
@@ -99,17 +99,17 @@ export default function StockAlertsPage() {
       </div>
 
       {rows === null && !failed ? (
-        <p className="text-sm text-[#5f584d]">Loading…</p>
+        <p className="text-sm text-[#cfc7bb]">Loading…</p>
       ) : failed ? (
-        <p className="text-sm text-[#b3261e]">Unable to load stock alerts.</p>
+        <p className="text-sm text-[#e08b84]">Unable to load stock alerts.</p>
       ) : rows && rows.length === 0 ? (
-        <p className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-8 text-center text-sm text-[#5f584d]">
+        <p className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-8 text-center text-sm text-[#cfc7bb]">
           No back-in-stock requests yet.
         </p>
       ) : (
         <>
-          <p className="text-sm text-[#5f584d]">
-            <strong className="text-[#2a2520]">{waitingTotal}</strong>{" "}
+          <p className="text-sm text-[#cfc7bb]">
+            <strong className="text-[#f8f3f1]">{waitingTotal}</strong>{" "}
             customer{waitingTotal === 1 ? " is" : "s are"} waiting across{" "}
             {rows?.length} product{rows?.length === 1 ? "" : "s"}.
           </p>
@@ -122,29 +122,29 @@ export default function StockAlertsPage() {
                 className="surface surface-hover block p-4"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-semibold text-[#2a2520]">{row.productName}</p>
+                  <p className="font-semibold text-[#f8f3f1]">{row.productName}</p>
                   <span
                     className={
                       row.stock > 0
-                        ? "text-sm font-semibold text-[#276541]"
-                        : "text-sm font-semibold text-[#b3261e]"
+                        ? "text-sm font-semibold text-[#8fb08a]"
+                        : "text-sm font-semibold text-[#e08b84]"
                     }
                   >
                     {row.stock > 0 ? `${row.stock} in stock` : "Sold out"}
                   </span>
                 </div>
-                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#e6dfcf] pt-3 text-xs">
+                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#2e2a26] pt-3 text-xs">
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Waiting</p>
-                    <p className="font-semibold text-[#2a2520]">{row.waiting}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-[#9a9185]">Waiting</p>
+                    <p className="font-semibold text-[#f8f3f1]">{row.waiting}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Notified</p>
-                    <p className="font-semibold text-[#2a2520]">{row.notified}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-[#9a9185]">Notified</p>
+                    <p className="font-semibold text-[#f8f3f1]">{row.notified}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">Last request</p>
-                    <p className="font-semibold text-[#2a2520]">{formatDate(row.latestRequestAt)}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-[#9a9185]">Last request</p>
+                    <p className="font-semibold text-[#f8f3f1]">{formatDate(row.latestRequestAt)}</p>
                   </div>
                 </div>
               </Link>
@@ -153,7 +153,7 @@ export default function StockAlertsPage() {
 
           <div className="hidden overflow-x-auto surface md:block">
             <table className="w-full min-w-[640px] text-left text-sm">
-              <thead className="border-b border-[#e6dfcf] text-xs uppercase tracking-wide text-[#5f584d]">
+              <thead className="border-b border-[#2e2a26] text-xs uppercase tracking-wide text-[#cfc7bb]">
                 <tr>
                   <th className="px-5 py-3 font-medium">Product</th>
                   <th className="px-5 py-3 font-medium">In stock</th>
@@ -163,13 +163,13 @@ export default function StockAlertsPage() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-[#e6dfcf]">
+              <tbody className="divide-y divide-[#2e2a26]">
                 {rows?.map((row) => (
                   <tr key={row.productId}>
                     <td className="px-5 py-4">
                       <Link
                         href={`/admin/products/${encodeURIComponent(row.productCode)}`}
-                        className="flex items-center gap-3 font-medium text-[#2a2520] hover:underline"
+                        className="flex items-center gap-3 font-medium text-[#f8f3f1] hover:underline"
                       >
                         {row.image ? (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -188,23 +188,23 @@ export default function StockAlertsPage() {
                       <span
                         className={
                           row.stock > 0
-                            ? "font-medium text-[#276541]"
-                            : "font-medium text-[#b3261e]"
+                            ? "font-medium text-[#8fb08a]"
+                            : "font-medium text-[#e08b84]"
                         }
                       >
                         {row.stock > 0 ? row.stock : "Sold out"}
                       </span>
                     </td>
 
-                    <td className="px-5 py-4 font-semibold text-[#2a2520]">
+                    <td className="px-5 py-4 font-semibold text-[#f8f3f1]">
                       {row.waiting}
                     </td>
 
-                    <td className="px-5 py-4 text-[#5f584d]">
+                    <td className="px-5 py-4 text-[#cfc7bb]">
                       {row.notified}
                     </td>
 
-                    <td className="px-5 py-4 text-[#5f584d]">
+                    <td className="px-5 py-4 text-[#cfc7bb]">
                       {formatDate(row.latestRequestAt)}
                     </td>
                   </tr>

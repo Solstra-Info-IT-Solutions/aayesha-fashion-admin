@@ -208,14 +208,14 @@ export default function ReviewDetailPage({
   if (!isInitialized || loading) {
     return (
       <div className="space-y-6">
-        <div className="h-8 w-48 animate-pulse rounded bg-[#efe8d8]" />
+        <div className="h-8 w-48 animate-pulse rounded bg-[#211e1b]" />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="h-[420px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
+          <div className="h-[420px] animate-pulse rounded-[14px] bg-[#211e1b]" />
 
           <div className="space-y-6">
-            <div className="h-64 animate-pulse rounded-[14px] bg-[#efe8d8]" />
-            <div className="h-48 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-64 animate-pulse rounded-[14px] bg-[#211e1b]" />
+            <div className="h-48 animate-pulse rounded-[14px] bg-[#211e1b]" />
           </div>
         </div>
       </div>
@@ -224,12 +224,12 @@ export default function ReviewDetailPage({
 
   if (!accessToken) {
     return (
-      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[#2a2520]">
+      <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#f8f3f1]">
           Authentication required
         </h2>
 
-        <p className="mt-2 text-sm text-[#5f584d]">
+        <p className="mt-2 text-sm text-[#cfc7bb]">
           Please sign in again to manage this review.
         </p>
       </div>
@@ -238,19 +238,19 @@ export default function ReviewDetailPage({
 
   if (!review) {
     return (
-      <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-10 text-center shadow-sm">
-        <h2 className="text-lg font-semibold text-[#2a2520]">
+      <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-10 text-center shadow-sm">
+        <h2 className="text-lg font-semibold text-[#f8f3f1]">
           Review not found
         </h2>
 
-        <p className="mt-2 text-sm text-[#5f584d]">
+        <p className="mt-2 text-sm text-[#cfc7bb]">
           The requested review could not be found.
         </p>
 
         <button
           type="button"
           onClick={() => goBackTo(router, "/admin/reviews")}
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-5 text-sm font-medium text-white transition hover:bg-[#3d372f]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#b79a6a] px-5 text-sm font-medium text-[#111111] transition hover:bg-[#c8ad7f]"
         >
           Back to Reviews
         </button>

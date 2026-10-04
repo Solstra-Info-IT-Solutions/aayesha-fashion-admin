@@ -56,19 +56,19 @@ export default function StoreSettings({
   };
 
   return (
-    <section className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] shadow-sm">
-      <div className="border-b border-[#e6dfcf] px-5 py-4">
+    <section className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] shadow-sm">
+      <div className="border-b border-[#2e2a26] px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f1ead9]">
-            <Building2 className="h-4 w-4 text-[#6f542f]" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2a241b]">
+            <Building2 className="h-4 w-4 text-[#d9c7a3]" />
           </div>
 
           <div>
-            <h2 className="text-base font-semibold text-[#2a2520]">
+            <h2 className="text-base font-semibold text-[#f8f3f1]">
               Store Settings
             </h2>
 
-            <p className="mt-1 text-sm text-[#756d62]">
+            <p className="mt-1 text-sm text-[#9a9185]">
               Store identity and basic website information.
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function StoreSettings({
         <div>
           <label
             htmlFor="store-name"
-            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
+            className="mb-1.5 block text-sm font-medium text-[#e6dfd4]"
           >
             Store Name
           </label>
@@ -96,7 +96,7 @@ export default function StoreSettings({
               )
             }
             placeholder="Aayesha Fashion"
-            className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
+            className="h-11 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2e2a26]"
           />
         </div>
 
@@ -104,7 +104,7 @@ export default function StoreSettings({
         <div>
           <label
             htmlFor="store-description"
-            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
+            className="mb-1.5 block text-sm font-medium text-[#e6dfd4]"
           >
             Store Description
           </label>
@@ -120,7 +120,7 @@ export default function StoreSettings({
             }
             rows={5}
             placeholder="Enter a short description of your store..."
-            className="w-full resize-y rounded-lg border border-[#e6dfcf] px-3 py-3 text-sm leading-6 text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
+            className="w-full resize-y rounded-lg border border-[#2e2a26] px-3 py-3 text-sm leading-6 text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2e2a26]"
           />
         </div>
 
@@ -128,7 +128,7 @@ export default function StoreSettings({
         <div>
           <label
             htmlFor="store-website"
-            className="mb-1.5 block text-sm font-medium text-[#3d372f]"
+            className="mb-1.5 block text-sm font-medium text-[#e6dfd4]"
           >
             Website URL
           </label>
@@ -144,15 +144,15 @@ export default function StoreSettings({
               )
             }
             placeholder="https://example.com"
-            className="h-11 w-full rounded-lg border border-[#e6dfcf] px-3 text-sm text-[#2a2520] outline-none transition placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#e6dfcf]"
+            className="h-11 w-full rounded-lg border border-[#2e2a26] px-3 text-sm text-[#f8f3f1] outline-none transition placeholder:text-[#9a9185] focus:border-[#b79a6a] focus:ring-2 focus:ring-[#2e2a26]"
           />
         </div>
 
         {/* Information */}
-        <div className="flex gap-3 rounded-[14px] border border-[#c7dcea] bg-[#e6f0f7] p-4">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#1f5f86]" />
+        <div className="flex gap-3 rounded-[14px] border border-[#2c4658] bg-[#16222b] p-4">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#8fbfdc]" />
 
-          <p className="text-xs leading-5 text-[#1f5f86]">
+          <p className="text-xs leading-5 text-[#8fbfdc]">
             These fields are stored inside the setting&apos;s value as a
             JSON object. The exact setting key and group are controlled by
             the parent settings form.

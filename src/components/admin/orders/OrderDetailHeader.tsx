@@ -39,7 +39,7 @@ const stamp = (value?: string) =>
   value ? new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value)) : "—";
 
 const iconButton =
-  "inline-flex h-10 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 text-sm font-semibold text-[#2a2520] transition hover:border-[#b08d57] disabled:opacity-50";
+  "inline-flex h-10 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-3.5 text-sm font-semibold text-[#f8f3f1] transition hover:border-[#b79a6a] disabled:opacity-50";
 
 export function OrderDetailHeader({
   order,
@@ -76,12 +76,12 @@ export function OrderDetailHeader({
     <div className="space-y-5">
       <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-start">
         <div className="min-w-0">
-          <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#8a6a3b]">
+          <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#d9c7a3]">
             <button
               type="button"
               onClick={onBack}
               aria-label="Go back"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#d6ccb6] bg-[#fffdf8] text-[#2a2520] transition hover:border-[#b08d57]"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#3a352f] bg-[#1a1816] text-[#f8f3f1] transition hover:border-[#b79a6a]"
             >
               <ArrowLeft size={15} />
             </button>
@@ -92,24 +92,24 @@ export function OrderDetailHeader({
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-3">
-            <h1 className="text-[#2a2520]">{order.orderNumber}</h1>
+            <h1 className="text-[#f8f3f1]">{order.orderNumber}</h1>
 
             <button
               type="button"
               onClick={copy}
               aria-label="Copy order number"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#756d62] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#9a9185] transition hover:bg-[#211e1b] hover:text-[#f8f3f1]"
             >
-              {copied ? <Check size={15} className="text-[#2f7d4f]" /> : <Copy size={15} />}
+              {copied ? <Check size={15} className="text-[#8fb08a]" /> : <Copy size={15} />}
             </button>
 
             <OrderStatusBadge status={order.status} />
           </div>
 
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#5f584d]">
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#cfc7bb]">
             <span>Placed {stamp(order.createdAt)}</span>
 
-            <span className="hidden h-1 w-1 rounded-full bg-[#bdb199] sm:block" />
+            <span className="hidden h-1 w-1 rounded-full bg-[#4a443d] sm:block" />
 
             <span className="flex items-center gap-2">
               <PaymentStatusBadge status={order.paymentStatus} />
@@ -126,7 +126,7 @@ export function OrderDetailHeader({
               rel="noreferrer"
               className={iconButton}
             >
-              <MessageCircle size={15} className="text-[#2a9a68]" />
+              <MessageCircle size={15} className="text-[#8fb08a]" />
               WhatsApp
             </a>
           ) : null}
@@ -155,9 +155,9 @@ export function OrderDetailHeader({
       {/* Fulfilment progress */}
       <div className="surface p-5">
         {ended ? (
-          <p className="text-sm font-semibold text-[#5f584d]">
+          <p className="text-sm font-semibold text-[#cfc7bb]">
             This order is{" "}
-            <span className="capitalize text-[#2a2520]">{order.status.replace(/_/g, " ")}</span>
+            <span className="capitalize text-[#f8f3f1]">{order.status.replace(/_/g, " ")}</span>
             {order.cancelledAt ? ` · ${stamp(order.cancelledAt)}` : ""}.
           </p>
         ) : (
@@ -171,7 +171,7 @@ export function OrderDetailHeader({
                   {index > 0 ? (
                     <span
                       className={`absolute right-1/2 top-[15px] h-0.5 w-full ${
-                        index <= current ? "bg-[#b08d57]" : "bg-[#e6dfcf]"
+                        index <= current ? "bg-[#b79a6a]" : "bg-[#2e2a26]"
                       }`}
                       aria-hidden="true"
                     />
@@ -180,10 +180,10 @@ export function OrderDetailHeader({
                   <span
                     className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 text-xs font-bold ${
                       done
-                        ? "border-[#b08d57] bg-[#b08d57] text-white"
+                        ? "border-[#b79a6a] bg-[#b79a6a] text-[#111111]"
                         : active
-                          ? "border-[#26221d] bg-[#26221d] text-[#fffdf8] ring-4 ring-[#b08d57]/25"
-                          : "border-[#d6ccb6] bg-[#fffdf8] text-[#9a9184]"
+                          ? "border-[#f8f3f1] bg-[#b79a6a] text-[#1a1816] ring-4 ring-[#b79a6a]/25"
+                          : "border-[#3a352f] bg-[#1a1816] text-[#8c847d]"
                     }`}
                   >
                     {done ? <Check size={14} /> : index + 1}
@@ -191,7 +191,7 @@ export function OrderDetailHeader({
 
                   <span
                     className={`mt-2 text-[11px] font-semibold sm:text-xs ${
-                      active ? "text-[#2a2520]" : done ? "text-[#6f542f]" : "text-[#756d62]"
+                      active ? "text-[#f8f3f1]" : done ? "text-[#d9c7a3]" : "text-[#9a9185]"
                     }`}
                   >
                     {step.label}

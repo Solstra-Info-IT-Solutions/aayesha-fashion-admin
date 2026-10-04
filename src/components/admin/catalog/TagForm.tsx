@@ -40,7 +40,7 @@ export default function TagForm({
       />
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+        <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
           Description
         </label>
 
@@ -56,11 +56,11 @@ export default function TagForm({
                 e.target.value,
             })
           }
-          className="w-full resize-y rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
+          className="w-full resize-y rounded-lg border border-[#3a352f] px-3.5 py-2.5 text-sm outline-none focus:border-[#9a9185]"
         />
       </div>
 
-      <label className="flex items-center gap-3 rounded-lg border border-[#d6ccb6] px-4 py-3">
+      <label className="flex items-center gap-3 rounded-lg border border-[#3a352f] px-4 py-3">
         <input
           type="checkbox"
           checked={
@@ -76,7 +76,7 @@ export default function TagForm({
           className="h-4 w-4"
         />
 
-        <span className="text-sm font-medium text-[#2a2520]">
+        <span className="text-sm font-medium text-[#f8f3f1]">
           Active
         </span>
       </label>
@@ -95,7 +95,7 @@ function Input({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-[#2a2520]">
+      <label className="mb-2 block text-sm font-medium text-[#f8f3f1]">
         {label}
       </label>
 
@@ -104,7 +104,7 @@ function Input({
         onChange={(e) =>
           onChange(e.target.value)
         }
-        className="w-full rounded-lg border border-[#d6ccb6] px-3.5 py-2.5 text-sm outline-none focus:border-[#756d62]"
+        className="w-full rounded-lg border border-[#3a352f] px-3.5 py-2.5 text-sm outline-none focus:border-[#9a9185]"
       />
     </div>
   );

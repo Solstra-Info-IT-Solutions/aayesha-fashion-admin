@@ -28,13 +28,13 @@ export default function SettingsSections({
   );
 
   return (
-    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-5 shadow-sm">
+    <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-5 shadow-sm">
       <div className="mb-5">
-        <h2 className="text-base font-semibold text-[#2a2520]">
+        <h2 className="text-base font-semibold text-[#f8f3f1]">
           Setting Groups
         </h2>
 
-        <p className="mt-1 text-sm text-[#756d62]">
+        <p className="mt-1 text-sm text-[#9a9185]">
           Select a group to quickly filter your store settings.
         </p>
       </div>
@@ -45,8 +45,8 @@ export default function SettingsSections({
           onClick={() => onGroupChange("")}
           className={`rounded-lg px-3.5 py-2 text-sm font-medium transition ${
             selectedGroup === ""
-              ? "bg-[#26221d] text-white"
-              : "bg-[#efe8d8] text-[#5f584d] hover:bg-[#e6dfcf]"
+              ? "bg-[#b79a6a] text-[#111111]"
+              : "bg-[#211e1b] text-[#cfc7bb] hover:bg-[#2e2a26]"
           }`}
         >
           All
@@ -59,8 +59,8 @@ export default function SettingsSections({
             onClick={() => onGroupChange(group)}
             className={`rounded-lg px-3.5 py-2 text-sm font-medium capitalize transition ${
               selectedGroup === group
-                ? "bg-[#26221d] text-white"
-                : "bg-[#efe8d8] text-[#5f584d] hover:bg-[#e6dfcf]"
+                ? "bg-[#b79a6a] text-[#111111]"
+                : "bg-[#211e1b] text-[#cfc7bb] hover:bg-[#2e2a26]"
             }`}
           >
             {group}
@@ -69,8 +69,8 @@ export default function SettingsSections({
       </div>
 
       {selectedGroup && groupedSettings[selectedGroup] && (
-        <div className="mt-5 border-t border-[#e6dfcf] pt-4">
-          <p className="text-xs text-[#756d62]">
+        <div className="mt-5 border-t border-[#2e2a26] pt-4">
+          <p className="text-xs text-[#9a9185]">
             {groupedSettings[selectedGroup].length}{" "}
             {groupedSettings[selectedGroup].length === 1
               ? "setting"

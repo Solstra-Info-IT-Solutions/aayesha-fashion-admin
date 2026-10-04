@@ -19,31 +19,31 @@ const statCards = [
     key: "total",
     label: "Total Reviews",
     icon: MessageSquareText,
-    iconClass: "bg-[#f1ead9] text-[#26221d]",
+    iconClass: "bg-[#2a241b] text-[#f8f3f1]",
   },
   {
     key: "pending",
     label: "Pending",
     icon: Clock3,
-    iconClass: "bg-[#fdf3e1] text-[#7f4806]",
+    iconClass: "bg-[#2b2216] text-[#e0b56a]",
   },
   {
     key: "approved",
     label: "Approved",
     icon: CheckCircle2,
-    iconClass: "bg-[#e8f5ec] text-[#276541]",
+    iconClass: "bg-[#1a2419] text-[#8fb08a]",
   },
   {
     key: "rejected",
     label: "Rejected",
     icon: XCircle,
-    iconClass: "bg-[#fdecec] text-[#b3261e]",
+    iconClass: "bg-[#2b1a18] text-[#e08b84]",
   },
   {
     key: "featured",
     label: "Featured",
     icon: Star,
-    iconClass: "bg-[#fdf3e1] text-[#7f4806]",
+    iconClass: "bg-[#2b2216] text-[#e0b56a]",
   },
 ] as const;
 
@@ -59,11 +59,11 @@ export default function ReviewStats({
             key={index}
             className="surface p-5"
           >
-            <div className="h-10 w-10 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-10 w-10 animate-pulse rounded-[14px] bg-[#211e1b]" />
 
-            <div className="mt-5 h-3 w-24 animate-pulse rounded bg-[#efe8d8]" />
+            <div className="mt-5 h-3 w-24 animate-pulse rounded bg-[#211e1b]" />
 
-            <div className="mt-2 h-7 w-16 animate-pulse rounded bg-[#efe8d8]" />
+            <div className="mt-2 h-7 w-16 animate-pulse rounded bg-[#211e1b]" />
           </div>
         ))}
       </div>
@@ -87,11 +87,11 @@ export default function ReviewStats({
               <Icon size={19} />
             </div>
 
-            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
               {card.label}
             </p>
 
-            <p className="display mt-1 text-3xl font-semibold text-[#2a2520]">
+            <p className="display mt-1 text-3xl font-semibold text-[#f8f3f1]">
               {value.toLocaleString()}
             </p>
           </div>

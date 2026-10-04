@@ -104,11 +104,11 @@ export function AttentionCard() {
 
   return (
     <section className="surface p-5 sm:p-6">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#756d62]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9a9185]">
         Action centre
       </p>
 
-      <h2 className="mt-1 text-lg font-bold text-[#2a2520]">Needs attention today</h2>
+      <h2 className="mt-1 text-lg font-bold text-[#f8f3f1]">Needs attention today</h2>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {items.map((item) => {
@@ -121,22 +121,22 @@ export function AttentionCard() {
               className={
                 item.hot
                   ? "rounded-xl border border-amber-300 bg-amber-50 p-4 transition hover:border-amber-500 hover:shadow-md"
-                  : "rounded-xl border border-[#e6dfcf] p-4 transition hover:border-[#b08d57] hover:shadow-md"
+                  : "rounded-xl border border-[#2e2a26] p-4 transition hover:border-[#b79a6a] hover:shadow-md"
               }
             >
-              <div className="flex items-center justify-between text-[#5f584d]">
+              <div className="flex items-center justify-between text-[#cfc7bb]">
                 <Icon size={18} strokeWidth={1.5} />
 
-                <span className="text-3xl font-bold text-[#2a2520]">
+                <span className="text-3xl font-bold text-[#f8f3f1]">
                   {item.value ?? "–"}
                 </span>
               </div>
 
-              <p className="mt-3 text-sm font-medium text-[#2a2520]">
+              <p className="mt-3 text-sm font-medium text-[#f8f3f1]">
                 {item.label}
               </p>
 
-              <p className="text-xs text-[#756d62]">{item.hint}</p>
+              <p className="text-xs text-[#9a9185]">{item.hint}</p>
             </Link>
           );
         })}

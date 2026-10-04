@@ -27,12 +27,12 @@ export function UserMenu() {
         onClick={() =>
           setOpen((value) => !value)
         }
-        className="flex h-10 items-center gap-2 border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm text-[#2a2520] hover:border-[#bdb199]"
+        className="flex h-10 items-center gap-2 border border-[#2e2a26] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] hover:border-[#4a443d]"
       >
         <UserCircle
           size={18}
           strokeWidth={1.6}
-          className="text-[#5f584d]"
+          className="text-[#cfc7bb]"
         />
 
         <span className="hidden max-w-[150px] truncate sm:block">
@@ -41,18 +41,18 @@ export function UserMenu() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 border border-[#e6dfcf] bg-[#fffdf8] p-2 shadow-lg">
-          <div className="border-b border-[#e6dfcf] px-3 py-3">
-            <p className="text-sm font-medium text-[#2a2520]">
+        <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 border border-[#2e2a26] bg-[#1a1816] p-2 shadow-lg">
+          <div className="border-b border-[#2e2a26] px-3 py-3">
+            <p className="text-sm font-medium text-[#f8f3f1]">
               {displayName}
             </p>
 
-            <p className="mt-1 truncate text-xs text-[#756d62]">
+            <p className="mt-1 truncate text-xs text-[#9a9185]">
               {user?.email}
             </p>
 
             {user?.adminRole && (
-              <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-[#756d62]">
+              <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-[#9a9185]">
                 {user.adminRole.replace(
                   /_/g,
                   " ",
@@ -66,7 +66,7 @@ export function UserMenu() {
             onClick={() =>
               void logout()
             }
-            className="mt-2 flex w-full items-center gap-3 px-3 py-2.5 text-sm text-[#5f584d] transition hover:bg-[#efe8d8] hover:text-[#2a2520]"
+            className="mt-2 flex w-full items-center gap-3 px-3 py-2.5 text-sm text-[#cfc7bb] transition hover:bg-[#211e1b] hover:text-[#f8f3f1]"
           >
             <LogOut size={17} />
             Sign out

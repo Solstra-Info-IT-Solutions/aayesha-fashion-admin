@@ -147,15 +147,15 @@ export default function AdminSupportDetailPage() {
   if (authLoading || loading) {
     return (
       <div className="space-y-6">
-        <div className="h-10 w-48 animate-pulse rounded-lg bg-[#e6dfcf]" />
+        <div className="h-10 w-48 animate-pulse rounded-lg bg-[#2e2a26]" />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
           <div className="space-y-6">
-            <div className="h-[300px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
-            <div className="h-[220px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
+            <div className="h-[300px] animate-pulse rounded-[14px] bg-[#211e1b]" />
+            <div className="h-[220px] animate-pulse rounded-[14px] bg-[#211e1b]" />
           </div>
 
-          <div className="h-[500px] animate-pulse rounded-[14px] bg-[#efe8d8]" />
+          <div className="h-[500px] animate-pulse rounded-[14px] bg-[#211e1b]" />
         </div>
       </div>
     );
@@ -165,18 +165,18 @@ export default function AdminSupportDetailPage() {
     return (
       <div className="flex min-h-[500px] items-center justify-center">
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-[#2a2520]">
+          <h1 className="text-xl font-semibold text-[#f8f3f1]">
             Support ticket not found
           </h1>
 
-          <p className="mt-2 text-sm text-[#756d62]">
+          <p className="mt-2 text-sm text-[#9a9185]">
             The ticket may have been deleted or you may not have access to it.
           </p>
 
           <button
             type="button"
             onClick={() => goBackTo(router, "/admin/support")}
-            className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-4 text-sm font-medium text-white transition hover:bg-[#3d372f]"
+            className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#b79a6a] px-4 text-sm font-medium text-[#111111] transition hover:bg-[#c8ad7f]"
           >
             Back to Support
           </button>

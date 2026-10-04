@@ -20,15 +20,15 @@ export default function SettingFormField({
   return (
     <div className="space-y-2">
       <div>
-        <label className="block text-sm font-medium text-[#2a2520]">
+        <label className="block text-sm font-medium text-[#f8f3f1]">
           {label}
           {required && (
-            <span className="ml-1 text-[#b3261e]">*</span>
+            <span className="ml-1 text-[#e08b84]">*</span>
           )}
         </label>
 
         {description && (
-          <p className="mt-1 text-xs leading-5 text-[#756d62]">
+          <p className="mt-1 text-xs leading-5 text-[#9a9185]">
             {description}
           </p>
         )}
@@ -37,7 +37,7 @@ export default function SettingFormField({
       {children}
 
       {error && (
-        <p className="text-xs font-medium text-[#b3261e]">
+        <p className="text-xs font-medium text-[#e08b84]">
           {error}
         </p>
       )}

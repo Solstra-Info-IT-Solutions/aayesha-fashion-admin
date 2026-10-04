@@ -47,9 +47,9 @@ function Thumb({ src, alt, sizes, className }: { src: string; alt: string; sizes
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className={`relative shrink-0 overflow-hidden bg-[#f1ead9] ${className}`}>
+    <div className={`relative shrink-0 overflow-hidden bg-[#2a241b] ${className}`}>
       {!src || failed ? (
-        <div className="flex h-full items-center justify-center px-1 text-center text-[10px] font-semibold uppercase tracking-wide text-[#8a6a3b]">
+        <div className="flex h-full items-center justify-center px-1 text-center text-[10px] font-semibold uppercase tracking-wide text-[#d9c7a3]">
           No image
         </div>
       ) : (
@@ -74,10 +74,10 @@ function StockPill({ product }: { product: Product }) {
 
   const tone =
     stock <= 0
-      ? "bg-[#fdecec] text-[#8f1f19] border-[#f5c2c0]"
+      ? "bg-[#2b1a18] text-[#f0a39d] border-[#5a2a27]"
       : stock <= low
-        ? "bg-[#fdf3e1] text-[#7f4806] border-[#f6d08a]"
-        : "bg-[#e8f5ec] text-[#276541] border-[#bfe3cb]";
+        ? "bg-[#2b2216] text-[#e0b56a] border-[#5a4420]"
+        : "bg-[#1a2419] text-[#8fb08a] border-[#2c4a33]";
 
   return (
     <span className={`inline-flex whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold ${tone}`}>
@@ -96,7 +96,7 @@ function Tags({ product }: { product: Product }) {
   return tags.length ? (
     <div className="mt-1.5 flex flex-wrap gap-1">
       {tags.map((tag) => (
-        <span key={tag} className="rounded-full bg-[#f1ead9] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#6f542f]">
+        <span key={tag} className="rounded-full bg-[#2a241b] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#d9c7a3]">
           {tag}
         </span>
       ))}
@@ -127,13 +127,13 @@ function RowMenu({ product, onArchive, onDelete }: Pick<ProductTableProps, "onAr
         aria-label={`More actions for ${product.name}`}
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
-        className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] transition hover:border-[#b08d57] hover:text-[#2a2520]"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#3a352f] bg-[#1a1816] text-[#cfc7bb] transition hover:border-[#b79a6a] hover:text-[#f8f3f1]"
       >
         <MoreHorizontal size={16} />
       </button>
 
       {open ? (
-        <div className="absolute right-0 z-20 mt-1.5 w-44 overflow-hidden rounded-xl border border-[#e6dfcf] bg-[#fffdf8] py-1 shadow-xl">
+        <div className="absolute right-0 z-20 mt-1.5 w-44 overflow-hidden rounded-xl border border-[#2e2a26] bg-[#1a1816] py-1 shadow-xl">
           {product.status !== "archived" ? (
             <button
               type="button"
@@ -141,9 +141,9 @@ function RowMenu({ product, onArchive, onDelete }: Pick<ProductTableProps, "onAr
                 setOpen(false);
                 onArchive(product);
               }}
-              className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm font-medium text-[#2a2520] hover:bg-[#f7f2e7]"
+              className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm font-medium text-[#f8f3f1] hover:bg-[#111111]"
             >
-              <Archive size={15} className="text-[#8a6a3b]" /> Archive
+              <Archive size={15} className="text-[#d9c7a3]" /> Archive
             </button>
           ) : null}
 
@@ -153,7 +153,7 @@ function RowMenu({ product, onArchive, onDelete }: Pick<ProductTableProps, "onAr
               setOpen(false);
               onDelete(product);
             }}
-            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm font-medium text-[#b3261e] hover:bg-[#fdecec]"
+            className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm font-medium text-[#e08b84] hover:bg-[#2b1a18]"
           >
             <Trash2 size={15} /> Delete permanently
           </button>
@@ -177,7 +177,7 @@ export default function ProductTable({
     return (
       <div className="surface space-y-2 p-4" aria-busy="true">
         {Array.from({ length: 6 }).map((_, index) => (
-          <div key={index} className="h-16 animate-pulse rounded-xl bg-[#efe8d8]" />
+          <div key={index} className="h-16 animate-pulse rounded-xl bg-[#211e1b]" />
         ))}
       </div>
     );
@@ -197,16 +197,16 @@ export default function ProductTable({
               <Thumb src={primaryImage(product)} alt={product.name} sizes="(max-width: 768px) 50vw, 25vw" className="aspect-[4/5] w-full" />
 
               <div className="p-3.5">
-                <p className="line-clamp-1 text-sm font-semibold text-[#2a2520]">{product.name}</p>
-                <p className="mt-0.5 line-clamp-1 text-xs text-[#756d62]">{categoryOf(product, categoryNames)}</p>
+                <p className="line-clamp-1 text-sm font-semibold text-[#f8f3f1]">{product.name}</p>
+                <p className="mt-0.5 line-clamp-1 text-xs text-[#9a9185]">{categoryOf(product, categoryNames)}</p>
 
                 <div className="mt-2 flex items-baseline gap-2">
-                  <span className="text-base font-bold text-[#2a2520]">{money(product.pricing?.sellingPrice ?? 0)}</span>
+                  <span className="text-base font-bold text-[#f8f3f1]">{money(product.pricing?.sellingPrice ?? 0)}</span>
 
                   {discount(product) > 0 ? (
                     <>
-                      <span className="text-xs text-[#756d62] line-through">{money(product.pricing.mrp)}</span>
-                      <span className="text-xs font-bold text-[#2f7d4f]">{discount(product)}% off</span>
+                      <span className="text-xs text-[#9a9185] line-through">{money(product.pricing.mrp)}</span>
+                      <span className="text-xs font-bold text-[#8fb08a]">{discount(product)}% off</span>
                     </>
                   ) : null}
                 </div>
@@ -234,28 +234,28 @@ export default function ProductTable({
         <div className="overflow-x-auto">
           <table className="w-full min-w-[900px] text-left">
             <thead>
-              <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]">
+              <tr className="border-b border-[#2e2a26] bg-[#111111]">
                 {["Product", "Category", "Price", "Stock", "Status", ""].map((heading, index) => (
-                  <th key={`${heading}-${index}`} className="px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#756d62]">
+                  <th key={`${heading}-${index}`} className="px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9a9185]">
                     {heading}
                   </th>
                 ))}
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-[#e6dfcf]">
+            <tbody className="divide-y divide-[#2e2a26]">
               {products.map((product) => (
-                <tr key={product.id} className="transition-colors hover:bg-[#faf6ec]">
+                <tr key={product.id} className="transition-colors hover:bg-[#1a1816]">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3.5">
-                      <Thumb src={primaryImage(product)} alt={product.name} sizes="56px" className="h-[68px] w-14 rounded-lg border border-[#e6dfcf]" />
+                      <Thumb src={primaryImage(product)} alt={product.name} sizes="56px" className="h-[68px] w-14 rounded-lg border border-[#2e2a26]" />
 
                       <div className="min-w-0">
-                        <Link href={editHref(product)} title={product.name} className="block max-w-[280px] truncate text-sm font-semibold text-[#2a2520] transition-colors hover:text-[#8a6a3b]">
+                        <Link href={editHref(product)} title={product.name} className="block max-w-[280px] truncate text-sm font-semibold text-[#f8f3f1] transition-colors hover:text-[#d9c7a3]">
                           {product.name}
                         </Link>
 
-                        <p title={product.slug} className="mt-0.5 max-w-[280px] truncate text-xs text-[#756d62]">
+                        <p title={product.slug} className="mt-0.5 max-w-[280px] truncate text-xs text-[#9a9185]">
                           {product.slug}
                         </p>
 
@@ -265,18 +265,18 @@ export default function ProductTable({
                   </td>
 
                   <td className="px-5 py-4">
-                    <span className="inline-block max-w-[170px] truncate rounded-full bg-[#efe8d8] px-3 py-1 text-xs font-semibold text-[#5f584d]">
+                    <span className="inline-block max-w-[170px] truncate rounded-full bg-[#211e1b] px-3 py-1 text-xs font-semibold text-[#cfc7bb]">
                       {categoryOf(product, categoryNames)}
                     </span>
                   </td>
 
                   <td className="px-5 py-4">
-                    <p className="text-sm font-bold text-[#2a2520]">{money(product.pricing?.sellingPrice ?? 0)}</p>
+                    <p className="text-sm font-bold text-[#f8f3f1]">{money(product.pricing?.sellingPrice ?? 0)}</p>
 
                     {discount(product) > 0 ? (
                       <p className="mt-0.5 text-xs">
-                        <span className="text-[#756d62] line-through">{money(product.pricing.mrp)}</span>{" "}
-                        <span className="font-bold text-[#2f7d4f]">{discount(product)}% off</span>
+                        <span className="text-[#9a9185] line-through">{money(product.pricing.mrp)}</span>{" "}
+                        <span className="font-bold text-[#8fb08a]">{discount(product)}% off</span>
                       </p>
                     ) : null}
                   </td>
@@ -293,7 +293,7 @@ export default function ProductTable({
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={editHref(product)}
-                        className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3.5 text-xs font-semibold text-[#2a2520] transition hover:border-[#26221d] hover:bg-[#26221d] hover:text-[#fffdf8]"
+                        className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#3a352f] bg-[#1a1816] px-3.5 text-xs font-semibold text-[#f8f3f1] transition hover:border-[#f8f3f1] hover:bg-[#b79a6a] hover:text-[#1a1816]"
                       >
                         <Pencil size={13} /> Edit
                       </Link>
@@ -314,21 +314,21 @@ export default function ProductTable({
           <li key={product.id} className="surface relative p-3.5">
             <div className="flex gap-3.5">
               <Link href={editHref(product)} className="shrink-0">
-                <Thumb src={primaryImage(product)} alt={product.name} sizes="80px" className="h-24 w-20 rounded-lg border border-[#e6dfcf]" />
+                <Thumb src={primaryImage(product)} alt={product.name} sizes="80px" className="h-24 w-20 rounded-lg border border-[#2e2a26]" />
               </Link>
 
               <div className="min-w-0 flex-1 pr-10">
-                <Link href={editHref(product)} className="line-clamp-2 text-sm font-semibold text-[#2a2520]">
+                <Link href={editHref(product)} className="line-clamp-2 text-sm font-semibold text-[#f8f3f1]">
                   {product.name}
                 </Link>
 
-                <p className="mt-0.5 truncate text-xs text-[#756d62]">{categoryOf(product, categoryNames)}</p>
+                <p className="mt-0.5 truncate text-xs text-[#9a9185]">{categoryOf(product, categoryNames)}</p>
 
                 <div className="mt-1.5 flex items-baseline gap-2">
-                  <span className="text-base font-bold text-[#2a2520]">{money(product.pricing?.sellingPrice ?? 0)}</span>
+                  <span className="text-base font-bold text-[#f8f3f1]">{money(product.pricing?.sellingPrice ?? 0)}</span>
 
                   {discount(product) > 0 ? (
-                    <span className="text-xs font-bold text-[#2f7d4f]">{discount(product)}% off</span>
+                    <span className="text-xs font-bold text-[#8fb08a]">{discount(product)}% off</span>
                   ) : null}
                 </div>
 

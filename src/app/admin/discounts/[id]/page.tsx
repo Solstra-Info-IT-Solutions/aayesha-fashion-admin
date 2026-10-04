@@ -204,9 +204,9 @@ export default function DiscountDetailPage() {
   ) {
     return (
       <div className="mx-auto max-w-5xl space-y-6">
-        <div className="h-8 w-40 animate-pulse rounded bg-[#efe8d8]" />
+        <div className="h-8 w-40 animate-pulse rounded bg-[#211e1b]" />
 
-        <div className="h-40 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-40 animate-pulse rounded-[14px] bg-[#211e1b]" />
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({
@@ -214,12 +214,12 @@ export default function DiscountDetailPage() {
           }).map((_, index) => (
             <div
               key={index}
-              className="h-28 animate-pulse rounded-[14px] bg-[#efe8d8]"
+              className="h-28 animate-pulse rounded-[14px] bg-[#211e1b]"
             />
           ))}
         </div>
 
-        <div className="h-48 animate-pulse rounded-[14px] bg-[#efe8d8]" />
+        <div className="h-48 animate-pulse rounded-[14px] bg-[#211e1b]" />
       </div>
     );
   }
@@ -233,19 +233,19 @@ export default function DiscountDetailPage() {
 
   if (!discount) {
     return (
-      <div className="mx-auto max-w-2xl rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] px-6 py-12 text-center shadow-sm">
-        <h1 className="text-lg font-semibold text-[#2a2520]">
+      <div className="mx-auto max-w-2xl rounded-[14px] border border-[#2e2a26] bg-[#1a1816] px-6 py-12 text-center shadow-sm">
+        <h1 className="text-lg font-semibold text-[#f8f3f1]">
           Discount not found
         </h1>
 
-        <p className="mt-2 text-sm text-[#5f584d]">
+        <p className="mt-2 text-sm text-[#cfc7bb]">
           The requested discount coupon could not be found.
         </p>
 
         <button
           type="button"
           onClick={() => goBackTo(router, "/admin/discounts")}
-          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#26221d] px-4 text-sm font-semibold text-white transition hover:bg-[#3d372f]"
+          className="mt-5 inline-flex h-10 items-center rounded-lg bg-[#b79a6a] px-4 text-sm font-semibold text-[#111111] transition hover:bg-[#c8ad7f]"
         >
           Back to Discounts
         </button>

@@ -105,16 +105,16 @@ export default function SettingValueField({
       required
       error={error}
     >
-      <div className="overflow-hidden rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] focus-within:border-[#26221d] focus-within:ring-2 focus-within:ring-[#26221d]/10">
-        <div className="flex items-center justify-between border-b border-[#e6dfcf] bg-[#f7f2e7] px-3 py-2">
+      <div className="overflow-hidden rounded-[14px] border border-[#2e2a26] bg-[#1a1816] focus-within:border-[#f8f3f1] focus-within:ring-2 focus-within:ring-[#f8f3f1]/10">
+        <div className="flex items-center justify-between border-b border-[#2e2a26] bg-[#111111] px-3 py-2">
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={() => handleModeChange("text")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "text"
-                  ? "bg-[#fffdf8] text-[#2a2520] shadow-sm"
-                  : "text-[#756d62] hover:text-[#3d372f]"
+                  ? "bg-[#1a1816] text-[#f8f3f1] shadow-sm"
+                  : "text-[#9a9185] hover:text-[#e6dfd4]"
               }`}
             >
               <Type className="h-3.5 w-3.5" />
@@ -126,8 +126,8 @@ export default function SettingValueField({
               onClick={() => handleModeChange("json")}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                 mode === "json"
-                  ? "bg-[#fffdf8] text-[#2a2520] shadow-sm"
-                  : "text-[#756d62] hover:text-[#3d372f]"
+                  ? "bg-[#1a1816] text-[#f8f3f1] shadow-sm"
+                  : "text-[#9a9185] hover:text-[#e6dfd4]"
               }`}
             >
               <Braces className="h-3.5 w-3.5" />
@@ -135,7 +135,7 @@ export default function SettingValueField({
             </button>
           </div>
 
-          <span className="text-xs text-[#756d62]">
+          <span className="text-xs text-[#9a9185]">
             {textValue.length} characters
           </span>
         </div>
@@ -151,7 +151,7 @@ export default function SettingValueField({
               ? '{\n  "example": "value"\n}'
               : "Enter setting value..."
           }
-          className={`w-full resize-y border-0 bg-[#fffdf8] px-4 py-3 font-mono text-sm text-[#2a2520] outline-none placeholder:text-[#756d62] ${
+          className={`w-full resize-y border-0 bg-[#1a1816] px-4 py-3 font-mono text-sm text-[#f8f3f1] outline-none placeholder:text-[#9a9185] ${
             mode === "json" ? "leading-6" : "leading-6"
           }`}
           spellCheck={false}
@@ -159,9 +159,9 @@ export default function SettingValueField({
       </div>
 
       {mode === "json" && (
-        <p className="text-xs text-[#756d62]">
+        <p className="text-xs text-[#9a9185]">
           Example:{" "}
-          <code className="rounded bg-[#efe8d8] px-1.5 py-0.5">
+          <code className="rounded bg-[#211e1b] px-1.5 py-0.5">
             {"{\"enabled\":true}"}
           </code>
         </p>

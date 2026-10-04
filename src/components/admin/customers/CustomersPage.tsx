@@ -63,10 +63,10 @@ function getInitials(name: string) {
 }
 
 const statusStyles: Record<string, string> = {
-  active: "border-[#bfe3cb] bg-[#e8f5ec] text-[#276541]",
-  inactive: "border-[#d6ccb6] bg-[#efe8d8] text-[#5f584d]",
-  suspended: "border-[#f6d08a] bg-[#fdf3e1] text-[#7f4806]",
-  blocked: "border-[#f5c2c0] bg-[#fdecec] text-[#8f1f19]",
+  active: "border-[#2c4a33] bg-[#1a2419] text-[#8fb08a]",
+  inactive: "border-[#3a352f] bg-[#211e1b] text-[#cfc7bb]",
+  suspended: "border-[#5a4420] bg-[#2b2216] text-[#e0b56a]",
+  blocked: "border-[#5a2a27] bg-[#2b1a18] text-[#f0a39d]",
 };
 
 function StatusBadge({ status }: { status: Customer["status"] }) {
@@ -83,7 +83,7 @@ function StatusBadge({ status }: { status: Customer["status"] }) {
 
 function Avatar({ name }: { name: string }) {
   return (
-    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f1ead9] text-sm font-semibold text-[#6f542f]">
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2a241b] text-sm font-semibold text-[#d9c7a3]">
       {getInitials(name)}
     </span>
   );
@@ -96,8 +96,8 @@ function Consent({ customer }: { customer: Customer }) {
         title={customer.marketingEmails ? "Email opted in" : "Email opted out"}
         className={`flex h-6 w-6 items-center justify-center rounded-full ${
           customer.marketingEmails
-            ? "bg-[#e8f5ec] text-[#276541]"
-            : "bg-[#efe8d8] text-[#9a9283]"
+            ? "bg-[#1a2419] text-[#8fb08a]"
+            : "bg-[#211e1b] text-[#9a9185]"
         }`}
       >
         <Mail className="h-3 w-3" />
@@ -110,8 +110,8 @@ function Consent({ customer }: { customer: Customer }) {
         }
         className={`flex h-6 w-6 items-center justify-center rounded-full ${
           customer.marketingWhatsapp
-            ? "bg-[#e8f5ec] text-[#276541]"
-            : "bg-[#efe8d8] text-[#9a9283]"
+            ? "bg-[#1a2419] text-[#8fb08a]"
+            : "bg-[#211e1b] text-[#9a9185]"
         }`}
       >
         <MessageCircle className="h-3 w-3" />
@@ -131,13 +131,13 @@ function Kpi({
 }) {
   return (
     <div className="surface px-4 py-3.5">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
         {label}
       </p>
       {loading ? (
-        <div className="mt-2 h-7 w-20 animate-pulse rounded bg-[#efe8d8]" />
+        <div className="mt-2 h-7 w-20 animate-pulse rounded bg-[#211e1b]" />
       ) : (
-        <p className="display mt-1 text-2xl font-semibold text-[#2a2520]">
+        <p className="display mt-1 text-2xl font-semibold text-[#f8f3f1]">
           {value}
         </p>
       )}
@@ -317,30 +317,30 @@ export default function CustomersPage() {
   const to = Math.min(page * PAGE_SIZE, total);
 
   const selectCls =
-    "h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520] outline-none focus:border-[#b08d57] focus:ring-2 focus:ring-[#b08d57]/20";
+    "h-11 w-full rounded-lg border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1] outline-none focus:border-[#b79a6a] focus:ring-2 focus:ring-[#b79a6a]/20";
 
   return (
     <div className="min-h-full space-y-6 p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6a3b]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d9c7a3]">
             Customers
           </p>
-          <h1 className="display mt-1 text-[#2a2520]">Your customers</h1>
-          <p className="mt-1 text-sm text-[#5f584d]">
+          <h1 className="display mt-1 text-[#f8f3f1]">Your customers</h1>
+          <p className="mt-1 text-sm text-[#cfc7bb]">
             Everyone who has signed up or ordered, with their spend and consent.
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="rounded-full border border-[#e6dfcf] bg-[#fffdf8] px-3 py-1.5 text-xs font-semibold text-[#5f584d]">
+          <span className="rounded-full border border-[#2e2a26] bg-[#1a1816] px-3 py-1.5 text-xs font-semibold text-[#cfc7bb]">
             {total.toLocaleString("en-IN")} shown
           </span>
           <button
             type="button"
             onClick={refresh}
             disabled={loading}
-            className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-60"
+            className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] hover:bg-[#2a241b] disabled:opacity-60"
           >
             <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             Refresh
@@ -388,15 +388,15 @@ export default function CustomersPage() {
               onClick={() => pickStatus(tab.value)}
               className={`inline-flex h-10 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition ${
                 active
-                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8]"
-                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f1ead9]"
+                  ? "border-[#f8f3f1] bg-[#b79a6a] text-[#1a1816]"
+                  : "border-[#3a352f] bg-[#1a1816] text-[#cfc7bb] hover:bg-[#2a241b]"
               }`}
             >
               {tab.label}
               {typeof tab.count === "number" && (
                 <span
                   className={`rounded-full px-2 text-xs ${
-                    active ? "bg-white/15" : "bg-[#efe8d8]"
+                    active ? "bg-[#1a1816]/15" : "bg-[#211e1b]"
                   }`}
                 >
                   {tab.count}
@@ -412,19 +412,19 @@ export default function CustomersPage() {
         <div className="flex flex-col gap-3 sm:flex-row">
           <label className="relative flex-1">
             <span className="sr-only">Search customers</span>
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#756d62]" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9a9185]" />
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search by name, email or phone"
-              className="h-11 w-full rounded-lg border border-[#d6ccb6] bg-[#fffdf8] pl-10 pr-3 text-sm text-[#2a2520] outline-none placeholder:text-[#756d62] focus:border-[#b08d57] focus:ring-2 focus:ring-[#b08d57]/20"
+              className="h-11 w-full rounded-lg border border-[#3a352f] bg-[#1a1816] pl-10 pr-3 text-sm text-[#f8f3f1] outline-none placeholder:text-[#9a9185] focus:border-[#b79a6a] focus:ring-2 focus:ring-[#b79a6a]/20"
             />
           </label>
           <button
             type="button"
             onClick={() => setShowFilters((v) => !v)}
             aria-expanded={showFilters}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-4 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] lg:hidden"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-[#3a352f] bg-[#1a1816] px-4 text-sm font-semibold text-[#f8f3f1] hover:bg-[#2a241b] lg:hidden"
           >
             <Filter className="h-4 w-4" />
             Filters
@@ -435,7 +435,7 @@ export default function CustomersPage() {
           className={`${showFilters ? "grid" : "hidden"} gap-3 sm:grid-cols-2 lg:grid lg:grid-cols-4`}
         >
           <label className="space-y-1">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
               Sort by
             </span>
             <select
@@ -454,7 +454,7 @@ export default function CustomersPage() {
             </select>
           </label>
           <label className="space-y-1">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
               Email marketing
             </span>
             <select
@@ -473,7 +473,7 @@ export default function CustomersPage() {
             </select>
           </label>
           <label className="space-y-1">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
               WhatsApp marketing
             </span>
             <select
@@ -491,7 +491,7 @@ export default function CustomersPage() {
               ))}
             </select>
           </label>
-          <label className="flex h-11 cursor-pointer items-center gap-3 self-end rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm text-[#2a2520]">
+          <label className="flex h-11 cursor-pointer items-center gap-3 self-end rounded-lg border border-[#3a352f] bg-[#1a1816] px-3 text-sm text-[#f8f3f1]">
             <input
               type="checkbox"
               checked={includeArchived}
@@ -499,7 +499,7 @@ export default function CustomersPage() {
                 setIncludeArchived(e.target.checked);
                 setPage(1);
               }}
-              className="h-4 w-4 accent-[#26221d]"
+              className="h-4 w-4 accent-[#f8f3f1]"
             />
             Show archived
           </label>
@@ -512,7 +512,7 @@ export default function CustomersPage() {
                 key={chip.key}
                 type="button"
                 onClick={chip.clear}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#d6ccb6] bg-[#f1ead9] px-3 py-1 text-xs font-semibold text-[#6f542f] hover:bg-[#e8dfc8]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#3a352f] bg-[#2a241b] px-3 py-1 text-xs font-semibold text-[#d9c7a3] hover:bg-[#2a241b]"
               >
                 {chip.label}
                 <X className="h-3 w-3" />
@@ -521,7 +521,7 @@ export default function CustomersPage() {
             <button
               type="button"
               onClick={clearFilters}
-              className="text-xs font-semibold text-[#8a6a3b] underline-offset-2 hover:underline"
+              className="text-xs font-semibold text-[#d9c7a3] underline-offset-2 hover:underline"
             >
               Reset all
             </button>
@@ -531,26 +531,26 @@ export default function CustomersPage() {
 
       {/* List */}
       {loading && customers.length === 0 ? (
-        <div className="surface divide-y divide-[#e6dfcf]">
+        <div className="surface divide-y divide-[#2e2a26]">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="flex items-center gap-4 p-4">
-              <div className="h-10 w-10 animate-pulse rounded-full bg-[#efe8d8]" />
+              <div className="h-10 w-10 animate-pulse rounded-full bg-[#211e1b]" />
               <div className="flex-1 space-y-2">
-                <div className="h-3 w-40 animate-pulse rounded bg-[#efe8d8]" />
-                <div className="h-3 w-56 animate-pulse rounded bg-[#efe8d8]" />
+                <div className="h-3 w-40 animate-pulse rounded bg-[#211e1b]" />
+                <div className="h-3 w-56 animate-pulse rounded bg-[#211e1b]" />
               </div>
             </div>
           ))}
         </div>
       ) : customers.length === 0 ? (
         <div className="surface flex flex-col items-center px-6 py-14 text-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#f1ead9] text-[#8a6a3b]">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2a241b] text-[#d9c7a3]">
             <Users className="h-6 w-6" />
           </span>
-          <h2 className="display mt-4 text-2xl font-semibold text-[#2a2520]">
+          <h2 className="display mt-4 text-2xl font-semibold text-[#f8f3f1]">
             {hasFilters ? "No customers match" : "No customers yet"}
           </h2>
-          <p className="mt-1 max-w-sm text-sm text-[#5f584d]">
+          <p className="mt-1 max-w-sm text-sm text-[#cfc7bb]">
             {hasFilters
               ? "Try removing a filter or searching with different words."
               : "Customers appear here once they register or place an order."}
@@ -559,7 +559,7 @@ export default function CustomersPage() {
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-5 h-11 rounded-lg bg-[#26221d] px-5 text-sm font-semibold text-[#fffdf8] hover:bg-[#3d372f]"
+              className="mt-5 h-11 rounded-lg bg-[#b79a6a] px-5 text-sm font-semibold text-[#1a1816] hover:bg-[#c8ad7f]"
             >
               Clear all filters
             </button>
@@ -574,7 +574,7 @@ export default function CustomersPage() {
             <div className="overflow-x-auto">
               <table className="w-full min-w-[820px] text-sm">
                 <thead>
-                  <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7] text-left text-[10px] font-semibold uppercase tracking-[0.14em] text-[#756d62]">
+                  <tr className="border-b border-[#2e2a26] bg-[#111111] text-left text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9a9185]">
                     <th className="px-5 py-3">Customer</th>
                     <th className="px-5 py-3">Contact</th>
                     <th className="px-5 py-3 text-right">Orders</th>
@@ -584,11 +584,11 @@ export default function CustomersPage() {
                     <th className="px-5 py-3">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#e6dfcf]">
+                <tbody className="divide-y divide-[#2e2a26]">
                   {customers.map((c) => (
                     <tr
                       key={c.userId}
-                      className="transition hover:bg-[#f7f2e7]"
+                      className="transition hover:bg-[#111111]"
                     >
                       <td className="px-5 py-3.5">
                         <Link
@@ -597,31 +597,31 @@ export default function CustomersPage() {
                         >
                           <Avatar name={c.name} />
                           <span>
-                            <span className="block font-semibold text-[#2a2520]">
+                            <span className="block font-semibold text-[#f8f3f1]">
                               {c.name || "Unnamed"}
                             </span>
-                            <span className="block text-xs text-[#756d62]">
+                            <span className="block text-xs text-[#9a9185]">
                               Joined {formatDate(c.createdAt)}
                               {c.isArchived ? " · Archived" : ""}
                             </span>
                           </span>
                         </Link>
                       </td>
-                      <td className="px-5 py-3.5 text-[#5f584d]">
+                      <td className="px-5 py-3.5 text-[#cfc7bb]">
                         <span className="block max-w-[220px] truncate">
                           {c.email || "—"}
                         </span>
-                        <span className="block text-xs text-[#756d62]">
+                        <span className="block text-xs text-[#9a9185]">
                           {c.phone || "—"}
                         </span>
                       </td>
-                      <td className="px-5 py-3.5 text-right font-semibold text-[#2a2520]">
+                      <td className="px-5 py-3.5 text-right font-semibold text-[#f8f3f1]">
                         {c.totalOrders}
                       </td>
-                      <td className="px-5 py-3.5 text-right font-semibold text-[#2a2520]">
+                      <td className="px-5 py-3.5 text-right font-semibold text-[#f8f3f1]">
                         {formatCurrency(c.totalSpent)}
                       </td>
-                      <td className="px-5 py-3.5 text-[#5f584d]">
+                      <td className="px-5 py-3.5 text-[#cfc7bb]">
                         {formatDate(c.lastOrderAt)}
                       </td>
                       <td className="px-5 py-3.5">
@@ -649,31 +649,31 @@ export default function CustomersPage() {
                   <Avatar name={c.name} />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="truncate font-semibold text-[#2a2520]">
+                      <p className="truncate font-semibold text-[#f8f3f1]">
                         {c.name || "Unnamed"}
                       </p>
                       <StatusBadge status={c.status} />
                     </div>
-                    <p className="truncate text-xs text-[#5f584d]">
+                    <p className="truncate text-xs text-[#cfc7bb]">
                       {c.email || "—"}
                     </p>
-                    <p className="text-xs text-[#756d62]">{c.phone || "—"}</p>
+                    <p className="text-xs text-[#9a9185]">{c.phone || "—"}</p>
                   </div>
                 </div>
-                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#e6dfcf] pt-3 text-xs">
+                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-[#2e2a26] pt-3 text-xs">
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">
+                    <p className="text-[10px] uppercase tracking-wider text-[#9a9185]">
                       Orders
                     </p>
-                    <p className="font-semibold text-[#2a2520]">
+                    <p className="font-semibold text-[#f8f3f1]">
                       {c.totalOrders}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#756d62]">
+                    <p className="text-[10px] uppercase tracking-wider text-[#9a9185]">
                       Spent
                     </p>
-                    <p className="font-semibold text-[#2a2520]">
+                    <p className="font-semibold text-[#f8f3f1]">
                       {formatCurrency(c.totalSpent)}
                     </p>
                   </div>
@@ -687,7 +687,7 @@ export default function CustomersPage() {
 
           {/* Pagination */}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-[#5f584d]">
+            <p className="text-sm text-[#cfc7bb]">
               Showing {from}–{to} of {total.toLocaleString("en-IN")}
             </p>
             <div className="flex gap-2">
@@ -695,7 +695,7 @@ export default function CustomersPage() {
                 type="button"
                 disabled={page <= 1 || loading}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-                className="inline-flex h-10 items-center gap-1 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-1 rounded-lg border border-[#3a352f] bg-[#1a1816] px-3 text-sm font-semibold text-[#f8f3f1] hover:bg-[#2a241b] disabled:opacity-50"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Previous
@@ -704,7 +704,7 @@ export default function CustomersPage() {
                 type="button"
                 disabled={page >= totalPages || loading}
                 onClick={() => setPage((p) => p + 1)}
-                className="inline-flex h-10 items-center gap-1 rounded-lg border border-[#d6ccb6] bg-[#fffdf8] px-3 text-sm font-semibold text-[#2a2520] hover:bg-[#f1ead9] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-1 rounded-lg border border-[#3a352f] bg-[#1a1816] px-3 text-sm font-semibold text-[#f8f3f1] hover:bg-[#2a241b] disabled:opacity-50"
               >
                 Next
                 <ChevronRight className="h-4 w-4" />

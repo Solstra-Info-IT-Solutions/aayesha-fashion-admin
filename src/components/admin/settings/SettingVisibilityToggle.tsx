@@ -22,33 +22,33 @@ export default function SettingVisibilityToggle({
       onClick={() => onChange(!checked)}
       className={`flex w-full items-center justify-between rounded-[14px] border p-4 text-left transition ${
         checked
-          ? "border-[#bfe3cb] bg-[#e8f5ec]"
-          : "border-[#e6dfcf] bg-[#f7f2e7]"
+          ? "border-[#2c4a33] bg-[#1a2419]"
+          : "border-[#2e2a26] bg-[#111111]"
       } ${
         disabled
           ? "cursor-not-allowed opacity-60"
-          : "cursor-pointer hover:border-[#d6ccb6]"
+          : "cursor-pointer hover:border-[#3a352f]"
       }`}
     >
       <div className="flex items-center gap-3">
         <div
           className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-            checked ? "bg-[#fffdf8]" : "bg-[#efe8d8]"
+            checked ? "bg-[#1a1816]" : "bg-[#211e1b]"
           }`}
         >
           {checked ? (
-            <Globe2 className="h-4 w-4 text-[#276541]" />
+            <Globe2 className="h-4 w-4 text-[#8fb08a]" />
           ) : (
-            <LockKeyhole className="h-4 w-4 text-[#756d62]" />
+            <LockKeyhole className="h-4 w-4 text-[#9a9185]" />
           )}
         </div>
 
         <div>
-          <p className="text-sm font-medium text-[#2a2520]">
+          <p className="text-sm font-medium text-[#f8f3f1]">
             {checked ? "Public setting" : "Private setting"}
           </p>
 
-          <p className="mt-0.5 text-xs text-[#756d62]">
+          <p className="mt-0.5 text-xs text-[#9a9185]">
             {checked
               ? "This setting can be accessed by public-facing APIs."
               : "This setting is available only to authorized admin users."}
@@ -58,11 +58,11 @@ export default function SettingVisibilityToggle({
 
       <span
         className={`relative h-6 w-11 shrink-0 rounded-full transition ${
-          checked ? "bg-[#276541]" : "bg-[#d6ccb6]"
+          checked ? "bg-[#8fb08a]" : "bg-[#3a352f]"
         }`}
       >
         <span
-          className={`absolute top-0.5 h-5 w-5 rounded-full bg-[#fffdf8] shadow-sm transition ${
+          className={`absolute top-0.5 h-5 w-5 rounded-full bg-[#1a1816] shadow-sm transition ${
             checked ? "left-[22px]" : "left-0.5"
           }`}
         />

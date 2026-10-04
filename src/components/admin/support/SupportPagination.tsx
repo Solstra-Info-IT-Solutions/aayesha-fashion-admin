@@ -81,19 +81,19 @@ export default function SupportPagination({
   const end = Math.min(page * limit, total);
 
   return (
-    <div className="flex flex-col gap-4 border-t border-[#e6dfcf] pt-5 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 border-t border-[#2e2a26] pt-5 sm:flex-row sm:items-center sm:justify-between">
       {/* Result Count */}
-      <p className="text-sm text-[#5f584d]">
+      <p className="text-sm text-[#cfc7bb]">
         Showing{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {start}
         </span>{" "}
         to{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {end}
         </span>{" "}
         of{" "}
-        <span className="font-medium text-[#2a2520]">
+        <span className="font-medium text-[#f8f3f1]">
           {total}
         </span>{" "}
         tickets
@@ -109,7 +109,7 @@ export default function SupportPagination({
           }
           disabled={page <= 1}
           aria-label="Previous page"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] bg-[#1a1816] text-[#cfc7bb] transition hover:bg-[#111111] disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronLeft size={17} />
         </button>
@@ -121,7 +121,7 @@ export default function SupportPagination({
               return (
                 <span
                   key={`ellipsis-${index}`}
-                  className="flex h-9 w-9 items-center justify-center text-sm text-[#5f584d]"
+                  className="flex h-9 w-9 items-center justify-center text-sm text-[#cfc7bb]"
                 >
                   …
                 </span>
@@ -139,8 +139,8 @@ export default function SupportPagination({
                 }
                 className={`h-9 min-w-9 rounded-lg px-2 text-sm font-medium transition ${
                   isActive
-                    ? "bg-[#26221d] text-white"
-                    : "border border-[#e6dfcf] bg-[#fffdf8] text-[#2a2520] hover:bg-[#f7f2e7]"
+                    ? "bg-[#b79a6a] text-[#111111]"
+                    : "border border-[#2e2a26] bg-[#1a1816] text-[#f8f3f1] hover:bg-[#111111]"
                 }`}
               >
                 {item}
@@ -150,7 +150,7 @@ export default function SupportPagination({
         </div>
 
         {/* Mobile */}
-        <div className="flex h-9 items-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] px-3 text-sm font-medium text-[#2a2520] sm:hidden">
+        <div className="flex h-9 items-center rounded-lg border border-[#2e2a26] bg-[#1a1816] px-3 text-sm font-medium text-[#f8f3f1] sm:hidden">
           {page} / {totalPages}
         </div>
 
@@ -162,7 +162,7 @@ export default function SupportPagination({
           }
           disabled={page >= totalPages}
           aria-label="Next page"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfcf] bg-[#fffdf8] text-[#5f584d] transition hover:bg-[#f7f2e7] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#2e2a26] bg-[#1a1816] text-[#cfc7bb] transition hover:bg-[#111111] disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronRight size={17} />
         </button>

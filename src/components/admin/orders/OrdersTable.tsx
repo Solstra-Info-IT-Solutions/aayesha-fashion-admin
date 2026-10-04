@@ -43,7 +43,7 @@ const href = (order: AdminOrder) => `/admin/orders/${encodeURIComponent(order.or
 
 function Reported({ order }: { order: AdminOrder }) {
   return order.paymentClaimedAt && order.paymentStatus === "pending" ? (
-    <span className="inline-flex rounded-full bg-[#f1ead9] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[#6f542f]">
+    <span className="inline-flex rounded-full bg-[#2a241b] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] text-[#d9c7a3]">
       Customer reported paid
     </span>
   ) : null;
@@ -52,11 +52,11 @@ function Reported({ order }: { order: AdminOrder }) {
 export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading: boolean }) {
   if (loading && orders.length === 0) {
     return (
-      <div className="surface divide-y divide-[#e6dfcf]">
+      <div className="surface divide-y divide-[#2e2a26]">
         {Array.from({ length: 6 }).map((_, index) => (
           <div key={index} className="flex items-center gap-4 px-5 py-5">
-            <div className="h-9 w-9 animate-pulse rounded-full bg-[#efe8d8]" />
-            <div className="h-4 flex-1 animate-pulse rounded bg-[#efe8d8]" />
+            <div className="h-9 w-9 animate-pulse rounded-full bg-[#211e1b]" />
+            <div className="h-4 flex-1 animate-pulse rounded bg-[#211e1b]" />
           </div>
         ))}
       </div>
@@ -70,11 +70,11 @@ export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading
         <div className="overflow-x-auto">
           <table className="w-full min-w-[860px] text-left">
             <thead>
-              <tr className="border-b border-[#e6dfcf] bg-[#f7f2e7]">
+              <tr className="border-b border-[#2e2a26] bg-[#111111]">
                 {["Order", "Customer", "Date", "Items", "Total", "Payment", "Status", ""].map((heading, index) => (
                   <th
                     key={`${heading}-${index}`}
-                    className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#756d62] ${
+                    className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#9a9185] ${
                       heading === "Total" ? "text-right" : ""
                     }`}
                   >
@@ -84,49 +84,49 @@ export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-[#e6dfcf]">
+            <tbody className="divide-y divide-[#2e2a26]">
               {orders.map((order) => {
                 const stamp = when(order.createdAt);
 
                 return (
-                  <tr key={order.orderNumber} className="group transition-colors hover:bg-[#faf6ec]">
+                  <tr key={order.orderNumber} className="group transition-colors hover:bg-[#1a1816]">
                     <td className="px-5 py-4">
-                      <Link href={href(order)} className="text-sm font-bold tracking-wide text-[#2a2520] hover:text-[#8a6a3b]">
+                      <Link href={href(order)} className="text-sm font-bold tracking-wide text-[#f8f3f1] hover:text-[#d9c7a3]">
                         {order.orderNumber}
                       </Link>
                     </td>
 
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f1ead9] text-xs font-bold text-[#6f542f]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#2a241b] text-xs font-bold text-[#d9c7a3]">
                           {initials(order.customerName || "")}
                         </span>
 
                         <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold text-[#2a2520]">
+                          <p className="truncate text-sm font-semibold text-[#f8f3f1]">
                             {order.customerName || "Guest customer"}
                           </p>
-                          <p className="truncate text-xs text-[#756d62]">{order.customerEmail}</p>
+                          <p className="truncate text-xs text-[#9a9185]">{order.customerEmail}</p>
                         </div>
                       </div>
                     </td>
 
                     <td className="px-5 py-4">
-                      <p className="text-sm text-[#2a2520]">{stamp.date}</p>
-                      <p className="text-xs text-[#756d62]">{stamp.time}</p>
+                      <p className="text-sm text-[#f8f3f1]">{stamp.date}</p>
+                      <p className="text-xs text-[#9a9185]">{stamp.time}</p>
                     </td>
 
-                    <td className="max-w-[170px] px-5 py-4 text-sm text-[#5f584d]">
+                    <td className="max-w-[170px] px-5 py-4 text-sm text-[#cfc7bb]">
                       <span className="line-clamp-2">{itemSummary(order)}</span>
                     </td>
 
-                    <td className="px-5 py-4 text-right text-sm font-bold text-[#2a2520]">{money(order.total)}</td>
+                    <td className="px-5 py-4 text-right text-sm font-bold text-[#f8f3f1]">{money(order.total)}</td>
 
                     <td className="px-5 py-4">
                       <div className="flex flex-col items-start gap-1">
                         <PaymentStatusBadge status={order.paymentStatus} />
                         <Reported order={order} />
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#756d62]">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#9a9185]">
                           {paymentMethodLabel(order.paymentMethod)}
                         </span>
                       </div>
@@ -140,7 +140,7 @@ export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading
                       <Link
                         href={href(order)}
                         aria-label={`Open order ${order.orderNumber}`}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#8a8275] transition group-hover:bg-[#26221d] group-hover:text-[#fffdf8]"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#9a9185] transition group-hover:bg-[#b79a6a] group-hover:text-[#1a1816]"
                       >
                         <ChevronRight size={16} />
                       </Link>
@@ -163,20 +163,20 @@ export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading
               <Link href={href(order)} className="surface surface-hover block p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f1ead9] text-xs font-bold text-[#6f542f]">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2a241b] text-xs font-bold text-[#d9c7a3]">
                       {initials(order.customerName || "")}
                     </span>
 
                     <div className="min-w-0">
-                      <p className="text-sm font-bold tracking-wide text-[#2a2520]">{order.orderNumber}</p>
-                      <p className="truncate text-xs text-[#756d62]">{order.customerName || "Guest customer"}</p>
+                      <p className="text-sm font-bold tracking-wide text-[#f8f3f1]">{order.orderNumber}</p>
+                      <p className="truncate text-xs text-[#9a9185]">{order.customerName || "Guest customer"}</p>
                     </div>
                   </div>
 
-                  <p className="shrink-0 text-base font-bold text-[#2a2520]">{money(order.total)}</p>
+                  <p className="shrink-0 text-base font-bold text-[#f8f3f1]">{money(order.total)}</p>
                 </div>
 
-                <p className="mt-3 line-clamp-1 text-xs text-[#5f584d]">{itemSummary(order)}</p>
+                <p className="mt-3 line-clamp-1 text-xs text-[#cfc7bb]">{itemSummary(order)}</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   <OrderStatusBadge status={order.status} />
@@ -184,7 +184,7 @@ export function OrdersTable({ orders, loading }: { orders: AdminOrder[]; loading
                   <Reported order={order} />
                 </div>
 
-                <div className="mt-3 flex items-center justify-between border-t border-[#e6dfcf] pt-3 text-xs text-[#756d62]">
+                <div className="mt-3 flex items-center justify-between border-t border-[#2e2a26] pt-3 text-xs text-[#9a9185]">
                   <span>
                     {stamp.date} · {stamp.time}
                   </span>

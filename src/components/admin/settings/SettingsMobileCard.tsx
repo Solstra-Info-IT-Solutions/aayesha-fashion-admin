@@ -25,14 +25,14 @@ export default function SettingsMobileCard({
       : String(setting.value ?? "");
 
   return (
-    <div className="rounded-[14px] border border-[#e6dfcf] bg-[#fffdf8] p-4 shadow-sm">
+    <div className="rounded-[14px] border border-[#2e2a26] bg-[#1a1816] p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="break-all font-semibold text-[#2a2520]">
+          <h3 className="break-all font-semibold text-[#f8f3f1]">
             {setting.key}
           </h3>
 
-          <span className="mt-2 inline-flex rounded-full bg-[#efe8d8] px-2.5 py-1 text-xs font-medium capitalize text-[#5f584d]">
+          <span className="mt-2 inline-flex rounded-full bg-[#211e1b] px-2.5 py-1 text-xs font-medium capitalize text-[#cfc7bb]">
             {setting.group}
           </span>
         </div>
@@ -57,25 +57,25 @@ export default function SettingsMobileCard({
         </button>
       </div>
 
-      <div className="mt-4 rounded-[14px] bg-[#f7f2e7] p-3">
-        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#756d62]">
+      <div className="mt-4 rounded-[14px] bg-[#111111] p-3">
+        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-[#9a9185]">
           Value
         </p>
 
-        <p className="break-all text-sm text-[#3d372f]">
+        <p className="break-all text-sm text-[#e6dfd4]">
           {displayValue || "—"}
         </p>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-[#756d62]">
+        <p className="text-xs text-[#9a9185]">
           Updated {new Date(setting.updatedAt).toLocaleDateString()}
         </p>
 
         <div className="flex items-center gap-2">
           <Link
             href={`/admin/settings/${encodeURIComponent(setting.key)}`}
-            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#e6dfcf] px-3 text-sm font-medium text-[#3d372f] hover:bg-[#f7f2e7]"
+            className="inline-flex h-9 items-center gap-2 rounded-lg border border-[#2e2a26] px-3 text-sm font-medium text-[#e6dfd4] hover:bg-[#111111]"
           >
             <Edit3 className="h-4 w-4" />
             Edit
@@ -85,7 +85,7 @@ export default function SettingsMobileCard({
             type="button"
             onClick={() => onDelete(setting)}
             disabled={deleting}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#f5c2c0] text-[#b3261e] hover:bg-[#fdecec] disabled:opacity-50"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#5a2a27] text-[#e08b84] hover:bg-[#2b1a18] disabled:opacity-50"
             title="Delete setting"
           >
             <Trash2 className="h-4 w-4" />

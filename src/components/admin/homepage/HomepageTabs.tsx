@@ -78,8 +78,8 @@ export function HomepageTabs({
               className={[
                 "flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition",
                 active
-                  ? "border-[#26221d] bg-[#26221d] text-[#fffdf8]"
-                  : "border-[#d6ccb6] bg-[#fffdf8] text-[#5f584d] hover:bg-[#f1ead9]",
+                  ? "border-[#f8f3f1] bg-[#b79a6a] text-[#1a1816]"
+                  : "border-[#3a352f] bg-[#1a1816] text-[#cfc7bb] hover:bg-[#2a241b]",
               ].join(" ")}
             >
               <Icon size={15} strokeWidth={1.7} />
