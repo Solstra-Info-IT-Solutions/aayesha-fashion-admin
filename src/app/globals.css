@@ -9,6 +9,9 @@
    ========================================================= */
 
 :root {
+  /* Local system-font fallbacks: avoid build-time Google font downloads. */
+  --font-manrope: "Arial";
+  --font-cormorant: "Georgia";
   --color-primary: #b79a6a;
   --color-primary-hover: #c8ad7f;
   --color-accent: #b79a6a;
