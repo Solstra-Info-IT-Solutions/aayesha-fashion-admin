@@ -1,3 +1,5 @@
+import { ApiError } from "@/lib/api";
+
 import {
   getSetting,
   upsertSetting,
@@ -36,17 +38,99 @@ export type HomepageSettingKey =
   (typeof HOMEPAGE_SETTING_KEYS)[keyof typeof HOMEPAGE_SETTING_KEYS];
 
 /* =========================================================
+   DEFAULT HOMEPAGE CONFIGURATIONS
+
+   New stores may not have CMS documents yet. These defaults
+   let the admin edit and save a section without treating a
+   missing document as a fatal page error.
+========================================================= */
+
+const DEFAULT_HOMEPAGE_VALUES: Record<HomepageSettingKey, unknown> = {
+  [HOMEPAGE_SETTING_KEYS.hero]: {
+    enabled: true,
+    slides: [],
+  } satisfies HomepageHero,
+
+  [HOMEPAGE_SETTING_KEYS.brandStory]: {
+    enabled: true,
+    eyebrow: "",
+    title: "",
+    description: "",
+    image: "",
+    buttonLabel: "",
+    href: "",
+  } satisfies HomepageBrandStory,
+
+  [HOMEPAGE_SETTING_KEYS.whyChooseUs]: {
+    enabled: true,
+    eyebrow: "",
+    title: "",
+    description: "",
+    items: [],
+  } satisfies HomepageWhyChooseUs,
+
+  [HOMEPAGE_SETTING_KEYS.testimonials]: {
+    enabled: true,
+    eyebrow: "",
+    title: "",
+    description: "",
+    items: [],
+  } satisfies HomepageTestimonials,
+
+  [HOMEPAGE_SETTING_KEYS.newsletter]: {
+    enabled: true,
+    eyebrow: "",
+    title: "",
+    description: "",
+    buttonLabel: "",
+    placeholder: "",
+  } satisfies HomepageNewsletter,
+
+  [HOMEPAGE_SETTING_KEYS.instagram]: {
+    enabled: true,
+    eyebrow: "",
+    title: "",
+    description: "",
+    username: "",
+    href: "",
+    images: [],
+  } satisfies HomepageInstagram,
+};
+
+/* =========================================================
    GET HOMEPAGE SETTING
+
+   A 404 here means the setting has not been created yet,
+   not that the Homepage API route is missing. Return a
+   typed default; the normal PUT endpoint persists it when
+   the administrator saves the section.
 ========================================================= */
 
 async function getHomepageSetting<T>(
   accessToken: string,
   key: HomepageSettingKey,
 ): Promise<StoreSetting<T>> {
-  return getSetting(
-    accessToken,
-    key,
-  ) as Promise<StoreSetting<T>>;
+  try {
+    return (await getSetting(
+      accessToken,
+      key,
+    )) as StoreSetting<T>;
+  } catch (error) {
+    if (!(error instanceof ApiError) || error.status !== 404) {
+      throw error;
+    }
+
+    return {
+      _id: "",
+      key,
+      value: DEFAULT_HOMEPAGE_VALUES[key] as T,
+      group: "homepage",
+      isPublic: true,
+      updatedBy: null,
+      createdAt: "",
+      updatedAt: "",
+    };
+  }
 }
 
 /* =========================================================
@@ -137,7 +221,7 @@ export async function updateHomepageSetting<T>(
   value: T,
   group = "homepage",
 ): Promise<StoreSetting<T>> {
-  return upsertSetting(
+  return (await upsertSetting(
     accessToken,
     {
       key,
@@ -145,7 +229,7 @@ export async function updateHomepageSetting<T>(
       group,
       isPublic: true,
     },
-  ) as Promise<StoreSetting<T>>;
+  )) as StoreSetting<T>;
 }
 
 /* =========================================================
